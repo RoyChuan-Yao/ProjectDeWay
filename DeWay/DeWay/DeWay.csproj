@@ -352,7 +352,8 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52227</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44331/</IISUrl>
+          <IISUrl>http://localhost:22222/</IISUrl>
+          <IISAppRootUrl>http://localhost:22222/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
