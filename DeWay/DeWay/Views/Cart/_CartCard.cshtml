@@ -1,0 +1,46 @@
+﻿@model DeWay.Models.Cart_OrderDetail
+
+<div class="card mb-3" style="max-width: 700px;">
+    <div class="card-header">
+        <div class="nav nav-pills card-header-pills">
+            <div class="w-25 form-inline">
+                <input type="checkbox"
+                       onclick="changeChckeStatus(checkStatus,@ViewBag.count)">
+                <div class="h4 ml-2">@Html.DisplayFor(model => Model.Specification.Product.Seller.selCompany)</div>
+            </div>
+            <div class="w-75  text-right">
+                <a class="btn btn-outline-secondary " onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = Model.cartID, mbrID = Model.mbrID })">X</a>
+            </div>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-1"></div>
+        <div class="col-md-3 text-center my-auto">
+            <img src="~/images/diamond-4229493_960_720.jpg"
+                 class="card-img"
+                 alt="NoImage">
+        </div>
+        <div class="col-md-4">
+            <div class="card-body">
+                <h3 class="card-title">@Html.DisplayFor(modelItem => Model.Specification.Product.pdtName)</h3>
+                <p class="card-text">
+                    商品樣式：
+                    @Html.DisplayFor(modelItem => Model.Specification.Size)
+                    @Html.DisplayFor(modelItem => Model.Specification.Style)
+                </p>
+                <p class="text-primary">NT$ <span id="price_@ViewBag.count">@Html.DisplayFor(modelItem => Model.Specification.Price)</span></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-body">
+                <p class="text-primary">
+                    選購數量：    <span id="count_@ViewBag.count">@Html.DisplayFor(modelItem => Model.Quantity)</span>
+                </p>
+                <p class="text-secondary">
+                    折扣：    @Html.DisplayFor(modelItem => Model.Discount)<br />
+                    點數使用：    @Html.DisplayFor(modelItem => Model.usedPoints)<br />
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

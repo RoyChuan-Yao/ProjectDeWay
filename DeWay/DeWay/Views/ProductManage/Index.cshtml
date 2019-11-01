@@ -1,0 +1,97 @@
+﻿@model IEnumerable<DeWay.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.selID = Model.ToList()[0].Seller.selID;
+}
+
+<h3>@Model.ToList()[0].Seller.selCompany     賣場商品</h3>
+
+<p>
+    @Html.ActionLink("新增商品", "CreatePdt",new { selID = Model.ToList()[0].Seller.selID})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            照片
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.pdtName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pdtDescribe)
+        </th>
+        <th>
+            商品規格
+        </th>
+        <th>
+            價格
+        </th>
+        <th>
+            庫存
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discontinued)
+        </th>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+   
+
+<tr>
+    <td>
+        @*<img src="@item.ProductImage.ToList()[0].pdtImage" width="200" />*@
+        @*@Html.DisplayFor(modelItem => item.ProductImage{ img src = "~/images/@(item.Id).jpg" width = "200" })*@
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pdtName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pdtDescribe)
+    </td>
+    <td>
+        @for (int i = 0; i < item.Specification.ToList().Count(); i++)
+        {
+            @Html.DisplayFor(modelItem => item.Specification.ToList()[i].Size)
+            <br />
+        }
+    </td>
+    <td>
+        @for (int i = 0; i < item.Specification.ToList().Count(); i++)
+        {
+            @Html.DisplayFor(modelItem => item.Specification.ToList()[i].Price)
+        <br />
+        }
+    </td>
+    <td>
+        @for (int i = 0; i < item.Specification.ToList().Count(); i++)
+        {
+
+            @Html.DisplayFor(modelItem => item.Specification.ToList()[i].Stock)
+            <br />
+        }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Discontinued)
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.pdtID }) |*@
+        <a href="/ProductManage/Edit?id=@item.pdtID">編輯</a>
+    </td>
+</tr>
+
+    
+
+
+
+}
+
+</table>

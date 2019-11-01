@@ -1,0 +1,118 @@
+﻿@model DeWay.Models.Product
+
+@{
+    ViewBag.Title = "CreatePdt";
+}
+
+    <h1 style="color:#3348eb" >新增商品</h1>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+<div style="">
+    <div class="form-horizontal">
+        <h5>30秒簡易上架</h5>
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.pdtID, "商品編號", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pdtID, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.ValidationMessageFor(model => model.pdtID, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.selID, "賣家編號", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="selID" name="selID" type="text" class="form-control" required value="@ViewBag.selID" />
+                @*@Html.EditorFor(model => model.selID);*@
+                @*@Html.DropDownList("selID", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.selID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pdtName, "商品名稱",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pdtName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pdtName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pdtDescribe,"商品描述", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pdtDescribe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pdtDescribe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Specification.ToList()[0].Price,"商品價格", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Specification.ToList()[0].Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Specification.ToList()[0].Price, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        <div style="display:none">
+            @Html.LabelFor(model => model.pdtDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="pdtDate" name="pdtDate" type="datetime" required="required" value="2019/10/10" />
+                @*@Html.EditorFor(model => model.pdtDate, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.pdtDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Discontinued, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Discontinued)
+                    @Html.ValidationMessageFor(model => model.Discontinued, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ProductImage, "商品圖片", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="">
+                    <input type="file" class="form-control-file " id="exampleFormControlFile1">
+                    @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+        <div style="display:none">
+            @Html.LabelFor(model => model.ctgID, "ctgID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="ctgID" name="ctgID" type="text" required="required" value="ctg0000001" />
+                @*@Html.EditorFor(model => model.ctgID, new { htmlAttributes = new { @class = "form-control" @value = "ctg0000001" } });*@
+                @*@Html.DropDownList("ctgID", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.ctgID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <form>
+            <div class="form-group">
+                <div class="col-md-10">
+
+                </div>
+
+            </div>
+        </form>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="新增" class="alert alert-primary" role="alert" />
+            </div>
+        </div>
+    </div>
+
+</div>   
+
+}
+
+<div>
+    @*@Html.ActionLink("回到賣場商品", "Index")*@
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/cartCSS.css" rel="stylesheet" />*@
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+
+</head>
+<body>
+
+    <div class="navbar navbar-expand-lg  bg-dark navbar-dark">
+        <div class="container ">
+            @Html.ActionLink("DeWay", "Index", "Home",new { } ,new { @class = "navbar-brand text-white" })
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white">Home</a>
+                    </li>
+                    <li>
+                        @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("購物車", "mycart", "cart", new { id = Session["id"] }, new { @class = "nav-link text-white" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("賣場管理", "index", "ProductManage", new { id = Session["id"] }, new { @class = "nav-link text-white" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content mt-4">
+
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("cartScript", false)
+</body>
+</html>
