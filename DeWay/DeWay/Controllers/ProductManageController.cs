@@ -37,22 +37,7 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult CreatePdt(Product pdt)
         {
-            //var pdtid = from p in db.Product
-            //               orderby p.pdtID
-            //               select p;
-            //string strpid = pdtid.FirstOrDefault().ToString();
-            //strpid = strpid.Substring(3, 7);
-            //int temp = Convert.ToInt32(strpid);
-            //temp += 1;
-            //string tempStr = temp.ToString();
-            //for (int i = 0; i < 7- tempStr.Length; i++)
-            //{
-            //    tempStr = "0" + tempStr; 
-            //}
-            //tempStr = "pdt" + tempStr;
-
-            DateTime dt = DateTime.Now;
-            pdt.pdtDate = dt;
+            
             
             db.Product.Add(pdt);
             
