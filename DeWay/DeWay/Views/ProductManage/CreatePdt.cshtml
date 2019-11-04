@@ -55,10 +55,10 @@
                 @Html.ValidationMessageFor(model => model.Specification.ToList()[0].Price, "", new { @class = "text-danger" })
             </div>
         </div>*@
-        <div style="">
+        <div style="display:none">
             @Html.LabelFor(model => model.pdtDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input id="pdtDate" name="pdtDate" type="datetime" required="required" value="" />
+                <input id="pdtDate" name="pdtDate" type="datetime" required="required" value="2019/10/10" />
                 @*@Html.EditorFor(model => model.pdtDate, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.pdtDate, "", new { @class = "text-danger" })
             </div>
