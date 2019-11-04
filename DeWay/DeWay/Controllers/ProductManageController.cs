@@ -53,7 +53,6 @@ namespace DeWay.Controllers
 
             DateTime dt = DateTime.Now;
             pdt.pdtDate = dt;
-            
             db.Product.Add(pdt);
             
             db.SaveChanges();
