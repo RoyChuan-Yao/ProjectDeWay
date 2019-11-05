@@ -294,7 +294,7 @@
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helper\GmailSender.cs" />
+    <Compile Include="Helpers\GmailSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

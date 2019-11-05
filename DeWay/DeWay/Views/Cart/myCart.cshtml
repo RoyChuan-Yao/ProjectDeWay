@@ -2,18 +2,14 @@
 
 @{
     ViewBag.Title = "我的購物車";
-    int count = 0;
+    IEnumerable<DeWay.Models.Cart_OrderDetail> selectBySelID = Model.OrderBy(m => m.Specification.Product.selID);
 }
 
 <h2 class="mb-3">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的購物車</h2>
 
 <div class="row">
     <div class="col-8">
-        @foreach (var item in Model)
-        {
-            ViewBag.count = count++;
-            @Html.Partial("_CartCard", item)
-        }
+        @Html.Partial("_CartCard", Model)
     </div>
     <div class="col-4">
         <div class="card sticky-top">
@@ -31,20 +27,21 @@
 </div>
 @section cartScript{
     <script>
-        var len = $("div[class='col-8']").children().length
+        var len = $("input[type='checkbox']").length//檢查讀取了幾個商品項目
 
-        var checkStatus = [];//利用陣列存取誰被點選
-        for (var i = 0; i < len; i++) { //初始化陣列(沒有商品被點選)
+        //利用陣列存取誰被點選
+        var checkStatus = [];
+        for (var i = 0; i < len; i++) { //初始化陣列(預設0個商品被勾選)
             checkStatus.push(false);
         }
+
         //點選其中一個商品後，改變checkStatus
         function changeChckeStatus(arr, index) {
             arr[index] = !arr[index];
-            console.log(arr);
-            updateTotalPrice(arr);//點選後調用更新功能
+            updateTotalPrice(arr);//點選後更新訂單摘要
         }
 
-        //更新功能
+        //更新訂單摘要
         function updateTotalPrice(arr) {
             var price, count, totalPrice = 0;
             for (i = 0; i < arr.length; i++) {
@@ -52,8 +49,6 @@
                     //獲取被點選商品的價格與數量
                     price = parseInt($("#price_" + i).text());
                     count = parseInt($("#count_" + i).text());
-                    console.log(price)
-                    console.log(count);
                     //相乘後計算總價
                     totalPrice += price * count;
                 }

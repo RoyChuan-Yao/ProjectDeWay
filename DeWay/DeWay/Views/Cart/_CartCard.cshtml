@@ -1,46 +1,71 @@
-﻿@model DeWay.Models.Cart_OrderDetail
+﻿@model IEnumerable<DeWay.Models.Cart_OrderDetail>
+@{
+    int count = 0;
+    IEnumerable<DeWay.Models.Cart_OrderDetail> selectBySelID = Model.OrderBy(m => m.Specification.Product.selID);
+    string sellerIDCheck = "";
+}
 
-<div class="card mb-3" style="max-width: 700px;">
-    <div class="card-header">
-        <div class="nav nav-pills card-header-pills">
-            <div class="w-25 form-inline">
-                <input type="checkbox"
-                       onclick="changeChckeStatus(checkStatus,@ViewBag.count)">
-                <div class="h4 ml-2">@Html.DisplayFor(model => Model.Specification.Product.Seller.selCompany)</div>
+@foreach (DeWay.Models.Cart_OrderDetail item in selectBySelID)
+{
+    if (item.Specification.Product.selID != sellerIDCheck)
+    {
+        //創造卡片
+        sellerIDCheck = item.Specification.Product.selID;
+        string sellerCompany = item.Specification.Product.Seller.selCompany;
+        
+        <div class="card mb-3" style="max-width: 700px;">
+            <div class="card-header">
+                <div class="nav nav-pills card-header-pills">
+                    <div class="w-25 form-inline">
+                        <div class="h4 ml-2">@sellerCompany</div>
+                    </div>
+                </div>
             </div>
-            <div class="w-75  text-right">
-                <a class="btn btn-outline-secondary " onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = Model.cartID, mbrID = Model.mbrID })">X</a>
-            </div>
+
+            @foreach (DeWay.Models.Cart_OrderDetail product in selectBySelID)
+            {
+                if (product.Specification.Product.selID == sellerIDCheck)
+                {
+                    <div class="row no-gutters">
+                        <div class="col-md-1 m-auto text-center">
+                            <input type="checkbox"
+                                   onclick="changeChckeStatus(checkStatus,@count)">
+                        </div>
+                        <div class="col-md-3 text-center my-auto">
+                            <img src="~/images/diamond-4229493_960_720.jpg" class="card-img" alt="圖片消失了"/>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h3 class="card-title">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</h3>
+                                <p class="card-text">
+                                    商品樣式：
+                                    @Html.DisplayFor(modelItem => product.Specification.Size)
+                                    @Html.DisplayFor(modelItem => product.Specification.Style)
+                                </p>
+                                <p class="text-primary">NT$ <span id="price_@count">@Html.DisplayFor(modelItem => product.Specification.Price)</span></p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card-body">
+                                <p class="text-primary">
+                                    選購數量：    <span id="count_@count">@Html.DisplayFor(modelItem => product.Quantity)</span>
+                                </p>
+                                <p class="text-secondary">
+                                    折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
+                                    點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <a class="btn btn-outline-secondary align-content-around" onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = product.cartID, mbrID = product.mbrID })">X</a>
+
+                        </div>
+                    </div>
+                    count++;
+                }
+
+            }
+
         </div>
-    </div>
-    <div class="row no-gutters">
-        <div class="col-md-1"></div>
-        <div class="col-md-3 text-center my-auto">
-            <img src="~/images/diamond-4229493_960_720.jpg"
-                 class="card-img"
-                 alt="NoImage">
-        </div>
-        <div class="col-md-4">
-            <div class="card-body">
-                <h3 class="card-title">@Html.DisplayFor(modelItem => Model.Specification.Product.pdtName)</h3>
-                <p class="card-text">
-                    商品樣式：
-                    @Html.DisplayFor(modelItem => Model.Specification.Size)
-                    @Html.DisplayFor(modelItem => Model.Specification.Style)
-                </p>
-                <p class="text-primary">NT$ <span id="price_@ViewBag.count">@Html.DisplayFor(modelItem => Model.Specification.Price)</span></p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card-body">
-                <p class="text-primary">
-                    選購數量：    <span id="count_@ViewBag.count">@Html.DisplayFor(modelItem => Model.Quantity)</span>
-                </p>
-                <p class="text-secondary">
-                    折扣：    @Html.DisplayFor(modelItem => Model.Discount)<br />
-                    點數使用：    @Html.DisplayFor(modelItem => Model.usedPoints)<br />
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+    }
+}
