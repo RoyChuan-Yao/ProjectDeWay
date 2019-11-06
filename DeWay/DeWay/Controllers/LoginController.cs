@@ -29,7 +29,7 @@ namespace DeWay.Controllers
             rd = cmd.ExecuteReader();
             if (rd.Read())
             {
-                Session["id"] = rd["mbrID"].ToString();
+                Session["memberID"] = rd["mbrID"].ToString();
 
 
                 Conn.Close();

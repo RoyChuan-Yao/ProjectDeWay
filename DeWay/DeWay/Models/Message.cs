@@ -18,7 +18,7 @@ namespace DeWay.Models
         public string senderID { get; set; }
         public string receiverID { get; set; }
         public string msgContent { get; set; }
-        public Nullable<System.DateTime> msgTime { get; set; }
+        public System.DateTime msgTime { get; set; }
         public bool msgStatus { get; set; }
     
         public virtual Member Member { get; set; }

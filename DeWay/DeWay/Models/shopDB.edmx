@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actBulletin">
           <Key>
             <PropertyRef Name="actID" />
@@ -60,7 +60,7 @@
             <PropertyRef Name="fstLayerID" />
           </Key>
           <Property Name="fstLayerID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="fstLayer" Type="nvarchar" MaxLength="15" />
+          <Property Name="fstLayer" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -93,7 +93,7 @@
           <Property Name="senderID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="receiverID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="msgContent" Type="nvarchar" MaxLength="120" Nullable="false" />
-          <Property Name="msgTime" Type="datetime" />
+          <Property Name="msgTime" Type="datetime" Nullable="false" />
           <Property Name="msgStatus" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ntfCategory">
@@ -101,7 +101,7 @@
             <PropertyRef Name="ntfCtgID" />
           </Key>
           <Property Name="ntfCtgID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="ntfType" Type="nvarchar" MaxLength="10" />
+          <Property Name="ntfType" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="ntfRecord">
           <Key>
@@ -249,7 +249,7 @@
             <PropertyRef Name="sndLayerID" />
           </Key>
           <Property Name="sndLayerID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="sndLayer" Type="nvarchar" MaxLength="15" />
+          <Property Name="sndLayer" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Seller">
           <Key>
@@ -321,7 +321,7 @@
             <PropertyRef Name="trdLayerID" />
           </Key>
           <Property Name="trdLayerID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="trdLayer" Type="nvarchar" MaxLength="15" />
+          <Property Name="trdLayer" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="WishList">
           <Key>
@@ -775,6 +775,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetMemberID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetSellerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <EntityContainer Name="shopDBModelStoreContainer">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adm" EntityType="Self.Adm" Schema="dbo" store:Type="Tables" />
@@ -958,7 +960,8 @@
             <End Role="WishList" EntitySet="WishList" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1027,7 +1030,7 @@
             <PropertyRef Name="fstLayerID" />
           </Key>
           <Property Name="fstLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="fstLayer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="fstLayer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK__ProductCa__fstLa__04E4BC85" FromRole="FirstLayer" ToRole="ProductCategory" />
         </EntityType>
         <EntityType Name="Member">
@@ -1071,7 +1074,7 @@
           <Property Name="senderID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="receiverID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="msgContent" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="msgTime" Type="DateTime" Precision="3" />
+          <Property Name="msgTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="msgStatus" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Message__receive__6D0D32F4" FromRole="Message" ToRole="Member" />
           <NavigationProperty Name="Member1" Relationship="Self.FK__Message__senderI__6C190EBB" FromRole="Message" ToRole="Member" />
@@ -1081,7 +1084,7 @@
             <PropertyRef Name="ntfCtgID" />
           </Key>
           <Property Name="ntfCtgID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="ntfType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ntfType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ntfRecord" Relationship="Self.FK__ntfRecord__ntfCt__01142BA1" FromRole="ntfCategory" ToRole="ntfRecord" />
         </EntityType>
         <EntityType Name="ntfRecord">
@@ -1262,7 +1265,7 @@
             <PropertyRef Name="sndLayerID" />
           </Key>
           <Property Name="sndLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="sndLayer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="sndLayer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK__ProductCa__sndLa__05D8E0BE" FromRole="SecondLayer" ToRole="ProductCategory" />
         </EntityType>
         <EntityType Name="Seller">
@@ -1349,7 +1352,7 @@
             <PropertyRef Name="trdLayerID" />
           </Key>
           <Property Name="trdLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="trdLayer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="trdLayer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK__ProductCa__trdLa__06CD04F7" FromRole="ThirdLayer" ToRole="ProductCategory" />
         </EntityType>
         <EntityType Name="WishList">
@@ -1806,7 +1809,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="shopDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="shopDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" />
           <EntitySet Name="Adm" EntityType="Self.Adm" />
           <EntitySet Name="AdmAccount" EntityType="Self.AdmAccount" />
@@ -1994,7 +1997,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="shopDBModelStoreContainer" CdmEntityContainer="shopDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="shopDBModelStoreContainer" CdmEntityContainer="shopDBEntities">
           <EntitySetMapping Name="actBulletin">
             <EntityTypeMapping TypeName="shopDBModel.actBulletin">
               <MappingFragment StoreEntitySet="actBulletin">
