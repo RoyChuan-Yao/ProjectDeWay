@@ -12,6 +12,7 @@ namespace Project.Controllers
 
         shopDBEntities db = new shopDBEntities();
 
+
         public ActionResult myCart(string id)
         {
             var cod = db.Cart_OrderDetail;
