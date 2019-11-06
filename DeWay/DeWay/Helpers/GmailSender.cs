@@ -45,19 +45,5 @@ namespace ProjectTestEveryThing
             //發送Email
             MySmtp.Send(MailMessage); MySmtp.Dispose();
         }
-
-
-        //string account, password, sender, receiver, messageBody, subject;
-        //account = "ggorichard@gmail.com";
-        //    password = "ihywncfqjqgdpmfl";
-        //    sender = "DeWay電子商務<ggorichard@gmail.com>";
-        //    receiver = "tanaka59711@gmail.com";
-        //    messageBody = "<html>" +
-        //        "<body>" +
-        //        "<p>請在驗證頁面輸入以下號碼來驗證你的信箱</p><h3>5566123</h3></body></html>";
-        //    subject = "驗證碼";
-        //    GmailSender gs = new GmailSender(account, password, sender, receiver, messageBody, subject);
-        //gs.IsHtml = true;
-        //    gs.Send();
     }
 }

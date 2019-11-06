@@ -321,6 +321,7 @@
     <Content Include="Views\ProductManage\CreatePdt.cshtml" />
     <Content Include="Views\ProductManage\Edit.cshtml" />
     <Content Include="Views\ProductManage\Index.cshtml" />
+    <Content Include="Views\Cart\receiveOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

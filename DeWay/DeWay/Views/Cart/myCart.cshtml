@@ -2,11 +2,9 @@
 
 @{
     ViewBag.Title = "我的購物車";
-    IEnumerable<DeWay.Models.Cart_OrderDetail> selectBySelID = Model.OrderBy(m => m.Specification.Product.selID);
 }
 
-<h2 class="mb-3">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的購物車</h2>
-
+<h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的購物車</h2>
 <div class="row">
     <div class="col-8">
         @Html.Partial("_CartCard", Model)
@@ -19,13 +17,19 @@
             <div class="card">
                 <p class="card-text">商品總計：<span id="priceTotal">NT$ 0</span></p>
                 <p class="card-text">運費總計：<span id="shpTotal">NT$ 0</span></p>
-                <hr />
                 <a href="">使用優惠券、紅利或禮物卡</a>
+                <hr />
+                <button id="checkOutBtn" class="btn btn-warning m-2 " onclick="checkOut()" disabled>前往結帳</button>
             </div>
         </div>
     </div>
 </div>
+@using (Html.BeginForm("receiveOrder","Cart"))
+{
+
+}
 @section cartScript{
+
     <script>
         var len = $("input[type='checkbox']").length//檢查讀取了幾個商品項目
 
@@ -35,10 +39,17 @@
             checkStatus.push(false);
         }
 
+
         //點選其中一個商品後，改變checkStatus
         function changeChckeStatus(arr, index) {
             arr[index] = !arr[index];
             updateTotalPrice(arr);//點選後更新訂單摘要
+            //改變結帳按鈕狀態
+            if (arr.indexOf(true) == -1) {
+                $("#checkOutBtn").attr("disabled", "disabled")
+            } else {
+                $("#checkOutBtn").removeAttr("disabled")
+            }
         }
 
         //更新訂單摘要
@@ -56,6 +67,46 @@
             //在欄位顯示總價
             $("#priceTotal").text("NT$ " + totalPrice);
         }
+    </script>
+    <script>
+        $("#backToCart").hide()//從結帳畫面改回購物車
+        function backToCart() {
+            $("div[id^='no']").show(100)
+            $("#backToCart").hide(100);//隱藏按鈕
+            $("#checkOutBtn").text("前往結帳").attr("onclick","checkOut()")
+            $("input[type='checkbox'],a[href*='Delete']").show(100)
+            $("form").html('')
+        }
+        console.log("看看沒有的物件");
+        console.log($("#backToCart").length);
+
+        function checkOut() {//鎖定購物車，頁面改成結帳頁面
+            //if (checkStatus.indexOf(true) != -1) {//如果有列表中有True才做
+                if ($("#backToCart").length == 0) {//加入回購物車按鈕
+                    $(`<button class="btn btn-dark mb-2" onclick="backToCart()" id="backToCart">&lt&lt返回購物車</button>`).insertAfter("#cart_title")
+                }
+                checkStatus.forEach((value, index) => {//隱藏為false的按鈕
+                    if (value == false) {
+                        $(`#no_${index}`).hide(250);
+                    }
+                })
+            //}
+            $("input[type='checkbox'],a[href*='Delete']").hide(100)
+            $("#backToCart").show(100)
+            $("#checkOutBtn").text("確認付款").attr("onclick","submitOrder()")
+            var result = ""
+            for (i = 0; i <= len; i++) {
+                if (checkStatus[i]) {
+                result +=`<input type="hidden" name="cartID" value="${i}">`
+                }
+            }
+            $("form").html(result)
+            
+        }
+        function submitOrder() {
+            $("form").submit();
+        }
+
     </script>
 }
 

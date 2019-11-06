@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Index";
 }
-@if (@Session["id"] != null)
-{ <h2>歡迎你 @Session["id"]</h2>}
+@if (@Session["memberID"] != null)
+{ <h2>歡迎你 @Session["memberID"]</h2>}
 else {<h2>你尚未登入</h2> }
 
 
