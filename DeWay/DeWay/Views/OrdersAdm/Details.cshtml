@@ -1,0 +1,122 @@
+﻿@model DeWay.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.recName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recDist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recDist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recAdress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recAdress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pmtDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pmtDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.odrDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.odrDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shpDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shpDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.odrNote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.odrNote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.traceNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.traceNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cashFlowID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cashFlowID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatus.odrStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod.pmtMethod)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.odrID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
