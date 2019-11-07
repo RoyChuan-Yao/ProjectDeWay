@@ -10,16 +10,31 @@
         @Html.Partial("_CartCard", Model)
     </div>
     <div class="col-4">
-        <div class="card sticky-top">
-            <div class="card-header">
-                訂單摘要
+        <div class="sticky-top">
+            <div class="card ">
+                <div class="card-header">
+                    訂單摘要
+                </div>
+                <div class="card-body">
+                    <p class="card-text">商品總計：<span id="priceTotal">NT$ 0</span></p>
+                    <p class="card-text">運費總計：<span id="shpTotal">NT$ 0</span></p>
+                    <a href="">使用優惠券、紅利或禮物卡</a>
+                    <hr />
+                    <button id="checkOutBtn" class="btn btn-warning btn-block" onclick="checkOut()" disabled>前往結帳</button>
+                </div>
             </div>
-            <div class="card">
-                <p class="card-text">商品總計：<span id="priceTotal">NT$ 0</span></p>
-                <p class="card-text">運費總計：<span id="shpTotal">NT$ 0</span></p>
-                <a href="">使用優惠券、紅利或禮物卡</a>
-                <hr />
-                <button id="checkOutBtn" class="btn btn-warning m-2 " onclick="checkOut()" disabled>前往結帳</button>
+            <div class="card mt-2">
+                <div class="card-header">
+                    收件資訊
+                </div>
+                <div class="card-body">
+                    
+                    <p class="card-text">配送方式：<span id="priceTotal">NT$ 0</span></p>
+                    <label for="">給設計師的信息或注意事項</label>
+                    <textarea id="note" value="" placeholder="給設計師的信息或注意事項"></textarea>
+                    <hr />
+                    <button id="checkOutBtn" class="btn btn-warning m-2 " onclick="checkOut()" disabled>前往結帳</button>
+                </div>
             </div>
         </div>
     </div>
@@ -38,7 +53,6 @@
         for (var i = 0; i < len; i++) { //初始化陣列(預設0個商品被勾選)
             checkStatus.push(false);
         }
-
 
         //點選其中一個商品後，改變checkStatus
         function changeChckeStatus(arr, index) {
