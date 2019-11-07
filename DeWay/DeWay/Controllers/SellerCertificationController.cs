@@ -24,12 +24,12 @@ namespace DeWay.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult IDNumber(Seller id)
+        public ActionResult IDNumber(Seller seller)
         {
-            id.selID = db.Database.SqlQuery<string>("select dbo.GetSellerID()").FirstOrDefault();
-            db.Seller.Add(id);
+            seller.selID = db.Database.SqlQuery<string>("select dbo.GetSellerID()").FirstOrDefault();
+            db.Seller.Add(seller);
             db.SaveChanges();
-            return View(id);
+            return RedirectToAction("Index");
         }
 
         public ActionResult GUINumber()
