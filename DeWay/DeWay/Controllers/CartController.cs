@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using DeWay.Models;
 
 
-namespace DeWay.Controllers
+namespace Project.Controllers
 {
     public class CartController : Controller
     {
@@ -16,7 +16,6 @@ namespace DeWay.Controllers
 
         public ActionResult myCart(string id)
         {
-            
             var cod = db.Cart_OrderDetail;
             var m = from p in cod
                     where p.mbrID == id
