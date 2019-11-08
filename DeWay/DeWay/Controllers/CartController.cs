@@ -16,17 +16,17 @@ namespace DeWay.Controllers
 
         public ActionResult myCart(string id)
         {
-            
             var cod = db.Cart_OrderDetail;
             var m = from p in cod
                     where p.mbrID == id
                     where p.odrID == null
                     select p;
+            //m.Select((item,Product)=>item.)
             Session["member"] = id;
             return View(m);
         }
         [HttpPost]
-        public ActionResult receiveOrder(string[] cartID)
+        public ActionResult receiveOrder(string[] cartID) //提交訂單
         {
             var cod = db.Cart_OrderDetail;
             string member = Session["member"] as string;
