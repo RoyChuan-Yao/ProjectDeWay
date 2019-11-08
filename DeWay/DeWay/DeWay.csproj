@@ -345,6 +345,8 @@
     <Content Include="Views\actBulletinsAdm\Details.cshtml" />
     <Content Include="Views\actBulletinsAdm\Edit.cshtml" />
     <Content Include="Views\actBulletinsAdm\Index.cshtml" />
+    <Content Include="Views\SellerCertification\IDNumber.cshtml" />
+    <Content Include="Views\SellerCertification\GUINumber.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

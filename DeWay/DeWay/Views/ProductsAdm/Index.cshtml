@@ -38,7 +38,8 @@
             @Html.DisplayFor(modelItem => item.pdtName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pdtDate)
+            @item.pdtDate.ToShortDateString()
+            @*@Html.DisplayFor(modelItem => item.pdtDate)*@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.pdtDescribe)
