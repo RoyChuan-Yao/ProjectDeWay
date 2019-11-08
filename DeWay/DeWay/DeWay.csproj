@@ -159,6 +159,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -206,6 +211,7 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\ntfCategory.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
@@ -322,6 +328,7 @@
     <Content Include="Views\ProductManage\Edit.cshtml" />
     <Content Include="Views\ProductManage\Index.cshtml" />
     <Content Include="Views\Cart\receiveOrder.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
