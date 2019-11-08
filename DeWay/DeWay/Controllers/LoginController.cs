@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Configuration;
 using DeWay.Models;
+using System.Data.Entity;
 
 namespace DeWay.Controllers
 {
@@ -58,6 +59,7 @@ namespace DeWay.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(Member mbr, string act, string pwd)
         {
 
@@ -71,11 +73,21 @@ namespace DeWay.Controllers
             mbr.mbrAut = false;
             mbr.signupDate = DateTime.Now;
             mbr.mbrImage = "";
-            db.Member.Add(mbr);
-            db.MemberAccount.Add(cc);
-            db.SaveChanges();
 
-            return RedirectToAction("Login","Login");
+            if (ModelState.IsValid)
+            {
+                db.Entry(mbr).State = EntityState.Modified;
+
+                db.Member.Add(mbr);
+                db.MemberAccount.Add(cc);
+                db.SaveChanges();
+
+
+
+                return RedirectToAction("Login", "Login");
+            }
+
+            return View(mbr);
         }
 
     }
