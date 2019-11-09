@@ -11,11 +11,7 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using static DeWay.Models.Metadata;
-
-    [MetadataType(typeof(MetadataMemberAccount))]
-
+    
     public partial class MemberAccount
     {
         public string mbrAccount { get; set; }
