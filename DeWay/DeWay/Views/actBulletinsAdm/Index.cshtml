@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DeWay.Models.actBulletin>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pdtID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.actStrDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.actEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.actImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.actDisplay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adm.admName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pdtID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.actStrDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.actEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.actImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.actDisplay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adm.admName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.actID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.actID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.actID })
+        </td>
+    </tr>
+}
+
+</table>

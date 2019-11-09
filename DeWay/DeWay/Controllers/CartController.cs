@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using DeWay.Models;
 
 
-namespace DeWay.Controllers
+namespace Project.Controllers
 {
     public class CartController : Controller
     {
