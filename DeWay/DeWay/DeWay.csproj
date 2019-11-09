@@ -327,6 +327,27 @@
     <Content Include="Views\ProductManage\CreatePdt.cshtml" />
     <Content Include="Views\ProductManage\Edit.cshtml" />
     <Content Include="Views\ProductManage\Index.cshtml" />
+<<<<<<< Updated upstream
+=======
+    <Content Include="Views\SellerCertification\Index.cshtml" />
+    <Content Include="Views\ProductsAdm\Create.cshtml" />
+    <Content Include="Views\ProductsAdm\Delete.cshtml" />
+    <Content Include="Views\ProductsAdm\Details.cshtml" />
+    <Content Include="Views\ProductsAdm\Edit.cshtml" />
+    <Content Include="Views\ProductsAdm\Index.cshtml" />
+    <Content Include="Views\OrdersAdm\Create.cshtml" />
+    <Content Include="Views\OrdersAdm\Delete.cshtml" />
+    <Content Include="Views\OrdersAdm\Details.cshtml" />
+    <Content Include="Views\OrdersAdm\Edit.cshtml" />
+    <Content Include="Views\OrdersAdm\Index.cshtml" />
+    <Content Include="Views\actBulletinsAdm\Create.cshtml" />
+    <Content Include="Views\actBulletinsAdm\Delete.cshtml" />
+    <Content Include="Views\actBulletinsAdm\Details.cshtml" />
+    <Content Include="Views\actBulletinsAdm\Edit.cshtml" />
+    <Content Include="Views\actBulletinsAdm\Index.cshtml" />
+    <Content Include="Views\SellerCertification\IDNumber.cshtml" />
+    <Content Include="Views\SellerCertification\GUINumber.cshtml" />
+>>>>>>> Stashed changes
     <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <None Include="Web.Debug.config">
