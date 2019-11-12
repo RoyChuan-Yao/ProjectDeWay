@@ -54,21 +54,19 @@
                                     折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
                                     點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />
                                 </p>
-                                <select id="shipSelect">
+                                <select id="shipSelect_@count">
                                     
-                                        <option>@product.cartID</option>
                                         @foreach (var item1 in product.Specification.Product.ShipperDetail)
                                         {
-                                            <option name="ship_@product.cartID">@item1.Shipper.shpMethod</option>
+                                            <option>@item1.Shipper.shpMethod</option>
                                         }
                                    
 
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-1">
-                            <a class="btn btn-outline-secondary align-content-around" onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = product.cartID, mbrID = product.mbrID })">&times;</a>
-
+                        <div class="col-md-1 m-auto">
+                            <a class="btn btn-outline-secondary align-content-around btn-sm" onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = product.cartID, mbrID = product.mbrID })">&times;</a>
                         </div>
                     </div>
                     count++;

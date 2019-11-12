@@ -177,14 +177,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\actBulletinsAdmController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\OrdersAdmController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
-    <Compile Include="Controllers\ProductsAdmController.cs" />
-    <Compile Include="Controllers\SellerCertificationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -331,6 +327,8 @@
     <Content Include="Views\ProductManage\CreatePdt.cshtml" />
     <Content Include="Views\ProductManage\Edit.cshtml" />
     <Content Include="Views\ProductManage\Index.cshtml" />
+<<<<<<< Updated upstream
+=======
     <Content Include="Views\SellerCertification\Index.cshtml" />
     <Content Include="Views\ProductsAdm\Create.cshtml" />
     <Content Include="Views\ProductsAdm\Delete.cshtml" />
@@ -349,6 +347,7 @@
     <Content Include="Views\actBulletinsAdm\Index.cshtml" />
     <Content Include="Views\SellerCertification\IDNumber.cshtml" />
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
+>>>>>>> Stashed changes
     <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <None Include="Web.Debug.config">

@@ -5,12 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Configuration;
+using DeWay.Models;
+using System.Data.Entity;
 
 namespace DeWay.Controllers
 {
     public class LoginController : Controller
     {
         SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["shopDBConnectionString"].ConnectionString);
+        shopDBEntities db = new shopDBEntities();
         // GET: Login
         public ActionResult Login()
         {
@@ -49,5 +52,43 @@ namespace DeWay.Controllers
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(Member mbr, string act, string pwd)
+        {
+
+            string GetMemberID = db.Database.SqlQuery<string>("Select dbo.GetMemberID()").FirstOrDefault();
+            mbr.mbrID = GetMemberID;
+            MemberAccount cc = new MemberAccount();
+            cc.mbrID = GetMemberID;
+            cc.mbrAccount = act;
+            cc.mbrPwd = pwd;
+            mbr.Points = 0;
+            mbr.mbrAut = false;
+            mbr.signupDate = DateTime.Now;
+            mbr.mbrImage = "";
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(mbr).State = EntityState.Modified;
+
+                db.Member.Add(mbr);
+                db.MemberAccount.Add(cc);
+                db.SaveChanges();
+
+
+
+                return RedirectToAction("Login", "Login");
+            }
+
+            return View(mbr);
+        }
+
     }
 }

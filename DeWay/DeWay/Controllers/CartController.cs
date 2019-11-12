@@ -21,12 +21,13 @@ namespace Project.Controllers
                     where p.mbrID == id
                     where p.odrID == null
                     select p;
+            ViewBag.memberName = db.Member.Find(id).mbrName;
             //m.Select((item,Product)=>item.)
             Session["member"] = id;
             return View(m);
         }
         [HttpPost]
-        public ActionResult receiveOrder(string[] cartID) //提交訂單
+        public ActionResult receiveOrder(string[] cartID, string[] shipSelect, Order order) //提交訂單
         {
             var cod = db.Cart_OrderDetail;
             string member = Session["member"] as string;
