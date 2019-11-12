@@ -215,6 +215,7 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\ntfCategory.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
