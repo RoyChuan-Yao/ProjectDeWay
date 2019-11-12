@@ -36,10 +36,15 @@ namespace Project.Controllers
                                         where p.odrID == null
                                         orderby p.Specification.Product.selID
                                         select p).ToList();
-            foreach (string cartIndex in cartID)
+            foreach (string cartIndexStr in cartID) //針對cartOrderDetail資料寫入
             {
-                m[Int32.Parse(cartIndex)].odrID = "odrtest001";
-                db.Entry(m[Int32.Parse(cartIndex)]).State = EntityState.Modified;
+                int cartIndexInt = Int32.Parse(cartIndexStr);
+                string selectedShipMethod = shipSelect[cartIndexInt];
+                Cart_OrderDetail currentCart = m[cartIndexInt];
+                currentCart.odrID = "odrtest001";
+                currentCart.shpID = db.Shipper.Find(selectedShipMethod).shpID;
+                
+                db.Entry(m[cartIndexInt]).State = EntityState.Modified;
             }
             db.SaveChanges();
 
