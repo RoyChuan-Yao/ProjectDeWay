@@ -348,6 +348,8 @@
     <Content Include="Views\actBulletinsAdm\Index.cshtml" />
     <Content Include="Views\SellerCertification\IDNumber.cshtml" />
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Cart\receiveOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
