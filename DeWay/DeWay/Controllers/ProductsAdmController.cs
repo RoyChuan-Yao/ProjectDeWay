@@ -49,14 +49,19 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "pdtID,selID,pdtName,pdtDate,pdtDescribe,Discontinued,ctgID")] Product product)
+        public ActionResult Create(Product product)
         {
-            if (ModelState.IsValid)
-            {
-                db.Product.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            string GetproductID = db.Database.SqlQuery<string>("Select dbo.GetProductID()").FirstOrDefault();
+            product.pdtID = GetproductID;
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.Product.Add(product);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            db.Product.Add(product);
+            db.SaveChanges();
 
             ViewBag.ctgID = new SelectList(db.ProductCategory, "pdtCtgID", "fstLayerID", product.ctgID);
             ViewBag.selID = new SelectList(db.Seller, "selID", "selCompany", product.selID);

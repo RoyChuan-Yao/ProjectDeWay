@@ -48,17 +48,21 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "actID,pdtID,actStrDate,actEndDate,actImage,actDisplay,admID")] actBulletin actBulletin)
+        public ActionResult Create(actBulletin act) 
         {
-            if (ModelState.IsValid)
-            {
-                db.actBulletin.Add(actBulletin);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.admID = new SelectList(db.Adm, "admID", "admName", actBulletin.admID);
-            return View(actBulletin);
+            string GetActID = db.Database.SqlQuery<string>("Select dbo.GetActID()").FirstOrDefault();
+            act.actID = GetActID;
+            //if (ModelState.IsValid)
+            //{
+            //    db.actBulletin.Add(actBulletin);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            
+            db.actBulletin.Add(act);
+            db.SaveChanges();
+            ViewBag.admID = new SelectList(db.Adm, "admID", "admName", act.admID);
+            return View(act);
         }
 
         // GET: actBulletinsAdm/Edit/5

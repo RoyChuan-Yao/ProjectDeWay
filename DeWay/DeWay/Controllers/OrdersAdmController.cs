@@ -49,15 +49,18 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAdress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
+        public ActionResult Create(Order order)
         {
-            if (ModelState.IsValid)
-            {
-                db.Order.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
+            string GetorderID = db.Database.SqlQuery<string>("Select dbo.GetOrderID()").FirstOrDefault();
+            order.odrID = GetorderID;
+            //if (ModelState.IsValid)
+            //{
+            //    db.Order.Add(order);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            db.Order.Add(order);
+            db.SaveChanges();
             ViewBag.odrStatusID = new SelectList(db.OrderStatus, "odrStatusID", "odrStatus", order.odrStatusID);
             ViewBag.pmtID = new SelectList(db.PaymentMethod, "pmtID", "pmtMethod", order.pmtID);
             return View(order);

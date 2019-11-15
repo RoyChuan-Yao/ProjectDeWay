@@ -26,12 +26,13 @@ namespace DeWay.Models
         public string selCompany { get; set; }
         public string selCity { get; set; }
         public string selDist { get; set; }
-        public string selAdress { get; set; }
+        public string selAddress { get; set; }
         public string GUINumber { get; set; }
         public string IDNumber { get; set; }
         public string selInfo { get; set; }
         public string selAut { get; set; }
         public string mbrID { get; set; }
+        public string selImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoSeller> FavoSeller { get; set; }

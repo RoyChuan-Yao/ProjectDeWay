@@ -76,6 +76,7 @@
           <Property Name="mbrAut" Type="bit" Nullable="false" />
           <Property Name="signupDate" Type="datetime" Nullable="false" />
           <Property Name="mbrImage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="mbrBlock" Type="bit" />
         </EntityType>
         <EntityType Name="MemberAccount">
           <Key>
@@ -124,13 +125,13 @@
           <Property Name="recName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="recCity" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="recDist" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="recAdress" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="recAddress" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="recPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="pmtDate" Type="datetime" />
           <Property Name="odrDate" Type="datetime" Nullable="false" />
           <Property Name="shpDate" Type="datetime" />
           <Property Name="odrNote" Type="nvarchar" MaxLength="120" />
-          <Property Name="traceNumber" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="traceNumber" Type="char" MaxLength="20" />
           <Property Name="cashFlowID" Type="char" MaxLength="25" />
         </EntityType>
         <EntityType Name="OrderStatus">
@@ -259,12 +260,13 @@
           <Property Name="selCompany" Type="nvarchar" MaxLength="20" />
           <Property Name="selCity" Type="nvarchar" MaxLength="3" />
           <Property Name="selDist" Type="nvarchar" MaxLength="5" />
-          <Property Name="selAdress" Type="nvarchar" MaxLength="20" />
+          <Property Name="selAddress" Type="nvarchar" MaxLength="20" />
           <Property Name="GUINumber" Type="char" MaxLength="8" />
           <Property Name="IDNumber" Type="char" MaxLength="10" />
           <Property Name="selInfo" Type="nvarchar" MaxLength="500" />
           <Property Name="selAut" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="mbrID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="selImage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SellerAut">
           <Key>
@@ -775,7 +777,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetActID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetMemberID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetProductID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetSellerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <EntityContainer Name="shopDBModelStoreContainer">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" Schema="dbo" store:Type="Tables" />
@@ -1047,6 +1052,7 @@
           <Property Name="mbrAut" Type="Boolean" Nullable="false" />
           <Property Name="signupDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="mbrImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mbrBlock" Type="Boolean" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__mbrID__14270015" FromRole="Member" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="FavoSeller" Relationship="Self.FK__FavoSelle__mbrID__6E01572D" FromRole="Member" ToRole="FavoSeller" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK__MemberAcc__mbrID__6A30C649" FromRole="Member" ToRole="MemberAccount" />
@@ -1110,13 +1116,13 @@
           <Property Name="recName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="recCity" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="recDist" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="recAdress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="recAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="recPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="pmtDate" Type="DateTime" Precision="3" />
           <Property Name="odrDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="shpDate" Type="DateTime" Precision="3" />
           <Property Name="odrNote" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
-          <Property Name="traceNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="traceNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="cashFlowID" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="OrderStatus" Relationship="Self.FK__Order__odrStatus__00200768" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Order__pmtID__7F2BE32F" FromRole="Order" ToRole="PaymentMethod" />
@@ -1276,12 +1282,13 @@
           <Property Name="selCompany" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="selCity" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="selDist" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="selAdress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="selAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="GUINumber" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
           <Property Name="IDNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="selInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="selAut" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="mbrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="selImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FavoSeller" Relationship="Self.FK__FavoSelle__selID__7C4F7684" FromRole="Seller" ToRole="FavoSeller" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Seller__mbrID__70DDC3D8" FromRole="Seller" ToRole="Member" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Product__selID__7D439ABD" FromRole="Seller" ToRole="Product" />
@@ -2074,6 +2081,7 @@
                 <ScalarProperty Name="mbrAut" ColumnName="mbrAut" />
                 <ScalarProperty Name="signupDate" ColumnName="signupDate" />
                 <ScalarProperty Name="mbrImage" ColumnName="mbrImage" />
+                <ScalarProperty Name="mbrBlock" ColumnName="mbrBlock" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2127,7 +2135,7 @@
                 <ScalarProperty Name="recName" ColumnName="recName" />
                 <ScalarProperty Name="recCity" ColumnName="recCity" />
                 <ScalarProperty Name="recDist" ColumnName="recDist" />
-                <ScalarProperty Name="recAdress" ColumnName="recAdress" />
+                <ScalarProperty Name="recAddress" ColumnName="recAddress" />
                 <ScalarProperty Name="recPhone" ColumnName="recPhone" />
                 <ScalarProperty Name="pmtDate" ColumnName="pmtDate" />
                 <ScalarProperty Name="odrDate" ColumnName="odrDate" />
@@ -2274,12 +2282,13 @@
                 <ScalarProperty Name="selCompany" ColumnName="selCompany" />
                 <ScalarProperty Name="selCity" ColumnName="selCity" />
                 <ScalarProperty Name="selDist" ColumnName="selDist" />
-                <ScalarProperty Name="selAdress" ColumnName="selAdress" />
+                <ScalarProperty Name="selAddress" ColumnName="selAddress" />
                 <ScalarProperty Name="GUINumber" ColumnName="GUINumber" />
                 <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
                 <ScalarProperty Name="selInfo" ColumnName="selInfo" />
                 <ScalarProperty Name="selAut" ColumnName="selAut" />
                 <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+                <ScalarProperty Name="selImage" ColumnName="selImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
