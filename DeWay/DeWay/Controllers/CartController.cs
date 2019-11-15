@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeWay.Models;
@@ -14,7 +15,7 @@ namespace Project.Controllers
 
         shopDBEntities db = new shopDBEntities();
 
-        public ActionResult myCart(string id)
+        public ActionResult myCart(string id = "mbr0000001")
         {
             var cod = db.Cart_OrderDetail;
             var m = from p in cod
@@ -29,26 +30,41 @@ namespace Project.Controllers
         [HttpPost]
         public ActionResult receiveOrder(string[] cartID, string[] shipSelect, Order order) //提交訂單
         {
-            var cod = db.Cart_OrderDetail;
-            string member = Session["member"] as string;
-            List<Cart_OrderDetail> m = (from p in cod
-                                        where p.mbrID == member
-                                        where p.odrID == null
-                                        orderby p.Specification.Product.selID
-                                        select p).ToList();
-            foreach (string cartIndexStr in cartID) //針對cartOrderDetail資料寫入
-            {
-                int cartIndexInt = Int32.Parse(cartIndexStr);
-                string selectedShipMethod = shipSelect[cartIndexInt];
-                Cart_OrderDetail currentCart = m[cartIndexInt];
-                currentCart.odrID = "odrtest001";
-                currentCart.shpID = db.Shipper.Find(selectedShipMethod).shpID;
-                
-                db.Entry(m[cartIndexInt]).State = EntityState.Modified;
-            }
-            db.SaveChanges();
+            try { 
+                var cod = db.Cart_OrderDetail;
+                string member = Session["member"] as string;
+                List<Cart_OrderDetail> m = (from p in cod
+                                            where p.mbrID == member
+                                            where p.odrID == null
+                                            orderby p.Specification.Product.selID
+                                            select p).ToList();
+                string availableOdrId = db.Database.SqlQuery<string>("Select dbo.GetOrderID()").FirstOrDefault();
+                for (int i = 0; i < cartID.Length; i++)
+                {
+                    if (cartID[i] != "false")
+                    {
+                        string currentCartID = cartID[i];
+                        string selectedShipMethod = shipSelect[i];
+                        Cart_OrderDetail currentCart = m[i];
+                        currentCart.odrID = availableOdrId;
+                        currentCart.shpID = db.Shipper.Where(t => t.shpMethod == selectedShipMethod).FirstOrDefault().shpID;
+                        //db.Entry(currentCart).State = EntityState.Modified;
+                    }
+                }
+                //寫入訂單資料表
+                order.odrID = availableOdrId;
+                order.traceNumber = "332";//物流單號 為not NULL 欄位 在此隨便填
+                order.pmtID = "pmt0000001";//付款方式
+                order.odrStatusID = "ods0000001";//訂單狀態
+                order.odrDate = DateTime.Now;//訂單成立時間
+                db.Order.Add(order);
 
-            return View(m);
+                db.SaveChanges();
+                return View("myCart",m);
+            }
+            catch {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
         }
         public ActionResult Delete(string cartID, string mbrID)
         {

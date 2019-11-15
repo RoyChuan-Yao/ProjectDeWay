@@ -49,7 +49,7 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAdress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
+        public ActionResult Create([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAddress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAdress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
+        public ActionResult Edit([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAddress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
         {
             if (ModelState.IsValid)
             {

@@ -4,12 +4,10 @@
     ViewBag.Title = "我的購物車";
 }
 
-    <h2 class="mb-3" id="cart_title">@Html.Raw(ViewBag.memberName)的購物車</h2>
+<h2 class="mb-3" id="cart_title">@Html.Raw(ViewBag.memberName)的購物車</h2>
 <div class="row">
-    <div class="col-8" >
-        
+    <div class="col-8">
         @Html.Partial("_CartCard", Model)
-    
     </div>
     <div class="col-4">
         <div class="sticky-top">
@@ -25,20 +23,16 @@
                     <button id="checkOutBtn" class="btn btn-warning btn-block" onclick="checkOut()" disabled>前往結帳</button>
                 </div>
             </div>
-            <div class="card mt-2">
-                <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">請填寫收件人與購買人資料</button>
-                    <div class="card-header">
-                        收件資訊
-                    </div>
-                    <div class="card-body">
-                        <p id="receiverBoard" class="card-text"></p>
-                        <label for="shipSelect">運送方式</label>
-
-                        <label for="">給設計師的信息或注意事項</label>
-                        <textarea id="note" value="" placeholder="給設計師的信息或注意事項" class="form-control" cols="2" rows="2" ></textarea>
-                        <hr />
-                        <button id="checkOutBtn" class="btn btn-warning m-2 " onclick="checkOut()" disabled>前往結帳</button>
-                    </div>
+            <div id="receiverInfo" class="card mt-2" style="display: none">
+                <div class="card-header">
+                    收件資訊
+                </div>
+                <div class="card-body">
+                    <button class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">請填寫收件人與購買人資料</button>
+                    <p id="receiverBoard" class="card-text"></p>
+                    <label for="">給設計師的訊息或注意事項</label>
+                    <textarea id="note" value="" placeholder="給設計師的訊息或注意事項" class="form-control" cols="2" rows="2"></textarea>
+                </div>
             </div>
         </div>
     </div>
@@ -54,44 +48,44 @@
                 </button>
             </div>
             <div class="modal-body">
-                
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recName, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.Editor("recName",new { @class = "form-control " })
-                        </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recName, new { @class = "control-label col-12" })
+                    <div class="col-md-10">
+                        @Html.Editor("recName", new { @class = "form-control " })
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recPhone, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.Editor("recPhone", new { @class = "form-control " })
-                        </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recPhone, new { @class = "control-label col-12" })
+                    <div class="col-md-10">
+                        @Html.Editor("recPhone", new { @class = "form-control " })
                     </div>
-                    <div class="form-group ">
-                        @Html.Label("商品寄往", new { @class = "control-label col-12 h5" })
+                </div>
+                <div class="form-group ">
+                    @Html.Label("商品寄往", new { @class = "control-label col-12 h5" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recCity, new { @class = "control-label col-12" })
+                    <div class="col-md-10">
+                        @Html.Editor("recCity", new { @class = "form-control " })
                     </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recCity, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.Editor("recCity", new { @class = "form-control " })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recDist, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.Editor("recDist", new { @class = "form-control " })
-                            </div>
-                        </div>
-                    <div class="form-group">
-                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recAdress, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.Editor("recAddress", new { @class = "form-control " })
-                        </div>
-                        </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recDist, new { @class = "control-label col-12" })
+                    <div class="col-md-10">
+                        @Html.Editor("recDist", new { @class = "form-control " })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recAddress, new { @class = "control-label col-12" })
+                    <div class="col-md-10">
+                        @Html.Editor("recAddress", new { @class = "form-control " })
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="updateAddress"type="button" class="btn btn-primary" onclick="updateAddressToForm()">Save changes</button>
+                <button id="updateAddress" type="button" class="btn btn-primary" onclick="updateAddressToForm()" data-dismiss="modal">Save changes</button>
             </div>
         </div>
     </div>
@@ -106,7 +100,7 @@
         function updateAddressToForm() {//顯示收件人資料
             var displayAddress = "";
             $(`div[class="modal-content"] input`).each((index, e) => {
-                displayAddress += `<p>${$(e).attr('name')}:${$(e).val()}</p>`
+                displayAddress += `<p>${$(e).parent().prev().text()}:${$(e).val()}</p>`
             });
             $(`#receiverBoard`).html(displayAddress);
         }
@@ -149,15 +143,19 @@
         }
     </script>
     <script>
-        $("#backToCart").hide()//從結帳畫面改回購物車
+        $("#backToCart").hide()//從結帳畫面改回購物車畫面
 
+        var title = $(`#cart_title`).text()
         //反回購物車列表
         function backToCart() {
+            $(`div[class='card mb-3']`).show()
             $("div[id^='no']").show(100)
             $("#backToCart").hide(100);//隱藏按鈕
             $("#checkOutBtn").text("前往結帳").attr("onclick", "checkOut()")
             $("input[type='checkbox'],a[href*='Delete']").show(100)
             $("form").html('')
+            $(`#receiverInfo`).hide(100)
+            $(`#cart_title`).text(title)
         }
 
         //前往結帳
@@ -165,34 +163,48 @@
             if ($("#backToCart").length == 0) {//加入回購物車按鈕
                 $(`<button class="btn btn-dark mb-2" onclick="backToCart()" id="backToCart">&lt&lt返回購物車</button>`).insertAfter("#cart_title")
             }
-            checkStatus.forEach((value, index) => {//隱藏為false的按鈕
-                if (value == false) {
-                    $(`#no_${index}`).hide(250);
+            $(`div[class='card mb-3']`).hide()
+            $(`div[class*='no']`).hide()
+            checkStatus.forEach((value, index) => {//顯示為false的按鈕
+                if (value == true) {
+                    //$(`#no_${index}`).show().parent().show();
+                    $(`#no_${index}`).show().parent().show();
                 }
             })
             $("input[type='checkbox'],a[href*='Delete']").hide(100)
             $("#backToCart").show(100)
             $("#checkOutBtn").text("確認付款").attr("onclick", "submitOrder()")
+            $(`#receiverInfo`).show(100)
+            $(`#cart_title`).text("填寫地址與付款")
         }
 
         //提交訂單
         function submitOrder() {
             //產生Form內容
-            
+
+            //var cartResult = "";
+            //for (i = 0; i <= len; i++) {//取得被點選的商品編號
+
+            //    if (checkStatus[i]) {
+            //        cartResult += `<input type="" name="cartID[${i}]" value="${i}">`;
+            //        console.log($('#shipSelect_'+i+ ' option:selected'));
+            //        cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_'+i+ ' option:selected').text()}">`;
+            //    }
+            //}
             var cartResult = "";
             for (i = 0; i <= len; i++) {//取得被點選的商品編號
-                if (checkStatus[i]) {
-                    cartResult += `<input type="" name="cartID[${i}]" value="${i}">`;
-                    console.log($('#shipSelect_'+i+ ' option:selected'));
-                    cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_'+i+ ' option:selected').text()}">`;
-                }
+                cartResult += `<input type="" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
+                console.log($('#shipSelect_' + i + ' option:selected'));
+                cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
             }
-            var reciverFormResult= "";//取得收寄人資料做成表單內容
+            var reciverFormResult = "";//取得收寄人資料做成表單內容
             $(`div[class="modal-content"] input`).each((index, e) => {
                 reciverFormResult += `<input type="" name="${$(e).attr('name')}" value="${$(e).val()}">`;
             })
 
-            var finalResult = cartResult + reciverFormResult;
+            var note = `<input type="" name="odrNote" value="${$('#note').val()}">`//取得給賣家的註解
+
+            var finalResult = cartResult + reciverFormResult + note;
             $("form").html(finalResult)//將被點選商品加入表單
             $("form").submit();//提交表單
         }

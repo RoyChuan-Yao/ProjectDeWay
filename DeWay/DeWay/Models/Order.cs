@@ -11,7 +11,10 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using static DeWay.Models.Metadata;
+
+    [MetadataType(typeof(MetaDataOrder))]
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,7 +30,7 @@ namespace DeWay.Models
         public string recName { get; set; }
         public string recCity { get; set; }
         public string recDist { get; set; }
-        public string recAdress { get; set; }
+        public string recAddress { get; set; }
         public string recPhone { get; set; }
         public Nullable<System.DateTime> pmtDate { get; set; }
         public System.DateTime odrDate { get; set; }

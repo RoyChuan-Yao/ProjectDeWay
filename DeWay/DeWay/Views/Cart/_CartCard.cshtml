@@ -64,6 +64,7 @@
 
                                 </select>
                             </div>
+                            <div class="cartID" style="display:none">@product.cartID</div>
                         </div>
                         <div class="col-md-1 m-auto">
                             <a class="btn btn-outline-secondary align-content-around btn-sm" onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = product.cartID, mbrID = product.mbrID })">&times;</a>

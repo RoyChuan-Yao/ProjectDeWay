@@ -328,7 +328,7 @@ namespace DeWay.Models
             [DisplayName("地址")]
             [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
-            public string recAdress { get; set; }
+            public string recAddress { get; set; }
             [DisplayName("收件人電話")]
             [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20碼")]
