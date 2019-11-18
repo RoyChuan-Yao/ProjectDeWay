@@ -27,7 +27,7 @@ namespace DeWay.Models
         public string recName { get; set; }
         public string recCity { get; set; }
         public string recDist { get; set; }
-        public string recAdress { get; set; }
+        public string recAddress { get; set; }
         public string recPhone { get; set; }
         public Nullable<System.DateTime> pmtDate { get; set; }
         public System.DateTime odrDate { get; set; }

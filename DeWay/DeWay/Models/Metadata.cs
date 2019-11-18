@@ -328,7 +328,7 @@ namespace DeWay.Models
             [DisplayName("地址")]
             [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
-            public string recAdress { get; set; }
+            public string recAddress { get; set; }
             [DisplayName("收件人電話")]
             [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20碼")]
@@ -624,7 +624,7 @@ namespace DeWay.Models
             public string selDist { get; set; }
             [DisplayName("路(地址)")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
-            public string selAdress { get; set; }
+            public string selAddress { get; set; }
             [DisplayName("統一編號")]
             [Required(ErrorMessage = "必填")]
             public string GUINumber { get; set; }

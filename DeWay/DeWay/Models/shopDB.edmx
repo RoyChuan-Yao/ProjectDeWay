@@ -120,18 +120,18 @@
             <PropertyRef Name="odrID" />
           </Key>
           <Property Name="odrID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="pmtID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="pmtID" Type="char" MaxLength="10" />
           <Property Name="odrStatusID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="recName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="recCity" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="recDist" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="recAdress" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="recAddress" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="recPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="pmtDate" Type="datetime" />
           <Property Name="odrDate" Type="datetime" Nullable="false" />
           <Property Name="shpDate" Type="datetime" />
           <Property Name="odrNote" Type="nvarchar" MaxLength="120" />
-          <Property Name="traceNumber" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="traceNumber" Type="char" MaxLength="20" />
           <Property Name="cashFlowID" Type="char" MaxLength="25" />
         </EntityType>
         <EntityType Name="OrderStatus">
@@ -260,7 +260,7 @@
           <Property Name="selCompany" Type="nvarchar" MaxLength="20" />
           <Property Name="selCity" Type="nvarchar" MaxLength="3" />
           <Property Name="selDist" Type="nvarchar" MaxLength="5" />
-          <Property Name="selAdress" Type="nvarchar" MaxLength="20" />
+          <Property Name="selAddress" Type="nvarchar" MaxLength="20" />
           <Property Name="GUINumber" Type="char" MaxLength="8" />
           <Property Name="IDNumber" Type="char" MaxLength="10" />
           <Property Name="selInfo" Type="nvarchar" MaxLength="500" />
@@ -490,7 +490,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Order__pmtID__7F2BE32F">
-          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentMethod">
@@ -1111,18 +1111,18 @@
             <PropertyRef Name="odrID" />
           </Key>
           <Property Name="odrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="pmtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pmtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="odrStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="recName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="recCity" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="recDist" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="recAdress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="recAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="recPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="pmtDate" Type="DateTime" Precision="3" />
           <Property Name="odrDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="shpDate" Type="DateTime" Precision="3" />
           <Property Name="odrNote" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
-          <Property Name="traceNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="traceNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="cashFlowID" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="OrderStatus" Relationship="Self.FK__Order__odrStatus__00200768" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Order__pmtID__7F2BE32F" FromRole="Order" ToRole="PaymentMethod" />
@@ -1282,7 +1282,7 @@
           <Property Name="selCompany" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="selCity" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="selDist" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="selAdress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="selAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="GUINumber" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
           <Property Name="IDNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="selInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -1589,7 +1589,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Order__pmtID__7F2BE32F">
-          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentMethod">
@@ -2135,7 +2135,7 @@
                 <ScalarProperty Name="recName" ColumnName="recName" />
                 <ScalarProperty Name="recCity" ColumnName="recCity" />
                 <ScalarProperty Name="recDist" ColumnName="recDist" />
-                <ScalarProperty Name="recAdress" ColumnName="recAdress" />
+                <ScalarProperty Name="recAddress" ColumnName="recAddress" />
                 <ScalarProperty Name="recPhone" ColumnName="recPhone" />
                 <ScalarProperty Name="pmtDate" ColumnName="pmtDate" />
                 <ScalarProperty Name="odrDate" ColumnName="odrDate" />
@@ -2282,7 +2282,7 @@
                 <ScalarProperty Name="selCompany" ColumnName="selCompany" />
                 <ScalarProperty Name="selCity" ColumnName="selCity" />
                 <ScalarProperty Name="selDist" ColumnName="selDist" />
-                <ScalarProperty Name="selAdress" ColumnName="selAdress" />
+                <ScalarProperty Name="selAddress" ColumnName="selAddress" />
                 <ScalarProperty Name="GUINumber" ColumnName="GUINumber" />
                 <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
                 <ScalarProperty Name="selInfo" ColumnName="selInfo" />
