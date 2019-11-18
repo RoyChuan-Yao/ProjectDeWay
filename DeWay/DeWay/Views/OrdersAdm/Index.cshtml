@@ -1,0 +1,105 @@
+﻿@model IEnumerable<DeWay.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.recName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recDist)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pmtDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.odrDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shpDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.odrNote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.traceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cashFlowID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.recName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recDist)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pmtDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.odrDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shpDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.odrNote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.traceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cashFlowID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.odrID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.odrID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.odrID })
+        </td>
+    </tr>
+}
+
+</table>

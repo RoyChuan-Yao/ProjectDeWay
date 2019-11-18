@@ -21,8 +21,10 @@
 
         <div class="col-md-9 col-md-offset-3">
             <input id="Submit1" type="submit" value="Login" class="btn btn-primary" />
+            @Html.ActionLink("註冊", "Register", "Login", new { }, new { @class = "btn btn-primary" })
             <input id="Reset1" type="reset" value="Reset" class="btn btn-default" />
         </div>
+
     </div>
 </form>
 <h3 class="text-danger">@ViewBag.LoginErr</h3>

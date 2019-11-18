@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - DeWay 設計之路</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     @*<link href="~/Content/cartCSS.css" rel="stylesheet" />*@
@@ -33,10 +33,10 @@
                         @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link text-white" })
                     </li>
                     <li>
-                        @Html.ActionLink("購物車", "mycart", "cart", new { id = Session["id"] }, new { @class = "nav-link text-white" })
+                        @Html.ActionLink("購物車", "mycart", "cart", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
                     </li>
                     <li>
-                        @Html.ActionLink("賣場管理", "index", "ProductManage", new { id = Session["id"] }, new { @class = "nav-link text-white" })
+                        @Html.ActionLink("賣場管理", "index", "ProductManage", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
                     </li>
                 </ul>
             </div>

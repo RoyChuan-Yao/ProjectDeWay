@@ -194,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\actBulletinsAdmController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>ShopD8.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\ntfCategory.cs">
       <DependentUpon>ShopD8.tt</DependentUpon>
     </Compile>

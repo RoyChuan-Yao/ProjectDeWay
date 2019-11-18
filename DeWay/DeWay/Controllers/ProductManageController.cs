@@ -16,7 +16,7 @@ namespace DeWay.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            string mbrID = Session["id"].ToString();
+            string mbrID = Session["memberID"].ToString();
             var seller = from s in db.Seller
                          where s.mbrID == mbrID
                          select s;
@@ -53,7 +53,6 @@ namespace DeWay.Controllers
 
             DateTime dt = DateTime.Now;
             pdt.pdtDate = dt;
-            
             db.Product.Add(pdt);
             
             db.SaveChanges();
