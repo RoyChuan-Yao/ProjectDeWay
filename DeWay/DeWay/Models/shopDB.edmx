@@ -76,6 +76,7 @@
           <Property Name="mbrAut" Type="bit" Nullable="false" />
           <Property Name="signupDate" Type="datetime" Nullable="false" />
           <Property Name="mbrImage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="mbrBlock" Type="bit" />
         </EntityType>
         <EntityType Name="MemberAccount">
           <Key>
@@ -265,6 +266,7 @@
           <Property Name="selInfo" Type="nvarchar" MaxLength="500" />
           <Property Name="selAut" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="mbrID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="selImage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SellerAut">
           <Key>
@@ -775,7 +777,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetActID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetMemberID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetProductID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetSellerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <EntityContainer Name="shopDBModelStoreContainer">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" Schema="dbo" store:Type="Tables" />
@@ -1047,6 +1052,7 @@
           <Property Name="mbrAut" Type="Boolean" Nullable="false" />
           <Property Name="signupDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="mbrImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mbrBlock" Type="Boolean" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__mbrID__14270015" FromRole="Member" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="FavoSeller" Relationship="Self.FK__FavoSelle__mbrID__6E01572D" FromRole="Member" ToRole="FavoSeller" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK__MemberAcc__mbrID__6A30C649" FromRole="Member" ToRole="MemberAccount" />
@@ -1282,6 +1288,7 @@
           <Property Name="selInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="selAut" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="mbrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="selImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FavoSeller" Relationship="Self.FK__FavoSelle__selID__7C4F7684" FromRole="Seller" ToRole="FavoSeller" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Seller__mbrID__70DDC3D8" FromRole="Seller" ToRole="Member" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Product__selID__7D439ABD" FromRole="Seller" ToRole="Product" />
@@ -2074,6 +2081,7 @@
                 <ScalarProperty Name="mbrAut" ColumnName="mbrAut" />
                 <ScalarProperty Name="signupDate" ColumnName="signupDate" />
                 <ScalarProperty Name="mbrImage" ColumnName="mbrImage" />
+                <ScalarProperty Name="mbrBlock" ColumnName="mbrBlock" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2280,6 +2288,7 @@
                 <ScalarProperty Name="selInfo" ColumnName="selInfo" />
                 <ScalarProperty Name="selAut" ColumnName="selAut" />
                 <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+                <ScalarProperty Name="selImage" ColumnName="selImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

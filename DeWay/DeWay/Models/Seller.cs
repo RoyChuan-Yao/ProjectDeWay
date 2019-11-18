@@ -32,6 +32,7 @@ namespace DeWay.Models
         public string selInfo { get; set; }
         public string selAut { get; set; }
         public string mbrID { get; set; }
+        public string selImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoSeller> FavoSeller { get; set; }
