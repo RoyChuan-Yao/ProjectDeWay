@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WishList.Models.WishList>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pdtID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mbrID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pdtID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mbrID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.wishID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.wishID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.wishID })
+        </td>
+    </tr>
+}
+
+</table>

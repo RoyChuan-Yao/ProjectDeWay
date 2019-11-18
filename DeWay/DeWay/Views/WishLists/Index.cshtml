@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DeWay.Models.WishList>
+    
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>我的慾望清單</p>
+
+<p>
+    @Html.ActionLink("繼續購物", "goshopping")
+</p>
+<table class="table">
+    <tr>
+        <th>商品</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.mbrName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.selID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.pdtID</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.mbrName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.selID)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.wishID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.wishID })*@ |
+                @Html.ActionLink("刪除", "Delete", new { id = item.wishID })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
