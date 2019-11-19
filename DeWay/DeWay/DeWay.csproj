@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44331</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -181,6 +180,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MemberHomeController.cs" />
     <Compile Include="Controllers\OrdersAdmController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
@@ -350,6 +350,9 @@
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Cart\receiveOrder.cshtml" />
+    <Content Include="Views\MemberHome\mbrIndex.cshtml" />
+    <Content Include="Views\MemberHome\mbrEdit.cshtml" />
+    <Content Include="Views\MemberHome\pwdEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -359,6 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="mbrPhoto\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

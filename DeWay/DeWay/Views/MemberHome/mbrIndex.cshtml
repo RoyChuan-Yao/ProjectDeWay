@@ -1,0 +1,97 @@
+﻿@model IEnumerable<DeWay.Models.Member>
+
+@{
+    ViewBag.Title = "mbrIndex";
+}
+
+<h2>mbrIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mbrName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nickName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mbrPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mbrMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.birthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mbrAut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.signupDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mbrImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberAccount.mbrAccount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mbrName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nickName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mbrPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mbrMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Points)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mbrAut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.signupDate)
+        </td>
+        <td>
+            <div class="form-group">
+                @if (item.mbrImage == null || item.mbrImage == "")
+                {
+                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" /></a>
+                }
+                else
+                {
+                    <a href="/mbrPhoto/@item.mbrImage"><img src="/mbrPhoto/@item.mbrImage" /></a>
+
+                }
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberAccount.mbrAccount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "mbrEdit", new { id=item.mbrID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mbrID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mbrID })
+        </td>
+    </tr>
+}
+
+</table>
