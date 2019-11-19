@@ -12,9 +12,18 @@ namespace Project.Controllers
 {
     public class CartController : Controller
     {
-
+        //TODO : 假如商品下單成功，將庫存數 減去 商品下單數
+        //反之，假如訂單被取消，則加回相對應的庫存數
+        //TODO : 購物車內可以選擇購買數
         shopDBEntities db = new shopDBEntities();
+        public List<Order> test(string mbrID)
+        {
+            List<string> odrIDList = db.Cart_OrderDetail.Where(m => m.mbrID == mbrID).Select(m => m.odrID).ToList();
+            var result = db.Order.Where(o => odrIDList.Contains(o.odrID)).ToList();
 
+
+            return result;
+        }
         public ActionResult myCart(string id = "mbr0000001")
         {
             var cod = db.Cart_OrderDetail;
@@ -30,7 +39,8 @@ namespace Project.Controllers
         [HttpPost]
         public ActionResult receiveOrder(string[] cartID, string[] shipSelect, Order order) //提交訂單
         {
-            try { 
+            try
+            {
                 var cod = db.Cart_OrderDetail;
                 string member = Session["member"] as string;
                 List<Cart_OrderDetail> m = (from p in cod
@@ -60,9 +70,10 @@ namespace Project.Controllers
                 db.Order.Add(order);
 
                 db.SaveChanges();
-                return View("myCart",m);
+                return View("myCart", m);
             }
-            catch {
+            catch
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
         }

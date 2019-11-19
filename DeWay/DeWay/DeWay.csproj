@@ -183,6 +183,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrdersAdmController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
+    <Compile Include="Controllers\ProductPageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
     <Compile Include="Controllers\SellerCertificationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,6 +241,7 @@
     <Compile Include="Models\ProductImage.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductPageViewModel.cs" />
     <Compile Include="Models\QA.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
@@ -351,6 +353,7 @@
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
     <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\ProductPage\ProductPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
