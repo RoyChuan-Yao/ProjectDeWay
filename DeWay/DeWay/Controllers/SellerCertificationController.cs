@@ -116,8 +116,39 @@ namespace DeWay.Controllers
 
             return RedirectToAction("Index");
         }
+        public ActionResult Create()
+        {
+            //ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName");
+            //ViewBag.SellerAut = new SelectList(db.SellerAut, "selAut", "autCategory");
+            return RedirectToAction("Index");
+        }
 
-        
+        // POST: actBulletinsAdm/Create
+        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Seller seller)
+        {
+
+            string GetSellerID = db.Database.SqlQuery<string>("Select dbo.GetSellerID()").FirstOrDefault();
+            seller.selID = GetSellerID;
+            //if (ModelState.IsValid)
+            //{
+            //    db.actBulletin.Add(actBulletin);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            seller.selAut = "2";
+            seller.mbrID = "mbr0000005";
+            seller.selImage = "";
+            db.Seller.Add(seller);
+            db.SaveChanges();
+            //ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName", seller.mbrID);
+            //ViewBag.SellerAut = new SelectList(db.SellerAut, "selAut", "autCategory",seller.selAut);
+            return View(seller);
+        }
+
     }
 
 }

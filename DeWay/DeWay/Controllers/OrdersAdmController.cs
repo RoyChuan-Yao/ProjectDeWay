@@ -36,35 +36,35 @@ namespace DeWay.Controllers
             return View(order);
         }
 
-        // GET: OrdersAdm/Create
-        public ActionResult Create()
-        {
-            ViewBag.odrStatusID = new SelectList(db.OrderStatus, "odrStatusID", "odrStatus");
-            ViewBag.pmtID = new SelectList(db.PaymentMethod, "pmtID", "pmtMethod");
-            return View();
-        }
+        //// GET: OrdersAdm/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.odrStatusID = new SelectList(db.OrderStatus, "odrStatusID", "odrStatus");
+        //    ViewBag.pmtID = new SelectList(db.PaymentMethod, "pmtID", "pmtMethod");
+        //    return View();
+        //}
 
-        // POST: OrdersAdm/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Order order)
-        {
-            string GetorderID = db.Database.SqlQuery<string>("Select dbo.GetOrderID()").FirstOrDefault();
-            order.odrID = GetorderID;
-            //if (ModelState.IsValid)
-            //{
-            //    db.Order.Add(order);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            db.Order.Add(order);
-            db.SaveChanges();
-            ViewBag.odrStatusID = new SelectList(db.OrderStatus, "odrStatusID", "odrStatus", order.odrStatusID);
-            ViewBag.pmtID = new SelectList(db.PaymentMethod, "pmtID", "pmtMethod", order.pmtID);
-            return View(order);
-        }
+        //// POST: OrdersAdm/Create
+        //// 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        //// 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(Order order)
+        //{
+        //    string GetorderID = db.Database.SqlQuery<string>("Select dbo.GetOrderID()").FirstOrDefault();
+        //    order.odrID = GetorderID;
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    db.Order.Add(order);
+        //    //    db.SaveChanges();
+        //    //    return RedirectToAction("Index");
+        //    //}
+        //    db.Order.Add(order);
+        //    db.SaveChanges();
+        //    ViewBag.odrStatusID = new SelectList(db.OrderStatus, "odrStatusID", "odrStatus", order.odrStatusID);
+        //    ViewBag.pmtID = new SelectList(db.PaymentMethod, "pmtID", "pmtMethod", order.pmtID);
+        //    return View(order);
+        //}
 
         // GET: OrdersAdm/Edit/5
         public ActionResult Edit(string id)

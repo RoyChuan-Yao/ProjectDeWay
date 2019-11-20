@@ -7,11 +7,11 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Order</h4>
+    <h4>訂單</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.recName)
+            收件人姓名
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.recCity)
+            市
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.recDist)
+            區
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.recAddress)
+            地址
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.recPhone)
+            收件人電話
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pmtDate)
+            付款日期
         </dt>
 
         <dd>
@@ -59,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.odrDate)
+            訂單日期
         </dt>
 
         <dd>
@@ -67,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.shpDate)
+            出貨日期
         </dt>
 
         <dd>
@@ -75,7 +75,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.odrNote)
+            訂單備註
         </dt>
 
         <dd>
@@ -83,7 +83,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.traceNumber)
+            託運單號
         </dt>
 
         <dd>
@@ -91,7 +91,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cashFlowID)
+            第三方金流單號
         </dt>
 
         <dd>
@@ -99,7 +99,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
+            訂單狀態
         </dt>
 
         <dd>
@@ -107,7 +107,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
+            付款方式
         </dt>
 
         <dd>
@@ -118,5 +118,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.odrID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("回到前一頁", "Index")
 </p>
