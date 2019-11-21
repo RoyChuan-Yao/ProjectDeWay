@@ -178,9 +178,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\actBulletinsAdmController.cs" />
+    <Compile Include="Controllers\AdmCenterController.cs" />
+    <Compile Include="Controllers\AdmLoginController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MembersAdmController.cs" />
     <Compile Include="Controllers\OrdersAdmController.cs" />
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
@@ -348,6 +351,13 @@
     <Content Include="Views\SellerCertification\IDNumber.cshtml" />
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
     <Content Include="Views\SellerCertification\Create.cshtml" />
+    <Content Include="Views\AdmLogin\Index.cshtml" />
+    <Content Include="Views\AdmCenter\Index.cshtml" />
+    <Content Include="Views\MembersAdm\Create.cshtml" />
+    <Content Include="Views\MembersAdm\Delete.cshtml" />
+    <Content Include="Views\MembersAdm\Details.cshtml" />
+    <Content Include="Views\MembersAdm\Edit.cshtml" />
+    <Content Include="Views\MembersAdm\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

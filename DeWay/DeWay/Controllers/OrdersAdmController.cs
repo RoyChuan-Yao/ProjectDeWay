@@ -15,10 +15,15 @@ namespace DeWay.Controllers
         private shopDBEntities db = new shopDBEntities();
 
         // GET: OrdersAdm
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var order = db.Order.Include(o => o.OrderStatus).Include(o => o.PaymentMethod);
-            return View(order.ToList());
+            var order = from m in db.Order
+                          select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                order = order.Where(s => s.recName.Contains(searchString));
+            }
+            return View(order);
         }
 
         // GET: OrdersAdm/Details/5
