@@ -5,6 +5,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DeWay.ViewModels;
 
 namespace DeWay.Controllers
 {
@@ -119,6 +120,23 @@ namespace DeWay.Controllers
                 
             }
             return RedirectToAction("Login", "Login");
+
+        }
+        public ActionResult odrIndex()
+        {
+
+
+            var cartOrder = db.Cart_OrderDetail.Where(m => m.mbrID == "mbr0000001" && m.odrID != null).ToList();
+            List<string> odrList = (from m in db.Cart_OrderDetail
+                                    where m.mbrID == "mbr0000001"
+                                    select m.odrID).ToList();
+            var Orders = db.Order.Where(m => odrList.Contains(m.odrID)).ToList();
+            
+
+            return View(Orders);
+
+
+
 
         }
     }

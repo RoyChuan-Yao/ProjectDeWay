@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DeWay.Models.Order>
+
+@{
+    ViewBag.Title = "odrIndex";
+}
+
+<h2>odrIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.odrDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Review.FirstOrDefault().Product.Seller.selCompany)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Review.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.odrDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage)
+        </td>
+        
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.odrID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.odrID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.odrID })
+        </td>
+    </tr>
+}
+
+</table>

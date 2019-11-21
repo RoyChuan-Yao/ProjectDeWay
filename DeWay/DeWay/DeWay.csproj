@@ -304,6 +304,7 @@
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\VM_MH_AllOrders.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -353,6 +354,7 @@
     <Content Include="Views\MemberHome\mbrIndex.cshtml" />
     <Content Include="Views\MemberHome\mbrEdit.cshtml" />
     <Content Include="Views\MemberHome\pwdEdit.cshtml" />
+    <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
