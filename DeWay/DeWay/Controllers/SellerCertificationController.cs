@@ -61,12 +61,14 @@ namespace DeWay.Controllers
             //seller.selAdress = (String)dt["selAdress"];
             //seller.selDist = (String)dt["selDist"];
 
+
             return View(seller);
         }
 
         [HttpPost]
         public ActionResult IDNumber(Seller seller)
         {
+
             string sql = "Update Seller set IDNumber=@IDNumber" +
                 " where selID=@selID";
             //Session["memberID"] = seller.mbrID;
@@ -105,6 +107,7 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult GUINumber(Seller seller)
         {
+
             Cmd.Parameters.Clear();
             string sql = "Update Seller set selCompany=@selCompany," +
                 "  GUINumber=@GUINumber" +

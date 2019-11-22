@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DeWay.Models.Member>
+
+@{
+    ViewBag.Title = "mbrIndex";
+}
+
+<h2>會員資料</h2>
+
+
+<div class="container">
+
+    @foreach (var item in Model)
+    {
+        <div class="row"><h6>註冊日期 @Html.DisplayFor(modelItem => item.signupDate)</h6></div>
+        <hr />
+        <div class="row">
+            <div class="col-3">
+
+
+                @if (item.mbrImage == null || item.mbrImage == "")
+                {
+                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" /></a>
+                }
+                else
+                {
+                    <a href="/mbrPhoto/@item.mbrImage"><img src="/mbrPhoto/@item.mbrImage" /></a>
+
+                }
+            
+          
+            </div>
+            <div class="col-5">
+                <h3>
+                    @Html.DisplayFor(modelItem => item.mbrName)　
+                    @Html.DisplayFor(modelItem => item.nickName)
+                </h3>
+                <div>
+                
+                    <h4>電話:　@Html.DisplayFor(modelItem => item.mbrPhone)</h4>
+                </div>
+             
+                <div>
+                
+                    <h4>信箱:　@Html.DisplayFor(modelItem => item.mbrMail)</h4>
+                </div>
+
+               
+            </div>
+            <div class="col-3">
+                <div>
+                   
+                    <h4>生日:　@Html.DisplayFor(modelItem => item.birthDate)</h4>
+                </div>
+                <div>
+                
+                    <h4>點數:　@Html.DisplayFor(modelItem => item.Points)</h4>
+                </div>
+                
+            </div>
+            <div class="col-1"> @Html.ActionLink("編輯", "mbrEdit", new { id = item.mbrID }, new { @class = "btn btn-primary" })</div>
+        </div>
+
+
+    }
+
+</div>
+
+
+
+
+

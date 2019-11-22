@@ -11,7 +11,10 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using static DeWay.Models.Metadata;
+
+    [MetadataType(typeof(MetaReview))]
     public partial class Review
     {
         public string rvwID { get; set; }

@@ -10,12 +10,14 @@
         @Html.ActionLink("Create New", "Create")
     </p>*@
 <p>
+
     @using (Html.BeginForm())
     {
     <p>
         Title:@Html.TextBox("searchString")
         <input id="Submit1" type="submit" value="查詢" class="btn btn-primary" />
     </p>
+
 }
 
     </p>

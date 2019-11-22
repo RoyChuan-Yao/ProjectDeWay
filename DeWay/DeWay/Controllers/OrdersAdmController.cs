@@ -41,6 +41,7 @@ namespace DeWay.Controllers
             return View(order);
         }
 
+
         //// GET: OrdersAdm/Create
         //public ActionResult Create()
         //{
@@ -48,6 +49,7 @@ namespace DeWay.Controllers
         //    ViewBag.pmtID = new SelectList(db.PaymentMethod, "pmtID", "pmtMethod");
         //    return View();
         //}
+
 
         //// POST: OrdersAdm/Create
         //// 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
@@ -93,7 +95,7 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAdress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
+        public ActionResult Edit([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAddress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
         {
             if (ModelState.IsValid)
             {
