@@ -12,21 +12,21 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>actBulletin</h4>
+        <h4>活動公告</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.actID)
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.pdtID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pdtID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pdtID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.actStrDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            開始時間
             <div class="col-md-10">
                 @Html.EditorFor(model => model.actStrDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.actStrDate, "", new { @class = "text-danger" })
@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.actEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            結束時間
             <div class="col-md-10">
                 @Html.EditorFor(model => model.actEndDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.actEndDate, "", new { @class = "text-danger" })
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.actImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            照片
             <div class="col-md-10">
                 @Html.EditorFor(model => model.actImage, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.actImage, "", new { @class = "text-danger" })
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.actDisplay, htmlAttributes: new { @class = "control-label col-md-2" })
+            顯示狀態
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.actDisplay)
@@ -59,24 +59,24 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.admID, "admID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("admID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.admID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="儲存" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("回到前一頁", "Index")
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
