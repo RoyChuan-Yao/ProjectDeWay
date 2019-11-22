@@ -15,12 +15,20 @@ namespace DeWay.Controllers
         private shopDBEntities db = new shopDBEntities();
 
         // GET: WishLists
-        public ActionResult Index()
+        public ActionResult Index(string wishID)
         {
-            var wishlist = db.WishList.ToList();
+            var cod = db.WishList.Where(a => a.mbrID == wishID).ToList();
+
+
+            //var cod = db.WishList;
+            var m = from p in cod
+                    where p.mbrID==wishID
+                    select p;
+            Session["member"] = wishID;
+            return View(m);
             //var wishList = db.WishList.Include(w => w.Member).Include(w => w.Product);
             //return View(wishList.ToList());
-            return View(wishlist);
+           
         }
 
         // GET: WishLists/Details/5

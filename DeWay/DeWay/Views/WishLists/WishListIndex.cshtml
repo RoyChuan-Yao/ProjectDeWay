@@ -5,7 +5,7 @@
     ViewBag.Title = "Index";
 }
 
-<p>我的慾望清單</p>
+    <h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的慾望清單</h2>
 
 @*<@*p>
     @Html.ActionLink("繼續購物", "goshopping");

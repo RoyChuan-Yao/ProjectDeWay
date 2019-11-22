@@ -340,11 +340,11 @@
     <Content Include="Views\ntfRecordsAdm\Details.cshtml" />
     <Content Include="Views\ntfRecordsAdm\Edit.cshtml" />
     <Content Include="Views\ntfRecordsAdm\Index.cshtml" />
-    <Content Include="Views\WishLists\Create.cshtml" />
-    <Content Include="Views\WishLists\Delete.cshtml" />
-    <Content Include="Views\WishLists\Details.cshtml" />
-    <Content Include="Views\WishLists\Edit.cshtml" />
-    <Content Include="Views\WishLists\Index.cshtml" />
+    <Content Include="Views\WishLists\WishListCreate.cshtml" />
+    <Content Include="Views\WishLists\WishListDelete.cshtml" />
+    <Content Include="Views\WishLists\WishListDetails.cshtml" />
+    <Content Include="Views\WishLists\WishListEdit.cshtml" />
+    <Content Include="Views\WishLists\WishListIndex.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
