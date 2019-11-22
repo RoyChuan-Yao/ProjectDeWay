@@ -32,7 +32,8 @@ namespace Project.Controllers
         {
             Cart_OrderDetail cod = new Cart_OrderDetail();
             string[] response = new string[3];
-            string mbrID = "mbr0000001"; //Test
+            //string mbrID = "mbr0000001"; //Test
+            string mbrID = Session["memberID"].ToString(); //Test
             db.Cart_OrderDetail.OrderByDescending(m => m.cartID).FirstOrDefault();
 
             cod.cartID = getNewCarID();
