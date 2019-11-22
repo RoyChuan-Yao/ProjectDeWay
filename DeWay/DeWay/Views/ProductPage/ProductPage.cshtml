@@ -135,20 +135,20 @@
             var btn = $(`#addToCartBtn`)
             var qty = $(`#quantity`)
             var validOrderNumber =/\d?\d/
-            if (validOrderNumber.test(qty.text())) {
-                if (btn.attr(`state`) == `addToCart`) {
+            if (validOrderNumber.test(qty.text())&&btn.attr(`state`) == `addToCart`) {
+                //if (btn.attr(`state`) == `addToCart`) {
                     btn
                         .attr(`state`, `goToCart`)//href = 前往購物車
                         .text(`前往購物車`)//變成前往購物車
 
                     //TODO送出添加購物車資料
                     sendCartMsg()
-                }
+                //}
             }
-              else if (btn.attr(`state`) == "goToCart") {
-                    window.location.href = `@Url.Action("MyCart","Cart")`
-                }
-                else { alert("請選擇規格與數量")}//前往購物車
+            else if (btn.attr(`state`) == "goToCart") {
+                window.location.href = `@Url.Action("MyCart","Cart")`
+            }
+            else { alert("請選擇規格與數量")}//前往購物車
         })
         function sendCartMsg() {
             $.post("@Url.Action("AddToMyCart","Cart")",
