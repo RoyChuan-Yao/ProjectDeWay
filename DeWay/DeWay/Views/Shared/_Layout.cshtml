@@ -38,6 +38,9 @@
                     <li>
                         @Html.ActionLink("賣場管理", "index", "ProductManage", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
                     </li>
+                    <li>
+                        @Html.ActionLink("管理員", "index", "AdmLogin", new { id = Session["adm"] }, new { @class = "nav-link text-white" })
+                    </li>
                 </ul>
             </div>
         </div>
