@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
 
+
       <Diagram DiagramId="13d86192a6b04f9dae1254feaaec534b" Name="Diagram1">
+
 
 
         <EntityTypeShape EntityType="shopDBModel.actBulletin" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />

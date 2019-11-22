@@ -48,16 +48,16 @@
     </div>
 
     <div class="container body-content mt-4">
-
-        @RenderBody()
+            @RenderBody()
+        
         <hr />
         <footer>
             @*<p>&copy; @DateTime.Now.Year </p>*@
         </footer>
     </div>
-
+    
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("cartScript", false)
+    @RenderSection("customScript", false)
 </body>
 </html>
