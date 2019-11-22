@@ -1,4 +1,14 @@
-﻿@model DeWay.Models.Product
+﻿@*TODO :
+    賣家商場連結
+    加入購物車功能
+    QApartialView
+    reviewPartialView
+    report功能
+    whiList
+    favorSeller
+*@
+
+@model DeWay.Models.Product
 
 @{
     ViewBag.Title = "ProductPage";
@@ -63,18 +73,18 @@
             @foreach (var specItem in Model.Specification)
             {
 
-                <span id="@specItem.spcID" class="btn btn-outline-primary spec">
+                <span id="@specItem.spcID" class="btn btn-outline-primary spec mb-2">
                     @specItem.Size
                     @specItem.Style
                 </span>
             }
             <div>
-                <select id="quantity" class="form-control mt-3">
+                <select id="quantity" class="form-control ">
                     <option>請選擇商品規格或尺寸</option>
                 </select>
             </div>
             <hr />
-            <button class="btn btn-warning">加入購物車</button>
+            <button id="addToCartBtn" class="btn btn-warning" state="addToCart">加入購物車</button>
         </div><hr />
         <div id="sellerInfo">
             <h4>賣家名稱 </h4>
@@ -95,13 +105,17 @@
         <div id="RelativeItem">
             <p>相關的商品</p>
         </div>
+        <form action="@Url.Action()" method="post"></form>
     </div>
 </div>
-@section productPage{
+@section customScript{
 
     <script>
-        $(`.spec`).click(function(){
-
+        //設定規格
+        $(`.spec`).click(function () {
+            $(`.spec[state="selected"]`).attr("state", "").toggleClass(`btn-outline-primary btn-primary`)
+            $(this).attr("state", "selected").toggleClass(`btn-outline-primary btn-primary`)
+            //取得該規格商品庫存
             $.get(`@Url.Action("GetProductStock","ProductPage")?specID=`+this.id, function (stock) {
             var quantity = '';
             for (var i = 1; i <= stock; i++) {
@@ -111,7 +125,42 @@
                 quantity
             )
             });
+            //將購物車按鈕變成"加入購物車"
+            $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`)
         })
+        $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`,`addToCart`)})
+        //購物車按鈕按下
+        $(`#addToCartBtn`).click(function()
+        {//更新購物車資料
+            var btn = $(`#addToCartBtn`)
+            var qty = $(`#quantity`)
+            var validOrderNumber =/\d?\d/
+            if (validOrderNumber.test(qty.text())) {
+                if (btn.attr(`state`) == `addToCart`) {
+                    btn
+                        .attr(`state`, `goToCart`)//href = 前往購物車
+                        .text(`前往購物車`)//變成前往購物車
+
+                    //TODO送出添加購物車資料
+                    sendCartMsg()
+                }
+            }
+              else if (btn.attr(`state`) == "goToCart") {
+                    window.location.href = `@Url.Action("MyCart","Cart")`
+                }
+                else { alert("請選擇規格與數量")}//前往購物車
+        })
+        function sendCartMsg() {
+            $.post("@Url.Action("AddToMyCart","Cart")",
+                { spcID: $(`.spec[state="selected"]`).attr(`id`), quantity: $(`#quantity`).find(":selected").val() })
+                .done(function () {
+                  alert( `購物車新增成功` );
+                })
+                .fail(function() {
+                  alert( `購物車新增失敗` );
+                })
+        }
+            //.attr(`state`,`goToCart`)
     </script>
 
 }

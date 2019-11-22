@@ -6,7 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeWay.Models;
-
+using DeWay.App_Code;
 
 namespace Project.Controllers
 {
@@ -15,16 +15,42 @@ namespace Project.Controllers
         //TODO : 假如商品下單成功，將庫存數 減去 商品下單數
         //反之，假如訂單被取消，則加回相對應的庫存數
         //TODO : 購物車內可以選擇購買數
+        //TODO : 增加"加入購物車"action AddToCart
         shopDBEntities db = new shopDBEntities();
-        public List<Order> test(string mbrID)
+
+        private string getNewCarID()
         {
-            List<string> odrIDList = db.Cart_OrderDetail.Where(m => m.mbrID == mbrID).Select(m => m.odrID).ToList();
-            var result = db.Order.Where(o => odrIDList.Contains(o.odrID)).ToList();
-
-
+            var result = db.Cart_OrderDetail.OrderByDescending(m => m.cartID).FirstOrDefault().cartID;
+            result = result.Substring(result.Length - 7, 7);
+            int temp = Int32.Parse(result) + 1;
+            result = MyTools.GetID("car", temp);
             return result;
         }
-        public ActionResult myCart(string id = "mbr0000001")
+        [HttpPost]
+        public string[] AddToMyCart(string spcID, string quantity )
+        {
+            Cart_OrderDetail cod = new Cart_OrderDetail();
+            string[] response = new string[3];
+            string mbrID = "mbr0000001"; //Test
+            db.Cart_OrderDetail.OrderByDescending(m => m.cartID).FirstOrDefault();
+
+            cod.cartID = getNewCarID();
+            cod.mbrID = mbrID;
+            cod.Quantity = Int32.Parse(quantity);
+            cod.spcID = spcID;
+            cod.usedPoints = 0;
+            cod.Discount = 0;
+            cod.shpID = "shp0000001";
+
+            db.Cart_OrderDetail.Add(cod);
+            db.SaveChanges();
+            response[0] = "Received";
+            response[1] = spcID;
+            response[2] = quantity;
+
+            return response;
+        }
+        public ActionResult MyCart(string id = "mbr0000001")
         {
             var cod = db.Cart_OrderDetail;
             var m = from p in cod

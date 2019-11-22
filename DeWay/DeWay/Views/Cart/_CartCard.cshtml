@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <a class="card-title h3" href="@Url.Action("ProductPage","ProductPage",new { pdtID=$"{product.Specification.pdtID}"})">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</a>
+                                <a class="card-title h3 text-decoration-none" href="@Url.Action("ProductPage","ProductPage",new { pdtID=$"{product.Specification.pdtID}"})">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</a>
                                 <p class="card-text">
                                     商品樣式：
                                     @Html.DisplayFor(modelItem => product.Specification.Size)

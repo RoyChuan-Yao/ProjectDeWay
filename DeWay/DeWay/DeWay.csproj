@@ -176,6 +176,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\MyTools.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\actBulletinsAdmController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -241,7 +242,6 @@
     <Compile Include="Models\ProductImage.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductPageViewModel.cs" />
     <Compile Include="Models\QA.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
