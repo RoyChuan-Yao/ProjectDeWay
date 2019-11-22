@@ -18,6 +18,7 @@ namespace Project.Controllers
         //TODO : 增加"加入購物車"action AddToCart
         shopDBEntities db = new shopDBEntities();
 
+
         private string getNewCarID()
         {
             var result = db.Cart_OrderDetail.OrderByDescending(m => m.cartID).FirstOrDefault().cartID;

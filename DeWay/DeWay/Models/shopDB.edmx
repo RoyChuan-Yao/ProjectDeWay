@@ -120,7 +120,7 @@
             <PropertyRef Name="odrID" />
           </Key>
           <Property Name="odrID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="pmtID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="pmtID" Type="char" MaxLength="10" />
           <Property Name="odrStatusID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="recName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="recCity" Type="nvarchar" MaxLength="3" Nullable="false" />
@@ -490,7 +490,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Order__pmtID__7F2BE32F">
-          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentMethod">
@@ -1106,7 +1106,7 @@
             <PropertyRef Name="odrID" />
           </Key>
           <Property Name="odrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="pmtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pmtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="odrStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="recName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="recCity" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1584,7 +1584,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Order__pmtID__7F2BE32F">
-          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentMethod">

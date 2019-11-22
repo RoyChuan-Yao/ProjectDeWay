@@ -624,7 +624,7 @@ namespace DeWay.Models
             public string selDist { get; set; }
             [DisplayName("路(地址)")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
-            public string selAdress { get; set; }
+            public string selAddress { get; set; }
             [DisplayName("統一編號")]
             [Required(ErrorMessage = "必填")]
             public string GUINumber { get; set; }

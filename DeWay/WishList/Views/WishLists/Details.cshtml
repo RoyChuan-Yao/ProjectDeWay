@@ -1,0 +1,34 @@
+﻿@model WishList.Models.WishList
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WishList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pdtID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pdtID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mbrID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mbrID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.wishID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

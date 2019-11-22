@@ -1,0 +1,128 @@
+﻿@model DeWay.Models.Order
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.recName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recDist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recDist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recAdress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recAdress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pmtDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pmtDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.odrDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.odrDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shpDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shpDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.odrNote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.odrNote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.traceNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.traceNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cashFlowID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cashFlowID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderStatus.odrStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod.pmtMethod)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
