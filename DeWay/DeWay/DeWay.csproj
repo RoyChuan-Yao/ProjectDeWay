@@ -185,6 +185,7 @@
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
     <Compile Include="Controllers\SellerCertificationController.cs" />
+    <Compile Include="Email\Email.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DeWay.ViewModels;
+using DeWay.Email;
 
 namespace DeWay.Controllers
 {
@@ -98,6 +99,7 @@ namespace DeWay.Controllers
             {
                 string tempPwd = "";
                 var account = db.MemberAccount.Find(id);
+                var member = db.Member.Find(id);
                 tempPwd = account.mbrPwd;
 
                 if (tempPwd == oldPwd)
@@ -109,9 +111,19 @@ namespace DeWay.Controllers
                     if (ModelState.IsValid)
                     {
                         db.SaveChanges();
+                        
+                        GmailSender gs = new GmailSender();
+                        gs.account = "qoo61191910@gmail.com";  //帳號
+                        gs.password = "jdfxkfgbjibhqsvz";  //應用程式密碼
+                        gs.sender = "qoo61191910@gmail.com";  //寄件人mail
+                        gs.receiver =$"{member.mbrMail}";  //收件人mail  用到變數時前面加$
+                        gs.subject = "密碼更改通知";  //標題
+                        gs.messageBody = $"<html><body>{member.mbrName}您好:<br />您的密碼已做更改，若您沒有近期沒有更改密碼，請盡速與我們聯繫。</body></html>";  //內容
+                        gs.IsHtml = true;  //內容是否使用html
+                        gs.Send();
                         return RedirectToAction("mbrIndex");
                     }
-                  
+
 
                 }
                
@@ -130,10 +142,27 @@ namespace DeWay.Controllers
             List<string> odrList = (from m in db.Cart_OrderDetail
                                     where m.mbrID == "mbr0000001"
                                     select m.odrID).ToList();
-            var Orders = db.Order.Where(m => odrList.Contains(m.odrID)).ToList();
-            
 
-            return View(Orders);
+            List<string> odrSpcList = (from m in db.Cart_OrderDetail
+                                    where m.mbrID == "mbr0000001"
+                                    select m.spcID).ToList();
+
+            List<string> specList = (from s in db.Specification
+                                     where odrSpcList.Any(a=>a==s.spcID)
+                                     select s.pdtID).ToList();
+
+            VM_MH_AllOrders AllOrders = new VM_MH_AllOrders()
+            {
+
+                Order = db.Order.Where(m => odrList.Contains(m.odrID)).ToList(),
+                OrderDetail = db.Cart_OrderDetail.Where(m => odrList.Contains(m.odrID)).ToList(),
+                Specification = db.Specification.Where(m => odrList.Contains(m.spcID)).ToList(),
+                Product = db.Product.Where(m => specList.Contains(m.pdtID)).ToList()
+
+
+            };
+
+            return View(AllOrders);
 
 
 
