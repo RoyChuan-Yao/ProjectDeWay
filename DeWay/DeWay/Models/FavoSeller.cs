@@ -12,16 +12,13 @@ namespace DeWay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class actBulletin
+    public partial class FavoSeller
     {
-        public string actID { get; set; }
-        public string pdtID { get; set; }
-        public Nullable<System.DateTime> actStrDate { get; set; }
-        public Nullable<System.DateTime> actEndDate { get; set; }
-        public string actImage { get; set; }
-        public bool actDisplay { get; set; }
-        public string admID { get; set; }
+        public string selID { get; set; }
+        public string mbrID { get; set; }
+        public string favoID { get; set; }
     
-        public virtual Adm Adm { get; set; }
+        public virtual Member Member { get; set; }
+        public virtual Seller Seller { get; set; }
     }
 }

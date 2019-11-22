@@ -12,16 +12,17 @@ namespace DeWay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class actBulletin
+    public partial class QA
     {
-        public string actID { get; set; }
+        public string qaID { get; set; }
+        public Nullable<bool> readStatus { get; set; }
+        public string mbrID { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
+        public Nullable<System.DateTime> qaTime { get; set; }
+        public Nullable<bool> displayStatus { get; set; }
         public string pdtID { get; set; }
-        public Nullable<System.DateTime> actStrDate { get; set; }
-        public Nullable<System.DateTime> actEndDate { get; set; }
-        public string actImage { get; set; }
-        public bool actDisplay { get; set; }
-        public string admID { get; set; }
     
-        public virtual Adm Adm { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

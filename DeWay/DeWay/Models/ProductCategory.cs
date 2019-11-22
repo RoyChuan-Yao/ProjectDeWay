@@ -12,24 +12,23 @@ namespace DeWay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Adm
+    public partial class ProductCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Adm()
+        public ProductCategory()
         {
-            this.actBulletin = new HashSet<actBulletin>();
-            this.rptRecord = new HashSet<rptRecord>();
+            this.Product = new HashSet<Product>();
         }
     
-        public string admID { get; set; }
-        public string admName { get; set; }
-        public string admMail { get; set; }
-        public string admPhone { get; set; }
+        public string pdtCtgID { get; set; }
+        public string fstLayerID { get; set; }
+        public string sndLayerID { get; set; }
+        public string trdLayerID { get; set; }
     
+        public virtual FirstLayer FirstLayer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<actBulletin> actBulletin { get; set; }
-        public virtual AdmAccount AdmAccount { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rptRecord> rptRecord { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
+        public virtual SecondLayer SecondLayer { get; set; }
+        public virtual ThirdLayer ThirdLayer { get; set; }
     }
 }

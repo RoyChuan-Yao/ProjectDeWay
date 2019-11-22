@@ -8,19 +8,32 @@ using System.Web;
 using System.Web.Mvc;
 using DeWay.Models;
 
-
 namespace DeWay.Controllers
 {
     public class ntfRecordsAdmController : Controller
     {
-        public shopDBEntities db = new shopDBEntities();
+         shopDBEntities db = new shopDBEntities();
 
         // GET: ntfRecordsAdm
-        public ActionResult Index()
+        public ActionResult Index(string searchtitle)
         {
-            var ntfRecord = db.ntfRecord.Include(n => n.Member).Include(n => n.ntfCategory);
-            return View(ntfRecord.ToList());
+            var ntrcontent = from m in db.ntfRecord
+                             select m;
+            if(!String.IsNullOrEmpty(searchtitle))
+            {
+                ntrcontent = ntrcontent.Where(s => s.ntfContent.Contains(searchtitle));
+            }
+
+            return View(ntrcontent);
         }
+
+
+
+        //public ActionResult Index()
+        //{
+        //    var ntfRecord = db.ntfRecord.Include(n => n.Member).Include(n => n.ntfCategory);
+        //    return View(ntfRecord.ToList());
+        //}
 
         // GET: ntfRecordsAdm/Details/5
         public ActionResult Details(string id)
@@ -50,20 +63,26 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ntfContent,ntfCtgID,mbrID,ntfTitle,ntfTime,ntfID")] ntfRecord ntfRecord)
+        public ActionResult Create(ntfRecord ntfRecord)
         {
-            if (ModelState.IsValid)
-            {
-                db.ntfRecord.Add(ntfRecord);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            
-            
+            string GetntfID=db.Database.SqlQuery<string>("Select dbo.GetNtfID()").FirstOrDefault();
+            ntfRecord.ntfID = GetntfID;
+
+
+            //if (ModelState.IsValid)
+            //{
+            //    db.ntfRecord.Add(ntfRecord);
+            //    db.SaveChanges();
+            //return RedirectToAction("Index");
+            //}
+
+            db.ntfRecord.Add(ntfRecord);
+            db.SaveChanges();
 
             ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName", ntfRecord.mbrID);
             ViewBag.ntfCtgID = new SelectList(db.ntfCategory, "ntfCtgID", "ntfType", ntfRecord.ntfCtgID);
-            return View(ntfRecord);
+            //return View(ntfRecord);
+            return RedirectToAction("Index");
         }
 
         // GET: ntfRecordsAdm/Edit/5
@@ -141,37 +160,6 @@ namespace DeWay.Controllers
 
        
 
-        public ActionResult searchorder()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult searchorder(string id)
-        {
-            string odrID = null;
-
-            Order order = new Order();
-
-            if (order.odrID==id)
-            {
-                odrID = order.OrderStatus.ToString();
-                
-            }
-            return RedirectToAction("Index");
-
-            //odrID = from s in order
-            //         where
-            //         id == order.odrID
-            //         select s;
-
-
-
-
-
-
-
-
-        }
+       
     }
 }

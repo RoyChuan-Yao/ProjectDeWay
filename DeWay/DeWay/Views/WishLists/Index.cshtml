@@ -7,17 +7,18 @@
 
 <p>我的慾望清單</p>
 
-<p>
-    @Html.ActionLink("繼續購物", "goshopping")
-</p>
+@*<@*p>
+    @Html.ActionLink("繼續購物", "goshopping");
+</p>*@
 <table class="table">
     <tr>
         <th>商品</th>
         <th>
-            @Html.DisplayNameFor(model => model.Member.mbrName)
+                   
+            @*@Html.DisplayNameFor(model => model.Member.mbrName)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Product.selID)
+            @*@Html.DisplayNameFor(model => model.Product.selID)*@
         </th>
         <th></th>
     </tr>
@@ -25,13 +26,19 @@
     @foreach (var item in Model)
     {
         <tr>
-
-            <td>@item.pdtID</td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.Member.mbrName)
+                @*@item.pdtID*@
+                        @*@Html.ActionLink($"{item.Product.pdtName}", "productPage", "product", new { pdtID = item.pdtID }, new { })*@
+                @Html.ActionLink($"{item.Product.pdtName}","productPage","product",new { pdtID=item.pdtID},new { })
+                    </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Member.mbrName)*@
+                @*@Html.ActionLink($"{item.Product.pdtName}","productPage","product",new {pdtID =item.pdtID },new { })*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.selID)
+                
+                @*@Html.DisplayFor(modelItem => item.Product.selID)*@
             </td>
 
             <td>

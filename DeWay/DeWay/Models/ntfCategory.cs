@@ -12,24 +12,18 @@ namespace DeWay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Adm
+    public partial class ntfCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Adm()
+        public ntfCategory()
         {
-            this.actBulletin = new HashSet<actBulletin>();
-            this.rptRecord = new HashSet<rptRecord>();
+            this.ntfRecord = new HashSet<ntfRecord>();
         }
     
-        public string admID { get; set; }
-        public string admName { get; set; }
-        public string admMail { get; set; }
-        public string admPhone { get; set; }
+        public string ntfCtgID { get; set; }
+        public string ntfType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<actBulletin> actBulletin { get; set; }
-        public virtual AdmAccount AdmAccount { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rptRecord> rptRecord { get; set; }
+        public virtual ICollection<ntfRecord> ntfRecord { get; set; }
     }
 }

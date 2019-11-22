@@ -26,7 +26,7 @@ namespace DeWay.Models
         public string selCompany { get; set; }
         public string selCity { get; set; }
         public string selDist { get; set; }
-        public string selAdress { get; set; }
+        public string selAddress { get; set; }
         public string GUINumber { get; set; }
         public string IDNumber { get; set; }
         public string selInfo { get; set; }

@@ -12,24 +12,23 @@ namespace DeWay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Adm
+    public partial class Specification
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Adm()
+        public Specification()
         {
-            this.actBulletin = new HashSet<actBulletin>();
-            this.rptRecord = new HashSet<rptRecord>();
+            this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
         }
     
-        public string admID { get; set; }
-        public string admName { get; set; }
-        public string admMail { get; set; }
-        public string admPhone { get; set; }
+        public string spcID { get; set; }
+        public string Style { get; set; }
+        public string Size { get; set; }
+        public string Stock { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public string pdtID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<actBulletin> actBulletin { get; set; }
-        public virtual AdmAccount AdmAccount { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<rptRecord> rptRecord { get; set; }
+        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -12,16 +12,20 @@ namespace DeWay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class actBulletin
+    public partial class Refund
     {
-        public string actID { get; set; }
+        public string rfdID { get; set; }
+        public string odrID { get; set; }
         public string pdtID { get; set; }
-        public Nullable<System.DateTime> actStrDate { get; set; }
-        public Nullable<System.DateTime> actEndDate { get; set; }
-        public string actImage { get; set; }
-        public bool actDisplay { get; set; }
-        public string admID { get; set; }
+        public int rfdQuantity { get; set; }
+        public string rfdReason { get; set; }
+        public bool rfdProduct { get; set; }
+        public bool rfdShipping { get; set; }
+        public System.DateTime rfdDate { get; set; }
+        public string rfdStatusID { get; set; }
     
-        public virtual Adm Adm { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual RefundStatus RefundStatus { get; set; }
+        public virtual RefundAccount RefundAccount { get; set; }
     }
 }

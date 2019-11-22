@@ -57,7 +57,7 @@ namespace DeWay.Controllers
             seller.selCity = (String)dt["selCity"];
             seller.IDNumber = dt["IDNumber"].ToString();
             seller.selInfo = (String)dt["selInfo"];
-            seller.selAdress = (String)dt["selAdress"];
+            seller.selAddress = (String)dt["selAdress"];
             seller.selDist = (String)dt["selDist"];
 
             return View(seller);
@@ -72,7 +72,7 @@ namespace DeWay.Controllers
             Cmd.Parameters.AddWithValue("@selID", seller.selID);
             Cmd.Parameters.AddWithValue("@selCity", seller.selCity);
             Cmd.Parameters.AddWithValue("@selDist", seller.selDist);
-            Cmd.Parameters.AddWithValue("@selAdress", seller.selAdress);
+            Cmd.Parameters.AddWithValue("@selAdress", seller.selAddress);
             Cmd.Parameters.AddWithValue("@IDNumber", seller.IDNumber);
             Cmd.Parameters.AddWithValue("@selInfo", seller.selInfo);
 
@@ -93,7 +93,7 @@ namespace DeWay.Controllers
             seller.selCity = (String)dt["selCity"];
             seller.IDNumber = dt["GUINumber"].ToString();
             seller.selInfo = (String)dt["selInfo"];
-            seller.selAdress = (String)dt["selAdress"];
+            seller.selAddress = (String)dt["selAddress"];
             seller.selDist = (String)dt["selDist"];
 
             return View(seller);
@@ -109,7 +109,7 @@ namespace DeWay.Controllers
             Cmd.Parameters.AddWithValue("@selCity", seller.selCity);
             Cmd.Parameters.AddWithValue("@selDist", seller.selDist);
             Cmd.Parameters.AddWithValue("@selCompany", seller.selCompany);
-            Cmd.Parameters.AddWithValue("@selAdress", seller.selAdress);
+            Cmd.Parameters.AddWithValue("@selAdress", seller.selAddress);
             Cmd.Parameters.AddWithValue("@GUINumber", seller.GUINumber);
             Cmd.Parameters.AddWithValue("@selInfo", seller.selInfo);
 

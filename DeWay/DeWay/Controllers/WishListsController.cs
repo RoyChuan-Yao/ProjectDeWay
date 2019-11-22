@@ -138,10 +138,6 @@ namespace DeWay.Controllers
             base.Dispose(disposing);
         }
 
-        //繼續購物
-        public ActionResult goshopping()
-        {
-            return RedirectToAction("Index");
-        }
+       
     }
 }

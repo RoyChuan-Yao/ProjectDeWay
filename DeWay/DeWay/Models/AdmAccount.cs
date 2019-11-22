@@ -12,14 +12,10 @@ namespace DeWay.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class actBulletin
+    public partial class AdmAccount
     {
-        public string actID { get; set; }
-        public string pdtID { get; set; }
-        public Nullable<System.DateTime> actStrDate { get; set; }
-        public Nullable<System.DateTime> actEndDate { get; set; }
-        public string actImage { get; set; }
-        public bool actDisplay { get; set; }
+        public string admAct { get; set; }
+        public string admPwd { get; set; }
         public string admID { get; set; }
     
         public virtual Adm Adm { get; set; }
