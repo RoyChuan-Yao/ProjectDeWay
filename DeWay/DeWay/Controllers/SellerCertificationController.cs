@@ -48,17 +48,18 @@ namespace DeWay.Controllers
         public ActionResult IDNumber(string selID)
         {
             Cmd.Parameters.AddWithValue("@selID", selID);
-            DataRow dt = querySql("select * from Seller where selID=@selID").Rows[0];
+            
             //string str = "";
             Seller seller = new Seller();
             
-            seller.selID = (String)dt["selID"];
+            //seller.selID = (String)dt["selID"];
             //seller.selCompany = (String)dt["selCompany"];
-            seller.selCity = (String)dt["selCity"];
-            seller.IDNumber = dt["IDNumber"].ToString();
-            seller.selInfo = (String)dt["selInfo"];
-            seller.selAddress = (String)dt["selAdress"];
-            seller.selDist = (String)dt["selDist"];
+
+            //seller.selCity = (String)dt["selCity"];
+            //seller.IDNumber = dt["IDNumber"].ToString();
+            //seller.selInfo = (String)dt["selInfo"];
+            //seller.selAdress = (String)dt["selAdress"];
+            //seller.selDist = (String)dt["selDist"];
 
             return View(seller);
         }
@@ -66,15 +67,16 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult IDNumber(Seller seller)
         {
-            string sql = "Update Seller set selCity=@selCity, selDist=@selDist, selAdress=@selAdress, IDNumber=@IDNumber, selInfo=@selInfo" +
+            string sql = "Update Seller set IDNumber=@IDNumber" +
                 " where selID=@selID";
             //Session["memberID"] = seller.mbrID;
             Cmd.Parameters.AddWithValue("@selID", seller.selID);
-            Cmd.Parameters.AddWithValue("@selCity", seller.selCity);
-            Cmd.Parameters.AddWithValue("@selDist", seller.selDist);
-            Cmd.Parameters.AddWithValue("@selAdress", seller.selAddress);
+
+            
+           
+
             Cmd.Parameters.AddWithValue("@IDNumber", seller.IDNumber);
-            Cmd.Parameters.AddWithValue("@selInfo", seller.selInfo);
+            
 
             executeSql(sql);
 
@@ -84,41 +86,75 @@ namespace DeWay.Controllers
         public ActionResult GUINumber(string selID)
         {
             Cmd.Parameters.AddWithValue("@selID", selID);
-            DataRow dt = querySql("select * from Seller where selID=@selID").Rows[0];
+            
             
             Seller seller = new Seller();
 
-            seller.selID = (String)dt["selID"];
-            seller.selCompany = dt["selCompany"].ToString();
-            seller.selCity = (String)dt["selCity"];
-            seller.IDNumber = dt["GUINumber"].ToString();
-            seller.selInfo = (String)dt["selInfo"];
-            seller.selAddress = (String)dt["selAddress"];
-            seller.selDist = (String)dt["selDist"];
+
+            //seller.selID = (String)dt["selID"];
+            //seller.selCompany = dt["selCompany"].ToString();
+            //seller.selCity = (String)dt["selCity"];
+            //seller.IDNumber = dt["GUINumber"].ToString();
+            //seller.selInfo = (String)dt["selInfo"];
+            //seller.selAdress = (String)dt["selAdress"];
+            //seller.selDist = (String)dt["selDist"];
+
 
             return View(seller);
         }
         [HttpPost]
         public ActionResult GUINumber(Seller seller)
         {
-            string sql = "Update Seller set selCity=@selCity, selDist=@selDist, selCompany=@selCompany," +
-                " selAdress=@selAdress, GUINumber=@GUINumber, selInfo=@selInfo" +
+            Cmd.Parameters.Clear();
+            string sql = "Update Seller set selCompany=@selCompany," +
+                "  GUINumber=@GUINumber" +
                 " where selID=@selID";
             //Session["memberID"] = seller.mbrID;
             Cmd.Parameters.AddWithValue("@selID", seller.selID);
-            Cmd.Parameters.AddWithValue("@selCity", seller.selCity);
-            Cmd.Parameters.AddWithValue("@selDist", seller.selDist);
+            
             Cmd.Parameters.AddWithValue("@selCompany", seller.selCompany);
-            Cmd.Parameters.AddWithValue("@selAdress", seller.selAddress);
+
+            
             Cmd.Parameters.AddWithValue("@GUINumber", seller.GUINumber);
-            Cmd.Parameters.AddWithValue("@selInfo", seller.selInfo);
+            
 
             executeSql(sql);
 
             return RedirectToAction("Index");
         }
+        public ActionResult Create()
+        {
+            //ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName");
+            //ViewBag.SellerAut = new SelectList(db.SellerAut, "selAut", "autCategory");
+            return RedirectToAction("Index");
+        }
 
-        
+        // POST: actBulletinsAdm/Create
+        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Seller seller)
+        {
+
+            string GetSellerID = db.Database.SqlQuery<string>("Select dbo.GetSellerID()").FirstOrDefault();
+            seller.selID = GetSellerID;
+            //if (ModelState.IsValid)
+            //{
+            //    db.actBulletin.Add(actBulletin);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            seller.selAut = "2";
+            seller.mbrID = "mbr0000005";
+            seller.selImage = "";
+            db.Seller.Add(seller);
+            db.SaveChanges();
+            //ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName", seller.mbrID);
+            //ViewBag.SellerAut = new SelectList(db.SellerAut, "selAut", "autCategory",seller.selAut);
+            return View(seller);
+        }
+
     }
 
 }

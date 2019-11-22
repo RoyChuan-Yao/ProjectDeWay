@@ -10,128 +10,117 @@ using DeWay.Models;
 
 namespace DeWay.Controllers
 {
-    public class ProductsAdmController : Controller
+    public class MembersAdmController : Controller
     {
         private shopDBEntities db = new shopDBEntities();
 
-        // GET: Products
-
+        // GET: Members
         public ActionResult Index(string searchString)
         {
-            var product = from m in db.Product
+            var member = from m in db.Member
                           select m;
             if (!String.IsNullOrEmpty(searchString))
             {
-                product = product.Where(s => s.pdtName.Contains(searchString));
+                member = member.Where(s => s.mbrName.Contains(searchString));
             }
-            return View(product);
+            return View(member);
         }
 
-
-        // GET: Products/Details/5
+        // GET: Members/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
-            if (product == null)
+            Member member = db.Member.Find(id);
+            if (member == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(member);
         }
 
-        //// GET: Products/Create
+        // GET: Members/Create
         //public ActionResult Create()
         //{
-        //    ViewBag.ctgID = new SelectList(db.ProductCategory, "pdtCtgID", "fstLayerID");
-        //    ViewBag.selID = new SelectList(db.Seller, "selID", "selCompany");
+        //    ViewBag.mbrID = new SelectList(db.MemberAccount, "mbrID", "mbrAccount");
         //    return View();
         //}
 
-        //// POST: Products/Create
+        //// POST: Members/Create
         //// 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         //// 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Create(Product product)
+        //public ActionResult Create([Bind(Include = "mbrID,mbrName,nickName,mbrPhone,mbrMail,birthDate,Points,mbrAut,signupDate,mbrImage,mbrBlock")] Member member)
         //{
-        //    string GetproductID = db.Database.SqlQuery<string>("Select dbo.GetProductID()").FirstOrDefault();
-        //    product.pdtID = GetproductID;
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Member.Add(member);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-        //    //if (ModelState.IsValid)
-        //    //{
-        //    //    db.Product.Add(product);
-        //    //    db.SaveChanges();
-        //    //    return RedirectToAction("Index");
-        //    //}
-        //    db.Product.Add(product);
-        //    db.SaveChanges();
-
-        //    ViewBag.ctgID = new SelectList(db.ProductCategory, "pdtCtgID", "fstLayerID", product.ctgID);
-        //    ViewBag.selID = new SelectList(db.Seller, "selID", "selCompany", product.selID);
-        //    return View(product);
+        //    ViewBag.mbrID = new SelectList(db.MemberAccount, "mbrID", "mbrAccount", member.mbrID);
+        //    return View(member);
         //}
 
-        // GET: Products/Edit/5
+        // GET: Members/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
-            if (product == null)
+            Member member = db.Member.Find(id);
+            if (member == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ctgID = new SelectList(db.ProductCategory, "pdtCtgID", "fstLayerID", product.ctgID);
-            ViewBag.selID = new SelectList(db.Seller, "selID", "selCompany", product.selID);
-            return View(product);
+            ViewBag.mbrID = new SelectList(db.MemberAccount, "mbrID", "mbrAccount", member.mbrID);
+            return View(member);
         }
 
-        // POST: Products/Edit/5
+        // POST: Members/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "pdtID,selID,pdtName,pdtDate,pdtDescribe,Discontinued,ctgID")] Product product)
+        public ActionResult Edit([Bind(Include = "mbrID,mbrName,nickName,mbrPhone,mbrMail,birthDate,Points,mbrAut,signupDate,mbrImage,mbrBlock")] Member member)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                db.Entry(member).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ctgID = new SelectList(db.ProductCategory, "pdtCtgID", "fstLayerID", product.ctgID);
-            ViewBag.selID = new SelectList(db.Seller, "selID", "selCompany", product.selID);
-            return View(product);
+            ViewBag.mbrID = new SelectList(db.MemberAccount, "mbrID", "mbrAccount", member.mbrID);
+            return View(member);
         }
 
-        // GET: Products/Delete/5
+        // GET: Members/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
-            if (product == null)
+            Member member = db.Member.Find(id);
+            if (member == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(member);
         }
 
-        // POST: Products/Delete/5
+        // POST: Members/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Product product = db.Product.Find(id);
-            db.Product.Remove(product);
+            Member member = db.Member.Find(id);
+            db.Member.Remove(member);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
