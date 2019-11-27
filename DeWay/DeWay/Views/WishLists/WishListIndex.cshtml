@@ -1,24 +1,20 @@
 ﻿@model IEnumerable<DeWay.Models.WishList>
-
+    
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的慾望清單</h2>
+    <h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的慾望清單</h2>
 
-@using (Html.BeginForm())
-{
-    <p>
-        內容: @Html.TextBox("searchtitle")
-        <input type="submit" value="查詢" />
-    </p>
-}
+@*<@*p>
+    @Html.ActionLink("繼續購物", "goshopping");
+</p>*@
 <table class="table">
     <tr>
         <th>商品</th>
         <th>
-
+                   
             @*@Html.DisplayNameFor(model => model.Member.mbrName)*@
         </th>
         <th>
@@ -30,18 +26,18 @@
     @foreach (var item in Model)
     {
         <tr>
-
+            
             <td>
                 @*@item.pdtID*@
-                @*@Html.ActionLink($"{item.Product.pdtName}", "productPage", "product", new { pdtID = item.pdtID }, new { })*@
-                @Html.ActionLink($"{item.Product.pdtName}", "productPage", "product", new { pdtID = item.pdtID }, new { })
-            </td>
+                        @*@Html.ActionLink($"{item.Product.pdtName}", "productPage", "product", new { pdtID = item.pdtID }, new { })*@
+                @Html.ActionLink($"{item.Product.pdtName}","productPage","product",new { pdtID=item.pdtID},new { })
+                    </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.Member.mbrName)*@
                 @*@Html.ActionLink($"{item.Product.pdtName}","productPage","product",new {pdtID =item.pdtID },new { })*@
             </td>
             <td>
-
+                
                 @*@Html.DisplayFor(modelItem => item.Product.selID)*@
             </td>
 

@@ -15,7 +15,7 @@ namespace DeWay.Controllers
         private shopDBEntities db = new shopDBEntities();
 
         // GET: WishLists
-        public ActionResult WishListIndex(string wishID)
+        public ActionResult Index(string wishID)
         {
             var cod = db.WishList.Where(a => a.mbrID == wishID).ToList();
 
@@ -32,7 +32,7 @@ namespace DeWay.Controllers
         }
 
         // GET: WishLists/Details/5
-        public ActionResult WishListDetails(string id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -47,7 +47,7 @@ namespace DeWay.Controllers
         }
 
         // GET: WishLists/Create
-        public ActionResult WishListCreate()
+        public ActionResult Create()
         {
             ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName");
             ViewBag.pdtID = new SelectList(db.Product, "pdtID", "selID");
@@ -59,7 +59,7 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult WishListCreate([Bind(Include = "wishID,pdtID,mbrID")] WishList wishList)
+        public ActionResult Create([Bind(Include = "wishID,pdtID,mbrID")] WishList wishList)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace DeWay.Controllers
         }
 
         // GET: WishLists/Edit/5
-        public ActionResult WishListEdit(string id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -95,7 +95,7 @@ namespace DeWay.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult WishListEdit([Bind(Include = "wishID,pdtID,mbrID")] WishList wishList)
+        public ActionResult Edit([Bind(Include = "wishID,pdtID,mbrID")] WishList wishList)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace DeWay.Controllers
         }
 
         // GET: WishLists/Delete/5
-        public ActionResult WishListDelete(string id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
