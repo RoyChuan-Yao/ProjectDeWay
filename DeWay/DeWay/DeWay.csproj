@@ -367,6 +367,7 @@
     <Content Include="Views\MemberHome\mbrEdit.cshtml" />
     <Content Include="Views\MemberHome\pwdEdit.cshtml" />
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
+    <Content Include="Views\MemberHome\QAIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

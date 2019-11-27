@@ -69,6 +69,7 @@ namespace DeWay.Controllers
             cc.mbrID = GetMemberID;
             cc.mbrAccount = act;
             cc.mbrPwd = pwd;
+            mbr.nickName = act;
             mbr.Points = 0;
             mbr.mbrAut = false;
             mbr.signupDate = DateTime.Now;
