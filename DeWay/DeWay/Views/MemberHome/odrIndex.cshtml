@@ -23,16 +23,16 @@
 
 @foreach (var item in Model.Order)
 {
-<div class="col-xl-12">
-    <h3> @Html.DisplayFor(modelItem => item.odrDate)</h3>
-    @foreach (var i in Model.Product)
-    {
-        <h2>
-            @Html.DisplayFor(modelItem => i.Seller.selCompany)
-        </h2>
-    }
+    <div class="col-xl-12">
+        <h3> @Html.DisplayFor(modelItem => item.odrDate)</h3>
+        @foreach (var i in Model.Product)
+        {
+            <h2>
+                @Html.DisplayFor(modelItem => i.Seller.selCompany)
+            </h2>
+        }
 
-</div>
+    </div>
 }
 
 @*<td>
