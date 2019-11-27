@@ -1,0 +1,325 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{58495C66-106A-4C11-8B6E-CE447A26AFA8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DeWayWeb</RootNamespace>
+    <AssemblyName>DeWayWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.4</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DeWayWebHome.css" />
+    <Content Include="DeWayHomepage.html" />
+    <Content Include="DeWayWebHome-1.html" />
+    <Content Include="DeWayWebHome-0.html" />
+    <Content Include="images\email.png" />
+    <Content Include="images\image-21.jpg" />
+    <Content Include="images\image-22.jpg" />
+    <Content Include="images\image-23.jpg" />
+    <Content Include="images\image-24.jpg" />
+    <Content Include="images\image-25.jpg" />
+    <Content Include="images\image-26.jpg" />
+    <Content Include="images\image-27.jpg" />
+    <Content Include="images\image-28.jpg" />
+    <Content Include="images\image-29.jpg" />
+    <Content Include="images\image-30.jpg" />
+    <Content Include="images\image-31.jpg" />
+    <Content Include="images\image-32.jpg" />
+    <Content Include="images\image-33.jpg" />
+    <Content Include="images\image-34.jpg" />
+    <Content Include="images\image-35.jpg" />
+    <Content Include="images\image-36.jpg" />
+    <Content Include="images\image-37.jpg" />
+    <Content Include="images\image-38.jpg" />
+    <Content Include="images\image-39.jpg" />
+    <Content Include="images\image-40.jpg" />
+    <Content Include="images\image-41.jpg" />
+    <Content Include="images\image-42.jpg" />
+    <Content Include="images\image-43.jpg" />
+    <Content Include="images\image-44.jpg" />
+    <Content Include="images\image-45.jpg" />
+    <Content Include="images\image-46.jpg" />
+    <Content Include="images\image-47.jpg" />
+    <Content Include="images\image-48.jpg" />
+    <Content Include="images\image-49.jpg" />
+    <Content Include="images\image-50.jpg" />
+    <Content Include="images\image-51.jpg" />
+    <Content Include="images\image-52.jpg" />
+    <Content Include="images\image-53.jpg" />
+    <Content Include="images\image-54.jpg" />
+    <Content Include="images\image-55.jpg" />
+    <Content Include="images\image-56.jpg" />
+    <Content Include="images\image-57.jpg" />
+    <Content Include="images\image-58.jpg" />
+    <Content Include="images\image-59.jpg" />
+    <Content Include="images\image-60.jpg" />
+    <Content Include="images\image-61.jpg" />
+    <Content Include="images\image-62.jpg" />
+    <Content Include="images\image-63.jpg" />
+    <Content Include="images\image-64.jpg" />
+    <Content Include="images\image-65.jpg" />
+    <Content Include="images\image-66.jpg" />
+    <Content Include="images\image-67.jpg" />
+    <Content Include="images\image-68.jpg" />
+    <Content Include="images\image-69.jpg" />
+    <Content Include="images\image-70.jpg" />
+    <Content Include="images\image-71.jpg" />
+    <Content Include="images\image-72.jpg" />
+    <Content Include="images\image-73.jpg" />
+    <Content Include="images\image-74.jpg" />
+    <Content Include="images\image-75.jpg" />
+    <Content Include="images\image-76.jpg" />
+    <Content Include="images\image-77.jpg" />
+    <Content Include="images\image-78.jpg" />
+    <Content Include="images\image-79.jpg" />
+    <Content Include="images\image-80.jpg" />
+    <Content Include="images\Img-1.jpg" />
+    <Content Include="images\Img-2.JPG" />
+    <Content Include="images\Img-3.jpg" />
+    <Content Include="images\Img-4.jpg" />
+    <Content Include="images\Img-5.jpg" />
+    <Content Include="images\Img-6.jpg" />
+    <Content Include="images\Img-like-7.png" />
+    <Content Include="images\Img-like-8.png" />
+    <Content Include="images\img-notification-13.png" />
+    <Content Include="images\img-p-1.png" />
+    <Content Include="images\img-p-10.png" />
+    <Content Include="images\img-p-11.png" />
+    <Content Include="images\img-p-118.png" />
+    <Content Include="images\img-p-12.png" />
+    <Content Include="images\img-p-13.png" />
+    <Content Include="images\img-p-14.png" />
+    <Content Include="images\img-p-15.png" />
+    <Content Include="images\img-p-16.png" />
+    <Content Include="images\img-p-17.png" />
+    <Content Include="images\img-p-18.png" />
+    <Content Include="images\img-p-19.png" />
+    <Content Include="images\img-p-2.png" />
+    <Content Include="images\img-p-20.png" />
+    <Content Include="images\img-p-21.png" />
+    <Content Include="images\img-p-22.png" />
+    <Content Include="images\img-p-23.png" />
+    <Content Include="images\img-p-24.png" />
+    <Content Include="images\img-p-26.png" />
+    <Content Include="images\img-p-27.png" />
+    <Content Include="images\img-p-28.png" />
+    <Content Include="images\img-p-29.png" />
+    <Content Include="images\img-p-3.png" />
+    <Content Include="images\img-p-30.png" />
+    <Content Include="images\img-p-31.png" />
+    <Content Include="images\img-p-32.png" />
+    <Content Include="images\img-p-33.png" />
+    <Content Include="images\img-p-34.png" />
+    <Content Include="images\img-p-35.png" />
+    <Content Include="images\img-p-36.png" />
+    <Content Include="images\img-p-37.png" />
+    <Content Include="images\img-p-38.jpg" />
+    <Content Include="images\img-p-39.png" />
+    <Content Include="images\img-p-4.png" />
+    <Content Include="images\img-p-40.png" />
+    <Content Include="images\img-p-41.png" />
+    <Content Include="images\img-p-42.png" />
+    <Content Include="images\img-p-43.png" />
+    <Content Include="images\img-p-44.png" />
+    <Content Include="images\img-p-45.png" />
+    <Content Include="images\img-p-46.png" />
+    <Content Include="images\img-p-47.png" />
+    <Content Include="images\img-p-48.png" />
+    <Content Include="images\img-p-49.png" />
+    <Content Include="images\img-p-5.png" />
+    <Content Include="images\img-p-50.png" />
+    <Content Include="images\img-p-51.png" />
+    <Content Include="images\img-p-52.png" />
+    <Content Include="images\img-p-53.png" />
+    <Content Include="images\img-p-54.png" />
+    <Content Include="images\img-p-55.png" />
+    <Content Include="images\img-p-6.png" />
+    <Content Include="images\img-p-7.png" />
+    <Content Include="images\img-p-8.png" />
+    <Content Include="images\img-p-9.png" />
+    <Content Include="images\img-picture-13.png" />
+    <Content Include="images\Img-settings-10.png" />
+    <Content Include="images\Img-settings-11.png" />
+    <Content Include="images\Img-settings-9.png" />
+    <Content Include="images\img-shopping-cart -14.png" />
+    <Content Include="images\Img-shopping-cart-12.png" />
+    <Content Include="images\img-user-15.png" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\myScript.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\DesignPage\HomeIndex.html" />
+    <Content Include="Views\DesignPage\Login.html" />
+    <Content Include="Views\DesignPage\MemberHomePage.html" />
+    <Content Include="Views\DesignPage\ProductPage.html" />
+    <Content Include="Web.config" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51853</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51853/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
