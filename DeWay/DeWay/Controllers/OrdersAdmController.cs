@@ -42,6 +42,7 @@ namespace DeWay.Controllers
         }
 
 
+
         //// GET: OrdersAdm/Create
         //public ActionResult Create()
         //{
@@ -49,6 +50,7 @@ namespace DeWay.Controllers
         //    ViewBag.pmtID = new SelectList(db.PaymentMethod, "pmtID", "pmtMethod");
         //    return View();
         //}
+
 
 
         //// POST: OrdersAdm/Create

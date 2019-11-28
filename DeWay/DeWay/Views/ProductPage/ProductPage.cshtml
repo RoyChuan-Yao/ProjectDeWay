@@ -1,0 +1,166 @@
+﻿@*TODO :
+    賣家商場連結
+    加入購物車功能
+    QApartialView
+    reviewPartialView
+    report功能
+    whiList
+    favorSeller
+*@
+
+@model DeWay.Models.Product
+
+@{
+    ViewBag.Title = "ProductPage";
+}
+
+<h2>@Html.DisplayNameFor(m => m.pdtName)</h2>
+
+<div class="row">
+    <div class="col-7">
+        <div id="ProductInfo">
+            @foreach (var photoItem in Model.ProductImage)
+            {
+                <img src="@Html.DisplayNameFor(m=>photoItem.pdtImage)" alt="商品照片" />
+            }
+            <img class="img-fluid" src="~/images/diamond-4229493_960_720.jpg" />
+            <div>
+                <p>@Html.DisplayNameFor(m => m.pdtDescribe)</p>
+                <p>@Html.DisplayFor(m => m.pdtDescribe)</p>
+                <div>
+                    <h2>生合是回母產工為歡</h2>
+                    <p>色得構不為率賽食，止家時場子老家應願展話全總熱上實直日委表接臺路羅思。濟注拿力其處散麼日爭增。紀放多領直。</p>
+                    <p>又選得己，回次個斷的常人有得會果收……法也了功管空後方傳酒現代；表現生我在電綠？嚴了代落的山女，山大下知人建，對其神死入，老響身就自模不的……表分為：畫西及他的格路有北學類來日上手靈，息告果……不造手的友，麼夠稱認色清營告樣風資局乎國體的老大以中看過少這拉頭很案獲已考民見個；想受府起動再場區得、論麼同們，親下南間是十大的我市藝史來長重要自們王題樂出發廣也分沒，向無收倒活書初倒代大識產如個重放保太民！充大。</p>
+                    <p>的真準能例華中資灣大己一位，聲黃狀水資各天機話部人觀，有展重文片來……看被我在，的生友。起大然大在這落龍驗力計者只再大要，過開麼性存程然中論一的張精？底乎使深都行接安富出子關！開景商解去體。統百看示農我過境海他得出此高統是後學不連的此跑天內師前家可面。問路明安無認漸球做只做……產招足……長是病漸這過小走，看頭龍策找成者登那苦不立往。</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div id="QASection">
+            <h2>QA問答區</h2>
+            @foreach (var qaItem in Model.QA)
+            {//TODO : 只有賣家勾選顯示的QA才顯示
+                <div>
+                    <p>@qaItem.Question</p>
+                    <p>@qaItem.Answer</p>
+                    <span>@qaItem.qaTime</span>
+                </div>
+            }
+        </div>
+        <hr />
+        <div id="ReviewSection">
+            <h2>評論區</h2>
+            <div>
+                @foreach (var reviewItem in Model.Review)
+                {
+                    <div class="card">
+                        <div class="card-body">
+
+                            <p>@reviewItem.Member.nickName</p>
+                            <p>@reviewItem.rvwContent</p>
+                            <p>@reviewItem.rvwStar</p>
+                            <p>@reviewItem.rvwTime</p>
+
+                        </div>
+                    </div>}
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div id="CartInfo" class="mb-2">
+            <h2>@Html.DisplayFor(m => m.pdtName)</h2>
+            <p>規格與尺寸</p>
+            @foreach (var specItem in Model.Specification)
+            {
+
+                <span id="@specItem.spcID" class="btn btn-outline-primary spec mb-2">
+                    @specItem.Size
+                    @specItem.Style
+                </span>
+            }
+            <div>
+                <select id="quantity" class="form-control ">
+                    <option>請選擇商品規格或尺寸</option>
+                </select>
+            </div>
+            <hr />
+            <button id="addToCartBtn" class="btn btn-warning" state="addToCart">加入購物車</button>
+        </div><hr />
+        <div id="sellerInfo">
+            <h4>賣家名稱 </h4>
+            <h2>@Html.DisplayFor(m => m.Seller.selCompany)</h2>
+            <h4>賣家資訊</h4>
+            <p class="rounded">店家圖片</p>
+            <dl>
+                <dt>@Html.DisplayNameFor(m => m.Seller.selInfo)</dt>
+                <dd>@Html.DisplayFor(m => m.Seller.selInfo)</dd>
+                <dt>@Html.DisplayNameFor(m => m.Seller.SellerPhone.FirstOrDefault().selPhone)</dt>
+                <dd>@Html.DisplayFor(m => m.Seller.SellerPhone.FirstOrDefault().selPhone)</dd>
+                <dt>@Html.DisplayNameFor(m => m.Seller.selAddress)</dt>
+                <dd>@Html.DisplayFor(m => m.Seller.selAddress)</dd>
+                <dt>@Html.DisplayNameFor(m => m.Seller.selCity)</dt>
+                <dd>@Html.DisplayFor(m => m.Seller.selCity)</dd>
+            </dl>
+        </div><hr />
+        <div id="RelativeItem">
+            <p>相關的商品</p>
+        </div>
+        <form action="@Url.Action()" method="post"></form>
+    </div>
+</div>
+@section customScript{
+
+    <script>
+        //設定規格
+        $(`.spec`).click(function () {
+            $(`.spec[state="selected"]`).attr("state", "").toggleClass(`btn-outline-primary btn-primary`)
+            $(this).attr("state", "selected").toggleClass(`btn-outline-primary btn-primary`)
+            //取得該規格商品庫存
+            $.get(`@Url.Action("GetProductStock","ProductPage")?specID=`+this.id, function (stock) {
+            var quantity = '';
+            for (var i = 1; i <= stock; i++) {
+            quantity  += `<option value="${i}">${i}</option>`
+            }
+            $(`#quantity`).html(
+                quantity
+            )
+            });
+            //將購物車按鈕變成"加入購物車"
+            $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`)
+        })
+        $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`,`addToCart`)})
+        //購物車按鈕按下
+        $(`#addToCartBtn`).click(function()
+        {//更新購物車資料
+            var btn = $(`#addToCartBtn`)
+            var qty = $(`#quantity`)
+            var validOrderNumber =/\d?\d/
+            if (validOrderNumber.test(qty.text())&&btn.attr(`state`) == `addToCart`) {
+                //if (btn.attr(`state`) == `addToCart`) {
+                    btn
+                        .attr(`state`, `goToCart`)//href = 前往購物車
+                        .text(`前往購物車`)//變成前往購物車
+
+                    //TODO送出添加購物車資料
+                    sendCartMsg()
+                //}
+            }
+            else if (btn.attr(`state`) == "goToCart") {
+                window.location.href = `@Url.Action("MyCart","Cart")`
+            }
+            else { alert("請選擇規格與數量")}//前往購物車
+        })
+        function sendCartMsg() {
+            $.post("@Url.Action("AddToMyCart","Cart")",
+                { spcID: $(`.spec[state="selected"]`).attr(`id`), quantity: $(`#quantity`).find(":selected").val() })
+                .done(function () {
+                  alert( `購物車新增成功` );
+                })
+                .fail(function() {
+                  alert( `購物車新增失敗` );
+                })
+        }
+            //.attr(`state`,`goToCart`)
+    </script>
+
+}

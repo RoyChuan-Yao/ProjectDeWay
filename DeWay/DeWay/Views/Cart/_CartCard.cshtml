@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <h3 class="card-title">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</h3>
+                                <a class="card-title h3 text-decoration-none" href="@Url.Action("ProductPage","ProductPage",new { pdtID=$"{product.Specification.pdtID}"})">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</a>
                                 <p class="card-text">
                                     商品樣式：
                                     @Html.DisplayFor(modelItem => product.Specification.Size)
@@ -54,11 +54,20 @@
                                     折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
                                     點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />
                                 </p>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <a class="btn btn-outline-secondary align-content-around" onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = product.cartID, mbrID = product.mbrID })">X</a>
+                                <select id="shipSelect_@count">
+                                    
+                                        @foreach (var item1 in product.Specification.Product.ShipperDetail)
+                                        {
+                                            <option>@item1.Shipper.shpMethod</option>
+                                        }
+                                   
 
+                                </select>
+                            </div>
+                            <div class="cartID" style="display:none">@product.cartID</div>
+                        </div>
+                        <div class="col-md-1 m-auto">
+                            <a class="btn btn-outline-secondary align-content-around btn-sm" onclick=" return confirm('確定要刪除嗎?')" href="@Url.Action("Delete", "Cart", new { cartID = product.cartID, mbrID = product.mbrID })">&times;</a>
                         </div>
                     </div>
                     count++;
