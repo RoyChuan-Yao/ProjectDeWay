@@ -26,6 +26,7 @@ namespace DeWay.Controllers
                     select p;
             Session["member"] = wishID;
             return View(m);
+            
             //var wishList = db.WishList.Include(w => w.Member).Include(w => w.Product);
             //return View(wishList.ToList());
            
@@ -128,9 +129,7 @@ namespace DeWay.Controllers
       
         public ActionResult DeleteConfirmed(string id)
         {
-
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
             WishList wishList = db.WishList.Find(id);
             db.WishList.Remove(wishList);
             db.SaveChanges();
@@ -145,7 +144,5 @@ namespace DeWay.Controllers
             }
             base.Dispose(disposing);
         }
-
-       
     }
 }
