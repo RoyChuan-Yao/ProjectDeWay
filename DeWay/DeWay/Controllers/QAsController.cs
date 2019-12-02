@@ -10,7 +10,9 @@ using DeWay.Models;
 
 namespace DeWay.Controllers
 {
-    
+    //TODO
+    //編輯QA
+    //刪除QA
     public class QAsController : Controller
     {
         private shopDBEntities db = new shopDBEntities();
