@@ -36,17 +36,15 @@
             </div>
         </div>
         <hr />
-        <div id="QASection">
+        <section id="QASection">
+
             <h2>QA問答區</h2>
-            @foreach (var qaItem in Model.QA)
-            {//TODO : 只有賣家勾選顯示的QA才顯示
-                <div>
-                    <p>@qaItem.Question</p>
-                    <p>@qaItem.Answer</p>
-                    <span>@qaItem.qaTime</span>
-                </div>
-            }
-        </div>
+
+            @Html.Action("_CreateQA", "QAs", new { productID = Model.pdtID })
+
+            @Html.Action("_GetQASection", "QAs", new { productID = Model.pdtID })
+
+        </section>
         <hr />
         <div id="ReviewSection">
             <h2>評論區</h2>
@@ -109,7 +107,25 @@
     </div>
 </div>
 @section customScript{
-
+    <script>
+        $(`#qaSubmitBtn`).on("click", function () {
+            $.ajax({  //利用AJAX發送表單，成功後更新QAsection
+                url: "@Url.Action("CreateQA","QAs")",
+                type: 'post',
+                data: {
+                    'question': $(`#Question`).val(),
+                    'pdtID': $(`#pdtID`).val()
+                },
+                dataType: "html",
+                success: function (data) {
+                    $(`#qaSection`).html(data);
+                },
+                error: function (xhr ) {
+                    alert("QA發送失敗");
+                }
+            });
+        })
+    </script>
     <script>
         //設定規格
         $(`.spec`).click(function () {

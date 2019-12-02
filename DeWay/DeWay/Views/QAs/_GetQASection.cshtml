@@ -1,0 +1,19 @@
+﻿@model List<DeWay.Models.QA>
+
+<div id="qaSection">
+    @foreach (var qa in Model)
+    {
+        if(qa.displayStatus == true || (string)Session["memberID"]== qa.mbrID) {
+        <div class="card border-primary mb-3" >
+            <div class="card-header bg-transparent border-success">@ViewBag.memberNames[qa.mbrID]</div>
+            <div class="card-body text-success">
+                <p class="card-text">@qa.Question</p>
+                <hr />
+                @if (@qa.Answer != null) {<p class="card-text">@qa.Answer</p>}
+                else {<p class="card-text text-danger"> 店家目前尚未回覆 </p>}
+            </div>
+            <div class="card-footer bg-transparent border-success">@qa.qaTime</div>
+        </div>
+        }
+    }
+</div>

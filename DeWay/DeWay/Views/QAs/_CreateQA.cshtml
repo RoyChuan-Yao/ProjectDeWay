@@ -1,0 +1,39 @@
+﻿@model DeWay.Models.QA
+
+@if (Session["memberID"] != null)
+{
+    using (Html.BeginForm("CreateQA", "QAs", FormMethod.Post, new { id = "createQAForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal card ">
+            <h4>我要發問</h4>
+            <hr />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Question)
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.pdtID, new { @Value = ViewBag.productID })
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col- md-10">
+                    <input id="qaSubmitBtn" type="button" value="送出" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+}
+else
+{
+<div class="form-horizontal card ">
+    <h4>請先登入即可發問</h4>
+    <hr />
+
+    @Html.ActionLink("點我登入", "login", "login", null, htmlAttributes: new { @class = "btn btn-primary" })
+    @Html.ActionLink("點我註冊", "register", "login", null, htmlAttributes: new { @class = "btn btn-warning" })
+</div>
+}

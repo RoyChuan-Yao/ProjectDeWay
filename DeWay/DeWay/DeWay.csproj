@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44331</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -190,6 +191,7 @@
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductPageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
+    <Compile Include="Controllers\QAsController.cs" />
     <Compile Include="Controllers\SellerCertificationController.cs" />
     <Compile Include="Controllers\WishListsController.cs" />
     <Compile Include="Email\Email.cs" />
@@ -391,6 +393,8 @@
     <Content Include="Views\MemberHome\mbrEdit.cshtml" />
     <Content Include="Views\MemberHome\pwdEdit.cshtml" />
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
+    <Content Include="Views\QAs\_GetQASection.cshtml" />
+    <Content Include="Views\QAs\_CreateQA.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
