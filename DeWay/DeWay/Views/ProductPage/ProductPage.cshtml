@@ -127,7 +127,6 @@
         })
     </script>
     <script>
-        //設定規格
         $(`.spec`).click(function () {
             $(`.spec[state="selected"]`).attr("state", "").toggleClass(`btn-outline-primary btn-primary`)
             $(this).attr("state", "selected").toggleClass(`btn-outline-primary btn-primary`)
@@ -141,7 +140,7 @@
                 quantity
             )
             });
-            //將購物車按鈕變成"加入購物車"
+            //購物車按鈕-->"加入購物車"
             $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`)
         })
         $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`,`addToCart`)})
@@ -150,23 +149,19 @@
         {//更新購物車資料
             var btn = $(`#addToCartBtn`)
             var qty = $(`#quantity`)
-            var validOrderNumber =/\d?\d/
-            if (validOrderNumber.test(qty.text())&&btn.attr(`state`) == `addToCart`) {
-                //if (btn.attr(`state`) == `addToCart`) {
-                    btn
-                        .attr(`state`, `goToCart`)//href = 前往購物車
-                        .text(`前往購物車`)//變成前往購物車
-
-                    //TODO送出添加購物車資料
-                    sendCartMsg()
-                //}
+            var validOrderNumber =/\d?\d/ //前端驗證(訂購數量合理性)
+            if (validOrderNumber.test(qty.text()) &&
+                btn.attr(`state`) == `addToCart`) {
+                btn.attr(`state`, `goToCart`)
+                    .text(`前往購物車`);
+                sendCartMsg();
             }
             else if (btn.attr(`state`) == "goToCart") {
-                window.location.href = `@Url.Action("MyCart","Cart")`
+                window.location.href = `@Url.Action("MyCart","Cart")`;//重新導向至購物車
             }
-            else { alert("請選擇規格與數量")}//前往購物車
+            else alert("請選擇規格與數量");//提醒選擇數量與規格
         })
-        function sendCartMsg() {
+        function sendCartMsg() { //發送訂單
             $.post("@Url.Action("AddToMyCart","Cart")",
                 { spcID: $(`.spec[state="selected"]`).attr(`id`), quantity: $(`#quantity`).find(":selected").val() })
                 .done(function () {
@@ -176,7 +171,6 @@
                   alert( `購物車新增失敗` );
                 })
         }
-            //.attr(`state`,`goToCart`)
     </script>
 
 }
