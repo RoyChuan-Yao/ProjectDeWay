@@ -1,0 +1,22 @@
+﻿@model List<DeWay.Models.Review>
+
+@if (Model != null)
+{
+    foreach (var reviewItem in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+
+                <p>@reviewItem.Member.nickName</p>
+                <p>@reviewItem.rvwContent</p>
+                <p>@reviewItem.rvwStar 顆星</p>
+                <p>@reviewItem.rvwTime</p>
+
+            </div>
+        </div>
+    }
+}
+else
+{
+<h3>此商品目前沒有評論</h3>
+}

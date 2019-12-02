@@ -35,34 +35,20 @@
                 </div>
             </div>
         </div>
-        <hr />
-        <section id="QASection">
-
-            <h2>QA問答區</h2>
-
-            @Html.Action("_CreateQA", "QAs", new { productID = Model.pdtID })
-
-            @Html.Action("_GetQASection", "QAs", new { productID = Model.pdtID })
-
-        </section>
-        <hr />
+        <hr />        
         <div id="ReviewSection">
-            <h2>評論區</h2>
+            <h2>購買評價</h2>
             <div>
-                @foreach (var reviewItem in Model.Review)
-                {
-                    <div class="card">
-                        <div class="card-body">
-
-                            <p>@reviewItem.Member.nickName</p>
-                            <p>@reviewItem.rvwContent</p>
-                            <p>@reviewItem.rvwStar</p>
-                            <p>@reviewItem.rvwTime</p>
-
-                        </div>
-                    </div>}
+                @Html.Action("_GetReviewSection", "Review", new { productID = Model.pdtID })
             </div>
         </div>
+        <hr />
+        <section id="QASection">
+            <h2>QA問答區</h2>
+            @Html.Action("_CreateQA", "QAs", new { productID = Model.pdtID })
+            @Html.Action("_GetQASection", "QAs", new { productID = Model.pdtID })
+        </section>
+        
     </div>
     <div class="col-5">
         <div id="CartInfo" class="mb-2">
@@ -70,7 +56,6 @@
             <p>規格與尺寸</p>
             @foreach (var specItem in Model.Specification)
             {
-
                 <span id="@specItem.spcID" class="btn btn-outline-primary spec mb-2">
                     @specItem.Size
                     @specItem.Style

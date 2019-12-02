@@ -192,6 +192,7 @@
     <Compile Include="Controllers\ProductPageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
     <Compile Include="Controllers\QAsController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SellerCertificationController.cs" />
     <Compile Include="Controllers\WishListsController.cs" />
     <Compile Include="Email\Email.cs" />
@@ -395,6 +396,7 @@
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\QAs\_GetQASection.cshtml" />
     <Content Include="Views\QAs\_CreateQA.cshtml" />
+    <Content Include="Views\Review\_GetReviewSection.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
