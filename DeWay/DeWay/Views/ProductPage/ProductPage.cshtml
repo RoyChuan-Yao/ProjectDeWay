@@ -7,10 +7,10 @@
      檢舉
     report功能
      檢品商品
-    
+
     whiList
     favorSeller
-    
+
 *@
 
 @model DeWay.Models.Product
@@ -26,7 +26,7 @@
         <div id="ProductInfo">
             @foreach (var photoItem in Model.ProductImage)
             {
-                <img src="@Html.DisplayNameFor(m=>photoItem.pdtImage)" alt="商品照片" />
+                <img src="@Html.DisplayNameFor(m => photoItem.pdtImage)" alt="商品照片" />
             }
             <img class="img-fluid" src="~/images/diamond-4229493_960_720.jpg" />
             <div>
@@ -58,13 +58,28 @@
     <div class="col-5">
         <div id="CartInfo" class="mb-2">
             <h2>@Html.DisplayFor(m => m.pdtName)</h2>
-            <h3 id="price"></h3>
+            <h2 id="price" class="text-danger">
+                @{
+                    var price = Model.Specification.OrderByDescending(m => m.Price).Select(p => p.Price).ToArray();
+                    var max = Convert.ToInt32(price[0]);
+                    var min = Convert.ToInt32(price[price.Length - 1]);
+                    if (max == min)
+                    {
+                        @("NT$ " + max)
+                    }
+                    else
+                    {
+                        @("NT$ " + min + "~" + max)
+                    }
+                }
+            </h2>
             <p>規格與尺寸</p>
             @foreach (var specItem in Model.Specification)
             {
                 <span id="@specItem.spcID" class="btn btn-outline-primary spec mb-2">
                     @specItem.Size
                     @specItem.Style
+                    <span class="d-none priceTag">@(Convert.ToInt32(specItem.Price))</span>
                 </span>
             }
             <div>
@@ -111,36 +126,39 @@
                 success: function (data) {
                     $(`#qaSection`).html(data);
                 },
-                error: function ( ) {
+                error: function () {
                     alert("QA發送失敗");
                 }
             });
-        })
+        });
     </script>
     <script>
         $(`.spec`).click(function () {
             $(`.spec[state="selected"]`).attr("state", "").toggleClass(`btn-outline-primary btn-primary`);
             $(this).attr("state", "selected").toggleClass(`btn-outline-primary btn-primary`);
             //取得該規格商品庫存
-            $.get(`@Url.Action("GetProductStock","ProductPage")?specID=`+this.id, function (stock) {
+            $.get(`@Url.Action("GetProductStock","ProductPage")?specID=` + this.id,
+                function (stock) {
                     var quantity = '';
                     for (var i = 1; i <= stock; i++) {
                         quantity += `<option value="${i}">${i}</option>`;
                     }
-                $(`#quantity`).html(
+                    $(`#quantity`).html(
                     quantity
-                );
+                    );
                 });
+            //更新產品價格標籤
+            $(`#price`).text("NT$ " + $(this).find(`.priceTag`).text());
             //購物車按鈕-->"加入購物車"
             $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`);
         })
-        $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`,`addToCart`)})
+        $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`) });
         //購物車按鈕按下
-        $(`#addToCartBtn`).click(function()
+        $(`#addToCartBtn`).click(function ()
         {//更新購物車資料
-                var btn = $(`#addToCartBtn`)
-            var qty = $(`#quantity`)
-            var validOrderNumber =/\d?\d/ //前端驗證(訂購數量合理性)
+            var btn = $(`#addToCartBtn`);
+            var qty = $(`#quantity`);
+            var validOrderNumber = /\d?\d/; //前端驗證(訂購數量合理性)
             if (validOrderNumber.test(qty.text()) &&
                 btn.attr(`state`) == `addToCart`) {
                     btn.attr(`state`, `goToCart`)
