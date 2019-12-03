@@ -184,17 +184,70 @@ namespace DeWay.Controllers
                 }
                 else if (code == 1)
                 {
-                    var qayet = db.QA.Where(m => m.mbrID == id && m.Answer =="").ToList().OrderByDescending(m => m.qaTime);
+                    var qayet = db.QA.Where(m => m.mbrID == id &&(m.Answer==null || m.Answer == "")).ToList().OrderByDescending(m => m.qaTime);
                     return View(qayet);
                 }
                 else if (code == 2)
                 {
-                    var qaed = db.QA.Where(m => m.mbrID == id && m.Answer != "").ToList().OrderByDescending(m => m.qaTime);
+                    var qaed = db.QA.Where(m => m.mbrID == id && (m.Answer != ""||m.Answer!=null)).ToList().OrderByDescending(m => m.qaTime);
                     return View(qaed);
                 }
                 return HttpNotFound();
             }
             return RedirectToAction("Login", "Login");
+
+        }
+
+        public PartialViewResult _rvwIndex(int code = 0, string odr="")
+        {
+            
+
+                string id = Session["memberID"].ToString();
+                List<string> odrid = (from m in db.Cart_OrderDetail
+                                      where m.mbrID == id&&m.odrID!=null
+                                      select m.odrID).ToList();
+            var rvwodrid = (from o in db.Review
+                            where o.mbrID == id
+                            select o.odrID).ToList();
+            if (code == 0)
+                {
+
+                
+                var nonreview = db.Order.Where(m => !rvwodrid.Contains(m.odrID)&&odrid.Contains(m.odrID)).ToList();
+                
+                return PartialView(nonreview);
+                
+
+
+            }
+                else if (code == 1)
+                {
+                
+                    var reviewed = db.Order.Where(m=>rvwodrid.Contains(m.odrID)).ToList();
+                    return PartialView(reviewed);
+                
+                }
+
+                else if (code == 2)
+                {
+                    var odrreview = db.Order.Where(m => m.odrID == odr).ToList();
+                    return PartialView(odrreview);
+                }
+            return ViewBag.message;
+
+            
+            
+        }
+
+        public string getImage(string id)
+        {
+            var getSpcID = db.Cart_OrderDetail.Where(m => m.odrID == id).FirstOrDefault().spcID;
+            var getPdtID = db.Specification.Where(m => m.spcID == getSpcID).FirstOrDefault().pdtID;
+            var getPdtImg = db.ProductImage.Where(m => m.pdtID == getPdtID).FirstOrDefault().pdtImage;
+
+
+
+            return getPdtImg;
 
         }
     }

@@ -4,48 +4,47 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-
-      <Diagram DiagramId="13d86192a6b04f9dae1254feaaec534b" Name="Diagram1">
-
+      <Diagram DiagramId="7d40cac962a645bc8b8e37441cc06c85" Name="Diagram1">
         <EntityTypeShape EntityType="shopDBModel.actBulletin" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Adm" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.AdmAccount" Width="1.5" PointX="8" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Cart_OrderDetail" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.FavoSeller" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.FirstLayer" Width="1.5" PointX="3.75" PointY="31.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Member" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.MemberAccount" Width="1.5" PointX="3" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Message" Width="1.5" PointX="3" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.ntfCategory" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.FavoSeller" Width="1.5" PointX="6" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.FirstLayer" Width="1.5" PointX="3.75" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.Member" Width="1.5" PointX="0.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.MemberAccount" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.Message" Width="1.5" PointX="3" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.ntfCategory" Width="1.5" PointX="3.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.ntfRecord" Width="1.5" PointX="6" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Order" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.OrderStatus" Width="1.5" PointX="1.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.OrderStatus" Width="1.5" PointX="1.5" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.PaymentMethod" Width="1.5" PointX="1.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Product" Width="1.5" PointX="8.25" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.ProductCategory" Width="1.5" PointX="6" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.ProductImage" Width="1.5" PointX="10.5" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.QA" Width="1.5" PointX="10.5" PointY="22.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Refund" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.RefundAccount" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.RefundStatus" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Review" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.ProductCategory" Width="1.5" PointX="6" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.ProductImage" Width="1.5" PointX="10.5" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.QA" Width="1.5" PointX="10.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.Refund" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.RefundAccount" Width="1.5" PointX="8.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.RefundStatus" Width="1.5" PointX="3.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.Review" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.rptRecord" Width="1.5" PointX="8" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.SecondLayer" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.SecondLayer" Width="1.5" PointX="3.75" PointY="34.625" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Seller" Width="1.5" PointX="6" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.SellerAut" Width="1.5" PointX="3.75" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.SellerPhone" Width="1.5" PointX="8.25" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.SellerAut" Width="1.5" PointX="3.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.SellerPhone" Width="1.5" PointX="8.25" PointY="36.375" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Shipper" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.ShipperDetail" Width="1.5" PointX="13.5" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.ShipperDetail" Width="1.5" PointX="13.5" PointY="24.625" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Specification" Width="1.5" PointX="10.5" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Tag" Width="1.5" PointX="10.5" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.ThirdLayer" Width="1.5" PointX="3.75" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.WishList" Width="1.5" PointX="13.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.Tag" Width="1.5" PointX="10.5" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.ThirdLayer" Width="1.5" PointX="3.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopDBModel.WishList" Width="1.5" PointX="13.5" PointY="21.375" IsExpanded="true" />
         <AssociationConnector Association="shopDBModel.FK__actBullet__admID__02084FDA" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__AdmAccoun__admID__02FC7413" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__rptRecord__admID__03F0984C" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Cart_Orde__mbrID__14270015" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Cart_Orde__shpID__0C85DE4D" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Cart_Orde__spcID__123EB7A3" ManuallyRouted="false" />
+        <AssociationConnector Association="shopDBModel.FK_Cart_OrderDetail_Order" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__FavoSelle__mbrID__6E01572D" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__FavoSelle__selID__7C4F7684" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__ProductCa__fstLa__04E4BC85" ManuallyRouted="false" />

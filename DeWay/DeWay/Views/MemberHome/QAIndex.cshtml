@@ -22,7 +22,7 @@
 
     </style>
     }
-
+@Html.Action("_rvwIndex",new { code=0})
 
 <div class="container">
     @foreach (var item in Model)
@@ -41,7 +41,7 @@
                         @ViewBag.MemberName 發問: @Html.DisplayFor(modelItem => item.Question)
 
                     </div>
-                    @if (item.Answer != "")
+                    @if(item.Answer!=null&&item.Answer!="")
                     {
                         <hr />
                         <div>
