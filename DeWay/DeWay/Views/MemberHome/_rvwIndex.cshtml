@@ -1,153 +1,184 @@
 ﻿@model IEnumerable<DeWay.Models.Order>
-@foreach (var item in Model)
-{
-    if (item.Review.Count() != 0)
-    {
-        <div class="card">
-            <div class="card-header">
-
-                @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwStar)
-                @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)
 
 
-
-
-            </div>
-            <div class="card-body row">
-                <div class="col-5">
-                    @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage)
-                </div>
-                <div class="col-7">
-                    To:@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)<br />
-                    @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
-                </div>
-            </div>
-
-
-        </div>
-    }
-    else
-    {
-        <div class="card">
-            <div class="card-header">
-
-                <input id="Button1" type="button" value="button" />
-               
-                
-            </div>
-            <div class="card-body row">
-                <div class="col-5">
-                    <img src="~/images/@Html.Action("getImage", new { id = item.odrID})" style="width:200px" class="img-responsive img-rounded"/>
-                </div>
-                <div class="col-7">
-                    @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
-                    @Html.DisplayFor(modelItem => item.odrDate)
-                    
-                    
-                </div>
-            </div>
-
-
-        </div>
-       
-    }
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+@{
+    int star = 0;
 }
-
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.recName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.recCity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.recDist)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.recAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.recPhone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pmtDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.odrDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.shpDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.odrNote)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.traceNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cashFlowID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
+    @foreach (var item in Model)
+    {
+        if (item.Review.Count() != 0)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.recName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.recCity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.recDist)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.recAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.recPhone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pmtDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.odrDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.shpDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.odrNote)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.traceNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cashFlowID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.odrID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.odrID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.odrID })
-                </td>
-            </tr>
-        }
+            star = item.Review.FirstOrDefault().rvwStar;
+            <input id="Hidden1" type="hidden" value="@star" />
+            <div class="card">
+                <div class="card-header">
+                    <div class="star" style="font-size:30px">
+                        @*@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwStar)*@
+                    </div>
+                    @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)
 
-    </table>*@
+
+
+
+                </div>
+                <div class="card-body row">
+                    <div class="col-5">
+                        @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage)
+                    </div>
+                    <div class="col-7">
+                        To:@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)<br />
+                        @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
+                    </div>
+                </div>
+
+
+            </div>
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-header">
+
+                    <input id="Button1" type="button" value="button" />
+
+
+                </div>
+                <div class="card-body row">
+                    <div class="col-5">
+                        <img src="~/images/@Html.Action("getImage", new { id = item.odrID})" style="width:200px" class="img-responsive img-rounded" />
+                    </div>
+                    <div class="col-7">
+                        @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
+                        @Html.DisplayFor(modelItem => item.odrDate)
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        }
+    }
+
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        @*<script src="~/Scripts/stars.min.js"></script>*@
+        <script src="~/Scripts/stars.js"></script>
+        <script>
+        
+            $('.star').stars({
+                stars: 5,
+                value: @star,
+                color:'#FFD700'
+            });
+
+            //$('.star').stars({
+            //    stars: 3,
+            //    text: ['Good', 'Great', 'Excellent'],
+            //    click: function (index) {
+            //         Some ajax action
+            //    }
+            //});
+
+        </script>
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.recName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.recCity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.recDist)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.recAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.recPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pmtDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.odrDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.shpDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.odrNote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.traceNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cashFlowID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recDist)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pmtDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.odrDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.shpDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.odrNote)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.traceNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cashFlowID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.odrID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.odrID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.odrID })
+                    </td>
+                </tr>
+            }
+
+        </table>*@

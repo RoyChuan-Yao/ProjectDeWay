@@ -250,5 +250,20 @@ namespace DeWay.Controllers
             return getPdtImg;
 
         }
+        public PartialViewResult _rvwCreate(string odrID)
+        {
+            Review newReview = new Review();
+            newReview.odrID = odrID;
+            ViewBag.odrID = odrID;
+            return PartialView("_rvwCreate");
+        }
+        [HttpPost]
+        public PartialViewResult _rvwIndex(string odrID, Review review)
+        {
+            db.Review.Add(review);
+            db.SaveChanges();
+
+            return PartialView("_rvwIndex");
+        }
     }
 }
