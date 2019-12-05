@@ -95,39 +95,7 @@
 
 
 
-    @*<div class="navbar navbar-expand-lg  bg-dark navbar-dark">
-            <div class="container ">
-                @Html.ActionLink("DeWay", "Index", "Home", new { }, new { @class = "navbar-brand text-white" })
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-white">Home</a>
-                        </li>
-                        <li>
-                            @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link text-white" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link text-white" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("購物車", "mycart", "cart", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("賣場管理", "index", "ProductManage", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("會員首頁", "mbrIndex", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>*@
+   
     <div class="content">
         <div class="@*container*@ @*body-content*@ content-inside">
 

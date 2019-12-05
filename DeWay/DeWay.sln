@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocket", "WebSocket\WebS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wish", "Wish\Wish.csproj", "{A4FBB2D8-EC7D-405A-879F-990A9DDC07D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeWayWeb", "DeWayWeb\DeWayWeb.csproj", "{58495C66-106A-4C11-8B6E-CE447A26AFA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A4FBB2D8-EC7D-405A-879F-990A9DDC07D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4FBB2D8-EC7D-405A-879F-990A9DDC07D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4FBB2D8-EC7D-405A-879F-990A9DDC07D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58495C66-106A-4C11-8B6E-CE447A26AFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58495C66-106A-4C11-8B6E-CE447A26AFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58495C66-106A-4C11-8B6E-CE447A26AFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58495C66-106A-4C11-8B6E-CE447A26AFA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
