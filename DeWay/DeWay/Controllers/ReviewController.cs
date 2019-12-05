@@ -9,7 +9,6 @@ namespace DeWay.Controllers
 {
     public class ReviewController : Controller
     {
-        // GET: Review
         private shopDBEntities db = new shopDBEntities();
 
         //QA 部分檢視(用於:商品專頁、會員中心、賣家中心)

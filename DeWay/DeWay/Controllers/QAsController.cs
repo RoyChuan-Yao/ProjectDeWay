@@ -31,12 +31,14 @@ namespace DeWay.Controllers
             ViewBag.memberNames = memberNames;//建成字典檔用於VIEW中調用
             return PartialView(qa);
         }
+        [ChildActionOnly]
         public PartialViewResult _CreateQA(string productID)
         {
             ViewBag.productID = productID;
             return PartialView();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateQA(string question, string pdtID)
         {
             string GetQAID = db.Database.SqlQuery<string>("Select dbo.GetQAID()").FirstOrDefault();
@@ -44,10 +46,11 @@ namespace DeWay.Controllers
             {
                 qaID = GetQAID,
                 mbrID = (string)Session["memberID"],
-                Question = question,
-                pdtID = pdtID, //TODO:限制長度
+                Question = question,//TODO:限制長度
+                pdtID = pdtID, 
                 qaTime = DateTime.Now,
             };
+            //QA 預設值
             //qaID  : 自動產生 TODO : QAID不可為NULL
             //qa未讀 : 預設未讀
             //qa公開 : 預設不公開

@@ -14,17 +14,19 @@ namespace DeWay.Controllers
         shopDBEntities db = new shopDBEntities();
         public ActionResult ProductPage(string pdtID = "pdt0000001")
         {
-            Product product = db.Product.Where(m => m.pdtID == pdtID).FirstOrDefault();
-            //TODO : 記得刪除viewmodel
-            //取出相關商品單筆資料
-
-            /*TODO : 被查詢商品必須是上架的
-             假如沒上架：引導至查無商品頁面*/
-            /*商品加入購物車：
-             1. 點選規格
-             2. 點選購買數
-             3. 點選加入購物車(按鈕之後變成前往購物車)
-             */
+            var product = db.Product.Where(m => m.pdtID == pdtID).FirstOrDefault();
+            string memberID = (string)Session["memberID"];
+            string selID="";
+            if (memberID != null) 
+            {
+                selID = db.Seller.Where(m => m.mbrID == memberID).FirstOrDefault().selID;
+            }
+            //商品尚未上架 且 不是該商品賣家 則回傳失敗
+            if (product.Discontinued && product.selID != selID)
+            {
+                return HttpNotFound();
+                //TODO ：製作404頁面
+            }
             return View(product);
         }
         public string GetProductStock(string specID)
@@ -34,6 +36,6 @@ namespace DeWay.Controllers
                 .FirstOrDefault().Stock;
             return stockResult;
         }
-        
+
     }
 }

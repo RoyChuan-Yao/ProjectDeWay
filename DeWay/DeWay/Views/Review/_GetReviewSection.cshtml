@@ -1,6 +1,6 @@
 ﻿@model List<DeWay.Models.Review>
 
-@if (Model != null)
+@if (Model.Count() != 0)
 {
     foreach (var reviewItem in Model)
     {
@@ -9,12 +9,17 @@
 
                 <p>@reviewItem.Member.nickName</p>
                 <p>@reviewItem.rvwContent</p>
-                <p>@reviewItem.rvwStar 顆星</p>
+                <p>
+                    @for (int i = 0; i < reviewItem.rvwStar; i++)
+                    {
+                        <span>★</span>
+                    }
+                </p>
                 <p>@reviewItem.rvwTime</p>
 
-            </div>
         </div>
-    }
+    </div>
+}
 }
 else
 {

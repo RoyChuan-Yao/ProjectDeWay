@@ -19,34 +19,36 @@
     ViewBag.Title = "ProductPage";
 }
 
-<h2>@Html.DisplayNameFor(m => m.pdtName)</h2>
+
 
 <div class="row">
     <div class="col-7">
-        <div id="ProductInfo">
-            @foreach (var photoItem in Model.ProductImage)
-            {
-                <img src="@Html.DisplayNameFor(m => photoItem.pdtImage)" alt="商品照片" />
-            }
-            <img class="img-fluid" src="~/images/diamond-4229493_960_720.jpg" />
+        <section id="ProductInfo">
             <div>
-                <p>@Html.DisplayNameFor(m => m.pdtDescribe)</p>
+                @foreach (var photoItem in Model.ProductImage)
+                {
+                    <img src="@Html.DisplayNameFor(m => photoItem.pdtImage)" alt="商品照片" />
+                }
+                <img class="img-fluid" src="~/images/diamond-4229493_960_720.jpg" />
+            </div>
+            <div>
+                <h3>產品描述</h3>
                 <p>@Html.DisplayFor(m => m.pdtDescribe)</p>
                 <div>
-                    <h2>生合是回母產工為歡</h2>
+                    <h4>生合是回母產工為歡</h4>
                     <p>色得構不為率賽食，止家時場子老家應願展話全總熱上實直日委表接臺路羅思。濟注拿力其處散麼日爭增。紀放多領直。</p>
                     <p>又選得己，回次個斷的常人有得會果收……法也了功管空後方傳酒現代；表現生我在電綠？嚴了代落的山女，山大下知人建，對其神死入，老響身就自模不的……表分為：畫西及他的格路有北學類來日上手靈，息告果……不造手的友，麼夠稱認色清營告樣風資局乎國體的老大以中看過少這拉頭很案獲已考民見個；想受府起動再場區得、論麼同們，親下南間是十大的我市藝史來長重要自們王題樂出發廣也分沒，向無收倒活書初倒代大識產如個重放保太民！充大。</p>
                     <p>的真準能例華中資灣大己一位，聲黃狀水資各天機話部人觀，有展重文片來……看被我在，的生友。起大然大在這落龍驗力計者只再大要，過開麼性存程然中論一的張精？底乎使深都行接安富出子關！開景商解去體。統百看示農我過境海他得出此高統是後學不連的此跑天內師前家可面。問路明安無認漸球做只做……產招足……長是病漸這過小走，看頭龍策找成者登那苦不立往。</p>
                 </div>
             </div>
-        </div>
+        </section>
         <hr />
-        <div id="ReviewSection">
+        <section id="ReviewSection">
             <h2>購買評價</h2>
             <div>
                 @Html.Action("_GetReviewSection", "Review", new { productID = Model.pdtID })
             </div>
-        </div>
+        </section>
         <hr />
         <section id="QASection">
             <h2>QA問答區</h2>
@@ -120,7 +122,8 @@
                 type: 'post',
                 data: {
                     'question': $(`#Question`).val(),
-                    'pdtID': $(`#pdtID`).val()
+                    'pdtID': $(`#pdtID`).val(),
+                    '__RequestVerificationToken':$(`#forgeryToken input`).val()
                 },
                 dataType: "html",
                 success: function (data) {
@@ -160,11 +163,10 @@
             var qty = $(`#quantity`);
             var validOrderNumber = /\d?\d/; //前端驗證(訂購數量合理性)
             if (validOrderNumber.test(qty.text()) &&
-                btn.attr(`state`) == `addToCart`) {
-                    btn.attr(`state`, `goToCart`)
-                        .text(`前往購物車`);
-                    sendCartMsg();
-                }
+                btn.attr(`state`) == `addToCart`)
+            {
+                sendCartMsg();
+            }
             else if (btn.attr(`state`) == "goToCart") {
                     window.location.href = `@Url.Action("MyCart","Cart")`;//重新導向至購物車
                 }
@@ -172,13 +174,14 @@
             })
         function sendCartMsg() { //發送訂單
             $.post("@Url.Action("AddToMyCart","Cart")",
-                { spcID: $(`.spec[state="selected"]`).attr(`id`), quantity: $(`#quantity`).find(":selected").val() })
-                .done(function () {
-                alert( `購物車新增成功` );
-            })
-                .fail(function() {
-                alert( `購物車新增失敗` );
-            })
+                {
+                    spcID: $(`.spec[state="selected"]`).attr(`id`),
+                    quantity: parseInt($(`#quantity`).find(":selected").val())
+                })
+                .done(() => {
+                    $(`#addToCartBtn`).attr(`state`, `goToCart`)
+                    .text(`前往購物車`);
+                });
         }
     </script>
 
