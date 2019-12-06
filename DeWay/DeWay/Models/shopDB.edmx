@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actBulletin">
           <Key>
             <PropertyRef Name="actID" />
@@ -133,6 +133,7 @@
           <Property Name="odrNote" Type="nvarchar" MaxLength="120" />
           <Property Name="traceNumber" Type="char" MaxLength="20" />
           <Property Name="cashFlowID" Type="char" MaxLength="25" />
+          <Property Name="selID" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -777,15 +778,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cart_OrderDetail_[specification]_">
+          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="1" />
+          <End Role="Cart_OrderDetail1" Type="Self.Cart_OrderDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cart_OrderDetail">
+              <PropertyRef Name="cartID" />
+            </Principal>
+            <Dependent Role="Cart_OrderDetail1">
+              <PropertyRef Name="cartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cart_OrderDetail_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Specification" Type="Self.Specification" Multiplicity="1" />
           <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="odrID" />
+            <Principal Role="Specification">
+              <PropertyRef Name="spcID" />
             </Principal>
             <Dependent Role="Cart_OrderDetail">
-              <PropertyRef Name="odrID" />
+              <PropertyRef Name="spcID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="selID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="selID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QA_member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="QA" Type="Self.QA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="mbrID" />
+            </Principal>
+            <Dependent Role="QA">
+              <PropertyRef Name="mbrID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -797,6 +834,7 @@
         <Function Name="GetProductID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetptdCtgID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetQAID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetReviewID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetSellerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetSpecificationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <EntityContainer Name="shopDBModelStoreContainer">
@@ -981,13 +1019,24 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="WishList" EntitySet="WishList" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cart_OrderDetail_[specification]_" Association="Self.FK_Cart_OrderDetail_[specification]_">
+            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+            <End Role="Cart_OrderDetail1" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cart_OrderDetail_Order" Association="Self.FK_Cart_OrderDetail_Order">
-            <End Role="Order" EntitySet="Order" />
+            <End Role="Specification" EntitySet="Specification" />
             <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Seller" Association="Self.FK_Order_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QA_member" Association="Self.FK_QA_member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="QA" EntitySet="QA" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1041,6 +1090,8 @@
           <NavigationProperty Name="Shipper" Relationship="Self.FK__Cart_Orde__shpID__0C85DE4D" FromRole="Cart_OrderDetail" ToRole="Shipper" />
           <NavigationProperty Name="Specification" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Cart_OrderDetail" ToRole="Specification" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Cart_OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Cart_OrderDetail1" Relationship="shopDBModel.FK_Cart_OrderDetail__specification__" FromRole="Cart_OrderDetail" ToRole="Cart_OrderDetail1" />
+          <NavigationProperty Name="Cart_OrderDetail2" Relationship="shopDBModel.FK_Cart_OrderDetail__specification__" FromRole="Cart_OrderDetail1" ToRole="Cart_OrderDetail" />
         </EntityType>
         <EntityType Name="FavoSeller">
           <Key>
@@ -1084,6 +1135,7 @@
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__mbrID__6B24EA82" FromRole="Member" ToRole="Review" />
           <NavigationProperty Name="Seller" Relationship="Self.FK__Seller__mbrID__70DDC3D8" FromRole="Member" ToRole="Seller" />
           <NavigationProperty Name="WishList" Relationship="Self.FK__WishList__mbrID__6EF57B66" FromRole="Member" ToRole="WishList" />
+          <NavigationProperty Name="QA" Relationship="shopDBModel.FK_QA_member" FromRole="Member" ToRole="QA" />
         </EntityType>
         <EntityType Name="MemberAccount">
           <Key>
@@ -1151,6 +1203,8 @@
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Order__pmtID__7F2BE32F" FromRole="Order" ToRole="PaymentMethod" />
           <NavigationProperty Name="Refund" Relationship="Self.FK__Refund__odrID__6754599E" FromRole="Order" ToRole="Refund" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__odrID__68487DD7" FromRole="Order" ToRole="Review" />
+          <Property Name="selID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Seller" Relationship="shopDBModel.FK_Order_Seller" FromRole="Order" ToRole="Seller" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -1224,6 +1278,7 @@
           <Property Name="displayStatus" Type="Boolean" />
           <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK__QA__pdtID__778AC167" FromRole="QA" ToRole="Product" />
+          <NavigationProperty Name="Member" Relationship="shopDBModel.FK_QA_member" FromRole="QA" ToRole="Member" />
         </EntityType>
         <EntityType Name="Refund">
           <Key>
@@ -1317,6 +1372,7 @@
           <NavigationProperty Name="Product" Relationship="Self.FK__Product__selID__7D439ABD" FromRole="Seller" ToRole="Product" />
           <NavigationProperty Name="SellerAut" Relationship="Self.FK__Seller__selAut__73BA3083" FromRole="Seller" ToRole="SellerAut" />
           <NavigationProperty Name="SellerPhone" Relationship="Self.FK__SellerPho__selID__7B5B524B" FromRole="Seller" ToRole="SellerPhone" />
+          <NavigationProperty Name="Order" Relationship="shopDBModel.FK_Order_Seller" FromRole="Seller" ToRole="Order" />
         </EntityType>
         <EntityType Name="SellerAut">
           <Key>
@@ -2037,7 +2093,55 @@
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="ShipperDetail" EntitySet="ShipperDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cart_OrderDetail__specification__" Association="shopDBModel.FK_Cart_OrderDetail__specification__">
+            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+            <End Role="Cart_OrderDetail1" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QA_member" Association="shopDBModel.FK_QA_member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="QA" EntitySet="QA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Seller" Association="shopDBModel.FK_Order_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Cart_OrderDetail__specification__">
+          <End Type="shopDBModel.Cart_OrderDetail" Role="Cart_OrderDetail" Multiplicity="1" />
+          <End Type="shopDBModel.Cart_OrderDetail" Role="Cart_OrderDetail1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cart_OrderDetail">
+              <PropertyRef Name="cartID" />
+            </Principal>
+            <Dependent Role="Cart_OrderDetail1">
+              <PropertyRef Name="cartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QA_member">
+          <End Type="shopDBModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="shopDBModel.QA" Role="QA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="mbrID" />
+            </Principal>
+            <Dependent Role="QA">
+              <PropertyRef Name="mbrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Seller">
+          <End Type="shopDBModel.Seller" Role="Seller" Multiplicity="0..1" />
+          <End Type="shopDBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="selID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="selID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2168,6 +2272,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="shopDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="selID" ColumnName="selID" />
                 <ScalarProperty Name="odrID" ColumnName="odrID" />
                 <ScalarProperty Name="pmtID" ColumnName="pmtID" />
                 <ScalarProperty Name="odrStatusID" ColumnName="odrStatusID" />

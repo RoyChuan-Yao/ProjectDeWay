@@ -24,5 +24,6 @@ namespace DeWay.Models
         public string pdtID { get; set; }
     
         public virtual Product Product { get; set; }
+        public virtual Member Member { get; set; }
     }
 }

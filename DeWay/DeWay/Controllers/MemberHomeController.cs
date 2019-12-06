@@ -14,34 +14,37 @@ namespace DeWay.Controllers
     {
         shopDBEntities db = new shopDBEntities();
         // GET: MemberHome 
+       
         public ActionResult mbrIndex()
         {
-            if (Session["memberID"] != null)
-            {
-                string id = Session["memberID"].ToString();
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+
+            string id = Session["memberID"].ToString();
 
                 var member = db.Member.Where(m => m.mbrID == id).ToList();
 
                 return View(member);
-            }
-            return RedirectToAction("Login", "Login");
+            
+            
         }
         public ActionResult mbrEdit(string id)
         {
-            if (Session["memberID"] != null)
-            {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            
 
                 var member = db.Member.Where(m => m.mbrID == id).FirstOrDefault();
                 return View(member);
-            }
-            return RedirectToAction("Login", "Login");
+            
+            
         }
         [HttpPost]
         public ActionResult mbrEdit(Member m, HttpPostedFileBase Image)
         {
-            if (Session["memberID"] != null)
-            {
-                string fileName = "";
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            string fileName = "";
 
                 if (Image != null)
                 {
@@ -80,25 +83,26 @@ namespace DeWay.Controllers
                     return View(m);
 
 
-            }
-            return RedirectToAction("Login", "Login");
+            
+           
 
         }
         public ActionResult pwdEdit(string id)
         {
-            if (Session["memberID"] != null)
-            {
-                var account = db.MemberAccount.Find(id);
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+
+            var account = db.MemberAccount.Find(id);
                 return View(account);
-            }
-            return RedirectToAction("Login", "Login");
+            
+            
         }
         [HttpPost]
         public ActionResult pwdEdit(string id, string oldPwd, string mbrPwd)
         {
-            if (Session["memberID"] != null)
-            {
-                string tempPwd = "";
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            string tempPwd = "";
                 var account = db.MemberAccount.Find(id);
                 var member = db.Member.Find(id);
                 tempPwd = account.mbrPwd;
@@ -131,8 +135,8 @@ namespace DeWay.Controllers
 
                 return View(account);
 
-            }
-            return RedirectToAction("Login", "Login");
+            
+            
 
         }
         public ActionResult odrIndex()
@@ -169,74 +173,81 @@ namespace DeWay.Controllers
 
 
         }
-        public ActionResult QAIndex(int code)
+        public ActionResult QAIndex(int code=0)
 
         {
-            if (Session["memberID"] != null)
-            {
-                string id = Session["memberID"].ToString();
-                ViewBag.MemberName = db.Member.Where(m => m.mbrID == id).FirstOrDefault().nickName;
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            string id = Session["memberID"].ToString();
+            ViewBag.MemberName = db.Member.Where(m => m.mbrID == id).FirstOrDefault().nickName;
 
                 if (code == 0)
                 {
-                    var qaall = db.QA.Where(m => m.mbrID == id ).ToList().OrderByDescending(m=>m.qaTime);
+                    var qaall = db.QA.Where(m => m.mbrID == id).ToList().OrderByDescending(m => m.qaTime);
                     return View(qaall);
                 }
                 else if (code == 1)
                 {
-                    var qayet = db.QA.Where(m => m.mbrID == id &&(m.Answer==null || m.Answer == "")).ToList().OrderByDescending(m => m.qaTime);
+                    var qayet = db.QA.Where(m => m.mbrID == id && (m.Answer == null || m.Answer == "")).ToList().OrderByDescending(m => m.qaTime);
                     return View(qayet);
                 }
                 else if (code == 2)
                 {
-                    var qaed = db.QA.Where(m => m.mbrID == id && (m.Answer != ""||m.Answer!=null)).ToList().OrderByDescending(m => m.qaTime);
+                    var qaed = db.QA.Where(m => m.mbrID == id && m.Answer != null && m.Answer != "").ToList().OrderByDescending(m => m.qaTime);
                     return View(qaed);
                 }
                 return HttpNotFound();
-            }
-            return RedirectToAction("Login", "Login");
-
-        }
-
-        public PartialViewResult _rvwIndex(int code = 0, string odr="")
-        {
+            
             
 
-                string id = Session["memberID"].ToString();
-                List<string> odrid = (from m in db.Cart_OrderDetail
-                                      where m.mbrID == id&&m.odrID!=null
-                                      select m.odrID).ToList();
+        }
+        public ActionResult rvwIndex()
+        {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            return View();
+        }
+
+
+        public PartialViewResult _rvwIndex(int code = 0, string odr = "")
+        {
+
+
+            string id = Session["memberID"].ToString();
+            List<string> odrid = (from m in db.Cart_OrderDetail
+                                  where m.mbrID == id && m.odrID != null
+                                  select m.odrID).ToList();
             var rvwodrid = (from o in db.Review
                             where o.mbrID == id
                             select o.odrID).ToList();
             if (code == 0)
-                {
+            {
 
-                
-                var nonreview = db.Order.Where(m => !rvwodrid.Contains(m.odrID)&&odrid.Contains(m.odrID)).ToList();
+
+                var nonreview = db.Order.Where(m => !rvwodrid.Contains(m.odrID) && odrid.Contains(m.odrID)).ToList();
                 
                 return PartialView(nonreview);
-                
+
 
 
             }
-                else if (code == 1)
-                {
-                
-                    var reviewed = db.Order.Where(m=>rvwodrid.Contains(m.odrID)).ToList();
-                    return PartialView(reviewed);
-                
-                }
+            else if (code == 1)
+            {
 
-                else if (code == 2)
-                {
-                    var odrreview = db.Order.Where(m => m.odrID == odr).ToList();
-                    return PartialView(odrreview);
-                }
+                var reviewed = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
+                return PartialView(reviewed);
+
+            }
+
+            else if (code == 2)
+            {
+                var odrreview = db.Order.Where(m => m.odrID == odr).ToList();
+                return PartialView(odrreview);
+            }
             return ViewBag.message;
 
-            
-            
+
+
         }
 
         public string getImage(string id)
@@ -252,18 +263,96 @@ namespace DeWay.Controllers
         }
         public PartialViewResult _rvwCreate(string odrID)
         {
+
+
             Review newReview = new Review();
             newReview.odrID = odrID;
             ViewBag.odrID = odrID;
             return PartialView("_rvwCreate");
         }
-        [HttpPost]
-        public PartialViewResult _rvwIndex(string odrID, Review review)
-        {
-            db.Review.Add(review);
-            db.SaveChanges();
 
-            return PartialView("_rvwIndex");
+       
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public PartialViewResult _rvwIndex(string odrID, Review review, int code)
+        {
+            var pdtID = (from m in db.Cart_OrderDetail
+                         where m.odrID == odrID
+                         select m.Specification.pdtID).Distinct().ToList();
+            string id = Session["memberID"].ToString();
+
+            for (int i = 0; i < pdtID.Count(); i++)
+            {
+                
+                string GetReviewID = db.Database.SqlQuery<string>("Select dbo.GetReviewID()").FirstOrDefault();
+                review.rvwID = GetReviewID;
+                review.pdtID = pdtID[i];
+                review.rvwTime = DateTime.Now;
+                review.mbrID = id;
+                review.odrID = odrID;
+
+                db.Review.Add(review);
+                db.SaveChanges();
+            }
+
+            
+            List<string> odrid = (from m in db.Cart_OrderDetail
+                                  where m.mbrID == id && m.odrID != null
+                                  select m.odrID).ToList();
+            var rvwodrid = (from o in db.Review
+                            where o.mbrID == id
+                            select o.odrID).ToList();
+            System.Collections.Generic.List<DeWay.Models.Order> odrreview = new System.Collections.Generic.List<DeWay.Models.Order>();
+            if (code == 1)
+            {
+
+                odrreview = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
+
+            }
+
+            else if (code == 2)
+            {
+                odrreview = db.Order.Where(m => m.odrID == odrID).ToList();
+
+            }
+
+            return PartialView("_rvwIndex", odrreview);
+        }
+
+        public ActionResult rvwCreate(string odrID)
+        {
+
+
+
+            ViewBag.odrID = odrID;
+            return View("_rvwCreate");
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult rvwCreate(string odrID, Review review, int code)
+        {
+            var pdtID = (from m in db.Cart_OrderDetail
+                         where m.odrID == odrID
+                         select m.Specification.pdtID).Distinct().ToList();
+            string id = Session["memberID"].ToString();
+
+            for (int i = 0; i < pdtID.Count(); i++)
+            {
+
+                string GetReviewID = db.Database.SqlQuery<string>("Select dbo.GetReviewID()").FirstOrDefault();
+                review.rvwID = GetReviewID;
+                review.pdtID = pdtID[i];
+                review.rvwTime = DateTime.Now;
+                review.mbrID = id;
+                review.odrID = odrID;
+
+                db.Review.Add(review);
+                db.SaveChanges();
+            }
+
+
+            return RedirectToAction("rvwIndex");
         }
     }
+
+
 }

@@ -76,6 +76,9 @@
         <AssociationConnector Association="shopDBModel.FK__Seller__selAut__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__SellerPho__selID__7B5B524B" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__ShipperDe__shpID__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="shopDBModel.FK_Cart_OrderDetail__specification__" />
+        <AssociationConnector Association="shopDBModel.FK_QA_member" />
+        <AssociationConnector Association="shopDBModel.FK_Order_Seller" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

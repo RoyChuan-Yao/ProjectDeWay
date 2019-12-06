@@ -27,5 +27,7 @@ namespace DeWay.Models
         public virtual Shipper Shipper { get; set; }
         public virtual Specification Specification { get; set; }
         public virtual Order Order { get; set; }
+        public virtual Cart_OrderDetail Cart_OrderDetail1 { get; set; }
+        public virtual Cart_OrderDetail Cart_OrderDetail2 { get; set; }
     }
 }

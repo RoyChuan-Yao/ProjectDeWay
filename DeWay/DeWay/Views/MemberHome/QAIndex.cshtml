@@ -22,7 +22,7 @@
 
     </style>
     }
-@Html.Action("_rvwIndex",new { code=1})
+
 
 <div class="container">
     @foreach (var item in Model)
@@ -57,62 +57,3 @@
 </div>
 
 
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Product.Seller.selCompany)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product.ProductImage.FirstOrDefault().pdtImage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product.pdtName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Question)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Answer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.qaTime)
-            </th>
-            <th>
-             會員:
-            </th>
-
-
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.Seller.selCompany)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.ProductImage.FirstOrDefault().pdtImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product.pdtName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Question)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Answer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.qaTime)
-        </td>
-        <td>   @ViewBag.MemberName</td>
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.qaID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.qaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.qaID })
-        </td>
-    </tr>
-    }
-
-    </table>*@

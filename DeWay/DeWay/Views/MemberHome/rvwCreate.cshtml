@@ -1,0 +1,48 @@
+﻿@model DeWay.Models.Review
+
+@{
+    ViewBag.Title = "rvwCreate";
+}
+
+<h2>rvwCreate</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h4>Review</h4>
+            <button data-dismiss="modal" class="close">&times;</button>
+            cosole.log
+        </div>
+        <div class="modal-body">
+            <input id="Hidden1" type="hidden" value="@ViewBag.odrID" name="odrID"/>
+            <div class="form-group">
+                @Html.LabelFor(model => model.rvwContent, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.rvwContent, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.rvwContent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.rvwStar, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.rvwStar, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.rvwStar, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Create" class="btn btn-default" />
+
+        </div>
+
+    </div>
+</div>
+}

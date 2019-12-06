@@ -36,6 +36,7 @@ namespace DeWay.Models
         public string odrNote { get; set; }
         public string traceNumber { get; set; }
         public string cashFlowID { get; set; }
+        public string selID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
@@ -45,5 +46,6 @@ namespace DeWay.Models
         public virtual ICollection<Refund> Refund { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Review { get; set; }
+        public virtual Seller Seller { get; set; }
     }
 }
