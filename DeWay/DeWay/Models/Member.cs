@@ -11,10 +11,7 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using static DeWay.Models.Metadata;
-
-    [MetadataType(typeof(MetadataMember))]
+    
     public partial class Member
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,6 +25,7 @@ namespace DeWay.Models
             this.Review = new HashSet<Review>();
             this.Seller = new HashSet<Seller>();
             this.WishList = new HashSet<WishList>();
+            this.QA = new HashSet<QA>();
         }
     
         public string mbrID { get; set; }
@@ -59,5 +57,7 @@ namespace DeWay.Models
         public virtual ICollection<Seller> Seller { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WishList> WishList { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QA> QA { get; set; }
     }
 }

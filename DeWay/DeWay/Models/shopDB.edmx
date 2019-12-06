@@ -133,6 +133,7 @@
           <Property Name="odrNote" Type="nvarchar" MaxLength="120" />
           <Property Name="traceNumber" Type="char" MaxLength="20" />
           <Property Name="cashFlowID" Type="char" MaxLength="25" />
+          <Property Name="selID" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -166,8 +167,8 @@
           </Key>
           <Property Name="pdtCtgID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="fstLayerID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="sndLayerID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="trdLayerID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="sndLayerID" Type="char" MaxLength="10" />
+          <Property Name="trdLayerID" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="ProductImage">
           <Key>
@@ -538,7 +539,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductCa__sndLa__05D8E0BE">
-          <End Role="SecondLayer" Type="Self.SecondLayer" Multiplicity="1" />
+          <End Role="SecondLayer" Type="Self.SecondLayer" Multiplicity="0..1" />
           <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SecondLayer">
@@ -550,7 +551,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductCa__trdLa__06CD04F7">
-          <End Role="ThirdLayer" Type="Self.ThirdLayer" Multiplicity="1" />
+          <End Role="ThirdLayer" Type="Self.ThirdLayer" Multiplicity="0..1" />
           <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ThirdLayer">
@@ -777,6 +778,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cart_OrderDetail_[specification]_">
+          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="1" />
+          <End Role="Cart_OrderDetail1" Type="Self.Cart_OrderDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cart_OrderDetail">
+              <PropertyRef Name="cartID" />
+            </Principal>
+            <Dependent Role="Cart_OrderDetail1">
+              <PropertyRef Name="cartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_OrderDetail_Order">
+          <End Role="Specification" Type="Self.Specification" Multiplicity="1" />
+          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specification">
+              <PropertyRef Name="spcID" />
+            </Principal>
+            <Dependent Role="Cart_OrderDetail">
+              <PropertyRef Name="spcID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="selID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="selID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QA_member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="QA" Type="Self.QA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="mbrID" />
+            </Principal>
+            <Dependent Role="QA">
+              <PropertyRef Name="mbrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetActID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetMemberID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetNtfID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetpImgID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetProductID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetptdCtgID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetQAID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetReviewID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetSellerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetSpecificationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <EntityContainer Name="shopDBModelStoreContainer">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adm" EntityType="Self.Adm" Schema="dbo" store:Type="Tables" />
@@ -959,6 +1019,22 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="WishList" EntitySet="WishList" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cart_OrderDetail_[specification]_" Association="Self.FK_Cart_OrderDetail_[specification]_">
+            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+            <End Role="Cart_OrderDetail1" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_OrderDetail_Order" Association="Self.FK_Cart_OrderDetail_Order">
+            <End Role="Specification" EntitySet="Specification" />
+            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Seller" Association="Self.FK_Order_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QA_member" Association="Self.FK_QA_member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="QA" EntitySet="QA" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -1014,6 +1090,9 @@
           <NavigationProperty Name="Member" Relationship="Self.FK__Cart_Orde__mbrID__14270015" FromRole="Cart_OrderDetail" ToRole="Member" />
           <NavigationProperty Name="Shipper" Relationship="Self.FK__Cart_Orde__shpID__0C85DE4D" FromRole="Cart_OrderDetail" ToRole="Shipper" />
           <NavigationProperty Name="Specification" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Cart_OrderDetail" ToRole="Specification" />
+          <NavigationProperty Name="Cart_OrderDetail1" Relationship="Self.FK_Cart_OrderDetail__specification__" FromRole="Cart_OrderDetail" ToRole="Cart_OrderDetail1" />
+          <NavigationProperty Name="Cart_OrderDetail2" Relationship="Self.FK_Cart_OrderDetail__specification__" FromRole="Cart_OrderDetail1" ToRole="Cart_OrderDetail" />
+          <NavigationProperty Name="Specification1" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Cart_OrderDetail" ToRole="Specification" />
         </EntityType>
         <EntityType Name="FavoSeller">
           <Key>
@@ -1057,6 +1136,7 @@
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__mbrID__6B24EA82" FromRole="Member" ToRole="Review" />
           <NavigationProperty Name="Seller" Relationship="Self.FK__Seller__mbrID__70DDC3D8" FromRole="Member" ToRole="Seller" />
           <NavigationProperty Name="WishList" Relationship="Self.FK__WishList__mbrID__6EF57B66" FromRole="Member" ToRole="WishList" />
+          <NavigationProperty Name="QA" Relationship="Self.FK_QA_member" FromRole="Member" ToRole="QA" />
         </EntityType>
         <EntityType Name="MemberAccount">
           <Key>
@@ -1119,10 +1199,12 @@
           <Property Name="odrNote" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
           <Property Name="traceNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="cashFlowID" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
+          <Property Name="selID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="OrderStatus" Relationship="Self.FK__Order__odrStatus__00200768" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Order__pmtID__7F2BE32F" FromRole="Order" ToRole="PaymentMethod" />
           <NavigationProperty Name="Refund" Relationship="Self.FK__Refund__odrID__6754599E" FromRole="Order" ToRole="Refund" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__odrID__68487DD7" FromRole="Order" ToRole="Review" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK_Order_Seller" FromRole="Order" ToRole="Seller" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -1167,8 +1249,8 @@
           </Key>
           <Property Name="pdtCtgID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="fstLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="sndLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="trdLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="sndLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="trdLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="FirstLayer" Relationship="Self.FK__ProductCa__fstLa__04E4BC85" FromRole="ProductCategory" ToRole="FirstLayer" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Product__pdtCtgI__0A9D95DB" FromRole="ProductCategory" ToRole="Product" />
           <NavigationProperty Name="SecondLayer" Relationship="Self.FK__ProductCa__sndLa__05D8E0BE" FromRole="ProductCategory" ToRole="SecondLayer" />
@@ -1195,6 +1277,7 @@
           <Property Name="qaTime" Type="DateTime" Precision="3" />
           <Property Name="displayStatus" Type="Boolean" />
           <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_QA_member" FromRole="QA" ToRole="Member" />
           <NavigationProperty Name="Product" Relationship="Self.FK__QA__pdtID__778AC167" FromRole="QA" ToRole="Product" />
         </EntityType>
         <EntityType Name="Refund">
@@ -1286,6 +1369,7 @@
           <Property Name="selImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FavoSeller" Relationship="Self.FK__FavoSelle__selID__7C4F7684" FromRole="Seller" ToRole="FavoSeller" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Seller__mbrID__70DDC3D8" FromRole="Seller" ToRole="Member" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Seller" FromRole="Seller" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Product__selID__7D439ABD" FromRole="Seller" ToRole="Product" />
           <NavigationProperty Name="SellerAut" Relationship="Self.FK__Seller__selAut__73BA3083" FromRole="Seller" ToRole="SellerAut" />
           <NavigationProperty Name="SellerPhone" Relationship="Self.FK__SellerPho__selID__7B5B524B" FromRole="Seller" ToRole="SellerPhone" />
@@ -1338,6 +1422,7 @@
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Specification" ToRole="Cart_OrderDetail" />
+          <NavigationProperty Name="Cart_OrderDetail1" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Specification" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Specifica__pdtID__75A278F5" FromRole="Specification" ToRole="Product" />
         </EntityType>
         <EntityType Name="Tag">
@@ -1428,6 +1513,30 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Cart_Orde__spcID__123EB7A3">
+          <End Role="Specification" Type="Self.Specification" Multiplicity="1" />
+          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specification">
+              <PropertyRef Name="spcID" />
+            </Principal>
+            <Dependent Role="Cart_OrderDetail">
+              <PropertyRef Name="spcID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_OrderDetail__specification__">
+          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="1" />
+          <End Role="Cart_OrderDetail1" Type="Self.Cart_OrderDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cart_OrderDetail">
+              <PropertyRef Name="cartID" />
+            </Principal>
+            <Dependent Role="Cart_OrderDetail1">
+              <PropertyRef Name="cartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_OrderDetail_Order">
           <End Role="Specification" Type="Self.Specification" Multiplicity="1" />
           <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1559,6 +1668,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_QA_member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="QA" Type="Self.QA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="mbrID" />
+            </Principal>
+            <Dependent Role="QA">
+              <PropertyRef Name="mbrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ntfRecord__ntfCt__01142BA1">
           <End Role="ntfCategory" Type="Self.ntfCategory" Multiplicity="1" />
           <End Role="ntfRecord" Type="Self.ntfRecord" Multiplicity="*" />
@@ -1616,6 +1737,18 @@
             </Principal>
             <Dependent Role="Review">
               <PropertyRef Name="odrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="selID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="selID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1728,7 +1861,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductCa__sndLa__05D8E0BE">
-          <End Role="SecondLayer" Type="Self.SecondLayer" Multiplicity="1" />
+          <End Role="SecondLayer" Type="Self.SecondLayer" Multiplicity="0..1" />
           <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SecondLayer">
@@ -1740,7 +1873,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductCa__trdLa__06CD04F7">
-          <End Role="ThirdLayer" Type="Self.ThirdLayer" Multiplicity="1" />
+          <End Role="ThirdLayer" Type="Self.ThirdLayer" Multiplicity="0..1" />
           <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ThirdLayer">
@@ -1869,6 +2002,14 @@
             <End Role="Specification" EntitySet="Specification" />
             <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cart_OrderDetail__specification__" Association="Self.FK_Cart_OrderDetail__specification__">
+            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+            <End Role="Cart_OrderDetail1" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_OrderDetail_Order" Association="Self.FK_Cart_OrderDetail_Order">
+            <End Role="Specification" EntitySet="Specification" />
+            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
           <AssociationSet Name="FK__FavoSelle__mbrID__6E01572D" Association="Self.FK__FavoSelle__mbrID__6E01572D">
             <End Role="Member" EntitySet="Member" />
             <End Role="FavoSeller" EntitySet="FavoSeller" />
@@ -1909,6 +2050,10 @@
             <End Role="Member" EntitySet="Member" />
             <End Role="WishList" EntitySet="WishList" />
           </AssociationSet>
+          <AssociationSet Name="FK_QA_member" Association="Self.FK_QA_member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="QA" EntitySet="QA" />
+          </AssociationSet>
           <AssociationSet Name="FK__ntfRecord__ntfCt__01142BA1" Association="Self.FK__ntfRecord__ntfCt__01142BA1">
             <End Role="ntfCategory" EntitySet="ntfCategory" />
             <End Role="ntfRecord" EntitySet="ntfRecord" />
@@ -1928,6 +2073,10 @@
           <AssociationSet Name="FK__Review__odrID__68487DD7" Association="Self.FK__Review__odrID__68487DD7">
             <End Role="Order" EntitySet="Order" />
             <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Seller" Association="Self.FK_Order_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK__Product__pdtCtgI__0A9D95DB" Association="Self.FK__Product__pdtCtgI__0A9D95DB">
             <End Role="ProductCategory" EntitySet="ProductCategory" />
@@ -2138,6 +2287,7 @@
                 <ScalarProperty Name="odrNote" ColumnName="odrNote" />
                 <ScalarProperty Name="traceNumber" ColumnName="traceNumber" />
                 <ScalarProperty Name="cashFlowID" ColumnName="cashFlowID" />
+                <ScalarProperty Name="selID" ColumnName="selID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

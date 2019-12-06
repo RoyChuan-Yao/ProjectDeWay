@@ -1,0 +1,118 @@
+﻿@model IEnumerable<DeWay.Models.Order>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+@{
+    int i = 0;
+    short[] star = new short[Model.Count()];
+}
+
+
+
+@foreach (var item in Model)
+{
+
+    if (item.Review.Count() != 0)
+    {
+        star[i] = item.Review.FirstOrDefault().rvwStar;
+        <input class="@i" type="hidden" value="@star[i]" />
+        <div class="card">
+            <div class="card-header">
+                <div class="star" id="@star[i]" stars="@star[i]" style=" font-size: 30px">
+
+                </div>
+                @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)
+
+
+            </div>
+            <div class="card-body row">
+                <div class="col-5">
+                    <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+                </div>
+                <div class="col-7">
+                    To:@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)<br />
+                    @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
+                </div>
+            </div>
+
+
+        </div>
+        <br />
+        if (i < Model.Count() - 1)
+        {
+            i++;
+        }
+    }
+    else
+    {
+       
+        <div class="card">
+            <div class="card-header">
+
+                @ViewBag.odrID =@item.odrID;
+                <input id="Button1" type="button" value="button" data-toggle="modal" data-target="#form" />
+
+
+            </div>
+            <div class="card-body row">
+                <div class="col-5">
+                    <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+                </div>
+                <div class="col-7">
+                    @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
+                    @Html.DisplayFor(modelItem => item.odrDate)
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    }
+}
+
+@using (Html.BeginForm()) { 
+    <div class="modal fade" id="form">
+        @Html.Action("rvwCreate", new { odrID = "ViewBag.odrID" })
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/stars.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+
+    //$('.star').each((i, e) =>
+    //{
+    //    $(e).html(stars({
+    //        stars: 5,
+    //        color: '#E4AD22',
+    //        value: 4,
+    //    }))
+    //})
+
+
+    function getStar(starCount) {
+        var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+        var result = "";
+        for (var i = 0; i < starCount; i++) {
+            starsArray.unshift("★");
+        }
+        for (var i = 0; i < 5; i++) {
+            result += starsArray[i];
+        }
+        var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
+
+        return result
+    }
+
+    $(`.star`).each((index, element) => {
+        $(element).html(
+            getStar($(element).attr("stars"))
+        )
+    })
+</script>
+

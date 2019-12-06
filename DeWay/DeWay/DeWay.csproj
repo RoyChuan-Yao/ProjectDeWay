@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44331</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -172,6 +171,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="bin\DeWay.dll.config" />
     <EntityDeploy Include="Models\shopDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>shopDB.Designer.cs</LastGenOutput>
@@ -179,7 +179,6 @@
     <Content Include="Models\shopDB.edmx.diagram">
       <DependentUpon>shopDB.edmx</DependentUpon>
     </Content>
-    <Content Include="bin\DeWay.dll.config" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

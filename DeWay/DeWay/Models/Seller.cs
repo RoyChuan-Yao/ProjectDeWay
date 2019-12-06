@@ -18,6 +18,7 @@ namespace DeWay.Models
         public Seller()
         {
             this.FavoSeller = new HashSet<FavoSeller>();
+            this.Order = new HashSet<Order>();
             this.Product = new HashSet<Product>();
             this.SellerPhone = new HashSet<SellerPhone>();
         }
@@ -37,6 +38,8 @@ namespace DeWay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoSeller> FavoSeller { get; set; }
         public virtual Member Member { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
         public virtual SellerAut SellerAut { get; set; }
