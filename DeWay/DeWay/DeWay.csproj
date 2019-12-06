@@ -140,6 +140,16 @@
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
     <Content Include="images\pImg000001.jpg" />
+    <Content Include="Models\shopDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>shopDB.edmx</DependentUpon>
+      <LastGenOutput>shopDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\shopDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>shopDB.edmx</DependentUpon>
+      <LastGenOutput>shopDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Please.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -164,6 +174,13 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="bin\DeWay.dll.config" />
+    <EntityDeploy Include="Models\shopDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>shopDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\shopDB.edmx.diagram">
+      <DependentUpon>shopDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -221,7 +238,121 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\actBulletin.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Adm.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdmAccount.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart_OrderDetail.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FavoSeller.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FirstLayer.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Member.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MemberAccount.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Message.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Metadata.cs" />
+    <Compile Include="Models\ntfCategory.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ntfRecord.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderStatus.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PaymentMethod.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductCategory.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductImage.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QA.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Refund.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RefundAccount.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RefundStatus.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rptRecord.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SecondLayer.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Seller.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SellerAut.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SellerPhone.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shipper.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShipperDetail.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shopDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shopDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shopDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shopDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>shopDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Specification.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tag.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThirdLayer.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WishList.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Code\GmailSender.cs" />
     <Compile Include="ViewModels\VM_pdtCreate.cs" />
