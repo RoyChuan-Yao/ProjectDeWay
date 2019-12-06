@@ -33,7 +33,7 @@ namespace DeWay.Controllers
             if (rd.Read())
             {
                 Session["memberID"] = rd["mbrID"].ToString();
-
+                
 
                 Conn.Close();
                 return RedirectToAction("Index", "Home");

@@ -11,7 +11,7 @@
 
 @foreach (var item in Model)
 {
-    var aaa = item.odrID;
+
     if (item.Review.Count() != 0)
     {
         star[i] = item.Review.FirstOrDefault().rvwStar;
@@ -55,6 +55,7 @@
                 <input id="Button1" class="Button" type="button" value="button" data-toggle="modal" data-target="#form" />
 
 
+
             </div>
             <div class="card-body row">
                 <div class="col-5">
@@ -72,6 +73,7 @@
                         @Html.Action("rvwCreate", "MemberHome", new { odrID = item.odrID })
                     </div>
                 }
+
             </div>
 
 
@@ -118,4 +120,5 @@
         })
 
     </script>
+
 

@@ -1,0 +1,64 @@
+﻿@model DeWay.Models.ntfRecord
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ntfRecord</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ntfContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ntfContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ntfTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ntfTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ntfTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ntfTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.mbrName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.mbrName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ntfCategory.ntfType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ntfCategory.ntfType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

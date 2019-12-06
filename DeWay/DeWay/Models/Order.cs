@@ -11,7 +11,12 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using static DeWay.Models.Metadata;
+
+
+    [MetadataType(typeof(MetaDataOrder))]
+
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +26,7 @@ namespace DeWay.Models
             this.Refund = new HashSet<Refund>();
             this.Review = new HashSet<Review>();
         }
-    
+
         public string odrID { get; set; }
         public string pmtID { get; set; }
         public string odrStatusID { get; set; }
@@ -37,7 +42,7 @@ namespace DeWay.Models
         public string traceNumber { get; set; }
         public string cashFlowID { get; set; }
         public string selID { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }

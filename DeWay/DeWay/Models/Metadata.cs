@@ -205,7 +205,7 @@ namespace DeWay.Models
 
             [DisplayName("註冊日期")]
             [DataType(DataType.Date)]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public System.DateTime signupDate { get; set; }
 
             [DisplayName("大頭照")]
@@ -333,16 +333,16 @@ namespace DeWay.Models
             [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20碼")]
             public string recPhone { get; set; }
+
             [DisplayName("付款日期")]
-
-
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public Nullable<System.DateTime> pmtDate { get; set; }
             [DisplayName("訂單日期")]
             [Required(ErrorMessage = "此欄位為必填")]
-
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public System.DateTime odrDate { get; set; }
             [DisplayName("出貨日期")]
-
+            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
             public Nullable<System.DateTime> shpDate { get; set; }
             [DisplayName("訂單備註")]
@@ -553,9 +553,6 @@ namespace DeWay.Models
 
         public partial class MetaQA
         {
-            [DisplayName("流水編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
-            [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
             public string qaID { get; set; }
             [DisplayName("賣家已讀狀態")]
             public Nullable<bool> readStatus { get; set; }

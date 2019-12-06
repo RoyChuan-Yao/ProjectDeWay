@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - DeWay 設計之路</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/cartCSS.css" rel="stylesheet" />*@
+    <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+
+</head>
+
+<body class="body">
+
+
+
+    <header>
+        @*導覽列*@
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <div class="container">
+                <a class="navbar-brand" href="#">DeWay</a>
+
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse bg-light" id="navbarToggleExternalContent">
+                    <form class="form-inline mr-auto">
+                        <input class="form-control mr-sm-1 " type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-secondary my-1 my-sm-0 ml-auto" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                所有分類
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">衣著良品</a>
+                                <a class="dropdown-item" href="#">包包提袋</a>
+                                <a class="dropdown-item" href="#">配件飾品</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">新手教學</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">推薦商品</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">主題活動<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">登入</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">註冊</a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto">
+
+                        <li>
+                            <span style="width:48px;height:40px" class="nav-link " href="#"><img src="~/images/Img-shopping-cart-12.png" style="width:50%" /></span>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <span style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/img-user-15.png" style="width:50%" /></span>
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink2">
+                                <a class="dropdown-item" href="#">會員中心</a>
+                                <a class="dropdown-item" href="#">商品收藏</a>
+                                <a class="dropdown-item" href="#">帳號設定</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <span style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/Img-settings-11.png" style="width:50%" /></span>
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink3">
+                                <a class="dropdown-item" href="#">商品上架</a>
+                                <a class="dropdown-item" href="#">賣場管理</a>
+                                <a class="dropdown-item" href="#">設定</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+
+
+   
+    <div class="content">
+        <div class="@*container*@ @*body-content*@ content-inside">
+
+            @RenderBody()
+
+
+        </div>
+    </div>
+    <footer class="footer-1 bg-light text-center">
+
+        <div class="jumbotron bg-light">
+            DeWay
+        </div>
+
+    </footer>
+    @*<footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("cartScript", false)
+    @RenderSection("myScript", false)
+
+
+</body>
+</html>

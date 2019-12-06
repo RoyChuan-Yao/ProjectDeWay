@@ -1,0 +1,159 @@
+﻿@model DeWay.ViewModels.VM_pdtCreate
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "test", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div id="page0">
+            <div id="section1">
+                @foreach (var m in Model.firstLayers)
+                {
+                    @*@Html.ActionLink(m.fstLayer, "_GetCata", new { catLayer = m.fstLayerID })*@
+                    <br>
+                    <span id="@m.fstLayerID" class="btn btn-default fstBtn" onclik="callSecondLayer">@m.fstLayer</span>
+                }
+            </div>
+            <div id="section2">
+
+            </div>
+        </div>
+
+        <div id="page1">
+            <div class="form-group">
+                @Html.LabelFor(model => model.products.pdtName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.products.pdtName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.products.pdtName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.products.pdtDescribe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.products.pdtDescribe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.products.pdtDescribe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div id="pdtImg">
+                請上傳商品圖片: <input id="File1" type="file" name="photo" /><br />
+            </div>
+            <input id="addImg" type="button" value="新增圖片" />
+
+            <div id="spc">
+                <fieldset>
+                    <legend>商品規格1</legend>
+                    <span>項目</span>
+                    <input type="text" name="specification[0].Style" value="" />
+                    <br />
+                    <span>規格</span>
+                    <input type="text" name="specification[0].Size" value="" />
+                    <br />
+                    <span>數量</span>
+                    <input type="text" name="specification[0].Stock" value="" />
+                    <br />
+                    <span>單價</span>
+                    <input type="text" name="specification[0].Price" value="" />
+                </fieldset>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="addSPC" type="button" value="新增商品規格" class="btn btn-default" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="btn1" type="button" value="下一頁" class="btn btn-default" />
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="page2">
+            abc
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="btn2" type="button" value="上一頁" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(`.fstBtn`).click(() => {
+        $.get(@Url.Action("_GetCata","test"))
+    })
+</script>
+<script>
+    var i = 1;
+
+    $('#addSPC').click(function () {
+        $('#spc').append(`               <hr /> <fieldset>
+                <legend>商品規格${i + 1}</legend>
+                <span>項目</span>
+                <input type="text" name="specification[${i}].Style" value="" />
+                <br />
+                <span>規格</span>
+                <input type="text" name="specification[${i}].Size" value="" />
+                <br />
+                <span>數量</span>
+                <input type="text" name="specification[${i}].Stock" value="" />
+                <br />
+                <span>單價</span>
+                <input type="text" name="specification[${i}].Price" value="" />
+            </fieldset>`);
+        i++;
+    });
+
+    $('#page2').hide();
+    $('#page1').hide();
+
+    $('#btn1').click(function () {
+        $('#page1').hide();
+        $('#page2').show();
+    })
+
+    $('#btn2').click(function () {
+        $('#page2').hide();
+        $('#page1').show();
+    })
+
+    $('#addImg').click(function () {
+        $('#pdtImg').append(`請上傳商品圖片: <input id="File1" type="file" name="photo" /><br />`);
+    });
+
+</script>
