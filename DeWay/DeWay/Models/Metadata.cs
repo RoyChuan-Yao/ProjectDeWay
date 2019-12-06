@@ -553,9 +553,6 @@ namespace DeWay.Models
 
         public partial class MetaQA
         {
-            [DisplayName("流水編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
-            [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
             public string qaID { get; set; }
             [DisplayName("賣家已讀狀態")]
             public Nullable<bool> readStatus { get; set; }

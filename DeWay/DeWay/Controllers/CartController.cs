@@ -28,29 +28,37 @@ namespace Project.Controllers
             return result;
         }
         [HttpPost]
-        public string[] AddToMyCart(string spcID, string quantity )
-        {
+        public ActionResult AddToMyCart(string spcID, int quantity)
+        {   //TODO:加入 請訪客登入
+            //把memberID加入MBRID
+
+            string mbrID = (string)Session["memberID"]; //利用SESSION存取
+            if (mbrID is null)
+            {
+                string js = "alert('請先登入會員才可加入購物車')";
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return JavaScript(js);
+            }
             Cart_OrderDetail cod = new Cart_OrderDetail();
-            string[] response = new string[3];
-            //string mbrID = "mbr0000001"; //Test
-            string mbrID = Session["memberID"].ToString(); //Test
             db.Cart_OrderDetail.OrderByDescending(m => m.cartID).FirstOrDefault();
 
             cod.cartID = getNewCarID();
             cod.mbrID = mbrID;
-            cod.Quantity = Int32.Parse(quantity);
+            cod.Quantity = quantity;
             cod.spcID = spcID;
             cod.usedPoints = 0;
             cod.Discount = 0;
-            cod.shpID = "shp0000001";
-
+            cod.shpID = "shp0000001"; //預設運送方式
             db.Cart_OrderDetail.Add(cod);
-            db.SaveChanges();
-            response[0] = "Received";
-            response[1] = spcID;
-            response[2] = quantity;
-
-            return response;
+            try
+            {
+                db.SaveChanges();
+                return JavaScript("alert('成功新增至購物車')");
+            }
+            catch (Exception e)
+            {
+                return JavaScript($"alert('{e.Message}')");
+            }
         }
         public ActionResult MyCart(string id = "mbr0000001")
         {

@@ -134,6 +134,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DeWayWebHome.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="images\beGood.jpg" />
@@ -222,6 +223,8 @@
     <Compile Include="Controllers\ProductPageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
     <Compile Include="Controllers\Product_edit_SellerController.cs" />
+    <Compile Include="Controllers\QAsController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SellerCertificationController.cs" />
     <Compile Include="Controllers\WishListsController.cs" />
     <Compile Include="Email\Email.cs" />
@@ -429,6 +432,10 @@
     <Content Include="Views\MemberHome\pwdEdit.cshtml" />
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
 
+    <Content Include="Views\QAs\_GetQASection.cshtml" />
+    <Content Include="Views\QAs\_CreateQA.cshtml" />
+    <Content Include="Views\Review\_GetReviewSection.cshtml" />
+    <Content Include="Views\Shared\_Layout -01.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
