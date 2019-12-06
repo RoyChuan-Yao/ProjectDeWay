@@ -13,12 +13,17 @@ namespace DeWay.Controllers
         // GET: AdmCenter
         public ActionResult Index(string id)
         {
-            var cd = db.Adm;
-            var m = from p in cd
-                    where p.admID == id                   
-                    select p;
-            Session["adm"] = id;
-            return View(m);           
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
+            else
+            {
+                var cd = db.Adm;
+                var m = from p in cd
+                        where p.admID == id
+                        select p;
+                Session["AdmID"] = id;
+                return View(m);
+            }
         }
 
     }
