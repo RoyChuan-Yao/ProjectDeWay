@@ -1,0 +1,46 @@
+﻿@model DeWay.ViewModels.VM_Market
+
+@{
+}
+
+<h2>Test2</h2>
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div class="card cardSell">
+
+    @foreach (var item in Model.sellers)
+    {
+        <div>
+            <span class="imageSell">
+                <img src="~/selimage/@item.selImage" />
+            </span>
+            <span class="sell">
+                @Html.DisplayFor(modelItem => item.selCompany)
+            </span>
+            <span class="sellA">
+                @Html.DisplayFor(modelItem => item.selInfo)
+            </span>
+            <input id="Button1" type="button" value="button" />
+            <input id="Button2" type="button" value="button2" />
+        </div>
+    }
+</div>
+<div>
+    @foreach (var item in Model.products)
+    {
+        @item.ProductImage.FirstOrDefault().pdtImage;
+        <div class="card col-12 col-md-2 mt-5">
+            <div class="card-body img-pad-1">
+                <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" class="shadow rounded card-img-top img-wh" alt="...">
+                <p class="text-secondary text-secondary-1">@item.pdtName<span></span></p>
+                <p class="text-secondary text-secondary-2">NT:<span>@item.Specification.First().Price</span></p>
+                <div class="d-flex justify-content-between">
+                    @*<img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
+                        <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">*@
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+

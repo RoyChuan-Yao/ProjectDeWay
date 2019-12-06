@@ -221,10 +221,12 @@
     <Compile Include="Controllers\ProductManageController.cs" />
     <Compile Include="Controllers\ProductPageController.cs" />
     <Compile Include="Controllers\ProductsAdmController.cs" />
+    <Compile Include="Controllers\product_createController.cs" />
     <Compile Include="Controllers\Product_edit_SellerController.cs" />
     <Compile Include="Controllers\QAsController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SellerCertificationController.cs" />
+    <Compile Include="Controllers\Seller_MarketController.cs" />
     <Compile Include="Controllers\WishListsController.cs" />
     <Compile Include="Email\Email.cs" />
     <Compile Include="Global.asax.cs">
@@ -347,6 +349,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Code\GmailSender.cs" />
+    <Compile Include="ViewModels\VM_pdtCreate.cs" />
+    <Compile Include="ViewModels\VM_Market.cs" />
     <Compile Include="ViewModels\VM_MH_AllOrders.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -420,7 +424,6 @@
     <Content Include="Views\MembersAdm\Details.cshtml" />
     <Content Include="Views\MembersAdm\Edit.cshtml" />
     <Content Include="Views\MembersAdm\Index.cshtml" />
-
     <Content Include="Views\Product_edit_Seller\sellproduct.cshtml" />
     <Content Include="Views\Product_edit_Seller\Edit.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
@@ -429,11 +432,12 @@
     <Content Include="Views\MemberHome\mbrEdit.cshtml" />
     <Content Include="Views\MemberHome\pwdEdit.cshtml" />
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
-
     <Content Include="Views\QAs\_GetQASection.cshtml" />
     <Content Include="Views\QAs\_CreateQA.cshtml" />
     <Content Include="Views\Review\_GetReviewSection.cshtml" />
     <Content Include="Views\Shared\_Layout -01.cshtml" />
+    <Content Include="Views\product_create\Create.cshtml" />
+    <Content Include="Views\Seller_Market\sellerMarket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -444,6 +448,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="mbrPhoto\" />
+    <Folder Include="productImage\" />
+    <Folder Include="Views\Seller_Maker\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
