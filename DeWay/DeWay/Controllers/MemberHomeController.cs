@@ -261,63 +261,7 @@ namespace DeWay.Controllers
             return getPdtImg;
 
         }
-        public PartialViewResult _rvwCreate(string odrID)
-        {
-
-
-            Review newReview = new Review();
-            newReview.odrID = odrID;
-            ViewBag.odrID = odrID;
-            return PartialView("_rvwCreate");
-        }
-
        
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public PartialViewResult _rvwIndex(string odrID, Review review, int code)
-        {
-            var pdtID = (from m in db.Cart_OrderDetail
-                         where m.odrID == odrID
-                         select m.Specification.pdtID).Distinct().ToList();
-            string id = Session["memberID"].ToString();
-
-            for (int i = 0; i < pdtID.Count(); i++)
-            {
-                
-                string GetReviewID = db.Database.SqlQuery<string>("Select dbo.GetReviewID()").FirstOrDefault();
-                review.rvwID = GetReviewID;
-                review.pdtID = pdtID[i];
-                review.rvwTime = DateTime.Now;
-                review.mbrID = id;
-                review.odrID = odrID;
-
-                db.Review.Add(review);
-                db.SaveChanges();
-            }
-
-            
-            List<string> odrid = (from m in db.Cart_OrderDetail
-                                  where m.mbrID == id && m.odrID != null
-                                  select m.odrID).ToList();
-            var rvwodrid = (from o in db.Review
-                            where o.mbrID == id
-                            select o.odrID).ToList();
-            System.Collections.Generic.List<DeWay.Models.Order> odrreview = new System.Collections.Generic.List<DeWay.Models.Order>();
-            if (code == 1)
-            {
-
-                odrreview = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
-
-            }
-
-            else if (code == 2)
-            {
-                odrreview = db.Order.Where(m => m.odrID == odrID).ToList();
-
-            }
-
-            return PartialView("_rvwIndex", odrreview);
-        }
 
         public ActionResult rvwCreate(string odrID)
         {
@@ -325,10 +269,10 @@ namespace DeWay.Controllers
 
 
             ViewBag.odrID = odrID;
-            return View("_rvwCreate");
+            return View("rvwCreate");
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult rvwCreate(string odrID, Review review, int code)
+        public ActionResult rvwCreate(string odrID, Review review, int code=0)
         {
             var pdtID = (from m in db.Cart_OrderDetail
                          where m.odrID == odrID
@@ -337,21 +281,23 @@ namespace DeWay.Controllers
 
             for (int i = 0; i < pdtID.Count(); i++)
             {
-
+                Review reviewed = new Review();
                 string GetReviewID = db.Database.SqlQuery<string>("Select dbo.GetReviewID()").FirstOrDefault();
-                review.rvwID = GetReviewID;
-                review.pdtID = pdtID[i];
-                review.rvwTime = DateTime.Now;
-                review.mbrID = id;
-                review.odrID = odrID;
-
-                db.Review.Add(review);
+                reviewed.rvwID = GetReviewID;
+                reviewed.pdtID = pdtID[i];
+                reviewed.rvwTime = DateTime.Now;
+                reviewed.mbrID = id;
+                reviewed.odrID = odrID;
+                reviewed.rvwStar = review.rvwStar;
+                reviewed.rvwContent=review.rvwContent;
+                db.Review.Add(reviewed);
                 db.SaveChanges();
             }
 
 
             return RedirectToAction("rvwIndex");
         }
+
     }
 
 
