@@ -23,6 +23,7 @@ namespace DeWay.Models
         public Nullable<bool> displayStatus { get; set; }
         public string pdtID { get; set; }
     
+        public virtual Member Member { get; set; }
         public virtual Product Product { get; set; }
     }
 }

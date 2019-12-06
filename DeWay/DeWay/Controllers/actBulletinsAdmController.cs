@@ -74,9 +74,7 @@ namespace DeWay.Controllers
             return View(actBulletin);
         }
 
-        // POST: actBulletinsAdm/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        // POST: actBulletinsAdm/Edit/5       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "actID,pdtID,actStrDate,actEndDate,actImage,actDisplay,admID")] actBulletin actBulletin)

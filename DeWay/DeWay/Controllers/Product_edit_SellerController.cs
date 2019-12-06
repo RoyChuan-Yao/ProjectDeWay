@@ -16,7 +16,7 @@ namespace DeWay.Controllers
         public ActionResult sellproduct(string id)
         {
 
-            //string id = Session["memberID"].ToString();
+           
 
             var selID = (from m in db.Seller
                          where m.mbrID == id
@@ -30,36 +30,28 @@ namespace DeWay.Controllers
         }
         public ActionResult Edit()
         {
-            //if (Session["memberID"] != null)
-            //{
+            
             var id = "pdt0000001";
             Product product = (from m in db.Product
                                where m.pdtID == id
                                select m).FirstOrDefault();
 
-            //ViewBag.ctgID = new SelectList(db.Product, "ctgID");
+            
             return View(product);
-            //}
-
-            //return RedirectToAction("sellproduct");
+            
 
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Product p)
         {
             
             var product = db.Product.Where(m => m.pdtID == p.pdtID).FirstOrDefault();
             product.pdtName = p.pdtName;           
             product.pdtDescribe = p.pdtDescribe;
-            product.Discontinued = p.Discontinued;
-            
-
-            
-                db.SaveChanges();
-                
-
-            
-                return View();
+            product.Discontinued = p.Discontinued;                     
+            db.SaveChanges();
+            return View();
 
 
         }
