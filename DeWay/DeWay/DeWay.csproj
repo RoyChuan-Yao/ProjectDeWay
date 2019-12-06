@@ -375,7 +375,6 @@
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\MemberHome\QAIndex.cshtml" />
     <Content Include="Views\MemberHome\_rvwIndex.cshtml" />
-    <Content Include="Views\MemberHome\_rvwCreate.cshtml" />
     <Content Include="Views\MemberHome\rvwIndex.cshtml" />
     <Content Include="Views\MemberHome\rvwCreate.cshtml" />
     <None Include="Web.Debug.config">
