@@ -1,0 +1,34 @@
+﻿@model DeWay.Models.WishList
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WishList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.mbrName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.mbrName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.selID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.selID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.wishID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

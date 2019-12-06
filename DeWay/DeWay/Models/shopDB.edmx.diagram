@@ -4,6 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+
       <Diagram DiagramId="8dfea6ef611947f8a16c77a89126830b" Name="Diagram1">
         <EntityTypeShape EntityType="shopDBModel.actBulletin" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Adm" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
@@ -38,47 +39,7 @@
         <EntityTypeShape EntityType="shopDBModel.Tag" Width="1.5" PointX="13.5" PointY="37.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.ThirdLayer" Width="1.5" PointX="6.75" PointY="17.5" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.WishList" Width="1.5" PointX="13.5" PointY="21.75" IsExpanded="true" />
-        <AssociationConnector Association="shopDBModel.FK__actBullet__admID__02084FDA" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__AdmAccoun__admID__02FC7413" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__rptRecord__admID__03F0984C" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__mbrID__14270015" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__shpID__0C85DE4D" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__spcID__123EB7A3" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK_Cart_OrderDetail__specification__" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK_Cart_OrderDetail_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__FavoSelle__mbrID__6E01572D" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__FavoSelle__selID__7C4F7684" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ProductCa__fstLa__04E4BC85" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__MemberAcc__mbrID__6A30C649" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Message__receive__6D0D32F4" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Message__senderI__6C190EBB" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ntfRecord__mbrID__71D1E811" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Review__mbrID__6B24EA82" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Seller__mbrID__70DDC3D8" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__WishList__mbrID__6EF57B66" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK_QA_member" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ntfRecord__ntfCt__01142BA1" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Order__odrStatus__00200768" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Order__pmtID__7F2BE32F" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Refund__odrID__6754599E" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Review__odrID__68487DD7" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK_Order_Seller" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Product__pdtCtgI__0A9D95DB" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Product__selID__7D439ABD" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ProductIm__pdtID__7A672E12" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__QA__pdtID__778AC167" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Review__pdtID__787EE5A0" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ShipperDe__pdtID__09A971A2" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Specifica__pdtID__75A278F5" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Tag__pdtID__76969D2E" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__WishList__pdtID__74AE54BC" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ProductCa__sndLa__05D8E0BE" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ProductCa__trdLa__06CD04F7" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Refund__rfdStatu__7E37BEF6" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__RefundAcc__rfdID__72C60C4A" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Seller__selAut__73BA3083" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__SellerPho__selID__7B5B524B" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__ShipperDe__shpID__0B91BA14" ManuallyRouted="false" />
+
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

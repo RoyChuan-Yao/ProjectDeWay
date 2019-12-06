@@ -1,0 +1,83 @@
+﻿@*@model IEnumerable<DeWay.Models.Order>*@
+@model DeWay.ViewModels.VM_MH_AllOrders
+
+@{
+    ViewBag.Title = "odrIndex";
+}
+
+<h2>odrIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="row">
+    <div>
+
+    </div>
+
+
+</div>
+
+
+
+@foreach (var item in Model.Order)
+{
+    <div class="col-xl-12">
+        <h3> @Html.DisplayFor(modelItem => item.odrDate)</h3>
+        @foreach (var i in Model.Product)
+        {
+            <h2>
+                @Html.DisplayFor(modelItem => i.selID.)
+            </h2>
+        }
+    </div>
+}
+
+@*<td>
+
+    </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recDist)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pmtDate)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.shpDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.odrNote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.traceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cashFlowID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.odrID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.odrID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.odrID })
+        </td>*@
+

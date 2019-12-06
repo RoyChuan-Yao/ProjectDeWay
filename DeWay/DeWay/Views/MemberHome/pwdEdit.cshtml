@@ -1,0 +1,85 @@
+﻿@model DeWay.Models.MemberAccount
+
+@{
+    ViewBag.Title = "pwdEdit";
+}
+
+    <h2>修改密碼</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    <hr />
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.mbrAccount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.mbrAccount, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>*@
+    <div class="form-group">
+        <label class="control-label col-md-2" for="oldPwd">會員舊密碼</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line password" data-val="true" data-val-length="請輸入8~20碼的英文和數字,且第一個字母需為大寫!" @*data-val-length-max="20" data-val-length-min="8"*@ data-val-regex="請輸入8~20碼的英文和數字，且第一個字母需為大寫!" @*data-val-regex-pattern="[A-Z][a-zA-Z0-9]{7,}"*@ data-val-required="必填" id="oldPwd" name="oldPwd" type="password" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="oldPwd" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.mbrPwd, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.mbrPwd, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.mbrPwd, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="agnPwd" class="control-label col-md-2">確認密碼</label>
+        <div class="col-md-10">
+            <input id="agnPwd" name="agnPwd" type="password" class="form-control  text-box single-line password" onchange="checkPwd(this.id)" />
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.mbrID)
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input id="submit" type="button" value="更改密碼" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("返回會員詳細資料", "mbrEdit",new { id=Model.mbrID}) 
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    function checkPwd() {
+        var mbrPwd = $("#mbrPwd").val()
+        var agnPwd = $("#agnPwd").val();
+        if (mbrPwd != agnPwd) {
+            if (!$("#error").length)
+                $("<span id='error'>Error</span>").insertAfter("#agnPwd");
+             $("#submit").prop('type','button');
+        }
+        else {
+            $("#error").remove();
+            $("#submit").prop('type','submit');
+            }
+        };
+    function CheckValid() {
+        if (!$("#error").length) {
+            $("#submit").prop('type', 'submit');
+        }
+                
+    };
+
+</script>

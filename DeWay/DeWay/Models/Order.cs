@@ -14,7 +14,9 @@ namespace DeWay.Models
     using System.ComponentModel.DataAnnotations;
     using static DeWay.Models.Metadata;
 
-    [MetadataType(typeof(MetadataOrder))]
+
+    [MetadataType(typeof(MetaDataOrder))]
+
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

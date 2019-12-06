@@ -41,8 +41,9 @@ namespace DeWay.Controllers
             return View(order);
         }
 
+
+
        
-        // GET: OrdersAdm/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -59,11 +60,13 @@ namespace DeWay.Controllers
             return View(order);
         }
 
+        // POST: OrdersAdm/Edit/5
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAddress," +
-            "recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
+
+        public ActionResult Edit([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAddress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
+
         {
             
             if (ModelState.IsValid)

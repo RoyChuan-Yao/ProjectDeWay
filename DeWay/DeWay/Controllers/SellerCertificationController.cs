@@ -54,11 +54,15 @@ namespace DeWay.Controllers
             
             //seller.selID = (String)dt["selID"];
             //seller.selCompany = (String)dt["selCompany"];
+
+
             //seller.selCity = (String)dt["selCity"];
             //seller.IDNumber = dt["IDNumber"].ToString();
             //seller.selInfo = (String)dt["selInfo"];
             //seller.selAdress = (String)dt["selAdress"];
             //seller.selDist = (String)dt["selDist"];
+
+
 
             return View(seller);
         }
@@ -66,12 +70,16 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult IDNumber(Seller seller)
         {
+
             string sql = "Update Seller set IDNumber=@IDNumber" +
                 " where selID=@selID";
             //Session["memberID"] = seller.mbrID;
             Cmd.Parameters.AddWithValue("@selID", seller.selID);
+
             
            
+
+
             Cmd.Parameters.AddWithValue("@IDNumber", seller.IDNumber);
             
 
@@ -88,11 +96,13 @@ namespace DeWay.Controllers
             Seller seller = new Seller();
 
 
+
             return View(seller);
         }
         [HttpPost]
         public ActionResult GUINumber(Seller seller)
         {
+
             Cmd.Parameters.Clear();
             string sql = "Update Seller set selCompany=@selCompany," +
                 "  GUINumber=@GUINumber" +
@@ -101,7 +111,7 @@ namespace DeWay.Controllers
             Cmd.Parameters.AddWithValue("@selID", seller.selID);
             
             Cmd.Parameters.AddWithValue("@selCompany", seller.selCompany);
-            
+
             Cmd.Parameters.AddWithValue("@GUINumber", seller.GUINumber);
             
 
