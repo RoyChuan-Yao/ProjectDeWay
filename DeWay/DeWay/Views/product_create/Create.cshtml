@@ -16,20 +16,6 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-        <div id="page0">
-            <div id="section1">
-                @foreach (var m in Model.firstLayers)
-                {
-                    @*@Html.ActionLink(m.fstLayer, "_GetCata", new { catLayer = m.fstLayerID })*@
-                    <br>
-                    <span id="@m.fstLayerID" class="btn btn-default fstBtn" onclik="callSecondLayer">@m.fstLayer</span>
-                }
-            </div>
-            <div id="section2">
-
-            </div>
-        </div>
-
         <div id="page1">
             <div class="form-group">
                 @Html.LabelFor(model => model.products.pdtName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -140,7 +126,7 @@
     });
 
     $('#page2').hide();
-    $('#page1').hide();
+    //$('#page1').hide();
 
     $('#btn1').click(function () {
         $('#page1').hide();
