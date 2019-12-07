@@ -14,7 +14,7 @@ namespace DeWay.Controllers
     {
         private shopDBEntities db = new shopDBEntities();
 
-        // GET: WishLists
+        
         public ActionResult Index(string wishID)
         {
             var cod = db.WishList.Where(a => a.mbrID == wishID).ToList();
