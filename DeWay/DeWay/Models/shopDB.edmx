@@ -790,18 +790,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Cart_OrderDetail_Order">
-          <End Role="Specification" Type="Self.Specification" Multiplicity="1" />
-          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specification">
-              <PropertyRef Name="spcID" />
-            </Principal>
-            <Dependent Role="Cart_OrderDetail">
-              <PropertyRef Name="spcID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Seller">
           <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -827,6 +815,7 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="GetActID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetCartID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetMemberID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetNtfID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <Function Name="GetOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
@@ -1023,10 +1012,6 @@
             <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
             <End Role="Cart_OrderDetail1" EntitySet="Cart_OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cart_OrderDetail_Order" Association="Self.FK_Cart_OrderDetail_Order">
-            <End Role="Specification" EntitySet="Specification" />
-            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Seller" Association="Self.FK_Order_Seller">
             <End Role="Seller" EntitySet="Seller" />
             <End Role="Order" EntitySet="Order" />
@@ -1092,7 +1077,6 @@
           <NavigationProperty Name="Specification" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Cart_OrderDetail" ToRole="Specification" />
           <NavigationProperty Name="Cart_OrderDetail1" Relationship="Self.FK_Cart_OrderDetail__specification__" FromRole="Cart_OrderDetail" ToRole="Cart_OrderDetail1" />
           <NavigationProperty Name="Cart_OrderDetail2" Relationship="Self.FK_Cart_OrderDetail__specification__" FromRole="Cart_OrderDetail1" ToRole="Cart_OrderDetail" />
-          <NavigationProperty Name="Specification1" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Cart_OrderDetail" ToRole="Specification" />
         </EntityType>
         <EntityType Name="FavoSeller">
           <Key>
@@ -1422,7 +1406,6 @@
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Specification" ToRole="Cart_OrderDetail" />
-          <NavigationProperty Name="Cart_OrderDetail1" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Specification" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Specifica__pdtID__75A278F5" FromRole="Specification" ToRole="Product" />
         </EntityType>
         <EntityType Name="Tag">
@@ -1533,18 +1516,6 @@
             </Principal>
             <Dependent Role="Cart_OrderDetail1">
               <PropertyRef Name="cartID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_OrderDetail_Order">
-          <End Role="Specification" Type="Self.Specification" Multiplicity="1" />
-          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specification">
-              <PropertyRef Name="spcID" />
-            </Principal>
-            <Dependent Role="Cart_OrderDetail">
-              <PropertyRef Name="spcID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2005,10 +1976,6 @@
           <AssociationSet Name="FK_Cart_OrderDetail__specification__" Association="Self.FK_Cart_OrderDetail__specification__">
             <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
             <End Role="Cart_OrderDetail1" EntitySet="Cart_OrderDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_OrderDetail_Order" Association="Self.FK_Cart_OrderDetail_Order">
-            <End Role="Specification" EntitySet="Specification" />
-            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
           </AssociationSet>
           <AssociationSet Name="FK__FavoSelle__mbrID__6E01572D" Association="Self.FK__FavoSelle__mbrID__6E01572D">
             <End Role="Member" EntitySet="Member" />
