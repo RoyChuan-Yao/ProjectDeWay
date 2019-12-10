@@ -11,6 +11,7 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
 
+    @RenderSection("CSS", false)
 </head>
 
 <body class="body">
@@ -148,9 +149,11 @@
         </footer>*@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @RenderSection("cartScript", false)
     @RenderSection("Script", false)
     @RenderSection("myScript", false)
-
 
 </body>
 </html>

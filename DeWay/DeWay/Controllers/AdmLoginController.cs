@@ -6,10 +6,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Configuration;
 
+using DeWay.Models;
+
 namespace DeWay.Controllers
 {
     public class AdmLoginController : Controller
     {
+       
         SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["shopDBConnectionString"].ConnectionString);
         // GET: AdmLogin
         public ActionResult Index()
