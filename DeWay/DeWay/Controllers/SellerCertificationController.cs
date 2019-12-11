@@ -69,7 +69,7 @@ namespace DeWay.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SellerCreate(Seller seller)
+        public ActionResult SellerCreate(Seller seller) //創造賣家
         {
 
             string GetSellerID = db.Database.SqlQuery<string>("Select dbo.GetSellerID()").FirstOrDefault();
@@ -118,7 +118,8 @@ namespace DeWay.Controllers
         }
 
         [HttpPost]
-        public ActionResult IDNumber(Seller seller)
+        [ValidateAntiForgeryToken]
+        public ActionResult IDNumber(Seller seller) //身分證字號
         {
             string mbrID = Session["memberID"].ToString();
 
@@ -157,7 +158,8 @@ namespace DeWay.Controllers
             return View(getSeller);
         }
         [HttpPost]
-        public ActionResult GUINumber(Seller seller)
+        [ValidateAntiForgeryToken]
+        public ActionResult GUINumber(Seller seller) //公司名與公司號
         {
 
 
@@ -175,7 +177,7 @@ namespace DeWay.Controllers
             return RedirectToAction("mbrIndex", "MemberHome");
         }
 
-        public bool lastcheck(string ID)
+        public bool lastcheck(string ID) //身分證合法性驗證
         {
             int num = 0;
             string eng = "ABCDEFGHJKLMNPQRSTUVXYWZIO";

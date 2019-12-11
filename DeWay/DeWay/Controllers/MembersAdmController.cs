@@ -17,6 +17,8 @@ namespace DeWay.Controllers
         // GET: Members
         public ActionResult Index(string searchString)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             var member = from m in db.Member
                           select m;
             if (!String.IsNullOrEmpty(searchString))
@@ -29,6 +31,8 @@ namespace DeWay.Controllers
         // GET: Members/Details/5
         public ActionResult Details(string id)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -41,34 +45,13 @@ namespace DeWay.Controllers
             return View(member);
         }
 
-        // GET: Members/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.mbrID = new SelectList(db.MemberAccount, "mbrID", "mbrAccount");
-        //    return View();
-        //}
-
-        //// POST: Members/Create
-        //// 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        //// 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "mbrID,mbrName,nickName,mbrPhone,mbrMail,birthDate,Points,mbrAut,signupDate,mbrImage,mbrBlock")] Member member)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Member.Add(member);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.mbrID = new SelectList(db.MemberAccount, "mbrID", "mbrAccount", member.mbrID);
-        //    return View(member);
-        //}
+        
 
         // GET: Members/Edit/5
         public ActionResult Edit(string id)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -17,6 +17,9 @@ namespace DeWay.Controllers
         // GET: actBulletinsAdm
         public ActionResult Index()
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
+
             var actBulletin = db.actBulletin.Include(a => a.Adm);
             return View(actBulletin.ToList());
         }
@@ -24,6 +27,8 @@ namespace DeWay.Controllers
         // GET: actBulletinsAdm/Details/5
         public ActionResult Details(string id)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +44,8 @@ namespace DeWay.Controllers
         // GET: actBulletinsAdm/Create
         public ActionResult Create()
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             ViewBag.admID = new SelectList(db.Adm, "admID", "admName");
             return View();
         }
@@ -68,6 +75,8 @@ namespace DeWay.Controllers
         // GET: actBulletinsAdm/Edit/5
         public ActionResult Edit(string id)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,6 +108,8 @@ namespace DeWay.Controllers
         // GET: actBulletinsAdm/Delete/5
         public ActionResult Delete(string id)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
