@@ -455,6 +455,7 @@
     <Content Include="Views\product_create\Create.cshtml" />
     <Content Include="Views\Seller_Market\sellerMarket.cshtml" />
     <Content Include="Views\SearchForLayout\Index.cshtml" />
+    <Content Include="Views\SellerCertification\SellerCreate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
