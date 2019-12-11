@@ -26,38 +26,39 @@
                     <a href="/mbrPhoto/@item.mbrImage"><img src="/mbrPhoto/@item.mbrImage" /></a>
 
                 }
-            
-          
+
+
             </div>
             <div class="col-5">
                 <h3>
-                    @Html.DisplayFor(modelItem => item.mbrName)　
+                    @Html.DisplayFor(modelItem => item.mbrName)
                     @Html.DisplayFor(modelItem => item.nickName)
                 </h3>
                 <div>
-                
+
                     <h4>電話:　@Html.DisplayFor(modelItem => item.mbrPhone)</h4>
                 </div>
-             
+
                 <div>
-                
+
                     <h4>信箱:　@Html.DisplayFor(modelItem => item.mbrMail)</h4>
                 </div>
 
-               
+
             </div>
             <div class="col-3">
                 <div>
-                   
+
                     <h4>生日:　@Html.DisplayFor(modelItem => item.birthDate)</h4>
                 </div>
                 <div>
-                
+
                     <h4>點數:　@Html.DisplayFor(modelItem => item.Points)</h4>
                 </div>
-                
+
             </div>
             <div class="col-1"> @Html.ActionLink("編輯", "mbrEdit", new { id = item.mbrID }, new { @class = "btn btn-primary" })</div>
+            <div class="col-1"> @Html.ActionLink("訂單", "odrIndex", new { odrStatus = "處理中" }, new { @class = "btn btn-primary" })</div>
         </div>
 
 

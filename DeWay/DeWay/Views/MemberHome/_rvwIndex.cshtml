@@ -5,9 +5,10 @@
 @{
     int i = 0;
     short[] star = new short[Model.Count()];
+    Layout = null;
 }
 
-
+<div id="test"></div>
 
 @foreach (var item in Model)
 {
@@ -18,7 +19,7 @@
         <input class="@i" type="hidden" value="@star[i]" />
         <div class="card">
             <div class="card-header">
-                <div class="star" id="@star[i]" stars="@star[i]" style=" font-size: 30px">
+                <div class="star" id="@star[i]" Stars="@star[i]" style=" font-size: 30px">
 
                 </div>
                 @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)
@@ -50,16 +51,15 @@
 
         <div class="card">
             <div class="card-header">
+                <button class="Button" data-toggle="modal" data-target="#form1">新增評論</button>
+                <div></div>
 
-
-                <input id="Button1" class="Button" type="button" value="button" data-toggle="modal" data-target="#form" />
-
-
-
+                <input id="odrID" type="hidden" value="@item.odrID" />
             </div>
             <div class="card-body row">
                 <div class="col-5">
                     <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+                    @Url.Action("getImage", new { id = item.odrID })"
                 </div>
                 <div class="col-7">
                     @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
@@ -67,58 +67,92 @@
 
 
                 </div>
-                @using (Html.BeginForm("rvwCreate", "MemberHome", FormMethod.Post))
-                {
-                    <div class="modal fade" id="form">
-                        @Html.Action("rvwCreate", "MemberHome", new { odrID = item.odrID })
-                    </div>
-                }
 
             </div>
-
-
         </div>
-
     }
 }
 
+@using (Html.BeginForm("rvwCreate", "MemberHome", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div class="modal fade" id="form1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Review</h4>
+                <button data-dismiss="modal" class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input class="odrID" type="hidden" name="odrID" />
+                <div class="form-group">
+                    <p>評價內容</p>
+                    <div class="col-md-9">
+                        <input id="rvwContent" type="text" name="rvwContent" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p>評價等級</p>
+                    <div class="col-md-9">
+                        <div></div>
+                        <input class="rvwStar" type="text" name="rvwStar" />
+                    </div>
+                </div>
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/stars.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Create" class="btn btn-default" />
 
-        //$('.star').each((i, e) =>
-        //{
-        //    $(e).html(stars({
-        //        stars: 5,
-        //        color: '#E4AD22',
-        //        value: 4,
-        //    }))
-        //})
+            </div>
+
+        </div>
+
+    </div>
 
 
-        function getStar(starCount) {
-            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
-            var result = "";
-            for (var i = 0; i < starCount; i++) {
-                starsArray.unshift("★");
-            }
-            for (var i = 0; i < 5; i++) {
-                result += starsArray[i];
-            }
-            var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
+</div>
 
-            return result
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/stars.js"></script>
+@*<script src="~/Scripts/stars.min.js"></script>*@
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(`.Button`).next().stars();
+        $(`#test`).stars(); 
+
+     //$(`input.rvwStar`).prev().stars();
+    function getStar(starCount) {
+        var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+        var result = "";
+        for (var i = 0; i < starCount; i++) {
+            starsArray.unshift("★");
         }
+        for (var i = 0; i < 5; i++) {
+            result += starsArray[i];
+        }
+        var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
 
-        $(`.star`).each((index, element) => {
-            $(element).html(
-                getStar($(element).attr("stars"))
-            )
-        })
+        return result
+    }
 
-    </script>
+    $(`.star`).each((index, element) => {
+        $(element).html(
+            getStar($(element).attr("Stars"))
+        )
+    })
+
+    $(`.Button`).on("click", function () {
+
+        let odrid = $(this).next().val();
+
+        $(`input.odrID`).attr("value", odrid);
+      
+    });
+
+
+</script>
 
 
