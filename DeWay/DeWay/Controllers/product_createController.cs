@@ -27,7 +27,7 @@ namespace DeWay.Controllers
             product.products.pdtID = GetpdtID;
             product.products.selID = "sel0000001";  //用Session["member"]查
             product.products.pdtDate = DateTime.Now;
-            product.products.Discontinued = true;
+            product.products.Discontinued = false;
             product.products.ctgID = "ctg0000001";  //擱置，資料表設計錯誤
             db.Product.Add(product.products);
             db.SaveChanges();
