@@ -4,44 +4,20 @@
     ViewBag.Title = "odrDetail";
     decimal? total = 0;
     decimal? shipping = 0;
-    short Star = 0;
+    Layout = "~/Views/Shared/_Layout_Member.cshtml";
 }
 
 
-<div class="row">
 
-    <div class="col-3">
-        <ul class="nav flex-column dropdown">
-            個人資訊
-
-            <li class="nav-item">@Html.ActionLink("修改個人基本資料", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
-            <li class="nav-item">@Html.ActionLink("變更密碼", "pwdEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black " })</li>
-            <li class="nav-item">@Html.ActionLink("會員聯絡資訊驗證", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
-
-        </ul>
-        <ul class="nav nav-pills flex-column">
-            訂單
-            <li class="nav-item"><a href="#">檢視訂單</a></li>
-            <li class="nav-item"><a href="#">申請退貨</a></li>
-        </ul>
-        <ul class="nav flex-column">
-            評價
-            <li class="nav-item">@Html.ActionLink("檢視評價", "rvwIndex", "MemberHome", new { }, new { @class = "nav-link text-black" })</li>
-        </ul>
-        <ul class="nav nav-pills flex-column">
-            問與答
-            <li class="nav-item">@Html.ActionLink("檢視問與答", "QAIndex", "MemberHome", new { code = 0 }, new { @class = "nav-link  text-black" })</li>
-        </ul>
-
-
-    </div>
-
-    <div class="col-6">
+   
         <div class="">
             @Html.DisplayFor(model => model.FirstOrDefault().Specification.Product.Seller.selCompany)
             @Html.DisplayFor(model => model.FirstOrDefault().Order.odrDate)
             @*@Html.DisplayFor(model => model.FirstOrDefault().Cart_OrderDetail.FirstOrDefault().)*@
 
+        </div>
+        <div>
+            @Html.DisplayFor(model => model.FirstOrDefault().Order.OrderStatus.odrStatus)
         </div>
         <br />
        
@@ -61,7 +37,7 @@
 
                 @foreach (var item in Model)
                 {
-                    var subtotal = item.pdtPrice * item.Discount / 10 * item.Quantity;
+                    var subtotal = item.pdtPrice * (int)item.Discount/ 10 * item.Quantity;
 
                     total += subtotal;
                     shipping = item.Order.shpPrice;
@@ -127,11 +103,7 @@
         </div>
 
 
-    </div>
-    <div class="col-3">
 
-    </div>
-</div>
 
 @section Script
 {

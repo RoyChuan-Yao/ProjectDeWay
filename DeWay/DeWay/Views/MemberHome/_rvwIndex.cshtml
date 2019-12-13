@@ -16,7 +16,7 @@
 
     if (item.Review.Count() != 0)
     {
-        if (ViewBag.odr != null)
+        if (ViewBag.code==2)
         {
             <div class="card">
                 <div class="card-header">
@@ -32,7 +32,7 @@
                     @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
                 </div>
 
-               
+
             </div>
         }
         else
@@ -70,34 +70,46 @@
     else
     {
 
+        if (ViewBag.code==2)
+        {
+            if (item.odrStatusID == "ods0000007")
+            {
+                <button class="Button" data-toggle="modal" data-target="#form1">新增評論</button>
+
+                <input id="odrID" type="hidden" value="@item.odrID" />
+            }
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-header">
+                    @{
+                        if (item.odrStatusID == "ods0000007")
+                        {
+                            <button class="Button" data-toggle="modal" data-target="#form1">新增評論</button>
+
+                            <input id="odrID" type="hidden" value="@item.odrID" />
+                        }
 
 
-        <div class="card">
-            <div class="card-header">
-                @{
-                    if (item.odrStatusID == "ods0000007")
-                    {<button class="Button" data-toggle="modal" data-target="#form1">新增評論</button>
-
-                        <input id="odrID" type="hidden" value="@item.odrID" />
                     }
+                </div>
+                <div class="card-body row">
+                    <div class="col-5">
+                        <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+
+                    </div>
+                    <div class="col-7">
+                        @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
+                        @Html.DisplayFor(modelItem => item.odrDate)
 
 
-                }
-            </div>
-            <div class="card-body row">
-                <div class="col-5">
-                    <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+                    </div>
 
                 </div>
-                <div class="col-7">
-                    @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
-                    @Html.DisplayFor(modelItem => item.odrDate)
-
-
-                </div>
-
             </div>
-        </div>
+            <br />
+        }
     }
 }
 
@@ -126,7 +138,7 @@
                             <input class="rvwStar" type="hidden" name="rvwStar" />
                         </div>
                     </div>
-
+                    <input id="Hidden1" type="hidden" name="code" value="@ViewBag.code" />
                 </div>
                 <div class="modal-footer">
                     <input type="submit" value="Create" class="btn btn-default Submit" />
@@ -146,39 +158,3 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/stars.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script>
-
-
-     //$(`input.rvwStar`).prev().stars();
-    //function getStar(starCount) {
-    //    var starsArray = ["☆", "☆", "☆", "☆", "☆"];
-    //    var result = "";
-    //    for (var i = 0; i < starCount; i++) {
-    //        starsArray.unshift("★");
-    //    }
-    //    for (var i = 0; i < 5; i++) {
-    //        result += starsArray[i];
-    //    }
-    //    var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
-
-    //    return result
-    //}
-
-    //$(`.star`).each((index, element) => {
-    //    $(element).html(
-    //        getStar($(element).attr("Stars"))
-    //    )
-    //})
-
-    //$(`.Button`).on("click", function () {
-
-    //    let odrid = $(this).next().val();
-
-    //    $(`input.odrID`).attr("value", odrid);
-    //  $
-    //});
-
-
-</script>
-
-

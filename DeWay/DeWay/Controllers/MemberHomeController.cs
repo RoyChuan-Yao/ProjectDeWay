@@ -227,23 +227,30 @@ namespace DeWay.Controllers
                 return RedirectToAction("Login", "Login");
             string id = Session["memberID"].ToString();
             ViewBag.MemberName = db.Member.Where(m => m.mbrID == id).FirstOrDefault().nickName;
+            IEnumerable<object> qa;
 
+            // 全部的問題
             if (code == 0)
             {
-                var qaall = db.QA.Where(m => m.mbrID == id).ToList().OrderByDescending(m => m.qaTime);
-                return View(qaall);
+                qa = db.QA.Where(m => m.mbrID == id).ToList().OrderByDescending(m => m.qaTime);
+               
             }
+            // 未回覆的問題
             else if (code == 1)
             {
-                var qayet = db.QA.Where(m => m.mbrID == id && (m.Answer == null || m.Answer == "")).ToList().OrderByDescending(m => m.qaTime);
-                return View(qayet);
+                 qa = db.QA.Where(m => m.mbrID == id).Where(m=>m.Answer == null || m.Answer == "").ToList().OrderByDescending(m => m.qaTime);
+                
             }
+            //已回覆的問題
             else if (code == 2)
             {
-                var qaed = db.QA.Where(m => m.mbrID == id && m.Answer != null && m.Answer != "").ToList().OrderByDescending(m => m.qaTime);
-                return View(qaed);
+                 qa = db.QA.Where(m => m.mbrID == id ).Where(m=> m.Answer != null).Where(m=> m.Answer != "").ToList().OrderByDescending(m => m.qaTime);
+                
             }
-            return HttpNotFound();
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            return View(qa);
 
 
 
@@ -288,7 +295,7 @@ namespace DeWay.Controllers
 
             else if (code == 2)
             {
-                ViewBag.odr = odr;
+                ViewBag.code=code;
                 var odrreview = db.Order.Where(m => m.odrID == odr).ToList();
                 return PartialView(odrreview);
                 
@@ -343,7 +350,8 @@ namespace DeWay.Controllers
                 db.SaveChanges();
             }
 
-
+            if (code == 2)
+                return RedirectToAction("odrDetail", new { odrID = odrID });
             return RedirectToAction("rvwIndex");
         }
         public ActionResult odrDetail(string odrID)

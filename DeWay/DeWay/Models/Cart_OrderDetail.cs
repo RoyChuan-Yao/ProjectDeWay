@@ -19,7 +19,7 @@ namespace DeWay.Models
         public string spcID { get; set; }
         public string odrID { get; set; }
         public int Quantity { get; set; }
-        public Nullable<int> Discount { get; set; }
+        public Nullable<double> Discount { get; set; }
         public int usedPoints { get; set; }
         public string shpID { get; set; }
         public Nullable<decimal> pdtPrice { get; set; }

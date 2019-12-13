@@ -448,6 +448,7 @@
     <Content Include="Views\Seller_Market\sellerMarket.cshtml" />
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\MemberHome\odrDetail.cshtml" />
+    <Content Include="Views\Shared\_Layout_Member.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
