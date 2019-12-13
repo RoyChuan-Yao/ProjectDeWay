@@ -450,7 +450,6 @@
     <Content Include="Views\QAs\_GetQASection.cshtml" />
     <Content Include="Views\QAs\_CreateQA.cshtml" />
     <Content Include="Views\Review\_GetReviewSection.cshtml" />
-    <Content Include="Views\Shared\_Layout -01.cshtml" />
     <Content Include="Views\product_create\Create.cshtml" />
     <Content Include="Views\Seller_Market\sellerMarket.cshtml" />
     <Content Include="Views\SearchForLayout\Index.cshtml" />
