@@ -238,6 +238,7 @@
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\SearchForLayoutController.cs" />
     <Compile Include="Controllers\SellerCertificationController.cs" />
+    <Compile Include="Controllers\SellerHomeController.cs" />
     <Compile Include="Controllers\Seller_MarketController.cs" />
     <Compile Include="Controllers\WishListsController.cs" />
     <Compile Include="Email\Email.cs" />
@@ -456,6 +457,8 @@
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\MemberHome\odrDetail.cshtml" />
     <Content Include="Views\Shared\_Layout_Member.cshtml" />
+    <Content Include="Views\SellerHome\OrderIndex.cshtml" />
+    <Content Include="Views\Shared\_Layout - seller.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
