@@ -11,9 +11,7 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using static DeWay.Models.Metadata;
-    [MetadataType(typeof(MetadatantfRecord))]
+    
     public partial class ntfRecord
     {
         public string ntfContent { get; set; }

@@ -222,6 +222,7 @@
     <Compile Include="Controllers\actBulletinsAdmController.cs" />
     <Compile Include="Controllers\AdmCenterController.cs" />
     <Compile Include="Controllers\AdmLoginController.cs" />
+    <Compile Include="Controllers\AdmOrderAdmController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -364,6 +365,7 @@
     <Compile Include="ViewModels\VM_pdtCreate.cs" />
     <Compile Include="ViewModels\VM_Market.cs" />
     <Compile Include="ViewModels\VM_MH_AllOrders.cs" />
+    <Compile Include="ViewModels\VM_pdtEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -455,6 +457,10 @@
     <Content Include="Views\Seller_Market\sellerMarket.cshtml" />
     <Content Include="Views\SearchForLayout\Index.cshtml" />
     <Content Include="Views\SellerCertification\SellerCreate.cshtml" />
+    <Content Include="Views\Login\Registercheck.cshtml" />
+    <Content Include="Views\AdmOrdersAdm\Index.cshtml" />
+    <Content Include="Views\AdmOrdersAdm\Details.cshtml" />
+    <Content Include="Views\AdmOrdersAdm\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -466,6 +472,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="mbrPhoto\" />
     <Folder Include="productImage\" />
+    <Folder Include="Views\AdmOrderAdm\" />
     <Folder Include="Views\Seller_Maker\" />
   </ItemGroup>
   <ItemGroup>

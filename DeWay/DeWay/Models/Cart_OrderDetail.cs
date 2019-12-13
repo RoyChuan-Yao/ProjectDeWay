@@ -22,11 +22,11 @@ namespace DeWay.Models
         public Nullable<int> Discount { get; set; }
         public int usedPoints { get; set; }
         public string shpID { get; set; }
+        public Nullable<decimal> pdtPrice { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Shipper Shipper { get; set; }
         public virtual Specification Specification { get; set; }
-        public virtual Cart_OrderDetail Cart_OrderDetail1 { get; set; }
-        public virtual Cart_OrderDetail Cart_OrderDetail2 { get; set; }
+        public virtual Order Order { get; set; }
     }
 }
