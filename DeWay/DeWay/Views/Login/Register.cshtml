@@ -14,100 +14,100 @@
     @Html.AntiForgeryToken()
 
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MemberAccount.mbrAccount, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input id="Text1" type="text" name="act" class="form-control" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemberAccount.mbrAccount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="Text1" type="text" name="act" class="form-control" />
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MemberAccount.mbrPwd, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input id="pwd" type="password" name="pwd" class="form-control" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemberAccount.mbrPwd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="pwd" type="password" name="pwd" class="form-control" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="control-label col-md-2">請再次輸入密碼:</div>
-        <div class="col-md-10">
-            <input id="pwdcheck" type="password" name="pwd1" class="form-control" onchange="upperCase(this.id)" />
+        <div class="form-group">
+            <div class="control-label col-md-2">請再次輸入密碼:</div>
+            <div class="col-md-10">
+                <input id="pwdcheck" type="password" name="pwd1" class="form-control" onchange="upperCase(this.id)" />
 
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.mbrName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.mbrName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.mbrName, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.mbrName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mbrName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mbrName, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.mbrPhone, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.mbrPhone, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.mbrPhone, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.mbrPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mbrPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mbrPhone, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.mbrMail, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.mbrMail, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.mbrMail, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.mbrMail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mbrMail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mbrMail, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.birthDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.birthDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.birthDate, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.birthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.birthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.birthDate, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
 
-    <script language='javascript' type='text/javascript'>
-        function check(input) {
-            if (input.value != document.getElementById('password').value) {
-                input.setCustomValidity('密碼輸入不一致!');
-            } else {
-                // input is valid -- reset the error message
-                input.setCustomValidity('');
+        <script language='javascript' type='text/javascript'>
+            function check(input) {
+                if (input.value != document.getElementById('password').value) {
+                    input.setCustomValidity('密碼輸入不一致!');
+                } else {
+                    // input is valid -- reset the error message
+                    input.setCustomValidity('');
+                }
             }
-        }
-    </script>
+        </script>
 
 
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input id="submit" value="送出" type="button" onclick="check()">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="submit" value="送出" type="button" onclick="check()">
+            </div>
         </div>
     </div>
-</div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
     function upperCase(x) {

@@ -15,20 +15,28 @@ namespace DeWay.Controllers
         shopDBEntities db = new shopDBEntities();
         public ActionResult Create()
         {
+            ViewBag.fst = new SelectList(db.FirstLayer, "fstLayerID", "fstLayer");
+
             VM_pdtCreate vm = new VM_pdtCreate();
             vm.firstLayers = db.FirstLayer.ToList();
+            ViewBag.shipperDetail = db.Shipper.ToList();
             return View(vm);
         }
         [HttpPost]
-        public ActionResult Create(VM_pdtCreate product, Specification[] specification, HttpPostedFileBase[] photo, ProductImage[] image)
+        public ActionResult Create(VM_pdtCreate product, Specification[] specification, HttpPostedFileBase[] photo, ProductImage[] image, ShipperDetail[] shipperDetail, Tag[] tag, string fstID, string sndID, string trdID)
         {
+
+
+            var getctgID = db.ProductCategory.Where(m => m.fstLayerID == fstID && m.sndLayerID == sndID && m.trdLayerID == trdID).FirstOrDefault().pdtCtgID;
+
+
             string GetpdtID = db.Database.SqlQuery<string>("Select dbo.GetProductID()").FirstOrDefault();
             //傳入ProductVM(ViewModel)的products(ViewModel中的Product資料表)
             product.products.pdtID = GetpdtID;
-            product.products.selID = "sel0000001";  //用Session["member"]查
+            product.products.selID = "sel0000003";  //用Session["member"]查
             product.products.pdtDate = DateTime.Now;
-            product.products.Discontinued = false;
-            product.products.ctgID = "ctg0000001";  //擱置，資料表設計錯誤
+            product.products.Discontinued = true;
+            product.products.ctgID = getctgID;  //擱置，資料表設計錯誤
             db.Product.Add(product.products);
             db.SaveChanges();
 
@@ -82,11 +90,98 @@ namespace DeWay.Controllers
 
                 }
             }
+            //選擇運費
+            for (int i = 0; i < shipperDetail.Length; i++)
+            {
+                ShipperDetail shp = new ShipperDetail();
+                shp.shpID = shipperDetail[i].shpID;
+                shp.pdtID = GetpdtID;
+                shp.defaultShipping = shipperDetail[i].defaultShipping;
+                db.ShipperDetail.Add(shp);
+                db.SaveChanges();
+            }
+
+            //寫入tag
+            for (int i = 0; i < tag.Length; i++)
+            {
+                Tag tg = new Tag();
+                string GetTagID = db.Database.SqlQuery<string>("Select dbo.GetTagID()").FirstOrDefault();
+                tg.tagID = GetTagID;
+                tg.tagName = tag[i].tagName;
+                tg.pdtID = GetpdtID;
+                db.Tag.Add(tg);
+                db.SaveChanges();
+            }
 
 
 
+
+
+            //ViewBag.shp123 = new SelectList(db.Shipper, "shpID", "shpMethod");
+            ViewBag.shipperDetail = db.Shipper.ToList();
 
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult snd(string fstID)
+        {
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
+            if (!string.IsNullOrWhiteSpace(fstID))
+            {
+                var snd = this.Getsnd(fstID);
+                if (snd.Count() > 0)
+                {
+                    foreach (var m in snd)
+                    {
+                        items.Add(new KeyValuePair<string, string>(m.sndLayerID, m.sndLayer));
+                    }
+                }
+            }
+
+
+
+            return this.Json(items);
+        }
+
+        private IEnumerable<SecondLayer> Getsnd(string fstID)
+        {
+            var getsndID = db.ProductCategory.Where(m => m.fstLayerID == fstID).Select(m => m.sndLayerID).Distinct().ToList();
+
+            var sndList = db.SecondLayer.Where(m => getsndID.Contains(m.sndLayerID)).ToList();
+
+            return sndList.ToList();
+
+        }
+        [HttpPost]
+        public JsonResult trd(string sndID)
+        {
+            List<KeyValuePair<string, string>> items = new List<KeyValuePair<string, string>>();
+            if (!string.IsNullOrWhiteSpace(sndID))
+            {
+                var trd = this.Gettrd(sndID);
+                if (trd.Count() > 0)
+                {
+                    foreach (var m in trd)
+                    {
+                        items.Add(new KeyValuePair<string, string>(m.trdLayerID, m.trdLayer));
+                    }
+                }
+            }
+
+
+
+            return this.Json(items);
+        }
+
+        private IEnumerable<ThirdLayer> Gettrd(string sndID)
+        {
+            var gettrdID = db.ProductCategory.Where(m => m.sndLayerID == sndID).Select(m => m.trdLayerID).Distinct().ToList();
+
+            var trdList = db.ThirdLayer.Where(m => gettrdID.Contains(m.trdLayerID)).ToList();
+
+            return trdList.ToList();
+
         }
     }
 }

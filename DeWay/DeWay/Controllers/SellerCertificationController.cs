@@ -12,6 +12,7 @@ namespace DeWay.Controllers
 {
     public class SellerCertificationController : Controller
     {
+        shopDBEntities db = new shopDBEntities();
         SqlConnection Conn = new SqlConnection(ConfigurationManager.ConnectionStrings["shopDBConnectionString"].ConnectionString);
         SqlCommand Cmd = new SqlCommand();
         SqlDataAdapter adp = new SqlDataAdapter();
@@ -38,7 +39,7 @@ namespace DeWay.Controllers
             return ds.Tables[0];
         }
 
-        shopDBEntities db = new shopDBEntities();
+        
         // GET: SellerCertification
         public ActionResult Index()
         {
@@ -47,24 +48,21 @@ namespace DeWay.Controllers
 
         public ActionResult IDNumber(string selID)
         {
-            Cmd.Parameters.AddWithValue("@selID", selID);
-            
-            //string str = "";
-            Seller seller = new Seller();
-            
-            //seller.selID = (String)dt["selID"];
-            //seller.selCompany = (String)dt["selCompany"];
+            //var sel = db.Seller.Where(m => m.selID == selID).FirstOrDefault();
+            //     var aut = db.Seller.Where(m => m.selID == selID).FirstOrDefault().SellerAut.ToString();
+          
+                if (db.Seller.Where(m => m.selID == selID).FirstOrDefault() != null && Session["memberID"] != null) //暫定Session與selID
+            {
+                Cmd.Parameters.AddWithValue("@selID", selID);
 
+               
+                Seller seller = new Seller();
 
-            //seller.selCity = (String)dt["selCity"];
-            //seller.IDNumber = dt["IDNumber"].ToString();
-            //seller.selInfo = (String)dt["selInfo"];
-            //seller.selAdress = (String)dt["selAdress"];
-            //seller.selDist = (String)dt["selDist"];
-
-
-
-            return View(seller);
+                
+                return View(seller);
+            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -103,7 +101,7 @@ namespace DeWay.Controllers
         public ActionResult GUINumber(Seller seller)
         {
 
-            Cmd.Parameters.Clear();
+            
             string sql = "Update Seller set selCompany=@selCompany," +
                 "  GUINumber=@GUINumber" +
                 " where selID=@selID";
