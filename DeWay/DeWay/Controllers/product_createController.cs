@@ -25,7 +25,8 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult Create(VM_pdtCreate product, Specification[] specification, HttpPostedFileBase[] photo, ProductImage[] image, ShipperDetail[] shipperDetail, Tag[] tag, string fstID, string sndID, string trdID)
         {
-
+            string id = Session["memberID"].ToString();
+            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
 
             var getctgID = db.ProductCategory.Where(m => m.fstLayerID == fstID && m.sndLayerID == sndID && m.trdLayerID == trdID).FirstOrDefault().pdtCtgID;
 
@@ -33,7 +34,7 @@ namespace DeWay.Controllers
             string GetpdtID = db.Database.SqlQuery<string>("Select dbo.GetProductID()").FirstOrDefault();
             //傳入ProductVM(ViewModel)的products(ViewModel中的Product資料表)
             product.products.pdtID = GetpdtID;
-            product.products.selID = "sel0000003";  //用Session["member"]查
+            product.products.selID = getselID;  //用Session["member"]查
             product.products.pdtDate = DateTime.Now;
             product.products.Discontinued = true;
             product.products.ctgID = getctgID;  //擱置，資料表設計錯誤
