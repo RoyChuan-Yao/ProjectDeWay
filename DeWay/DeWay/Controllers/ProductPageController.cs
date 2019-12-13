@@ -29,9 +29,9 @@ namespace DeWay.Controllers
             }
             return View(product);
         }
-        public string GetProductStock(string specID)
+        public int GetProductStock(string specID)
         {
-            string stockResult = db.Specification
+            int stockResult = db.Specification
                 .Where(m => m.spcID == specID)
                 .FirstOrDefault().Stock;
             return stockResult;

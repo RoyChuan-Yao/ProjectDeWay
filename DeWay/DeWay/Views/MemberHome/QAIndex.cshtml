@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "QAIndex";
+     Layout = "~/Views/Shared/_Layout_Member.cshtml";
 }
 
 <h2>我的問答區</h2>
@@ -9,51 +10,46 @@
 @section CSS
     {
     <style>
-.a {
-  color: inherit;
-  text-decoration: none;
-  background-color: transparent;
-}
+        .a {
+            color: inherit;
+            text-decoration: none;
+            background-color: transparent;
+        }
 
-.a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-
+            .a:hover {
+                color: inherit;
+                text-decoration: none;
+            }
     </style>
-    }
+}
 
 
-<div class="container">
-    @foreach (var item in Model)
-    {
-        <a  href="@Url.Action("ProductPage","Productpage",new { pdtID=item.pdtID})" class="a">
-            <div class="card">
-                <div class="card-header">
-                    @Html.DisplayFor(modelItem => item.Product.Seller.selCompany)
-                    @Html.DisplayFor(modelItem => item.Product.ProductImage.FirstOrDefault().pdtImage)
-                    @Html.DisplayFor(modelItem => item.Product.pdtName)
-                </div>
-                <div class="card-body">
-                    @Html.DisplayFor(modelItem => item.qaTime)
-                    <div>
-
-                        @ViewBag.MemberName 發問: @Html.DisplayFor(modelItem => item.Question)
-
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.pdtID})" class="a">
+                <div class="card">
+                    <div class="card-header">
+                        @Html.DisplayFor(modelItem => item.Product.Seller.selCompany)
+                        @Html.DisplayFor(modelItem => item.Product.ProductImage.FirstOrDefault().pdtImage)
+                        @Html.DisplayFor(modelItem => item.Product.pdtName)
                     </div>
-                    @if(item.Answer!=null&&item.Answer!="")
-                    {
-                        <hr />
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.qaTime)
                         <div>
-                            @Html.DisplayFor(modelItem => item.Product.Seller.selCompany) 回答：@Html.DisplayFor(modelItem => item.Answer)
+
+                            @ViewBag.MemberName 發問: @Html.DisplayFor(modelItem => item.Question)
+
                         </div>
-                    }
+                        @if (item.Answer != null && item.Answer != "")
+                        {
+                            <hr />
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Product.Seller.selCompany) 回答：@Html.DisplayFor(modelItem => item.Answer)
+                            </div>
+                        }
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
-        <br />
-    }
-</div>
-
-
+            <br />
+        }

@@ -23,9 +23,10 @@ namespace DeWay.Models
         public string spcID { get; set; }
         public string Style { get; set; }
         public string Size { get; set; }
-        public string Stock { get; set; }
+        public int Stock { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string pdtID { get; set; }
+        public Nullable<double> Discount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }

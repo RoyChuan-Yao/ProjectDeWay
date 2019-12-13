@@ -144,7 +144,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
-    <Content Include="images\pImg000001.jpg" />
+    <Content Include="images\pImg000014.jpg" />
     <Content Include="Models\shopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>shopDB.edmx</DependentUpon>
@@ -443,11 +443,9 @@
     <Content Include="Views\MemberHome\mbrIndex.cshtml" />
     <Content Include="Views\MemberHome\mbrEdit.cshtml" />
     <Content Include="Views\MemberHome\pwdEdit.cshtml" />
-    <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\MemberHome\QAIndex.cshtml" />
     <Content Include="Views\MemberHome\_rvwIndex.cshtml" />
     <Content Include="Views\MemberHome\rvwIndex.cshtml" />
-    <Content Include="Views\MemberHome\rvwCreate.cshtml" />
     <Content Include="Views\QAs\_GetQASection.cshtml" />
     <Content Include="Views\QAs\_CreateQA.cshtml" />
     <Content Include="Views\Review\_GetReviewSection.cshtml" />
@@ -455,6 +453,9 @@
     <Content Include="Views\product_create\Create.cshtml" />
     <Content Include="Views\Seller_Market\sellerMarket.cshtml" />
     <Content Include="Views\SearchForLayout\Index.cshtml" />
+    <Content Include="Views\MemberHome\odrIndex.cshtml" />
+    <Content Include="Views\MemberHome\odrDetail.cshtml" />
+    <Content Include="Views\Shared\_Layout_Member.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
