@@ -39,6 +39,7 @@
 
 
     <script>
+         $(`.givestars`).stars();
         function getStar(starCount) {
             var starsArray = ["☆", "☆", "☆", "☆", "☆"];
             var result = "";
@@ -64,7 +65,7 @@
             let odrid = $(this).next().val();
 
             $(`input.odrID`).attr("value", odrid);
-            $(`.givestars`).stars();
+           
 
         });
 

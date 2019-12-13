@@ -140,7 +140,7 @@ namespace DeWay.Controllers
 
 
         }
-        public ActionResult odrIndex(string odrStatus )
+        public ActionResult odrIndex(string odrStatus="未付款" )
         {
 
             if (Session["memberID"] == null)
