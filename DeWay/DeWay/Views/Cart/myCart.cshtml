@@ -95,7 +95,7 @@
 {
 
 }
-@section customScript{
+@section Script{
     <script>
         function updateAddressToForm() {//顯示收件人資料
             var displayAddress = "";
@@ -107,9 +107,7 @@
     </script>
     <script>
         var len = $("input[type='checkbox']").length//檢查讀取了幾個商品項目
-
-        //利用陣列存取誰被點選
-        var checkStatus = [];
+        var checkStatus = [];//利用陣列存取誰被點選
         for (var i = 0; i < len; i++) { //初始化陣列(預設0個商品被勾選)
             checkStatus.push(false);
         }
@@ -180,17 +178,7 @@
 
         //提交訂單
         function submitOrder() {
-            //產生Form內容
-
-            //var cartResult = "";
-            //for (i = 0; i <= len; i++) {//取得被點選的商品編號
-
-            //    if (checkStatus[i]) {
-            //        cartResult += `<input type="" name="cartID[${i}]" value="${i}">`;
-            //        console.log($('#shipSelect_'+i+ ' option:selected'));
-            //        cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_'+i+ ' option:selected').text()}">`;
-            //    }
-            //}
+            
             var cartResult = "";
             for (i = 0; i <= len; i++) {//取得被點選的商品編號
                 cartResult += `<input type="" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
@@ -210,6 +198,19 @@
         }
 
     </script>
+    <script>
+        //M
+        //JSON 資料 {cartItem:[{cartID:"",count:"",price:""}],order:{address,name,phone}
+        //
 
+
+        //V
+        //showTotalPrice
+        //
+
+        //C
+        //CheckBtn =>{add to cartItem; showTotalPrice}
+        //ChangeBtn=> add
+    </script>
 }
 

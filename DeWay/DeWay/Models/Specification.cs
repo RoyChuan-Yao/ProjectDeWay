@@ -18,7 +18,6 @@ namespace DeWay.Models
         public Specification()
         {
             this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
-            this.Cart_OrderDetail1 = new HashSet<Cart_OrderDetail>();
         }
     
         public string spcID { get; set; }
@@ -27,11 +26,10 @@ namespace DeWay.Models
         public string Stock { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string pdtID { get; set; }
+        public Nullable<short> Discount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail1 { get; set; }
         public virtual Product Product { get; set; }
     }
 }

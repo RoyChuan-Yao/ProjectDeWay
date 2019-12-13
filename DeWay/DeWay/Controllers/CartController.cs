@@ -36,7 +36,7 @@ namespace Project.Controllers
             //
             var getCartItem = db.Cart_OrderDetail.Where(m => m.mbrID == mbrID)
                 .Where(m => m.spcID == spcID)
-                .Where(m=>m.odrID == null);
+                .Where(m => m.odrID == null);
             int inCartCount = getCartItem.Count();
             if (inCartCount > 0)
             {
@@ -57,7 +57,7 @@ namespace Project.Controllers
                 };
                 db.Cart_OrderDetail.Add(cod);
             }
-            
+
             try
             {
                 db.SaveChanges();
@@ -98,15 +98,19 @@ namespace Project.Controllers
                                         orderby p.Specification.Product.selID
                                         select p).ToList();
             List<string> sellerIDList = m.Select(s => s.Specification.Product.selID).Distinct().ToList();
-
+            if (ModelState.IsValid != true)
+            {
+                return View("myCart");
+            }
             using (var transaction = db.Database.BeginTransaction())
             {
 
-                //寫入訂單資料表
-                order.traceNumber = "";//物流單號 為not NULL 欄位 在此隨便填
-                order.pmtID = "pmt0000001";//付款方式
-                order.odrStatusID = "ods0000001";//訂單狀態
-                order.odrDate = DateTime.Now;//訂單成立時間
+                //初始化訂單
+                order.traceNumber = "";                //物流單號 為not NULL 欄位 在此隨便填
+                order.pmtID = "pmt0000001";            //付款方式
+                order.odrStatusID = "ods0000001";      //訂單狀態
+                order.odrDate = DateTime.Now;          //訂單成立時間
+                
                 foreach (var sellerID in sellerIDList)
                 {
                     order.selID = sellerID;
@@ -125,7 +129,6 @@ namespace Project.Controllers
                     }
                 }
                 //寫入COD資料
-                decimal? totalPrice = 0;
                 string orderID = "";
                 for (int i = 0; i < cartID.Length; i++) //依據傳入的cartID[]條件 加入cart
                 {
@@ -138,62 +141,47 @@ namespace Project.Controllers
                         string SelID = currentCart.Specification.Product.selID;
                         currentCart.odrID = db.Order.Where(od => od.selID == SelID).ToList().LastOrDefault().odrID;
                         currentCart.shpID = db.Shipper.Where(t => t.shpMethod == selectedShipMethod).FirstOrDefault().shpID;
-
+                        currentCart.pdtPrice = currentCart.Specification.Price;   //取得商品時價
+                        currentCart.Discount = currentCart.Specification.Discount;//取得商品當時打折
                     }
 
                 }
 
                 try
                 {
-                    order.totalPrice = totalPrice;
+                    
                     db.SaveChanges();
-                    transaction.Commit();
-                    return View("myCart", m);
+                    
                 }
                 catch (DbUpdateException e)
                 {
                     transaction.Rollback();
                     return JavaScript($"alert({e.Entries})");
                 }
-            }
-            ///////////////////
-            //try
-            //{
-            //var cod = db.Cart_OrderDetail;
-            //string memberID = Session["memberID"] as string;
-            //List<Cart_OrderDetail> m = (from p in cod
-            //                            where p.mbrID == memberID
-            //                            where p.odrID == null
-            //                            orderby p.Specification.Product.selID
-            //                            select p).ToList();
-            //string availableOdrId = db.Database.SqlQuery<string>("Select dbo.GetOrderID()").FirstOrDefault();
-            //for (int i = 0; i < cartID.Length; i++)
-            //{
-            //    if (cartID[i] != "false")
-            //    {
-            //        string currentCartID = cartID[i];
-            //        string selectedShipMethod = shipSelect[i];
-            //        Cart_OrderDetail currentCart = m[i];
-            //        currentCart.odrID = availableOdrId;
-            //        currentCart.shpID = db.Shipper.Where(t => t.shpMethod == selectedShipMethod).FirstOrDefault().shpID;
-            //        //db.Entry(currentCart).State = EntityState.Modified;
-            //    }
-            //}
-            ////寫入訂單資料表
-            //order.odrID = availableOdrId;
-            //order.traceNumber = "332";//物流單號 為not NULL 欄位 在此隨便填
-            //order.pmtID = "pmt0000001";//付款方式
-            //order.odrStatusID = "ods0000001";//訂單狀態
-            //order.odrDate = DateTime.Now;//訂單成立時間
-            //db.Order.Add(order);
 
-            //db.SaveChanges();
-            //return View("myCart", m);
-            ////}
-            ////catch(Exception e)
-            ////{
-            ////    return Content(e.Message);
-            ////}
+
+                ///更新ORDER 運費 
+                var odr = db.Order.Where(o => o.shpPrice == null).ToList();
+                string shpID;
+                foreach(var oItem in odr)
+                {
+                    shpID = db.Cart_OrderDetail.Where(c => c.odrID == oItem.odrID).FirstOrDefault().shpID;
+                    oItem.shpPrice =  db.ShipperDetail.Where(p=>p.shpID== shpID).FirstOrDefault().defaultShipping;
+                }
+                try
+                {
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return RedirectToAction("MyCart");
+                }
+                catch (DbUpdateException e)
+                {
+                    transaction.Rollback();
+                    return JavaScript($"alert({e.Entries})");
+                }
+               
+            }
+            
         }
         public ActionResult Delete(string cartID, string mbrID)
         {
