@@ -283,13 +283,15 @@ namespace DeWay.Controllers
 
                 var reviewed = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
                 return PartialView(reviewed);
-
+                
             }
 
             else if (code == 2)
             {
+                ViewBag.odr = odr;
                 var odrreview = db.Order.Where(m => m.odrID == odr).ToList();
                 return PartialView(odrreview);
+                
             }
             return ViewBag.message;
 
@@ -348,7 +350,8 @@ namespace DeWay.Controllers
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
-            var odrdetail = db.Order.Where(o => o.odrID == odrID).ToList();
+            var odrdetail = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
+            
             return View(odrdetail);
 
         }

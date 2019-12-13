@@ -37,7 +37,7 @@ namespace DeWay.Models
         public string traceNumber { get; set; }
         public string cashFlowID { get; set; }
         public string selID { get; set; }
-        public Nullable<decimal> totalPrice { get; set; }
+        public Nullable<decimal> shpPrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }

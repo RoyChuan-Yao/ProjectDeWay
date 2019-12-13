@@ -71,38 +71,41 @@ else
                         <div class="card-header">
                             @Html.DisplayFor(modelItem => item.odrDate)
                             @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)
+                            @Html.ActionLink("詳細","odrDetail",new { odrID=item.odrID})
                         </div>
                         <div class="card-body">
                             <div class="col-6">
                                 <div>
                                     <span>狀態</span>　@Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
                                 </div>
-                               
+
                                 <div>
                                     <span>寄往</span>　@Html.DisplayFor(modelItem => item.recCity)
-</div>
-                                
+                                </div>
+
                                 <div>
                                     <span>付款方式</span>　@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
-</div>
-                                
+                                </div>
+
                                 <div>
-                                    <span>訂單總計</span>　@Html.DisplayFor(modelItem =>item.totalPrice)
-</div>
+                                    @*<span>訂單總計</span>　@Html.DisplayFor(modelItem => item.totalPrice)*@
+                                </div>
 
                             </div>
                             <div class="col-6">
                                 @if (item.odrNote != null)
                                 {
-                                    
+
                                     <div>
                                         <span>備註</span>　@Html.DisplayFor(modelItem => item.odrNote)
-</div>
+                                    </div>
                                 }
-                                
+
                                 <div>
                                     <span>購買項目</span>　<img src="~/images/@Html.Action("getImage", new { id = item.odrID})" style="width:100px" class="img-responsive img-rounded" />
-</div>
+                                
+                                
+                                </div>
                             </div>
 
                         </div>
@@ -120,7 +123,7 @@ else
 </div>
 
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -223,4 +226,4 @@ else
         </tr>
     }
 
-</table>
+</table>*@

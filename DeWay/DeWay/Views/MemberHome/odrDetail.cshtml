@@ -1,130 +1,255 @@
-﻿@model DeWay.Models.Order
+﻿@model IEnumerable<DeWay.Models.Cart_OrderDetail>
 
 @{
     ViewBag.Title = "odrDetail";
+    decimal? total = 0;
+    decimal? shipping = 0;
+    short Star = 0;
 }
 
-<h2>odrDetail</h2>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.recName)
-        </dt>
+<div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.recName)
-        </dd>
+    <div class="col-3">
+        <ul class="nav flex-column dropdown">
+            個人資訊
 
-        <dt>
-            @Html.DisplayNameFor(model => model.recCity)
-        </dt>
+            <li class="nav-item">@Html.ActionLink("修改個人基本資料", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
+            <li class="nav-item">@Html.ActionLink("變更密碼", "pwdEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black " })</li>
+            <li class="nav-item">@Html.ActionLink("會員聯絡資訊驗證", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
 
-        <dd>
-            @Html.DisplayFor(model => model.recCity)
-        </dd>
+        </ul>
+        <ul class="nav nav-pills flex-column">
+            訂單
+            <li class="nav-item"><a href="#">檢視訂單</a></li>
+            <li class="nav-item"><a href="#">申請退貨</a></li>
+        </ul>
+        <ul class="nav flex-column">
+            評價
+            <li class="nav-item">@Html.ActionLink("檢視評價", "rvwIndex", "MemberHome", new { }, new { @class = "nav-link text-black" })</li>
+        </ul>
+        <ul class="nav nav-pills flex-column">
+            問與答
+            <li class="nav-item">@Html.ActionLink("檢視問與答", "QAIndex", "MemberHome", new { code = 0 }, new { @class = "nav-link  text-black" })</li>
+        </ul>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.recDist)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.recDist)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.recAddress)
-        </dt>
+    <div class="col-6">
+        <div class="">
+            @Html.DisplayFor(model => model.FirstOrDefault().Specification.Product.Seller.selCompany)
+            @Html.DisplayFor(model => model.FirstOrDefault().Order.odrDate)
+            @*@Html.DisplayFor(model => model.FirstOrDefault().Cart_OrderDetail.FirstOrDefault().)*@
 
-        <dd>
-            @Html.DisplayFor(model => model.recAddress)
-        </dd>
+        </div>
+        <br />
+       
+            <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.recPhone)
-        </dt>
+                @Html.Action("_rvwIndex", new { code = 2, odr = Model.FirstOrDefault().odrID })
+            </div>
+       
+        
+        <br />
 
-        <dd>
-            @Html.DisplayFor(model => model.recPhone)
-        </dd>
+        <div class="card">
+            <div class="card-header">
+                <h3>訂單內容</h3>
+            </div>
+            <div class="card-body">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pmtDate)
-        </dt>
+                @foreach (var item in Model)
+                {
+                    var subtotal = item.pdtPrice * item.Discount / 10 * item.Quantity;
 
-        <dd>
-            @Html.DisplayFor(model => model.pmtDate)
-        </dd>
+                    total += subtotal;
+                    shipping = item.Order.shpPrice;
+                    <div class="row">
+                        <div class="col-6">
+                            @Html.DisplayFor(modelItem => item.Specification.Style)
+                            @Html.DisplayFor(modelItem => item.Specification.Size)
+                        </div>
+                        <div class="col-3">
+                            ×@Html.DisplayFor(modelItem => item.Quantity)
+                        </div>
+                        <div class="col3">
+                            NT$ @subtotal
+                        </div>
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.odrDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.odrDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.shpDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.shpDate)
-        </dd>
+                }
+                <hr />
+                @{
+                    total = (total + shipping);
+                }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.odrNote)
-        </dt>
+                <div>
+                    <p class="text-right">運費： @shipping </p>
+                    <p class="text-right">總計： @total</p>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="card">
+            <div class="card-header">
+                <h3>收件人資訊</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <p class="col-4 text-right">收件人</p>
+                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recName)</p>
+                </div>
+                <div class="row">
+                    <p class="col-4 text-right">地址</p>
+                    <p class="col-8">
+                        @Html.DisplayFor(model => model.FirstOrDefault().Order.recCity)
+                        @Html.DisplayFor(model => model.FirstOrDefault().Order.recDist)
+                        @Html.DisplayFor(model => model.FirstOrDefault().Order.recAddress)
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="col-4 text-right">電話</p>
+                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recPhone)</p>
+                </div>
+                <div class="row">
+                    <p class="col-4 text-right">運送方式</p>
+                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Shipper.shpMethod)</p>
+                </div>
+                <div class="row">
+                    <p class="col-4 text-right">付款方式</p>
+                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.PaymentMethod.pmtMethod)</p>
+                </div>
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.odrNote)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.traceNumber)
-        </dt>
+    </div>
+    <div class="col-3">
 
-        <dd>
-            @Html.DisplayFor(model => model.traceNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cashFlowID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cashFlowID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OrderStatus.odrStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PaymentMethod.pmtMethod)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Seller.selCompany)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Seller.selCompany)
-        </dd>
-
-    </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.odrID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@section Script
+{
+    <script src="~/Scripts/stars.js"></script>
+
+
+
+    <script>
+        function getStar(starCount) {
+            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+            var result = "";
+            for (var i = 0; i < starCount; i++) {
+                starsArray.unshift("★");
+            }
+            for (var i = 0; i < 5; i++) {
+                result += starsArray[i];
+            }
+            var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
+
+            return result
+        }
+
+        $(`.star`).each((index, element) => {
+            $(element).html(
+                getStar($(element).attr("Stars"))
+            )
+        })
+
+        $(`.Button`).on("click", function () {
+
+            let odrid = $(this).next().val();
+
+            $(`input.odrID`).attr("value", odrid);
+            $(`.givestars`).stars();
+
+        });
+
+        $(`.Submit`).on("click", function () {
+
+            let starcount = $(`.givestars>i.selected`).length;
+            $(`input.rvwStar`).attr("value", starcount);
+        })
+    </script>
+
+
+}
+
+
+@*@{
+        ViewBag.Title = "odrDetail";
+    }
+
+    <h2>odrDetail</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usedPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pdtPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member.mbrName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shipper.shpMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specification.Style)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.pmtID)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usedPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pdtPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.mbrName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shipper.shpMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specification.Style)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.pmtID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.cartID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.cartID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.cartID })
+            </td>
+        </tr>
+    }
+
+    </table>*@

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actBulletin">
           <Key>
             <PropertyRef Name="actID" />
@@ -46,6 +46,7 @@
           <Property Name="Discount" Type="int" />
           <Property Name="usedPoints" Type="int" Nullable="false" />
           <Property Name="shpID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="pdtPrice" Type="money" />
         </EntityType>
         <EntityType Name="FavoSeller">
           <Key>
@@ -134,7 +135,7 @@
           <Property Name="traceNumber" Type="char" MaxLength="20" />
           <Property Name="cashFlowID" Type="char" MaxLength="25" />
           <Property Name="selID" Type="char" MaxLength="10" />
-          <Property Name="totalPrice" Type="money" />
+          <Property Name="shpPrice" Type="money" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -311,6 +312,7 @@
           <Property Name="Stock" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Price" Type="money" />
           <Property Name="pdtID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Discount" Type="smallint" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -815,6 +817,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetActID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetCartID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetMemberID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetNtfID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetpImgID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetProductID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetptdCtgID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetQAID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetReviewID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetSellerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetSpecificationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
+        <Function Name="GetTagID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <EntityContainer Name="shopDBModelStoreContainer">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adm" EntityType="Self.Adm" Schema="dbo" store:Type="Tables" />
@@ -1010,7 +1025,8 @@
             <End Role="QA" EntitySet="QA" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1060,6 +1076,7 @@
           <Property Name="Discount" Type="Int32" />
           <Property Name="usedPoints" Type="Int32" Nullable="false" />
           <Property Name="shpID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pdtPrice" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Cart_Orde__mbrID__14270015" FromRole="Cart_OrderDetail" ToRole="Member" />
           <NavigationProperty Name="Shipper" Relationship="Self.FK__Cart_Orde__shpID__0C85DE4D" FromRole="Cart_OrderDetail" ToRole="Shipper" />
           <NavigationProperty Name="Specification" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Cart_OrderDetail" ToRole="Specification" />
@@ -1171,13 +1188,13 @@
           <Property Name="traceNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="cashFlowID" Type="String" MaxLength="25" FixedLength="true" Unicode="false" />
           <Property Name="selID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="shpPrice" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Order" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="OrderStatus" Relationship="Self.FK__Order__odrStatus__00200768" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Order__pmtID__7F2BE32F" FromRole="Order" ToRole="PaymentMethod" />
           <NavigationProperty Name="Refund" Relationship="Self.FK__Refund__odrID__6754599E" FromRole="Order" ToRole="Refund" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__odrID__68487DD7" FromRole="Order" ToRole="Review" />
           <NavigationProperty Name="Seller" Relationship="Self.FK_Order_Seller" FromRole="Order" ToRole="Seller" />
-          <Property Name="totalPrice" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -1394,6 +1411,7 @@
           <Property Name="Stock" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Discount" Type="Int16" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Specification" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Specifica__pdtID__75A278F5" FromRole="Specification" ToRole="Product" />
         </EntityType>
@@ -2148,6 +2166,7 @@
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="usedPoints" ColumnName="usedPoints" />
                 <ScalarProperty Name="shpID" ColumnName="shpID" />
+                <ScalarProperty Name="pdtPrice" ColumnName="pdtPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2229,7 +2248,6 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="shopDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
                 <ScalarProperty Name="odrID" ColumnName="odrID" />
                 <ScalarProperty Name="pmtID" ColumnName="pmtID" />
                 <ScalarProperty Name="odrStatusID" ColumnName="odrStatusID" />
@@ -2245,6 +2263,7 @@
                 <ScalarProperty Name="traceNumber" ColumnName="traceNumber" />
                 <ScalarProperty Name="cashFlowID" ColumnName="cashFlowID" />
                 <ScalarProperty Name="selID" ColumnName="selID" />
+                <ScalarProperty Name="shpPrice" ColumnName="shpPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2436,6 +2455,7 @@
                 <ScalarProperty Name="Stock" ColumnName="Stock" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
