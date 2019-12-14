@@ -5,120 +5,156 @@
 @{
     int i = 0;
     short[] star = new short[Model.Count()];
+    Layout = null;
+    short Star = 0;
 }
 
-
+<div id="test"></div>
 
 @foreach (var item in Model)
 {
 
     if (item.Review.Count() != 0)
     {
-        star[i] = item.Review.FirstOrDefault().rvwStar;
-        <input class="@i" type="hidden" value="@star[i]" />
-        <div class="card">
-            <div class="card-header">
-                <div class="star" id="@star[i]" stars="@star[i]" style=" font-size: 30px">
-
+        if (ViewBag.code==2)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h3>評價</h3>
                 </div>
-                @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)
+                <div>
+                    @{ Star = item.Review.FirstOrDefault().rvwStar;
+                    }
 
+                    <div class="star" id="@Star" Stars="@Star" style=" font-size: 30px">
 
-            </div>
-            <div class="card-body row">
-                <div class="col-5">
-                    <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
-                </div>
-                <div class="col-7">
-                    To:@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)<br />
+                    </div>
                     @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
                 </div>
+
+
             </div>
-
-
-        </div>
-        <br />
-        if (i < Model.Count() - 1)
+        }
+        else
         {
-            i++;
+            star[i] = item.Review.FirstOrDefault().rvwStar;
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="star" id="@star[i]" Stars="@star[i]" style=" font-size: 30px">
+
+                    </div>
+                    @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)
+
+
+                </div>
+                <div class="card-body row">
+                    <div class="col-5">
+                        <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+                    </div>
+                    <div class="col-7">
+                        To:@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)<br />
+                        @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
+                    </div>
+                </div>
+
+
+            </div>
+            <br />
+            if (i < Model.Count() - 1)
+            {
+                i++;
+            }
         }
     }
     else
     {
 
-        //var a = item.odrID;
+        if (ViewBag.code==2)
+        {
+            if (item.odrStatusID == "ods0000007")
+            {
+                <button class="Button" data-toggle="modal" data-target="#form1">新增評論</button>
 
-        <div class="card">
-            <div class="card-header">
+                <input id="odrID" type="hidden" value="@item.odrID" />
+            }
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-header">
+                    @{
+                        if (item.odrStatusID == "ods0000007")
+                        {
+                            <button class="Button" data-toggle="modal" data-target="#form1">新增評論</button>
+
+                            <input id="odrID" type="hidden" value="@item.odrID" />
+                        }
 
 
-                <input id="Button1" class="Button" type="button" value="button" data-toggle="modal" data-target="#form" />
-
-
-
-            </div>
-            <div class="card-body row">
-                <div class="col-5">
-                    <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+                    }
                 </div>
-                <div class="col-7">
-                    @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
-                    @Html.DisplayFor(modelItem => item.odrDate)
+                <div class="card-body row">
+                    <div class="col-5">
+                        <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
 
-
-                </div>
-                @using (Html.BeginForm("rvwCreate", "MemberHome", FormMethod.Post))
-                {
-                    <div class="modal fade" id="form">
-                        @Html.Action("rvwCreate", "MemberHome", new { odrID = item.odrID })
                     </div>
-                }
+                    <div class="col-7">
+                        @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<br />
+                        @Html.DisplayFor(modelItem => item.odrDate)
 
+
+                    </div>
+
+                </div>
             </div>
-
-
-        </div>
-
+            <br />
+        }
     }
 }
 
+@using (Html.BeginForm("rvwCreate", "MemberHome", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="form1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Review</h4>
+                    <button data-dismiss="modal" class="close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input class="odrID" type="hidden" name="odrID" />
+                    <div class="form-group">
+                        <p>評價內容</p>
+                        <div class="col-md-9">
+                            <input id="rvwContent" type="text" name="rvwContent" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>評價等級</p>
+                        <div class="col-md-9">
+                            <div class="givestars"></div>
+                            <input class="rvwStar" type="hidden" name="rvwStar" />
+                        </div>
+                    </div>
+                    <input id="Hidden1" type="hidden" name="code" value="@ViewBag.code" />
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Create" class="btn btn-default Submit" />
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/stars.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script>
+                </div>
 
-        //$('.star').each((i, e) =>
-        //{
-        //    $(e).html(stars({
-        //        stars: 5,
-        //        color: '#E4AD22',
-        //        value: 4,
-        //    }))
-        //})
+            </div>
 
-
-        function getStar(starCount) {
-            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
-            var result = "";
-            for (var i = 0; i < starCount; i++) {
-                starsArray.unshift("★");
-            }
-            for (var i = 0; i < 5; i++) {
-                result += starsArray[i];
-            }
-            var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
-
-            return result
-        }
-
-        $(`.star`).each((index, element) => {
-            $(element).html(
-                getStar($(element).attr("stars"))
-            )
-        })
-
-    </script>
+        </div>
 
 
+    </div>
+
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/stars.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

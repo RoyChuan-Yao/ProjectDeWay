@@ -16,15 +16,14 @@ namespace DeWay.Controllers
             if (Session["AdmID"] == null)
             { return RedirectToAction("Index", "AdmLogin"); }
             else
-            { 
-            var cd = db.Adm;
-            var m = from p in cd
-                    where p.admID == id                   
-                    select p;
-            Session["AdmID"] = id;
-            
-            return View(m);
-            }     
+            {
+                var cd = db.Adm;
+                var m = from p in cd
+                        where p.admID == id
+                        select p;
+                Session["AdmID"] = id;
+                return View(m);
+            }
         }
 
     }

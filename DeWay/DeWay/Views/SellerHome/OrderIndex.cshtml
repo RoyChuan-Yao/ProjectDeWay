@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DeWay.Models.Order>
+
+    @{
+    ViewBag.Title = "OrderIndex";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
+
+    }
+
+
+
+
+    <h2>OrderIndex</h2>
+    <div class="col-9">
+        <div>
+            <ul class="nav nav-tabs nav-fill mb-1">
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome")" class="nav-link active">全部</a></li>
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="未付款" })" class="nav-link">未付款</a></li>
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="處理中" })" class="nav-link">處理中</a></li>
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="運送中" })" class="nav-link">運送中</a></li>
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="待取貨" })" class="nav-link">待取貨</a></li>
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="已完成" })" class="nav-link">已完成</a></li>
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="糾紛中" })" class="nav-link">糾紛中</a></li>
+                <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="已取消" })" class="nav-link">已取消</a></li>
+            </ul>
+
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div class="row col-12">
+                    <span class="col-3">商品</span>
+                    <span class="col-2">買家應付金額</span>
+                    <span class="col-2">狀態</span>
+                    <span class="col-2">出貨時間</span>
+                    <span class="col-2">送貨方式</span>
+                    <span class="col-1">調整</span>
+                </div>
+            </div>
+            @if (Model.Count() == 0)
+            {<div>找不到訂單</div>}
+            else
+            {
+            foreach (var item in Model)
+            {
+        <div class="card-body">
+            <div class="row col-12">
+
+                <span class="col-3">@item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName</span>
+                <span class="col-2">100</span>
+                <span class="col-2">@item.OrderStatus.odrStatus</span>
+                <span class="col-2">@item.shpDate</span>
+                <span class="col-2">@item.Cart_OrderDetail.FirstOrDefault().Shipper.shpMethod</span>
+                <span class="col-1">商品</span>
+            </div>
+        </div>
+
+
+            }
+            }
+
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('.nav-link').each(function () {
+                if ($($(this))[0].href == String(window.location)) {
+                    $('.nav-link').removeClass("active");
+                    $(this).addClass('active');
+                }
+            });
+        });
+
+    </script>
