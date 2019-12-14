@@ -110,7 +110,7 @@ namespace Project.Controllers
                 order.pmtID = "pmt0000001";            //付款方式
                 order.odrStatusID = "ods0000001";      //訂單狀態
                 order.odrDate = DateTime.Now;          //訂單成立時間
-                
+
                 foreach (var sellerID in sellerIDList)
                 {
                     order.selID = sellerID;
@@ -143,15 +143,24 @@ namespace Project.Controllers
                         currentCart.shpID = db.Shipper.Where(t => t.shpMethod == selectedShipMethod).FirstOrDefault().shpID;
                         currentCart.pdtPrice = currentCart.Specification.Price;   //取得商品時價
                         currentCart.Discount = currentCart.Specification.Discount;//取得商品當時打折
-                    }
 
+
+                        if ((currentCart.Specification.Stock - currentCart.Quantity) >= 0)
+                        {
+                            currentCart.Specification.Stock -= currentCart.Quantity;
+                        }
+                        else
+                        {
+                            return JavaScript("alert('下單量大於庫存囉')");
+                        }
+                    }
                 }
 
                 try
                 {
-                    
+
                     db.SaveChanges();
-                    
+
                 }
                 catch (DbUpdateException e)
                 {
@@ -163,10 +172,10 @@ namespace Project.Controllers
                 ///更新ORDER 運費 
                 var odr = db.Order.Where(o => o.shpPrice == null).ToList();
                 string shpID;
-                foreach(var oItem in odr)
+                foreach (var oItem in odr)
                 {
                     shpID = db.Cart_OrderDetail.Where(c => c.odrID == oItem.odrID).FirstOrDefault().shpID;
-                    oItem.shpPrice =  db.ShipperDetail.Where(p=>p.shpID== shpID).FirstOrDefault().defaultShipping;
+                    oItem.shpPrice = db.ShipperDetail.Where(p => p.shpID == shpID).FirstOrDefault().defaultShipping;
                 }
                 try
                 {
@@ -179,9 +188,9 @@ namespace Project.Controllers
                     transaction.Rollback();
                     return JavaScript($"alert({e.Entries})");
                 }
-               
+
             }
-            
+
         }
         public ActionResult Delete(string cartID, string mbrID)
         {
