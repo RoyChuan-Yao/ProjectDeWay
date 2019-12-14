@@ -27,6 +27,7 @@ namespace DeWay.Controllers
                 return HttpNotFound();
                 //TODO： 製作404頁面
             }
+
             return View(product);
         } 
         public int GetProductStock(string specID)
