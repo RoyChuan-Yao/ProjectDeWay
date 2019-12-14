@@ -11,6 +11,7 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
 
+    @RenderSection("CSS", false)
 </head>
 
 <body class="body">
@@ -55,7 +56,7 @@
                             <a class="nav-link" href="#">主題活動<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="#">登入</a>
+                            <a class="nav-link" href="@Url.Action("Login","Login")">登入</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">註冊</a>
@@ -78,6 +79,7 @@
                         <li class="nav-item dropdown">
                             <span style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/Img-settings-11.png" style="width:50%" /></span>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink3">
+                                <a class="dropdown-item" href="@Url.Action("OrderIndex","SellerHome")">賣家中心</a>
                                 <a class="dropdown-item" href="#">商品上架</a>
                                 <a class="dropdown-item" href="#">賣場管理</a>
                                 <a class="dropdown-item" href="#">設定</a>
@@ -95,15 +97,72 @@
 
 
 
-   
+    @*<div class="navbar navbar-expand-lg  bg-dark navbar-dark">
+            <div class="container ">
+                @Html.ActionLink("DeWay", "Index", "Home", new { }, new { @class = "navbar-brand text-white" })
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white">Home</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link text-white" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link text-white" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("購物車", "mycart", "cart", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("賣場管理", "index", "ProductManage", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
+                        </li>
+                        <li>
+                            @Html.ActionLink("會員首頁", "mbrIndex", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-white" })
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>*@
     <div class="content">
-        <div class="@*container*@ @*body-content*@ content-inside">
+        <div class="@*container*@ body-content content-inside">
+            <div class="row">
+                <div class="col-2 ml-5">
+                    <ul class="nav nav-pills flex-column">
+                        訂單管理
+                        <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome")" class="nav-link">銷售訂單</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">訂單出貨</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">退貨/退款</a></li>
+                    </ul>
+                    <ul class="nav flex-column">
+                        商品管理
+                        <li class="nav-item"><a href="#" class="nav-link">我的商品</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Create","product_create")" class="nav-link">新增商品</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">檢視問答</a></li>
+                    </ul>
+                    <ul class="nav  flex-column">
+                        賣場管理
+                        <li class="nav-item"><a href="#" class="nav-link">賣場設定</a></li>
+                    </ul>
 
-            @RenderBody()
 
+                </div>
+                <div class="col-9">
+
+                    @RenderBody()
+                </div>
+
+            </div>
 
         </div>
     </div>
+
     <footer class="footer-1 bg-light text-center">
 
         <div class="jumbotron bg-light">
@@ -114,11 +173,12 @@
     @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>*@
+
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("cartScript", false)
-    @RenderSection("myScript", false)
 
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @RenderSection("Script", false)
 
 </body>
 </html>

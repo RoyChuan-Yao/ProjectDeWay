@@ -56,7 +56,7 @@
                             <a class="nav-link" href="#">主題活動<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="@Url.Action("Login","Login")">登入</a>
+                            <a class="nav-link" href="#">登入</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">註冊</a>
@@ -79,7 +79,6 @@
                         <li class="nav-item dropdown">
                             <span style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/Img-settings-11.png" style="width:50%" /></span>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink3">
-                                <a class="dropdown-item" href="@Url.Action("OrderIndex","SellerHome")">賣家中心</a>
                                 <a class="dropdown-item" href="#">商品上架</a>
                                 <a class="dropdown-item" href="#">賣場管理</a>
                                 <a class="dropdown-item" href="#">設定</a>
@@ -131,13 +130,41 @@
             </div>
         </div>*@
     <div class="content">
+
         <div class="@*container*@ @*body-content*@ content-inside">
+            <div class="row">
 
-            @RenderBody()
+                <div class="col-3 ml-5">
+                    <ul class="nav flex-column dropdown">
+                        個人資訊
+
+                        <li class="nav-item">@Html.ActionLink("修改個人基本資料", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
+                        <li class="nav-item">@Html.ActionLink("變更密碼", "pwdEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black " })</li>
+                        <li class="nav-item">@Html.ActionLink("會員聯絡資訊驗證", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
+
+                    </ul>
+                    <ul class="nav nav-pills flex-column">
+                        訂單
+                        <li class="nav-item"><a href="#">檢視訂單</a></li>
+                        <li class="nav-item"><a href="#">申請退貨</a></li>
+                    </ul>
+                    <ul class="nav flex-column">
+                        評價
+                        <li class="nav-item">@Html.ActionLink("檢視評價", "rvwIndex", "MemberHome", new { }, new { @class = "nav-link text-black" })</li>
+                    </ul>
+                    <ul class="nav nav-pills flex-column">
+                        問與答
+                        <li class="nav-item">@Html.ActionLink("檢視問與答", "QAIndex", "MemberHome", new { code = 0 }, new { @class = "nav-link  text-black" })</li>
+                    </ul>
 
 
+                </div>
+                <div class="col-8">
+                    @RenderBody()
+                </div>
+                </div>
+            </div>
         </div>
-    </div>
     <footer class="footer-1 bg-light text-center">
 
         <div class="jumbotron bg-light">

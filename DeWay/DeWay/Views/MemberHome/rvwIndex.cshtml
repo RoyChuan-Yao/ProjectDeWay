@@ -1,58 +1,79 @@
 ﻿
 @{
     ViewBag.Title = "rvwIndex";
+    Layout = "~/Views/Shared/_Layout_Member.cshtml";
 }
 
 <h2>rvwIndex</h2>
-<div class="row">
-    <div class="col-3">
-        <ul class="nav flex-column dropdown">
-            個人資訊
-        
-                <li class="nav-item">@Html.ActionLink("修改個人基本資料", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
-                <li class="nav-item">@Html.ActionLink("變更密碼", "pwdEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black " })</li>
-                <li class="nav-item">@Html.ActionLink("會員聯絡資訊驗證", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
-          
-        </ul>
-        <ul class="nav nav-pills flex-column">
-            訂單
-            <li class="nav-item"><a href="#">檢視訂單</a></li>
-            <li class="nav-item"><a href="#">申請退貨</a></li>
-        </ul>
-        <ul class="nav flex-column">
-            評價
-            <li class="nav-item">@Html.ActionLink("檢視評價", "rvwIndex", "MemberHome", new { }, new { @class = "nav-link text-black" })</li>
-        </ul>
-        <ul class="nav nav-pills flex-column">
-            問與答
-            <li class="nav-item">@Html.ActionLink("檢視問與答", "QAIndex", "MemberHome", new { code = 0 }, new { @class = "nav-link  text-black" })</li>
-        </ul>
 
 
-    </div>
 
-    <div class="col-9">
         <div>
             <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item "><a href="#item1" class="nav-link active" data-toggle="tab">尚未給的評價</a></li>
                 <li class="nav-item"><a href="#item2" class="nav-link" data-toggle="tab">已給的評價</a></li>
-                
-            </ul>
-           
-        </div>
-        
-            <div class="tab-content mt-2">
-                <div class="tab-pane fade show active" id="item1">
-                    @Html.Action("_rvwIndex", new { code = 0 })
-                </div>
-                <div class="tab-pane fade " id="item2">
-                    @Html.Action("_rvwIndex", new { code = 1 })
-                    
-                </div>
-              
-            </div>
-          
-       
-    </div>
 
-</div>
+            </ul>
+
+        </div>
+
+        <div class="tab-content mt-2">
+            <div class="tab-pane fade show active" id="item1">
+                @Html.Action("_rvwIndex", new { code = 0 })
+            </div>
+            <div class="tab-pane fade " id="item2">
+                @Html.Action("_rvwIndex", new { code = 1 })
+
+
+            </div>
+
+        </div>
+
+
+
+
+@section Script
+{
+    <script src="~/Scripts/stars.js"></script>
+
+
+
+    <script>
+        function getStar(starCount) {
+            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+            var result = "";
+            for (var i = 0; i < starCount; i++) {
+                starsArray.unshift("★");
+            }
+            for (var i = 0; i < 5; i++) {
+                result += starsArray[i];
+            }
+            var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
+
+            return result
+        }
+
+        $(`.star`).each((index, element) => {
+            $(element).html(
+                getStar($(element).attr("Stars"))
+            )
+        })
+
+        $(`.Button`).on("click", function () {
+
+            let odrid = $(this).next().val();
+
+            $(`input.odrID`).attr("value", odrid);
+            $(`.givestars`).stars();
+
+        });
+
+        $(`.Submit`).on("click", function () {
+
+            let starcount = $(`.givestars>i.selected`).length;
+            $(`input.rvwStar`).attr("value", starcount);
+        })
+    </script>
+
+
+}
