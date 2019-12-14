@@ -14,22 +14,19 @@ namespace DeWay.Controllers
     {
         private shopDBEntities db = new shopDBEntities();
 
-        
-        public ActionResult Index(string wishID)
+
+        public ActionResult Index()
         {
-            var cod = db.WishList.Where(a => a.mbrID == wishID).ToList();
+            string mbrID = (string)Session["memberID"];
+            if (mbrID == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            var wishes = db.WishList.Where(m => m.mbrID == mbrID).ToList();
 
 
-            //var cod = db.WishList;
-            var m = from p in cod
-                    where p.mbrID==wishID
-                    select p;
-            Session["member"] = wishID;
-            return View(m);
-            
-            //var wishList = db.WishList.Include(w => w.Member).Include(w => w.Product);
-            //return View(wishList.ToList());
-           
+            return View(wishes);
+
         }
 
         // GET: WishLists/Details/5
@@ -126,10 +123,10 @@ namespace DeWay.Controllers
 
         // POST: WishLists/Delete/5
         [HttpPost, ActionName("Delete")]
-      
+
         public ActionResult DeleteConfirmed(string id)
         {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
             WishList wishList = db.WishList.Find(id);
             db.WishList.Remove(wishList);
             db.SaveChanges();

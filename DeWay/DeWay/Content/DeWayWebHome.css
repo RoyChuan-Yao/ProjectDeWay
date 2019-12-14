@@ -23,6 +23,9 @@
         }
 
 
+
+
+
 /*@media (min-width: 1000px) {
     .carousel-control-next {
         margin-right: 10%;
@@ -260,9 +263,9 @@
         font-size: 12px;
     }
 
-input:last-child {
+/*input:last-child {
     border-bottom: 0;
-}
+}*/
 
 .form-holder::-webkit-input-placeholder {
     color: rgba(0,0,0,0.4);
@@ -445,4 +448,18 @@ input:last-child {
 .De-mtmb-15 {
     margin-top: 250px;
     margin-bottom: 250px;
+}
+
+
+
+
+/*訂單詳細資料*/
+.orderDA {
+    position: absolute;
+    left: 200px;
+}
+
+.orderDB {
+    position: absolute;
+    right:0px;
 }

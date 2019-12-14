@@ -4,75 +4,102 @@
     ViewBag.Title = "Index";
 }
 
-<h2>活動通知紀錄管理</h2>
-
-    @Html.ActionLink("回到列表", "Index", null, new { @class = "btn btn-primary mr-3 mb-3" })
 
 
 
 
-    @Html.ActionLink("Create New", "Create")
 
-    @using (Html.BeginForm())
-    {
-    <p>
-        內容: @Html.TextBox("searchtitle")
-        <input type="submit" value="查詢" />
-    </p>
-    }
+
+
+    <div class="col-10 offset-1" style="margin-top:200px;">
+
+
+
+        <h2>活動通知紀錄管理</h2>
+
+
+        @using (Html.BeginForm())
+        {
+            <div class="">
+                <p style="width:100%;">
+                    內容: @Html.TextBox("searchtitle", null, new { @class = "form-control d-inline " })
+                    <input type="submit" value="查詢" class="btn btn-outline-dark mb-2" />
+                </p>
+                
+            </div>
+
+        }
+
+
+
+        @Html.ActionLink("新增活動通知", "Create")
+
+        <br />
+        <table class="table mt-5">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ntfContent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ntfTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ntfTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Member.mbrName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ntfCategory.ntfType)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.ntfContent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ntfTitle)
+                    </td>
+                    <td>
+
+                        @item.ntfTime.ToShortDateString()
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Member.mbrName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ntfCategory.ntfType)
+                    </td>
+                    <td>
+                        @Html.ActionLink("編輯", "Edit", new { id = item.ntfID })    /
+                        @Html.ActionLink("詳細資料", "Details", new { id = item.ntfID })
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        @Html.ActionLink("回到列表", "Index", null, new { @class = "btn btn-primary mr-3 mb-3" })
+    </div>
+
+
+    
 
 
 
 
     
-    <table class="table">
-        <tr>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.ntfContent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ntfTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ntfTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member.mbrName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ntfCategory.ntfType)
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    
-                    @Html.DisplayFor(modelItem => item.ntfContent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ntfTitle)
-                </td>
-                <td>
 
-                    @item.ntfTime.ToShortDateString()
-                    
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Member.mbrName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ntfCategory.ntfType)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ntfID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ntfID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ntfID })
-                </td>
-            </tr>
-        }
 
-    </table>
+
+    
+    
