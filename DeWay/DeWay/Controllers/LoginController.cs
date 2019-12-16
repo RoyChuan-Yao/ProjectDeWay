@@ -27,7 +27,6 @@ namespace DeWay.Controllers
             cmd.Parameters.AddWithValue("@mbrAccount", id);
             cmd.Parameters.AddWithValue("@mbrPwd", pwd);
             SqlDataReader rd;
-
             Conn.Open();
             rd = cmd.ExecuteReader();
             if (rd.Read())
@@ -69,7 +68,7 @@ namespace DeWay.Controllers
             cc.mbrID = GetMemberID;
             cc.mbrAccount = act;
             cc.mbrPwd = pwd;
-            mbr.nickName = act;
+            mbr.nickName = mbr.mbrName;
             mbr.Points = 0;
             mbr.mbrAut = false;
             mbr.signupDate = DateTime.Now;
@@ -88,8 +87,7 @@ namespace DeWay.Controllers
 
                 return RedirectToAction("Registercheck", "Login");
             }
-
-            return View(mbr);
+            return View("Login");
         }
 
         public ActionResult Registercheck()

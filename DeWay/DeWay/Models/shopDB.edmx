@@ -43,7 +43,7 @@
           <Property Name="spcID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="odrID" Type="char" MaxLength="10" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Discount" Type="int" />
+          <Property Name="Discount" Type="float" />
           <Property Name="usedPoints" Type="int" Nullable="false" />
           <Property Name="shpID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="pdtPrice" Type="money" />
@@ -309,10 +309,10 @@
           <Property Name="spcID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Style" Type="nvarchar" MaxLength="20" />
           <Property Name="Size" Type="nvarchar" MaxLength="20" />
-          <Property Name="Stock" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
           <Property Name="Price" Type="money" />
           <Property Name="pdtID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="Discount" Type="smallint" />
+          <Property Name="Discount" Type="float" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -817,19 +817,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="GetActID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetCartID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetMemberID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetNtfID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetOrderID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetpImgID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetProductID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetptdCtgID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetQAID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetReviewID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetSellerID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetSpecificationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
-        <Function Name="GetTagID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char" />
         <EntityContainer Name="shopDBModelStoreContainer">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adm" EntityType="Self.Adm" Schema="dbo" store:Type="Tables" />
@@ -1073,7 +1060,7 @@
           <Property Name="spcID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="odrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Discount" Type="Int32" />
+          <Property Name="Discount" Type="Double" />
           <Property Name="usedPoints" Type="Int32" Nullable="false" />
           <Property Name="shpID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="pdtPrice" Type="Decimal" Precision="19" Scale="4" />
@@ -1408,10 +1395,10 @@
           <Property Name="spcID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Style" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Stock" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Discount" Type="Int16" />
+          <Property Name="Discount" Type="Double" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Specification" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Specifica__pdtID__75A278F5" FromRole="Specification" ToRole="Product" />
         </EntityType>
