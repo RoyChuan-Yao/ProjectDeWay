@@ -81,7 +81,7 @@ namespace Project.Controllers
         
 
         [HttpPost]
-        public ActionResult receiveOrder(string[] cartID, string[] shipSelect, Order order) //提交訂單
+        public ActionResult receiveOrder(string[] cartID, string[] shipSelect,string[] quantity, Order order) //提交訂單
         {
             var cod = db.Cart_OrderDetail;
             string memberID = Session["memberID"] as string;

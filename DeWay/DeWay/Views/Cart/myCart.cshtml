@@ -202,8 +202,8 @@
             var cartResult = "";
             for (i = 0; i <= checkStatus.length ; i++) {//取得被點選的商品編號
                 cartResult += `<input type="" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
-                console.log($('#shipSelect_' + i + ' option:selected'));
                 cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
+                cartResult += `<input type="" name="quantity[${i}]" value="${$('#count_'+i).val()}">`;
             }
             var reciverFormResult = "";//取得收寄人資料做成表單內容
             $(`div[class="modal-content"] input`).each((index, e) => {
