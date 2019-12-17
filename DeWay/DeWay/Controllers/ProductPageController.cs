@@ -35,6 +35,7 @@ namespace DeWay.Controllers
             int stockResult = db.Specification
                 .Where(m => m.spcID == specID)
                 .FirstOrDefault().Stock;
+            stockResult = stockResult >= 20 ? 20 : stockResult; //庫存超過20 則返回20
             return stockResult;
         }
 

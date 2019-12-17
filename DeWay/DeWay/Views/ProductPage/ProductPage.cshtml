@@ -115,6 +115,7 @@
 </div>
 @section Script{
     <script>
+        //QA發送
         $(`#qaSubmitBtn`).on("click", function () {
             $.ajax({  //利用AJAX發送表單，成功後更新QAsection
                 url: "@Url.Action("CreateQA","QAs")",
@@ -135,6 +136,7 @@
         });
     </script>
     <script>
+        //取得庫存
         $(`.spec`).click(function () {
             $(`.spec[state="selected"]`).attr("state", "").toggleClass(`btn-outline-primary btn-primary`);
             $(this).attr("state", "selected").toggleClass(`btn-outline-primary btn-primary`);
@@ -146,14 +148,14 @@
                         quantity += `<option value="${i}">${i}</option>`;
                     }
                     $(`#quantity`).html(
-                    quantity
+                        quantity
                     );
                 });
             //更新產品價格標籤
             $(`#price`).text("NT$ " + $(this).find(`.priceTag`).text());
             //購物車按鈕-->"加入購物車"
             $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`);
-        })
+        });
         $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`) });
         //購物車按鈕按下
         $(`#addToCartBtn`).click(function ()
