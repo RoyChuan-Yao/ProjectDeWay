@@ -9,98 +9,103 @@
 
 
 
-   
-        <div class="">
-            @Html.DisplayFor(model => model.FirstOrDefault().Specification.Product.Seller.selCompany)
-            @Html.DisplayFor(model => model.FirstOrDefault().Order.odrDate)
-            @*@Html.DisplayFor(model => model.FirstOrDefault().Cart_OrderDetail.FirstOrDefault().)*@
 
-        </div>
+<div class="">
+    @Html.DisplayFor(model => model.FirstOrDefault().Specification.Product.Seller.selCompany)
+    @Html.DisplayFor(model => model.FirstOrDefault().Order.odrDate)
+    @*@Html.DisplayFor(model => model.FirstOrDefault().Cart_OrderDetail.FirstOrDefault().)*@
+
+</div>
+<div>
+    @Html.DisplayFor(model => model.FirstOrDefault().Order.OrderStatus.odrStatus)
+</div>
+<br />
+<br />
+@{ 
+    if (Model.FirstOrDefault().Order.odrStatusID == "ods0000006") { 
+    @Html.ActionLink("我要退貨", "rfdCreate", new { odrID = Model.FirstOrDefault().odrID })
+        }
+}
+<div>
+
+    @Html.Action("_rvwIndex", new { code = 2, odr = Model.FirstOrDefault().odrID })
+</div>
+
+
+<br />
+
+<div class="card">
+    <div class="card-header">
+        <h3>訂單內容</h3>
+    </div>
+    <div class="card-body">
+
+        @foreach (var item in Model)
+        {
+            var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
+
+            total += subtotal;
+            shipping = item.Order.shpPrice;
+            <div class="row">
+                <div class="col-6">
+                    @Html.DisplayFor(modelItem => item.Specification.Style)
+                    @Html.DisplayFor(modelItem => item.Specification.Size)
+                </div>
+                <div class="col-3">
+                    ×@Html.DisplayFor(modelItem => item.Quantity)
+                </div>
+                <div class="col3">
+                    NT$ @subtotal
+                </div>
+            </div>
+
+
+
+
+        }
+        <hr />
+        @{
+            total = (total + shipping);
+        }
+
         <div>
-            @Html.DisplayFor(model => model.FirstOrDefault().Order.OrderStatus.odrStatus)
+            <p class="text-right">運費： @shipping </p>
+            <p class="text-right">總計： @total</p>
         </div>
-        <br />
-       
-            <div>
-
-                @Html.Action("_rvwIndex", new { code = 2, odr = Model.FirstOrDefault().odrID })
-            </div>
-       
-        
-        <br />
-
-        <div class="card">
-            <div class="card-header">
-                <h3>訂單內容</h3>
-            </div>
-            <div class="card-body">
-
-                @foreach (var item in Model)
-                {
-                    var subtotal = item.pdtPrice * (int)item.Discount/ 10 * item.Quantity;
-
-                    total += subtotal;
-                    shipping = item.Order.shpPrice;
-                    <div class="row">
-                        <div class="col-6">
-                            @Html.DisplayFor(modelItem => item.Specification.Style)
-                            @Html.DisplayFor(modelItem => item.Specification.Size)
-                        </div>
-                        <div class="col-3">
-                            ×@Html.DisplayFor(modelItem => item.Quantity)
-                        </div>
-                        <div class="col3">
-                            NT$ @subtotal
-                        </div>
-                    </div>
-
-
-
-
-                }
-                <hr />
-                @{
-                    total = (total + shipping);
-                }
-
-                <div>
-                    <p class="text-right">運費： @shipping </p>
-                    <p class="text-right">總計： @total</p>
-                </div>
-            </div>
+    </div>
+</div>
+<br />
+<div class="card">
+    <div class="card-header">
+        <h3>收件人資訊</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <p class="col-4 text-right">收件人</p>
+            <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recName)</p>
         </div>
-        <br />
-        <div class="card">
-            <div class="card-header">
-                <h3>收件人資訊</h3>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <p class="col-4 text-right">收件人</p>
-                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recName)</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 text-right">地址</p>
-                    <p class="col-8">
-                        @Html.DisplayFor(model => model.FirstOrDefault().Order.recCity)
-                        @Html.DisplayFor(model => model.FirstOrDefault().Order.recDist)
-                        @Html.DisplayFor(model => model.FirstOrDefault().Order.recAddress)
-                    </p>
-                </div>
-                <div class="row">
-                    <p class="col-4 text-right">電話</p>
-                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recPhone)</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 text-right">運送方式</p>
-                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Shipper.shpMethod)</p>
-                </div>
-                <div class="row">
-                    <p class="col-4 text-right">付款方式</p>
-                    <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.PaymentMethod.pmtMethod)</p>
-                </div>
-            </div>
+        <div class="row">
+            <p class="col-4 text-right">地址</p>
+            <p class="col-8">
+                @Html.DisplayFor(model => model.FirstOrDefault().Order.recCity)
+                @Html.DisplayFor(model => model.FirstOrDefault().Order.recDist)
+                @Html.DisplayFor(model => model.FirstOrDefault().Order.recAddress)
+            </p>
         </div>
+        <div class="row">
+            <p class="col-4 text-right">電話</p>
+            <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recPhone)</p>
+        </div>
+        <div class="row">
+            <p class="col-4 text-right">運送方式</p>
+            <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Shipper.shpMethod)</p>
+        </div>
+        <div class="row">
+            <p class="col-4 text-right">付款方式</p>
+            <p class="col-8"> @Html.DisplayFor(model => model.FirstOrDefault().Order.PaymentMethod.pmtMethod)</p>
+        </div>
+    </div>
+</div>
 
 
 
@@ -112,7 +117,7 @@
 
 
     <script>
-          $(`.givestars`).stars();
+        $(`.givestars`).stars();
         function getStar(starCount) {
             var starsArray = ["☆", "☆", "☆", "☆", "☆"];
             var result = "";
@@ -138,7 +143,7 @@
             let odrid = $(this).next().val();
 
             $(`input.odrID`).attr("value", odrid);
-          
+
 
         });
 

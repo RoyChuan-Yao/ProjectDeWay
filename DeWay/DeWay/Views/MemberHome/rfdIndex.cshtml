@@ -1,0 +1,79 @@
+﻿@model IEnumerable<DeWay.Models.Refund>
+
+@{
+    ViewBag.Title = "rfdIndex";
+    var result = "";
+
+}
+
+<h2>rfdIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
+        </th>
+              
+        <th>
+            @Html.DisplayNameFor(model => model.rfdReason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rfdProduct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rfdShipping)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rfdDate)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.RefundStatus.rfdStatus)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.rfdReason)
+        </td>
+        <td>
+            @{ 
+                result = item.rfdProduct == true ? "需退回商品" : "不需退回商品";
+            }
+            @result
+        </td>
+        <td>
+            @{
+                result = item.rfdShipping == true ? "賣家需負擔退回商品的運費" : "賣家不需負擔退回商品的運費";
+            }
+            @result
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rfdDate)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.RefundStatus.rfdStatus)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.rfdID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.rfdID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.rfdID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actBulletin">
           <Key>
             <PropertyRef Name="actID" />
@@ -199,8 +199,7 @@
           </Key>
           <Property Name="rfdID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="odrID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="pdtID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="rfdQuantity" Type="int" Nullable="false" />
+          <Property Name="rfdShip" Type="money" />
           <Property Name="rfdReason" Type="nvarchar" MaxLength="120" />
           <Property Name="rfdProduct" Type="bit" Nullable="false" />
           <Property Name="rfdShipping" Type="bit" Nullable="false" />
@@ -1012,8 +1011,7 @@
             <End Role="QA" EntitySet="QA" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1179,9 +1177,9 @@
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Order" ToRole="Cart_OrderDetail" />
           <NavigationProperty Name="OrderStatus" Relationship="Self.FK__Order__odrStatus__00200768" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__Order__pmtID__7F2BE32F" FromRole="Order" ToRole="PaymentMethod" />
-          <NavigationProperty Name="Refund" Relationship="Self.FK__Refund__odrID__6754599E" FromRole="Order" ToRole="Refund" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__odrID__68487DD7" FromRole="Order" ToRole="Review" />
           <NavigationProperty Name="Seller" Relationship="Self.FK_Order_Seller" FromRole="Order" ToRole="Seller" />
+          <NavigationProperty Name="Refund" Relationship="shopDBModel.FK__Refund__odrID__6754599E" FromRole="Order" ToRole="Refund" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -1257,23 +1255,6 @@
           <NavigationProperty Name="Member" Relationship="Self.FK_QA_member" FromRole="QA" ToRole="Member" />
           <NavigationProperty Name="Product" Relationship="Self.FK__QA__pdtID__778AC167" FromRole="QA" ToRole="Product" />
         </EntityType>
-        <EntityType Name="Refund">
-          <Key>
-            <PropertyRef Name="rfdID" />
-          </Key>
-          <Property Name="rfdID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="odrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="rfdQuantity" Type="Int32" Nullable="false" />
-          <Property Name="rfdReason" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
-          <Property Name="rfdProduct" Type="Boolean" Nullable="false" />
-          <Property Name="rfdShipping" Type="Boolean" Nullable="false" />
-          <Property Name="rfdDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="rfdStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="Self.FK__Refund__odrID__6754599E" FromRole="Refund" ToRole="Order" />
-          <NavigationProperty Name="RefundStatus" Relationship="Self.FK__Refund__rfdStatu__7E37BEF6" FromRole="Refund" ToRole="RefundStatus" />
-          <NavigationProperty Name="RefundAccount" Relationship="Self.FK__RefundAcc__rfdID__72C60C4A" FromRole="Refund" ToRole="RefundAccount" />
-        </EntityType>
         <EntityType Name="RefundAccount">
           <Key>
             <PropertyRef Name="rfdID" />
@@ -1282,7 +1263,7 @@
           <Property Name="bankName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="bankCode" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="rfdID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Refund" Relationship="Self.FK__RefundAcc__rfdID__72C60C4A" FromRole="RefundAccount" ToRole="Refund" />
+          <NavigationProperty Name="Refund" Relationship="shopDBModel.FK__RefundAcc__rfdID__72C60C4A" FromRole="RefundAccount" ToRole="Refund" />
         </EntityType>
         <EntityType Name="RefundStatus">
           <Key>
@@ -1290,7 +1271,7 @@
           </Key>
           <Property Name="rfdStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="rfdStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Refund" Relationship="Self.FK__Refund__rfdStatu__7E37BEF6" FromRole="RefundStatus" ToRole="Refund" />
+          <NavigationProperty Name="Refund" Relationship="shopDBModel.FK__Refund__rfdStatu__7E37BEF6" FromRole="RefundStatus" ToRole="Refund" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -1681,18 +1662,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Refund__odrID__6754599E">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="Refund" Type="Self.Refund" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="odrID" />
-            </Principal>
-            <Dependent Role="Refund">
-              <PropertyRef Name="odrID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Review__odrID__68487DD7">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
@@ -1849,30 +1818,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Refund__rfdStatu__7E37BEF6">
-          <End Role="RefundStatus" Type="Self.RefundStatus" Multiplicity="1" />
-          <End Role="Refund" Type="Self.Refund" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RefundStatus">
-              <PropertyRef Name="rfdStatusID" />
-            </Principal>
-            <Dependent Role="Refund">
-              <PropertyRef Name="rfdStatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RefundAcc__rfdID__72C60C4A">
-          <End Role="Refund" Type="Self.Refund" Multiplicity="1" />
-          <End Role="RefundAccount" Type="Self.RefundAccount" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Refund">
-              <PropertyRef Name="rfdID" />
-            </Principal>
-            <Dependent Role="RefundAccount">
-              <PropertyRef Name="rfdID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Seller__selAut__73BA3083">
           <End Role="SellerAut" Type="Self.SellerAut" Multiplicity="1" />
           <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
@@ -1928,7 +1873,6 @@
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" />
           <EntitySet Name="ProductImage" EntityType="Self.ProductImage" />
           <EntitySet Name="QA" EntityType="Self.QA" />
-          <EntitySet Name="Refund" EntityType="Self.Refund" />
           <EntitySet Name="RefundAccount" EntityType="Self.RefundAccount" />
           <EntitySet Name="RefundStatus" EntityType="Self.RefundStatus" />
           <EntitySet Name="Review" EntityType="Self.Review" />
@@ -2027,10 +1971,6 @@
             <End Role="PaymentMethod" EntitySet="PaymentMethod" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Refund__odrID__6754599E" Association="Self.FK__Refund__odrID__6754599E">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="Refund" EntitySet="Refund" />
-          </AssociationSet>
           <AssociationSet Name="FK__Review__odrID__68487DD7" Association="Self.FK__Review__odrID__68487DD7">
             <End Role="Order" EntitySet="Order" />
             <End Role="Review" EntitySet="Review" />
@@ -2083,14 +2023,6 @@
             <End Role="ThirdLayer" EntitySet="ThirdLayer" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__Refund__rfdStatu__7E37BEF6" Association="Self.FK__Refund__rfdStatu__7E37BEF6">
-            <End Role="RefundStatus" EntitySet="RefundStatus" />
-            <End Role="Refund" EntitySet="Refund" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RefundAcc__rfdID__72C60C4A" Association="Self.FK__RefundAcc__rfdID__72C60C4A">
-            <End Role="Refund" EntitySet="Refund" />
-            <End Role="RefundAccount" EntitySet="RefundAccount" />
-          </AssociationSet>
           <AssociationSet Name="FK__Seller__selAut__73BA3083" Association="Self.FK__Seller__selAut__73BA3083">
             <End Role="SellerAut" EntitySet="SellerAut" />
             <End Role="Seller" EntitySet="Seller" />
@@ -2103,7 +2035,72 @@
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="ShipperDetail" EntitySet="ShipperDetail" />
           </AssociationSet>
+          <EntitySet Name="Refund" EntityType="shopDBModel.Refund" />
+          <AssociationSet Name="FK__Refund__odrID__6754599E" Association="shopDBModel.FK__Refund__odrID__6754599E">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Refund" EntitySet="Refund" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Refund__rfdStatu__7E37BEF6" Association="shopDBModel.FK__Refund__rfdStatu__7E37BEF6">
+            <End Role="RefundStatus" EntitySet="RefundStatus" />
+            <End Role="Refund" EntitySet="Refund" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RefundAcc__rfdID__72C60C4A" Association="shopDBModel.FK__RefundAcc__rfdID__72C60C4A">
+            <End Role="Refund" EntitySet="Refund" />
+            <End Role="RefundAccount" EntitySet="RefundAccount" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Refund">
+          <Key>
+            <PropertyRef Name="rfdID" />
+          </Key>
+          <Property Name="rfdID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="odrID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="rfdShip" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="rfdReason" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="rfdProduct" Type="Boolean" Nullable="false" />
+          <Property Name="rfdShipping" Type="Boolean" Nullable="false" />
+          <Property Name="rfdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="rfdStatusID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Order" Relationship="shopDBModel.FK__Refund__odrID__6754599E" FromRole="Refund" ToRole="Order" />
+          <NavigationProperty Name="RefundStatus" Relationship="shopDBModel.FK__Refund__rfdStatu__7E37BEF6" FromRole="Refund" ToRole="RefundStatus" />
+          <NavigationProperty Name="RefundAccount" Relationship="shopDBModel.FK__RefundAcc__rfdID__72C60C4A" FromRole="Refund" ToRole="RefundAccount" />
+        </EntityType>
+        <Association Name="FK__Refund__odrID__6754599E">
+          <End Type="shopDBModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="shopDBModel.Refund" Role="Refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="odrID" />
+            </Principal>
+            <Dependent Role="Refund">
+              <PropertyRef Name="odrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Refund__rfdStatu__7E37BEF6">
+          <End Type="shopDBModel.RefundStatus" Role="RefundStatus" Multiplicity="1" />
+          <End Type="shopDBModel.Refund" Role="Refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefundStatus">
+              <PropertyRef Name="rfdStatusID" />
+            </Principal>
+            <Dependent Role="Refund">
+              <PropertyRef Name="rfdStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RefundAcc__rfdID__72C60C4A">
+          <End Type="shopDBModel.Refund" Role="Refund" Multiplicity="1" />
+          <End Type="shopDBModel.RefundAccount" Role="RefundAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Refund">
+              <PropertyRef Name="rfdID" />
+            </Principal>
+            <Dependent Role="RefundAccount">
+              <PropertyRef Name="rfdID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2316,21 +2313,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Refund">
-            <EntityTypeMapping TypeName="shopDBModel.Refund">
-              <MappingFragment StoreEntitySet="Refund">
-                <ScalarProperty Name="rfdID" ColumnName="rfdID" />
-                <ScalarProperty Name="odrID" ColumnName="odrID" />
-                <ScalarProperty Name="pdtID" ColumnName="pdtID" />
-                <ScalarProperty Name="rfdQuantity" ColumnName="rfdQuantity" />
-                <ScalarProperty Name="rfdReason" ColumnName="rfdReason" />
-                <ScalarProperty Name="rfdProduct" ColumnName="rfdProduct" />
-                <ScalarProperty Name="rfdShipping" ColumnName="rfdShipping" />
-                <ScalarProperty Name="rfdDate" ColumnName="rfdDate" />
-                <ScalarProperty Name="rfdStatusID" ColumnName="rfdStatusID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RefundAccount">
             <EntityTypeMapping TypeName="shopDBModel.RefundAccount">
               <MappingFragment StoreEntitySet="RefundAccount">
@@ -2469,6 +2451,20 @@
                 <ScalarProperty Name="wishID" ColumnName="wishID" />
                 <ScalarProperty Name="pdtID" ColumnName="pdtID" />
                 <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Refund">
+            <EntityTypeMapping TypeName="shopDBModel.Refund">
+              <MappingFragment StoreEntitySet="Refund">
+                <ScalarProperty Name="rfdStatusID" ColumnName="rfdStatusID" />
+                <ScalarProperty Name="rfdDate" ColumnName="rfdDate" />
+                <ScalarProperty Name="rfdShipping" ColumnName="rfdShipping" />
+                <ScalarProperty Name="rfdProduct" ColumnName="rfdProduct" />
+                <ScalarProperty Name="rfdReason" ColumnName="rfdReason" />
+                <ScalarProperty Name="rfdShip" ColumnName="rfdShip" />
+                <ScalarProperty Name="odrID" ColumnName="odrID" />
+                <ScalarProperty Name="rfdID" ColumnName="rfdID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

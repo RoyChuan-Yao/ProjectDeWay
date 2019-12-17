@@ -1,0 +1,254 @@
+﻿@model IEnumerable<DeWay.Models.Cart_OrderDetail>
+
+@{
+    ViewBag.Title = "rfdCreate";
+    decimal? total = 0;
+    decimal? shipping = 0;
+    double Total = 0;
+    Layout = "~/Views/Shared/_Layout_Member.cshtml";
+}
+
+<h2>rfdCreate</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <input id="Hidden1" type="hidden" value="@Model.FirstOrDefault().odrID" name="odrID" />
+        <div class="card border">
+            <div class="card-header ">
+                <input id="Checkbox1" type="checkbox" /> 選擇此訂單
+            </div>
+            <div class="card-body">
+
+                @foreach (var item in Model)
+                {
+                    var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
+
+                    total += subtotal;
+                    shipping = item.Order.shpPrice;
+                    <div class="row">
+                        <div class="col-6">
+                            @Html.DisplayFor(modelItem => item.Specification.Style)
+                            @Html.DisplayFor(modelItem => item.Specification.Size)
+                        </div>
+                        <div class="col-3">
+                            ×@Html.DisplayFor(modelItem => item.Quantity)
+                        </div>
+                        <div class="col3">
+                            NT$ @subtotal
+                        </div>
+                    </div>
+
+
+
+
+                }
+                <hr />
+                @{
+                    Total = Math.Round((double)(total + shipping));
+                }
+
+                <div>
+                    <p class=" col-10 text-right">運費： @shipping </p>
+                    <p class="total col-10 text-right text-danger  d-none" id="total">@Total</p>
+                </div>
+
+            </div>
+            <div class="card-footer d-none">
+                <div class="Checkbox2">
+                    <input id="Checkbox2" type="checkbox" value="false" name="rfdProduct" /> 需退回商品<br />
+
+                </div>
+                <div class="Checkbox3 d-none">
+                    <input id="Checkbox3" type="checkbox" value="false" name="rfdShipping" /> 賣家需負擔退回商品的運費
+                    <input class="d-none rfdShip" type="text" name="rfdShip" />
+                </div>
+            </div>
+
+
+        </div>
+        <div>
+            <h3>退貨原因</h3>
+            <input id="Text1" type="text" name="rfdReason" />
+        </div>
+
+        <div>
+            <div>
+                <h3>收款資訊填寫</h3>
+            </div>
+            <label>銀行代碼 </label>
+            <input id="Text1" type="text" name="bankCode" />
+            <br />
+            <label>銀行名稱 </label>
+            <input id="Text1" type="text" name="bankName" />
+            <br />
+            <label>銀行帳號 </label>
+            <input id="Text1" type="text" name="bankAccount" />
+
+        </div>
+
+        <input id="Submit1" type="submit" value="submit" class="btn btn-info" />
+    </div>
+}
+
+@section Script{
+    <script>
+
+
+
+        $('#Checkbox1').on("click", function () {
+
+            $('.card').toggleClass("border-info");
+            $('.card-footer').toggleClass("d-none");
+            $('.total').toggleClass("d-none");
+            //$('#Checkbox2').prop("checked", false);
+
+
+        }
+        );
+        //$('#Checkbox2').prop("checked",true)
+        $('#Checkbox2').on("click", function () {
+
+
+            if ($("#Checkbox2").val() == "true") {
+                $(this).val("false");
+
+            }
+            else {
+                $(this).val("true");
+            }
+            $('.Checkbox3').toggleClass("d-none");
+        });
+
+        function alterValue() {
+            
+            let rfdship;
+            if ($(".rfdShip").val() != "") {
+                rfdship = parseInt($(".rfdShip").val());
+            }
+            else {
+                rfdship = 0;
+            };
+
+            console.log(rfdship);
+            $(".total").text(@Total+rfdship);
+        };
+
+        $('#Checkbox3').on("click", function () {
+            
+            if ($("#Checkbox3").val() == "true") {
+                $(this).val("false");
+                $('.rfdShip').val("") ;
+                
+
+                alterValue();
+                
+            }
+            else {
+                $(this).val("true");
+            }
+            $('.rfdShip').toggleClass("d-none");
+        });
+
+
+
+        $(".rfdShip").on("change",alterValue);
+
+
+    </script>
+}
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Cart_OrderDetail</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.cartID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cartID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cartID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.mbrID, "mbrID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("mbrID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.mbrID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.spcID, "spcID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("spcID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.spcID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.odrID, "odrID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("odrID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.odrID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.usedPoints, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.usedPoints, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.usedPoints, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.shpID, "shpID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("shpID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.shpID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pdtPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.pdtPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pdtPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
