@@ -54,9 +54,9 @@ namespace DeWay.Models
         public virtual DbSet<SellerPhone> SellerPhone { get; set; }
         public virtual DbSet<Shipper> Shipper { get; set; }
         public virtual DbSet<ShipperDetail> ShipperDetail { get; set; }
-        public virtual DbSet<Specification> Specification { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
         public virtual DbSet<ThirdLayer> ThirdLayer { get; set; }
         public virtual DbSet<WishList> WishList { get; set; }
+        public virtual DbSet<Specification> Specification { get; set; }
     }
 }

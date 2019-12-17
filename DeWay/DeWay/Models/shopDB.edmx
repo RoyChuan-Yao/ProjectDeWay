@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="shopDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actBulletin">
           <Key>
             <PropertyRef Name="actID" />
@@ -43,7 +43,7 @@
           <Property Name="spcID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="odrID" Type="char" MaxLength="10" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="Discount" Type="float" />
+          <Property Name="Discount" Type="int" />
           <Property Name="usedPoints" Type="int" Nullable="false" />
           <Property Name="shpID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="pdtPrice" Type="money" />
@@ -309,10 +309,10 @@
           <Property Name="spcID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Style" Type="nvarchar" MaxLength="20" />
           <Property Name="Size" Type="nvarchar" MaxLength="20" />
-          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Stock" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Price" Type="money" />
           <Property Name="pdtID" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="Discount" Type="float" />
+          <Property Name="Discount" Type="smallint" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -1012,8 +1012,7 @@
             <End Role="QA" EntitySet="QA" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1060,14 +1059,14 @@
           <Property Name="spcID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="odrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Discount" Type="Double" />
+          <Property Name="Discount" Type="Int32" />
           <Property Name="usedPoints" Type="Int32" Nullable="false" />
           <Property Name="shpID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="pdtPrice" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Cart_Orde__mbrID__14270015" FromRole="Cart_OrderDetail" ToRole="Member" />
           <NavigationProperty Name="Shipper" Relationship="Self.FK__Cart_Orde__shpID__0C85DE4D" FromRole="Cart_OrderDetail" ToRole="Shipper" />
-          <NavigationProperty Name="Specification" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Cart_OrderDetail" ToRole="Specification" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Cart_OrderDetail_Order" FromRole="Cart_OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Specification" Relationship="shopDBModel.FK__Cart_Orde__spcID__123EB7A3" FromRole="Cart_OrderDetail" ToRole="Specification" />
         </EntityType>
         <EntityType Name="FavoSeller">
           <Key>
@@ -1216,9 +1215,9 @@
           <NavigationProperty Name="QA" Relationship="Self.FK__QA__pdtID__778AC167" FromRole="Product" ToRole="QA" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__pdtID__787EE5A0" FromRole="Product" ToRole="Review" />
           <NavigationProperty Name="ShipperDetail" Relationship="Self.FK__ShipperDe__pdtID__09A971A2" FromRole="Product" ToRole="ShipperDetail" />
-          <NavigationProperty Name="Specification" Relationship="Self.FK__Specifica__pdtID__75A278F5" FromRole="Product" ToRole="Specification" />
           <NavigationProperty Name="Tag" Relationship="Self.FK__Tag__pdtID__76969D2E" FromRole="Product" ToRole="Tag" />
           <NavigationProperty Name="WishList" Relationship="Self.FK__WishList__pdtID__74AE54BC" FromRole="Product" ToRole="WishList" />
+          <NavigationProperty Name="Specification" Relationship="shopDBModel.FK__Specifica__pdtID__75A278F5" FromRole="Product" ToRole="Specification" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -1388,20 +1387,6 @@
           <NavigationProperty Name="Product" Relationship="Self.FK__ShipperDe__pdtID__09A971A2" FromRole="ShipperDetail" ToRole="Product" />
           <NavigationProperty Name="Shipper" Relationship="Self.FK__ShipperDe__shpID__0B91BA14" FromRole="ShipperDetail" ToRole="Shipper" />
         </EntityType>
-        <EntityType Name="Specification">
-          <Key>
-            <PropertyRef Name="spcID" />
-          </Key>
-          <Property Name="spcID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Style" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Stock" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Discount" Type="Double" />
-          <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Specification" ToRole="Cart_OrderDetail" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Specifica__pdtID__75A278F5" FromRole="Specification" ToRole="Product" />
-        </EntityType>
         <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="tagID" />
@@ -1486,18 +1471,6 @@
             </Principal>
             <Dependent Role="Cart_OrderDetail">
               <PropertyRef Name="shpID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Cart_Orde__spcID__123EB7A3">
-          <End Role="Specification" Type="Self.Specification" Multiplicity="1" />
-          <End Role="Cart_OrderDetail" Type="Self.Cart_OrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specification">
-              <PropertyRef Name="spcID" />
-            </Principal>
-            <Dependent Role="Cart_OrderDetail">
-              <PropertyRef Name="spcID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1789,18 +1762,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Specifica__pdtID__75A278F5">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Specification" Type="Self.Specification" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="pdtID" />
-            </Principal>
-            <Dependent Role="Specification">
-              <PropertyRef Name="pdtID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Tag__pdtID__76969D2E">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
@@ -1939,7 +1900,6 @@
           <EntitySet Name="SellerPhone" EntityType="Self.SellerPhone" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" />
           <EntitySet Name="ShipperDetail" EntityType="Self.ShipperDetail" />
-          <EntitySet Name="Specification" EntityType="Self.Specification" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
           <EntitySet Name="ThirdLayer" EntityType="Self.ThirdLayer" />
           <EntitySet Name="WishList" EntityType="Self.WishList" />
@@ -1961,10 +1921,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__Cart_Orde__shpID__0C85DE4D" Association="Self.FK__Cart_Orde__shpID__0C85DE4D">
             <End Role="Shipper" EntitySet="Shipper" />
-            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Cart_Orde__spcID__123EB7A3" Association="Self.FK__Cart_Orde__spcID__123EB7A3">
-            <End Role="Specification" EntitySet="Specification" />
             <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Cart_OrderDetail_Order" Association="Self.FK_Cart_OrderDetail_Order">
@@ -2063,10 +2019,6 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ShipperDetail" EntitySet="ShipperDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Specifica__pdtID__75A278F5" Association="Self.FK__Specifica__pdtID__75A278F5">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Specification" EntitySet="Specification" />
-          </AssociationSet>
           <AssociationSet Name="FK__Tag__pdtID__76969D2E" Association="Self.FK__Tag__pdtID__76969D2E">
             <End Role="Product" EntitySet="Product" />
             <End Role="Tag" EntitySet="Tag" />
@@ -2103,7 +2055,54 @@
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="ShipperDetail" EntitySet="ShipperDetail" />
           </AssociationSet>
+          <EntitySet Name="Specification" EntityType="shopDBModel.Specification" />
+          <AssociationSet Name="FK__Cart_Orde__spcID__123EB7A3" Association="shopDBModel.FK__Cart_Orde__spcID__123EB7A3">
+            <End Role="Specification" EntitySet="Specification" />
+            <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Specifica__pdtID__75A278F5" Association="shopDBModel.FK__Specifica__pdtID__75A278F5">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Specification" EntitySet="Specification" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Specification">
+          <Key>
+            <PropertyRef Name="spcID" />
+          </Key>
+          <Property Name="spcID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Style" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Stock" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="pdtID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Discount" Type="Int16" />
+          <NavigationProperty Name="Cart_OrderDetail" Relationship="shopDBModel.FK__Cart_Orde__spcID__123EB7A3" FromRole="Specification" ToRole="Cart_OrderDetail" />
+          <NavigationProperty Name="Product" Relationship="shopDBModel.FK__Specifica__pdtID__75A278F5" FromRole="Specification" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__Cart_Orde__spcID__123EB7A3">
+          <End Type="shopDBModel.Specification" Role="Specification" Multiplicity="1" />
+          <End Type="shopDBModel.Cart_OrderDetail" Role="Cart_OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specification">
+              <PropertyRef Name="spcID" />
+            </Principal>
+            <Dependent Role="Cart_OrderDetail">
+              <PropertyRef Name="spcID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Specifica__pdtID__75A278F5">
+          <End Type="shopDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="shopDBModel.Specification" Role="Specification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="pdtID" />
+            </Principal>
+            <Dependent Role="Specification">
+              <PropertyRef Name="pdtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2433,19 +2432,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Specification">
-            <EntityTypeMapping TypeName="shopDBModel.Specification">
-              <MappingFragment StoreEntitySet="Specification">
-                <ScalarProperty Name="spcID" ColumnName="spcID" />
-                <ScalarProperty Name="Style" ColumnName="Style" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Stock" ColumnName="Stock" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="pdtID" ColumnName="pdtID" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tag">
             <EntityTypeMapping TypeName="shopDBModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
@@ -2469,6 +2455,19 @@
                 <ScalarProperty Name="wishID" ColumnName="wishID" />
                 <ScalarProperty Name="pdtID" ColumnName="pdtID" />
                 <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specification">
+            <EntityTypeMapping TypeName="shopDBModel.Specification">
+              <MappingFragment StoreEntitySet="Specification">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="spcID" ColumnName="spcID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
