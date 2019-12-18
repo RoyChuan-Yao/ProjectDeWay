@@ -14,7 +14,6 @@ namespace Project.Controllers
     public class CartController : Controller
     {
         //TODO :假如訂單被取消，加回相對應的庫存數
-        //TODO : 下定單時內可以選擇購買數
         //TODO : 每筆訂單都有各自給賣家的話
         shopDBEntities db = new shopDBEntities();
 
