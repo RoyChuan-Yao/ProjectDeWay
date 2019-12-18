@@ -96,28 +96,28 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <p class="col-6 text-right">收件人</p>
-                    <p class="col-6"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recName)</p>
+                    <p class="col-5 text-right">收件人</p>
+                    <p class="col-7"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recName)</p>
                 </div>
                 <div class="row">
-                    <p class="col-6 text-right">地址</p>
-                    <p class="col-6">
+                    <p class="col-5 text-right">地址</p>
+                    <p class="col-7">
                         @Html.DisplayFor(model => model.FirstOrDefault().Order.recCity)
                         @Html.DisplayFor(model => model.FirstOrDefault().Order.recDist)
                         @Html.DisplayFor(model => model.FirstOrDefault().Order.recAddress)
                     </p>
                 </div>
                 <div class="row">
-                    <p class="col-6 text-right">電話</p>
-                    <p class="col-6"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recPhone)</p>
+                    <p class="col-5 text-right">電話</p>
+                    <p class="col-7"> @Html.DisplayFor(model => model.FirstOrDefault().Order.recPhone)</p>
                 </div>
                 <div class="row">
-                    <p class="col-6 text-right">運送方式</p>
-                    <p class="col-6"> @Html.DisplayFor(model => model.FirstOrDefault().Shipper.shpMethod)</p>
+                    <p class="col-5 text-right">運送方式</p>
+                    <p class="col-7"> @Html.DisplayFor(model => model.FirstOrDefault().Shipper.shpMethod)</p>
                 </div>
                 <div class="row">
-                    <p class="col-6 text-right">付款方式</p>
-                    <p class="col-6"> @Html.DisplayFor(model => model.FirstOrDefault().Order.PaymentMethod.pmtMethod)</p>
+                    <p class="col-5 text-right">付款方式</p>
+                    <p class="col-7"> @Html.DisplayFor(model => model.FirstOrDefault().Order.PaymentMethod.pmtMethod)</p>
                 </div>
             </div>
         </div>
