@@ -429,7 +429,6 @@
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
     <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\ProductPage\ProductPage.cshtml" />
-    <Content Include="Views\SellerCertification\Create.cshtml" />
     <Content Include="Views\AdmLogin\Index.cshtml" />
     <Content Include="Views\AdmCenter\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
@@ -464,6 +463,7 @@
     <Content Include="Views\Shared\_Layout_Member.cshtml" />
     <Content Include="Views\SellerHome\OrderIndex.cshtml" />
     <Content Include="Views\Shared\_Layout - seller.cshtml" />
+    <Content Include="Views\Product_edit_Seller\Editsp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

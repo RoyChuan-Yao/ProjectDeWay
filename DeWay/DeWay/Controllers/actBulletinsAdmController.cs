@@ -50,9 +50,7 @@ namespace DeWay.Controllers
             return View();
         }
 
-        // POST: actBulletinsAdm/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        // POST: actBulletinsAdm/Create      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(actBulletin act) 
