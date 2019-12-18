@@ -69,15 +69,34 @@ namespace DeWay.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SellerCreate(Seller seller) //創造賣家
+        public ActionResult SellerCreate(Seller seller, HttpPostedFileBase photo) //創造賣家
         {
-
+            string fileName = "";
             string GetSellerID = db.Database.SqlQuery<string>("Select dbo.GetSellerID()").FirstOrDefault();
             string mbrID = Session["memberID"].ToString();
             seller.selID = GetSellerID;
             seller.mbrID = mbrID;
+            seller.selImage = GetSellerID + ".jpg";
             seller.selAut = "2";
-            if (ModelState.IsValid)
+           
+         
+                HttpPostedFileBase f = (HttpPostedFileBase)photo;
+                if(f!=null)
+                {
+                    if(f.ContentLength > 0)
+                    {
+                        fileName = GetSellerID + ".jpg";
+                        f.SaveAs(Server.MapPath("~/sellerImage/" + fileName));
+                    }
+                }
+
+            if (photo == null)
+            {
+                seller.selImage = "sel0000000.jpg";
+            }
+            
+
+                if (ModelState.IsValid)
             {
                 db.Entry(seller).State = EntityState.Modified;
                 if(lastcheck(seller.IDNumber) == true)
