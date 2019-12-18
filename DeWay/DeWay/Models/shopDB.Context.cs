@@ -28,7 +28,6 @@ namespace DeWay.Models
         public virtual DbSet<actBulletin> actBulletin { get; set; }
         public virtual DbSet<Adm> Adm { get; set; }
         public virtual DbSet<AdmAccount> AdmAccount { get; set; }
-        public virtual DbSet<Cart_OrderDetail> Cart_OrderDetail { get; set; }
         public virtual DbSet<FavoSeller> FavoSeller { get; set; }
         public virtual DbSet<FirstLayer> FirstLayer { get; set; }
         public virtual DbSet<Member> Member { get; set; }
@@ -43,7 +42,6 @@ namespace DeWay.Models
         public virtual DbSet<ProductCategory> ProductCategory { get; set; }
         public virtual DbSet<ProductImage> ProductImage { get; set; }
         public virtual DbSet<QA> QA { get; set; }
-        public virtual DbSet<Refund> Refund { get; set; }
         public virtual DbSet<RefundAccount> RefundAccount { get; set; }
         public virtual DbSet<RefundStatus> RefundStatus { get; set; }
         public virtual DbSet<Review> Review { get; set; }
@@ -54,9 +52,11 @@ namespace DeWay.Models
         public virtual DbSet<SellerPhone> SellerPhone { get; set; }
         public virtual DbSet<Shipper> Shipper { get; set; }
         public virtual DbSet<ShipperDetail> ShipperDetail { get; set; }
-        public virtual DbSet<Specification> Specification { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
         public virtual DbSet<ThirdLayer> ThirdLayer { get; set; }
         public virtual DbSet<WishList> WishList { get; set; }
+        public virtual DbSet<Cart_OrderDetail> Cart_OrderDetail { get; set; }
+        public virtual DbSet<Specification> Specification { get; set; }
+        public virtual DbSet<Refund> Refund { get; set; }
     }
 }

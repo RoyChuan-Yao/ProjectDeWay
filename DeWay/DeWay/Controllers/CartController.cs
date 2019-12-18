@@ -13,10 +13,8 @@ namespace Project.Controllers
 {
     public class CartController : Controller
     {
-        //TODO : 假如商品下單成功，將庫存數 減去 商品下單數
-        //反之，假如訂單被取消，則加回相對應的庫存數
-        //TODO : 購物車內可以選擇購買數
-        //TODO : 增加"加入購物車"action AddToCart
+        //TODO :假如訂單被取消，加回相對應的庫存數
+        //TODO : 每筆訂單都有各自給賣家的話
         shopDBEntities db = new shopDBEntities();
 
         [HttpPost]
@@ -68,32 +66,26 @@ namespace Project.Controllers
                 return JavaScript($"alert('{e.Message}')");
             }
         }
-        public ActionResult MyCart(string id = "mbr0000001")
+        public ActionResult MyCart()
         {
+            string id = (string)Session["memberID"];
             var cod = db.Cart_OrderDetail;
             var m = from p in cod
                     where p.mbrID == id
                     where p.odrID == null
                     select p;
             ViewBag.memberName = db.Member.Find(id).mbrName;
-            //Session["member"] = id;
             return View(m);
         }
-        //string GetAvailableOdrId()
-        //{
-        //    string result = db.Database.SqlQuery<string>("Select dbo.GetOrderID()");
-        //    return result;
-        //}
+        
 
         [HttpPost]
-        public ActionResult receiveOrder(string[] cartID, string[] shipSelect, Order order) //提交訂單
+        public ActionResult receiveOrder(string[] cartID, string[] shipSelect,string[] quantity, Order order) //提交訂單
         {
-            ///////////////////
             var cod = db.Cart_OrderDetail;
             string memberID = Session["memberID"] as string;
             List<Cart_OrderDetail> m = (from p in cod
-                                        where p.mbrID == "mbr0000001"
-                                        //where p.mbrID == memberID TODO
+                                        where p.mbrID == memberID
                                         where p.odrID == null
                                         orderby p.Specification.Product.selID
                                         select p).ToList();
@@ -144,7 +136,7 @@ namespace Project.Controllers
                         currentCart.pdtPrice = currentCart.Specification.Price;   //取得商品時價
                         currentCart.Discount = currentCart.Specification.Discount;//取得商品當時打折
 
-
+                        //庫存減去商品下單數
                         if ((currentCart.Specification.Stock - currentCart.Quantity) >= 0)
                         {
                             currentCart.Specification.Stock -= currentCart.Quantity;
