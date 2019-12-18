@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - DeWay 設計之路</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    @*<link href="~/Content/cartCSS.css" rel="stylesheet" />*@
     <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 
@@ -22,7 +21,10 @@
         @*導覽列*@
         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container">
-                <a class="navbar-brand" href="#">DeWay</a>
+
+                @*<a class="navbar-brand" href="#">DeWay</a>*@
+
+                @Html.ActionLink("DeWay", "Index", "Home", new { }, new { @class = "navbar-brand" })
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,12 +57,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">主題活動<span class="sr-only">(current)</span></a>
                         </li>
+
                         <li class="nav-item ">
-                            <a class="nav-link" href="@Url.Action("Login","Login")">登入</a>
+
+                            @*<a class="nav-link" href="#">登入</a>*@
+                            @if (Session["memberID"] == null) 
+                                    { 
+                                    @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link" })
+                                    }
+                            else    {
+                                    @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link" })
+                                    }
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">註冊</a>
-                        </li>
+                        
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
@@ -71,7 +80,8 @@
                         <li class="nav-item dropdown">
                             <a style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/img-user-15.png" style="width:50%" /></a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink2">
-                                <a class="dropdown-item" href="#">會員中心</a>
+
+                                @Html.ActionLink("會員中心", "mbrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 <a class="dropdown-item" href="#">商品收藏</a>
                                 <a class="dropdown-item" href="#">帳號設定</a>
                             </div>
@@ -79,7 +89,6 @@
                         <li class="nav-item dropdown">
                             <a style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/Img-settings-11.png" style="width:50%" /></a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink3">
-                                <a class="dropdown-item" href="@Url.Action("OrderIndex","SellerHome")">賣家中心</a>
                                 <a class="dropdown-item" href="#">商品上架</a>
                                 <a class="dropdown-item" href="#">賣場管理</a>
                                 <a class="dropdown-item" href="#">設定</a>
@@ -156,3 +165,4 @@
 
 </body>
 </html>
+

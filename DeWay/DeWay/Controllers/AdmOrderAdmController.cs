@@ -10,7 +10,7 @@ using DeWay.Models;
 
 namespace DeWay.Controllers
 {
-    public class OrdersAdmController : Controller
+    public class AdmOrdersAdmController : Controller
     {
         private shopDBEntities db = new shopDBEntities();
 
@@ -20,7 +20,7 @@ namespace DeWay.Controllers
             if (Session["AdmID"] == null)
             { return RedirectToAction("Index", "AdmLogin"); }
             var order = from m in db.Order
-                          select m;
+                        select m;
             if (!String.IsNullOrEmpty(searchString))
             {
                 order = order.Where(s => s.recName.Contains(searchString));
@@ -47,7 +47,7 @@ namespace DeWay.Controllers
 
 
 
-       
+
         public ActionResult Edit(string id)
         {
             if (Session["AdmID"] == null)
@@ -67,14 +67,14 @@ namespace DeWay.Controllers
         }
 
         // POST: OrdersAdm/Edit/5
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
         public ActionResult Edit([Bind(Include = "odrID,pmtID,odrStatusID,recName,recCity,recDist,recAddress,recPhone,pmtDate,odrDate,shpDate,odrNote,traceNumber,cashFlowID")] Order order)
 
         {
-            
+
             if (ModelState.IsValid)
             {
                 db.Entry(order).State = EntityState.Modified;
@@ -86,7 +86,7 @@ namespace DeWay.Controllers
             return View(order);
         }
 
-       
+
 
         protected override void Dispose(bool disposing)
         {
