@@ -25,10 +25,11 @@ namespace DeWay.Controllers
             if (product.Discontinued && product.selID != selID)
             {
                 return HttpNotFound();
-                //TODO ：製作404頁面
+                //TODO： 製作404頁面
             }
+
             return View(product);
-        }
+        } 
         public int GetProductStock(string specID)
         {
             int stockResult = db.Specification
