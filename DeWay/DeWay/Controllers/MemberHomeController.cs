@@ -351,6 +351,7 @@ namespace DeWay.Controllers
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
+            ViewBag.refund = db.Refund.Where(o=>o.odrID==odrID);
             var odrdetail = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
 
             return View(odrdetail);
@@ -380,53 +381,63 @@ namespace DeWay.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public ActionResult rfdCreate(Refund Refund, RefundAccount RefundAccount)
         {
-
+            if (ModelState.IsValid != true)
+            {
+                return View("rfdCreate");
+            }
             using (var transaction = db.Database.BeginTransaction())
             { 
                 Refund refund = new Refund();
                 string GetRefundID = db.Database.SqlQuery<string>("Select dbo.GetRefundID()").FirstOrDefault();
-            refund.rfdID = GetRefundID;
-            refund.odrID = Refund.odrID;
-            refund.rfdReason = Refund.rfdReason;
+                refund.rfdID = GetRefundID;
+                refund.odrID = Refund.odrID;
+                refund.rfdReason = Refund.rfdReason;
                 refund.rfdProduct = Refund.rfdProduct;
                 refund.rfdShipping = Refund.rfdShipping;
-            refund.rfdShip = Refund.rfdShip;
+                refund.rfdShip = Refund.rfdShip;
                 refund.rfdDate = DateTime.Now;
                 refund.rfdStatusID="rds0000001";
-            db.Refund.Add(refund);
-                try
-                {
-                    db.SaveChanges();
-                    transaction.Commit();
-                }
-                catch (DbUpdateException e)
-                {
-                    transaction.Rollback();
-                    return JavaScript($"alert({e.Message})");
-                }
+                db.Refund.Add(refund);
+                    try
+                    {
+                        db.SaveChanges();
+                       
+                    }
+                    catch (DbUpdateException e)
+                    {
+                        transaction.Rollback();
+                        return JavaScript($"alert({e.Message})");
+                    }
 
-            RefundAccount refundAccount = new RefundAccount();
+                RefundAccount refundAccount = new RefundAccount();
 
-            refundAccount.rfdID = GetRefundID;
-            refundAccount.bankCode = RefundAccount.bankCode;
-            refundAccount.bankName = RefundAccount.bankName;
-            refundAccount.bankAccount = RefundAccount.bankAccount;
-            db.RefundAccount.Add(refundAccount);
-                try
-                {
-                    db.SaveChanges();
-                    transaction.Commit();
-                }
-                catch (DbUpdateException e)
-                {
-                    transaction.Rollback();
-                    return JavaScript($"alert({e.Message})");
-                }
+                refundAccount.rfdID = GetRefundID;
+                refundAccount.bankCode = RefundAccount.bankCode;
+                refundAccount.bankName = RefundAccount.bankName;
+                refundAccount.bankAccount = RefundAccount.bankAccount;
+                db.RefundAccount.Add(refundAccount);
+                    try
+                    {
+                        db.SaveChanges();
+                        transaction.Commit();
+                        return RedirectToAction("rfdIndex");
+                    }
+                    catch (DbUpdateException e)
+                    {
+                        transaction.Rollback();
+                        return JavaScript($"alert({e.Message})");
+                    }
          
 
-            return RedirectToAction("rfdIndex");
+            
             }
         }
+        public ActionResult rfdDetail(string rfdID)
+        {
+            var rfdDetail = db.Refund.Where(r => r.rfdID == rfdID).ToList();
+            return View(rfdDetail);
+        }
+
 
         [HttpPost]
         public ActionResult changeStatus(string odrID, string odrStatus)

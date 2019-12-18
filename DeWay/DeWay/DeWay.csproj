@@ -141,6 +141,7 @@
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
     <Content Include="images\pImg000014.jpg" />
+    <Content Include="Content\DeWayMemberHome.css" />
     <Content Include="Models\shopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>shopDB.edmx</DependentUpon>
@@ -452,6 +453,7 @@
     <Content Include="Views\Shared\_Layout_Member.cshtml" />
     <Content Include="Views\MemberHome\rfdCreate.cshtml" />
     <Content Include="Views\MemberHome\rfdIndex.cshtml" />
+    <Content Include="Views\MemberHome\rfdDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

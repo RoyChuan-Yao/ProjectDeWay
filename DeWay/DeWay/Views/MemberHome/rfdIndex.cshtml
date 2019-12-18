@@ -3,16 +3,15 @@
 @{
     ViewBag.Title = "rfdIndex";
     var result = "";
-
+    Layout = "~/Views/Shared/_Layout_Member.cshtml";
+    int i = 1;
 }
 
-<h2>rfdIndex</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
-    <tr>
+    <tr class="text-center">
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Order.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
         </th>
@@ -21,10 +20,10 @@
             @Html.DisplayNameFor(model => model.rfdReason)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.rfdProduct)
+           是否需退回商品
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.rfdShipping)
+            賣家負擔運費
         </th>
         <th>
             @Html.DisplayNameFor(model => model.rfdDate)
@@ -36,10 +35,13 @@
         
         <th></th>
     </tr>
-
+    
 @foreach (var item in Model)
 {
-    <tr>
+    <tr class="text-center">
+        <td>
+            @i
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Order.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
         </td>
@@ -49,13 +51,13 @@
         </td>
         <td>
             @{ 
-                result = item.rfdProduct == true ? "需退回商品" : "不需退回商品";
+                result = item.rfdProduct == true ? "是" : "否";
             }
             @result
         </td>
         <td>
             @{
-                result = item.rfdShipping == true ? "賣家需負擔退回商品的運費" : "賣家不需負擔退回商品的運費";
+                result = item.rfdShipping == true ? "是" : "否";
             }
             @result
             
@@ -69,11 +71,12 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.rfdID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.rfdID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.rfdID })
+            
+            @Html.ActionLink("詳細", "rfdDetail", new { rfdID=item.rfdID }) 
+            
         </td>
     </tr>
-}
+                    i++;
+                }
 
 </table>
