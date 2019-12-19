@@ -209,7 +209,7 @@
         function submitOrder() {
 
             var cartResult = "";
-            for (i = 0; i <= checkStatus.length ; i++) {//取得被點選的商品編號
+            for (i = 0; i < checkStatus.length ; i++) {//取得被點選的商品編號
                 cartResult += `<input type="" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
                 cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
                 cartResult += `<input type="" name="quantity[${i}]" value="${$('#count_'+i).val()}">`;
