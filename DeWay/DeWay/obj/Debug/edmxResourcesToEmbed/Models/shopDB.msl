@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="shopDBModelStoreContainer" CdmEntityContainer="shopDBEntities">
+    <EntitySetMapping Name="actBulletin">
+      <EntityTypeMapping TypeName="shopDBModel.actBulletin">
+        <MappingFragment StoreEntitySet="actBulletin">
+          <ScalarProperty Name="actID" ColumnName="actID" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="actStrDate" ColumnName="actStrDate" />
+          <ScalarProperty Name="actEndDate" ColumnName="actEndDate" />
+          <ScalarProperty Name="actImage" ColumnName="actImage" />
+          <ScalarProperty Name="actDisplay" ColumnName="actDisplay" />
+          <ScalarProperty Name="admID" ColumnName="admID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adm">
+      <EntityTypeMapping TypeName="shopDBModel.Adm">
+        <MappingFragment StoreEntitySet="Adm">
+          <ScalarProperty Name="admID" ColumnName="admID" />
+          <ScalarProperty Name="admName" ColumnName="admName" />
+          <ScalarProperty Name="admMail" ColumnName="admMail" />
+          <ScalarProperty Name="admPhone" ColumnName="admPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdmAccount">
+      <EntityTypeMapping TypeName="shopDBModel.AdmAccount">
+        <MappingFragment StoreEntitySet="AdmAccount">
+          <ScalarProperty Name="admAct" ColumnName="admAct" />
+          <ScalarProperty Name="admPwd" ColumnName="admPwd" />
+          <ScalarProperty Name="admID" ColumnName="admID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FavoSeller">
+      <EntityTypeMapping TypeName="shopDBModel.FavoSeller">
+        <MappingFragment StoreEntitySet="FavoSeller">
+          <ScalarProperty Name="selID" ColumnName="selID" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="favoID" ColumnName="favoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FirstLayer">
+      <EntityTypeMapping TypeName="shopDBModel.FirstLayer">
+        <MappingFragment StoreEntitySet="FirstLayer">
+          <ScalarProperty Name="fstLayerID" ColumnName="fstLayerID" />
+          <ScalarProperty Name="fstLayer" ColumnName="fstLayer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Member">
+      <EntityTypeMapping TypeName="shopDBModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="mbrName" ColumnName="mbrName" />
+          <ScalarProperty Name="nickName" ColumnName="nickName" />
+          <ScalarProperty Name="mbrPhone" ColumnName="mbrPhone" />
+          <ScalarProperty Name="mbrMail" ColumnName="mbrMail" />
+          <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="mbrAut" ColumnName="mbrAut" />
+          <ScalarProperty Name="signupDate" ColumnName="signupDate" />
+          <ScalarProperty Name="mbrImage" ColumnName="mbrImage" />
+          <ScalarProperty Name="mbrBlock" ColumnName="mbrBlock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberAccount">
+      <EntityTypeMapping TypeName="shopDBModel.MemberAccount">
+        <MappingFragment StoreEntitySet="MemberAccount">
+          <ScalarProperty Name="mbrAccount" ColumnName="mbrAccount" />
+          <ScalarProperty Name="mbrPwd" ColumnName="mbrPwd" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Message">
+      <EntityTypeMapping TypeName="shopDBModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="msgID" ColumnName="msgID" />
+          <ScalarProperty Name="senderID" ColumnName="senderID" />
+          <ScalarProperty Name="receiverID" ColumnName="receiverID" />
+          <ScalarProperty Name="msgContent" ColumnName="msgContent" />
+          <ScalarProperty Name="msgTime" ColumnName="msgTime" />
+          <ScalarProperty Name="msgStatus" ColumnName="msgStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ntfCategory">
+      <EntityTypeMapping TypeName="shopDBModel.ntfCategory">
+        <MappingFragment StoreEntitySet="ntfCategory">
+          <ScalarProperty Name="ntfCtgID" ColumnName="ntfCtgID" />
+          <ScalarProperty Name="ntfType" ColumnName="ntfType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ntfRecord">
+      <EntityTypeMapping TypeName="shopDBModel.ntfRecord">
+        <MappingFragment StoreEntitySet="ntfRecord">
+          <ScalarProperty Name="ntfContent" ColumnName="ntfContent" />
+          <ScalarProperty Name="ntfCtgID" ColumnName="ntfCtgID" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="ntfTitle" ColumnName="ntfTitle" />
+          <ScalarProperty Name="ntfTime" ColumnName="ntfTime" />
+          <ScalarProperty Name="ntfID" ColumnName="ntfID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="shopDBModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="odrID" ColumnName="odrID" />
+          <ScalarProperty Name="pmtID" ColumnName="pmtID" />
+          <ScalarProperty Name="odrStatusID" ColumnName="odrStatusID" />
+          <ScalarProperty Name="recName" ColumnName="recName" />
+          <ScalarProperty Name="recCity" ColumnName="recCity" />
+          <ScalarProperty Name="recDist" ColumnName="recDist" />
+          <ScalarProperty Name="recAddress" ColumnName="recAddress" />
+          <ScalarProperty Name="recPhone" ColumnName="recPhone" />
+          <ScalarProperty Name="pmtDate" ColumnName="pmtDate" />
+          <ScalarProperty Name="odrDate" ColumnName="odrDate" />
+          <ScalarProperty Name="shpDate" ColumnName="shpDate" />
+          <ScalarProperty Name="odrNote" ColumnName="odrNote" />
+          <ScalarProperty Name="traceNumber" ColumnName="traceNumber" />
+          <ScalarProperty Name="cashFlowID" ColumnName="cashFlowID" />
+          <ScalarProperty Name="selID" ColumnName="selID" />
+          <ScalarProperty Name="shpPrice" ColumnName="shpPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderStatus">
+      <EntityTypeMapping TypeName="shopDBModel.OrderStatus">
+        <MappingFragment StoreEntitySet="OrderStatus">
+          <ScalarProperty Name="odrStatusID" ColumnName="odrStatusID" />
+          <ScalarProperty Name="odrStatus" ColumnName="odrStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentMethod">
+      <EntityTypeMapping TypeName="shopDBModel.PaymentMethod">
+        <MappingFragment StoreEntitySet="PaymentMethod">
+          <ScalarProperty Name="pmtID" ColumnName="pmtID" />
+          <ScalarProperty Name="pmtMethod" ColumnName="pmtMethod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="shopDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="selID" ColumnName="selID" />
+          <ScalarProperty Name="pdtName" ColumnName="pdtName" />
+          <ScalarProperty Name="pdtDate" ColumnName="pdtDate" />
+          <ScalarProperty Name="pdtDescribe" ColumnName="pdtDescribe" />
+          <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
+          <ScalarProperty Name="ctgID" ColumnName="ctgID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCategory">
+      <EntityTypeMapping TypeName="shopDBModel.ProductCategory">
+        <MappingFragment StoreEntitySet="ProductCategory">
+          <ScalarProperty Name="pdtCtgID" ColumnName="pdtCtgID" />
+          <ScalarProperty Name="fstLayerID" ColumnName="fstLayerID" />
+          <ScalarProperty Name="sndLayerID" ColumnName="sndLayerID" />
+          <ScalarProperty Name="trdLayerID" ColumnName="trdLayerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductImage">
+      <EntityTypeMapping TypeName="shopDBModel.ProductImage">
+        <MappingFragment StoreEntitySet="ProductImage">
+          <ScalarProperty Name="pdtImage" ColumnName="pdtImage" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="pImgID" ColumnName="pImgID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QA">
+      <EntityTypeMapping TypeName="shopDBModel.QA">
+        <MappingFragment StoreEntitySet="QA">
+          <ScalarProperty Name="qaID" ColumnName="qaID" />
+          <ScalarProperty Name="readStatus" ColumnName="readStatus" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="qaTime" ColumnName="qaTime" />
+          <ScalarProperty Name="displayStatus" ColumnName="displayStatus" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefundAccount">
+      <EntityTypeMapping TypeName="shopDBModel.RefundAccount">
+        <MappingFragment StoreEntitySet="RefundAccount">
+          <ScalarProperty Name="bankAccount" ColumnName="bankAccount" />
+          <ScalarProperty Name="bankName" ColumnName="bankName" />
+          <ScalarProperty Name="bankCode" ColumnName="bankCode" />
+          <ScalarProperty Name="rfdID" ColumnName="rfdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RefundStatus">
+      <EntityTypeMapping TypeName="shopDBModel.RefundStatus">
+        <MappingFragment StoreEntitySet="RefundStatus">
+          <ScalarProperty Name="rfdStatusID" ColumnName="rfdStatusID" />
+          <ScalarProperty Name="rfdStatus" ColumnName="rfdStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review">
+      <EntityTypeMapping TypeName="shopDBModel.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="rvwID" ColumnName="rvwID" />
+          <ScalarProperty Name="rvwContent" ColumnName="rvwContent" />
+          <ScalarProperty Name="rvwTime" ColumnName="rvwTime" />
+          <ScalarProperty Name="rvwStar" ColumnName="rvwStar" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="odrID" ColumnName="odrID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rptRecord">
+      <EntityTypeMapping TypeName="shopDBModel.rptRecord">
+        <MappingFragment StoreEntitySet="rptRecord">
+          <ScalarProperty Name="rptID" ColumnName="rptID" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="objID" ColumnName="objID" />
+          <ScalarProperty Name="rptTitle" ColumnName="rptTitle" />
+          <ScalarProperty Name="rptContent" ColumnName="rptContent" />
+          <ScalarProperty Name="rptTime" ColumnName="rptTime" />
+          <ScalarProperty Name="admID" ColumnName="admID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecondLayer">
+      <EntityTypeMapping TypeName="shopDBModel.SecondLayer">
+        <MappingFragment StoreEntitySet="SecondLayer">
+          <ScalarProperty Name="sndLayerID" ColumnName="sndLayerID" />
+          <ScalarProperty Name="sndLayer" ColumnName="sndLayer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seller">
+      <EntityTypeMapping TypeName="shopDBModel.Seller">
+        <MappingFragment StoreEntitySet="Seller">
+          <ScalarProperty Name="selID" ColumnName="selID" />
+          <ScalarProperty Name="selCompany" ColumnName="selCompany" />
+          <ScalarProperty Name="selCity" ColumnName="selCity" />
+          <ScalarProperty Name="selDist" ColumnName="selDist" />
+          <ScalarProperty Name="selAddress" ColumnName="selAddress" />
+          <ScalarProperty Name="GUINumber" ColumnName="GUINumber" />
+          <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+          <ScalarProperty Name="selInfo" ColumnName="selInfo" />
+          <ScalarProperty Name="selAut" ColumnName="selAut" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="selImage" ColumnName="selImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellerAut">
+      <EntityTypeMapping TypeName="shopDBModel.SellerAut">
+        <MappingFragment StoreEntitySet="SellerAut">
+          <ScalarProperty Name="selAut" ColumnName="selAut" />
+          <ScalarProperty Name="autCategory" ColumnName="autCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellerPhone">
+      <EntityTypeMapping TypeName="shopDBModel.SellerPhone">
+        <MappingFragment StoreEntitySet="SellerPhone">
+          <ScalarProperty Name="selPhone" ColumnName="selPhone" />
+          <ScalarProperty Name="selID" ColumnName="selID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipper">
+      <EntityTypeMapping TypeName="shopDBModel.Shipper">
+        <MappingFragment StoreEntitySet="Shipper">
+          <ScalarProperty Name="shpID" ColumnName="shpID" />
+          <ScalarProperty Name="shpMethod" ColumnName="shpMethod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShipperDetail">
+      <EntityTypeMapping TypeName="shopDBModel.ShipperDetail">
+        <MappingFragment StoreEntitySet="ShipperDetail">
+          <ScalarProperty Name="shpID" ColumnName="shpID" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="defaultShipping" ColumnName="defaultShipping" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tag">
+      <EntityTypeMapping TypeName="shopDBModel.Tag">
+        <MappingFragment StoreEntitySet="Tag">
+          <ScalarProperty Name="tagID" ColumnName="tagID" />
+          <ScalarProperty Name="tagName" ColumnName="tagName" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ThirdLayer">
+      <EntityTypeMapping TypeName="shopDBModel.ThirdLayer">
+        <MappingFragment StoreEntitySet="ThirdLayer">
+          <ScalarProperty Name="trdLayerID" ColumnName="trdLayerID" />
+          <ScalarProperty Name="trdLayer" ColumnName="trdLayer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WishList">
+      <EntityTypeMapping TypeName="shopDBModel.WishList">
+        <MappingFragment StoreEntitySet="WishList">
+          <ScalarProperty Name="wishID" ColumnName="wishID" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cart_OrderDetail">
+      <EntityTypeMapping TypeName="shopDBModel.Cart_OrderDetail">
+        <MappingFragment StoreEntitySet="Cart_OrderDetail">
+          <ScalarProperty Name="pdtPrice" ColumnName="pdtPrice" />
+          <ScalarProperty Name="shpID" ColumnName="shpID" />
+          <ScalarProperty Name="usedPoints" ColumnName="usedPoints" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="odrID" ColumnName="odrID" />
+          <ScalarProperty Name="spcID" ColumnName="spcID" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="cartID" ColumnName="cartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specification">
+      <EntityTypeMapping TypeName="shopDBModel.Specification">
+        <MappingFragment StoreEntitySet="Specification">
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Style" ColumnName="Style" />
+          <ScalarProperty Name="spcID" ColumnName="spcID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Refund">
+      <EntityTypeMapping TypeName="shopDBModel.Refund">
+        <MappingFragment StoreEntitySet="Refund">
+          <ScalarProperty Name="rfdStatusID" ColumnName="rfdStatusID" />
+          <ScalarProperty Name="rfdDate" ColumnName="rfdDate" />
+          <ScalarProperty Name="rfdShipping" ColumnName="rfdShipping" />
+          <ScalarProperty Name="rfdProduct" ColumnName="rfdProduct" />
+          <ScalarProperty Name="rfdReason" ColumnName="rfdReason" />
+          <ScalarProperty Name="rfdShip" ColumnName="rfdShip" />
+          <ScalarProperty Name="odrID" ColumnName="odrID" />
+          <ScalarProperty Name="rfdID" ColumnName="rfdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
