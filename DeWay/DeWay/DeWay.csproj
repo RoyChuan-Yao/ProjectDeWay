@@ -359,7 +359,7 @@
     <Compile Include="App_Code\GmailSender.cs" />
     <Compile Include="ViewModels\VM_pdtCreate.cs" />
     <Compile Include="ViewModels\VM_Market.cs" />
-    <Compile Include="ViewModels\VM_MH_AllOrders.cs" />
+    <Compile Include="ViewModels\VM_rfdDetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

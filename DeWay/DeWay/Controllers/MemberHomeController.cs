@@ -46,6 +46,8 @@ namespace DeWay.Controllers
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
+
+
             string fileName = "";
 
             if (Image != null)
@@ -195,27 +197,6 @@ namespace DeWay.Controllers
 
 
 
-            //IEnumerable<object> result ;
-            //if (code == 0)
-            //{
-            //     result = db.Order.Where(o => orderID.Contains(o.odrID) && o.odrStatusID == "ods0000001").ToList();
-            //}
-
-            //else if (code == 1)
-            //{
-            //     result = db.Order.Where(o => orderID.Contains(o.odrID) && o.odrStatusID == "ods0000002").ToList();
-            //}
-            //else if (code == 2)
-            //{
-            //     result = db.Order.Where(o => orderID.Contains(o.odrID) && o.odrStatusID. ).ToList();
-            //}
-            //else
-            //{
-
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //return View(result);
-
 
 
         }
@@ -274,35 +255,35 @@ namespace DeWay.Controllers
             var rvwodrid = (from o in db.Review
                             where o.mbrID == id
                             select o.odrID).ToList();
+            IEnumerable<object> review;
+
+            // 沒給評價
             if (code == 0)
             {
 
-
-                var nonreview = db.Order.Where(m => !rvwodrid.Contains(m.odrID) && odrid.Contains(m.odrID)).ToList();
-
-                return PartialView(nonreview);
-
-
+                review = db.Order.Where(m => !rvwodrid.Contains(m.odrID)).Where(m=> odrid.Contains(m.odrID)).ToList();
+                
 
             }
+            // 已給評價
             else if (code == 1)
             {
 
-                var reviewed = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
-                return PartialView(reviewed);
+                review = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
+                
 
             }
-
+            // For odrDetail
             else if (code == 2)
             {
                 ViewBag.code = code;
-                var odrreview = db.Order.Where(m => m.odrID == odr).ToList();
-                return PartialView(odrreview);
-
+                review = db.Order.Where(m => m.odrID == odr).ToList();
+            
             }
-            return ViewBag.message;
+            else
+                return ViewBag.message;
 
-
+            return PartialView(review);
 
         }
 
@@ -434,20 +415,31 @@ namespace DeWay.Controllers
         }
         public ActionResult rfdDetail(string rfdID)
         {
-            var rfdDetail = db.Refund.Where(r => r.rfdID == rfdID).ToList();
-            return View(rfdDetail);
+            var odrID = (from r in db.Refund
+                         where r.rfdID == rfdID
+                         select r.odrID).ToList();
+
+            VM_rfdDetail refundDetail = new VM_rfdDetail()
+            {
+                refund = db.Refund.Where(r => r.rfdID == rfdID).ToList(),
+                cart_orderDetail = db.Cart_OrderDetail.Where(c => odrID.Contains(c.odrID)).ToList()
+            };
+
+            return View(refundDetail);
         }
 
 
         [HttpPost]
         public ActionResult changeStatus(string odrID, string odrStatus)
         {
+            var odr = db.Order.Find(odrID);
             var odrstatus = "";
             switch (odrStatus)
             {
                 case "未付款":
                     odrstatus = "ods0000002";
                     odrStatus = "處理中";
+                    odr.pmtDate = DateTime.Now;
                     break;
                 case "待取貨":
                     odrstatus = "ods0000006";
@@ -457,7 +449,7 @@ namespace DeWay.Controllers
             }
 
 
-            var odr = db.Order.Find(odrID);
+           
             odr.odrStatusID = odrstatus;
             db.SaveChanges();
 

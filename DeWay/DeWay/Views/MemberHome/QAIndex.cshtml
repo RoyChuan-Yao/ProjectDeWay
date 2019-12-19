@@ -24,7 +24,7 @@
     }*@
 
 
-<div class="mb-2">
+<div class="mb-3">
     <ul class="nav nav-fill nav-bg">
         <li class="nav-item d-active"><a href="@Url.Action("QAIndex","MemberHome",new {code=0})" class="nav-link o-li">全部的問題</a></li>
         <li class="nav-item"><a href="@Url.Action("QAIndex","MemberHome",new {code=1})" class="nav-link o-li">未回覆的問題</a></li>
@@ -34,38 +34,56 @@
 
 </div>
 
-<div class="row ">
+<div class="col-12">
     @foreach (var item in Model)
     {
 
         <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.pdtID})">
-            <div class="card card-columns">
-                <div class="card-header">
-                    @Html.DisplayFor(modelItem => item.Product.Seller.selCompany)
-                    @*@Html.DisplayFor(modelItem => item.Product.ProductImage.FirstOrDefault().pdtImage)*@
-                    @Html.DisplayFor(modelItem => item.Product.pdtName)
-                </div>
-                <div class="card-body">
-                    @Html.DisplayFor(modelItem => item.qaTime)
+            <div class="card ">
+                <div class="card-header row">
                     <div>
-
-                        @ViewBag.MemberName 發問: @Html.DisplayFor(modelItem => item.Question)
-
+                        @Html.DisplayFor(modelItem => item.Product.Seller.selCompany)
+                        
+                        @Html.DisplayFor(modelItem => item.Product.pdtName)
                     </div>
-                    @if (item.Answer != null && item.Answer != "")
-                    {
-                        <hr />
-                        <div>
-                            @Html.DisplayFor(modelItem => item.Product.Seller.selCompany) 回答：@Html.DisplayFor(modelItem => item.Answer)
-                        </div>
-                    }
+                    <div class="offset-7">
+                        @Html.DisplayFor(modelItem => item.qaTime)
+                    </div>
+                </div>
+                <div class="card-body row">
+                    
+                    <div class="col-3 mr-3">
+                        @if (Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage == null || Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage == "")
+                        {
+                           <img src="~/images/0.jpg"  style="width:200px" />
+                        }
+                        else
+                        {
+                           <img src="~/images/@Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage" style="width:200px" />
+
+                        }
+                    </div>
+                    <div class="col-8 mt-5">
+
+                        @ViewBag.MemberName 發問： @Html.DisplayFor(modelItem => item.Question)
+                        
+                        @if (item.Answer != null && item.Answer != "")
+                        {
+                            <hr />
+                           
+                            <p>@Html.DisplayFor(modelItem => item.Product.Seller.selCompany) 回答：@Html.DisplayFor(modelItem => item.Answer)</p>
+                           
+                        }
+                    </div>
+                   
                 </div>
             </div>
         </a>
 
-       
+
     }
 </div>
+
 @section Script
     {
     <script>

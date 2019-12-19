@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DeWay.Models.Refund>
+﻿@model DeWay.ViewModels.VM_rfdDetail
 
 @{
     ViewBag.Title = "rfdDetail";
@@ -13,7 +13,7 @@
 <h2>退貨詳細資訊</h2>
 <div class="d-text-color">
     @{
-        result = Model.FirstOrDefault().rfdProduct == true ? "需退回商品" : "不需退回商品";
+        result = Model.refund.FirstOrDefault().rfdProduct == true ? "需退回商品" : "不需退回商品";
     }
     @result
 
@@ -22,7 +22,7 @@
     <div class="card-header ">
         <div class="row">
             <div>退貨單</div>
-            <div class="offset-9">@Model.FirstOrDefault().rfdDate</div>
+            <div class="offset-8">@Model.refund.FirstOrDefault().rfdDate</div>
         </div>
     </div>
     <div class="card-body">
@@ -35,22 +35,22 @@
                 <div class="col-3">小計</div>
 
             </div>
-            @foreach (var item in Model)
+            @foreach (var item in Model.cart_orderDetail)
             {
-                var subtotal = (decimal)((int)item.Order.Cart_OrderDetail.FirstOrDefault().pdtPrice * item.Order.Cart_OrderDetail.FirstOrDefault().Discount * item.Order.Cart_OrderDetail.FirstOrDefault().Quantity);
+                var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
 
                 total += subtotal;
                 shipping = item.Order.shpPrice;
                 <div class="row">
                     <div class="col-3">
-                        @Html.DisplayFor(modelItem => item.Order.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
+                        @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
                     </div>
                     <div class="col-3">
-                        @Html.DisplayFor(modelItem => item.Order.Cart_OrderDetail.FirstOrDefault().Specification.Style)
-                        @Html.DisplayFor(modelItem => item.Order.Cart_OrderDetail.FirstOrDefault().Specification.Size)
+                        @Html.DisplayFor(modelItem => item.Specification.Style)
+                        @Html.DisplayFor(modelItem => item.Specification.Size)
                     </div>
                     <div class="col-3">
-                        ×@Html.DisplayFor(modelItem => item.Order.Cart_OrderDetail.FirstOrDefault().Quantity)
+                        ×@Html.DisplayFor(modelItem => item.Quantity)
                     </div>
                     <div class="col3">
                         NT$ @subtotal
@@ -64,7 +64,7 @@
             <hr />
             @{
 
-                rfdshipping = @Model.FirstOrDefault().rfdShip;
+                rfdshipping = @Model.refund.FirstOrDefault().rfdShip;
                 if (rfdshipping == null)
                     rfdshipping = 0;
 
@@ -80,7 +80,7 @@
             <div class="offset-1 ">
                 <div class="row">
                     <h6 class="col-2 ">退貨原因：</h6>
-                    <div class=" col-9 ">@Model.FirstOrDefault().rfdReason</div>
+                    <div class=" col-9 ">@Model.refund.FirstOrDefault().rfdReason</div>
                 </div>
             </div>
 
@@ -89,21 +89,21 @@
             <div class="offset-1">
                 <div class="row ">
                     <p class="col-2">銀行代碼：</p>
-                    <div class="col-9 ">@Model.FirstOrDefault().RefundAccount.bankCode</div>
+                    <div class="col-9 ">@Model.refund.FirstOrDefault().RefundAccount.bankCode</div>
                 </div>
                 <div class="row">
                     <p class="col-2">銀行名稱：</p>
-                    <div class="col-9 ">@Model.FirstOrDefault().RefundAccount.bankName</div>
+                    <div class="col-9 ">@Model.refund.FirstOrDefault().RefundAccount.bankName</div>
                 </div>
                 <div class="row">
                     <p class="col-2">銀行帳號：</p>
-                    <div class="col-9 ">@Model.FirstOrDefault().RefundAccount.bankAccount</div>
+                    <div class="col-9 ">@Model.refund.FirstOrDefault().RefundAccount.bankAccount</div>
                 </div>
             </div>
 
         </div>
         <div class="card-footer  ">
-            <div class="offset-6">@Model.FirstOrDefault().RefundStatus.rfdStatus</div>
+            <div class="offset-6">@Model.refund.FirstOrDefault().RefundStatus.rfdStatus</div>
         </div>
     </div>
 </div>
