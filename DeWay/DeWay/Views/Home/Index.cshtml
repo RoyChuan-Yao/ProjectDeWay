@@ -9,9 +9,9 @@
 <div id="welcome" class="container">
     <div class="p-2 bg-red-1 text-dark text-center" role="alert">
         @if (@Session["memberID"] != null)
-        {<span>歡迎你 @Session["memberID"]</span>}
+        {<span>歡迎你 @ViewBag.memberName</span>}
     else
-    {<span>你尚未登入</span>}
+    {<span>看到喜歡的商品嗎？登入後就可加入購物車囉！</span>}
         <span class="mr-0">
             <button id="closeBtn" type="button" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -53,7 +53,7 @@
 
 @*nav-公告*@
 <section class=" mt-100 h-800 ">
-    <div class=" container ">
+    <div class=" container ">op
         <div class="shadow-lg">
             <ul class="nav nav-tabs nav-justified d-flex ">
                 <li class="nav-item">
@@ -99,7 +99,7 @@
                     <p class="text-secondary text-secondary-2">價格:<span>590</span></p>
                     <div class="d-flex justify-content-between">
                         <img src="~/images/Img-like-7.png" class="likeImg card-img-top img-wh-2" alt="...">
-                        <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">
+                        <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="..." />
                     </div>
                 </div>
             </div>
@@ -298,7 +298,7 @@
         </div>
     </div>
 </section>
-@section myScript{
+@section Script{
     <script>
 
         $('#closeBtn').click(function () {

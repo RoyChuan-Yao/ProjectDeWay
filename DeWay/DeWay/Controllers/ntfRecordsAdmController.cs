@@ -14,7 +14,7 @@ namespace DeWay.Controllers
     {
          shopDBEntities db = new shopDBEntities();
 
-        // GET: ntfRecordsAdm
+       
         public ActionResult Index(string searchtitle)
         {
             var ntrcontent = from m in db.ntfRecord
@@ -29,13 +29,7 @@ namespace DeWay.Controllers
 
 
 
-        //public ActionResult Index()
-        //{
-        //    var ntfRecord = db.ntfRecord.Include(n => n.Member).Include(n => n.ntfCategory);
-        //    return View(ntfRecord.ToList());
-        //}
-
-        // GET: ntfRecordsAdm/Details/5
+      
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -69,23 +63,18 @@ namespace DeWay.Controllers
             ntfRecord.ntfID = GetntfID;
 
 
-            //if (ModelState.IsValid)
-            //{
-            //    db.ntfRecord.Add(ntfRecord);
-            //    db.SaveChanges();
-            //return RedirectToAction("Index");
-            //}
+          
 
             db.ntfRecord.Add(ntfRecord);
             db.SaveChanges();
 
             ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName", ntfRecord.mbrID);
             ViewBag.ntfCtgID = new SelectList(db.ntfCategory, "ntfCtgID", "ntfType", ntfRecord.ntfCtgID);
-            //return View(ntfRecord);
+           
             return RedirectToAction("Index");
         }
 
-        // GET: ntfRecordsAdm/Edit/5
+        
         public ActionResult Edit(string id)
         {
             if (id == null)

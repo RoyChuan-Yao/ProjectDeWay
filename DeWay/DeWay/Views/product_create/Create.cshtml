@@ -3,10 +3,8 @@
 @{
     ViewBag.Title = "Create";
 }
-
 <h2>Create</h2>
-
-@using (Html.BeginForm("Create", "test", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "product_create", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -17,18 +15,43 @@
 
 
         <div id="page0">
-            <div id="section1">
-                @foreach (var m in Model.firstLayers)
-                {
-                    @*@Html.ActionLink(m.fstLayer, "_GetCata", new { catLayer = m.fstLayerID })*@
-                    <br>
-                    <span id="@m.fstLayerID" class="btn btn-default fstBtn" onclik="callSecondLayer">@m.fstLayer</span>
-                }
+            <p>
+                請選擇分類：@Html.DropDownList("fstID", (SelectList)ViewBag.fst, "請選擇--", new { id = "fst" })
+            </p>
+            <p>
+                請選擇子分類：<select id="snd" name="sndID"><option>請選擇--</option></select>
+            </p>
+            <p>
+                請選擇不知道怎麼命名好分類：<select id="trd" name="trdID"><option>請選擇--</option></select>
+            </p>
+
+
+            <hr />
+            <div id="tag">
+                <p>
+                    請輸入Tag:
+                </p>
+                Tag1:<input type="text" name="tag[0].tagName" value="" />
             </div>
-            <div id="section2">
+            <br />
+            <div class="form-group">
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="addTag" type="button" value="新增Tag" class="btn btn-info" />
+                </span>
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="deletetag" type="button" value="刪除" class="btn btn-danger" />
+                </span>
 
             </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="btn0" type="button" value="下一頁" class="btn btn-primary" />
+                </div>
+            </div>
         </div>
+
 
         <div id="page1">
             <div class="form-group">
@@ -44,15 +67,27 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.products.pdtDescribe, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.products.pdtDescribe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.products.pdtDescribe, new { htmlAttributes = new { @class = "form-control " } })
                     @Html.ValidationMessageFor(model => model.products.pdtDescribe, "", new { @class = "text-danger" })
                 </div>
             </div>
             <hr />
-            <div id="pdtImg">
-                請上傳商品圖片: <input id="File1" type="file" name="photo" /><br />
+                <div id="pdtImg">
+                    請上傳封面圖片: <input id="File1" type="file" name="photo" /><br />
+                </div>
+            <br />
+
+
+            <div class="form-group">
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="addImg" type="button" value="新增圖片" class="btn btn-info" />
+                </span>
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="deleteimg" type="button" value="刪除" class="btn btn-danger" />
+                </span>
+
             </div>
-            <input id="addImg" type="button" value="新增圖片" />
+
 
             <div id="spc">
                 <fieldset>
@@ -72,57 +107,92 @@
             </div>
 
 
+            <br />
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input id="addSPC" type="button" value="新增商品規格" class="btn btn-default" />
-                </div>
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="addSPC" type="button" value="新增商品規格" class="btn btn-info" />
+                </span>
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="deleteSPC" type="button" value="刪除" class="btn btn-danger" />
+                </span>
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input id="btn1" type="button" value="下一頁" class="btn btn-default" />
-                </div>
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="btn3" type="button" value="上一頁" class="btn btn-primary" />
+                </span>
+
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="btn1" type="button" value="下一頁" class="btn btn-primary" />
+                </span>
+
+
             </div>
-
-
         </div>
 
         <div id="page2">
-            abc
+            <div id="shp">
+                <span>選擇物流方式</span>
+                <select name="shipperDetail[0].shpID" value="">
+                    @foreach (var item in ViewBag.shipperDetail)
+                    {
+                        <option value="@item.shpID">@item.shpMethod</option>
+                    }
+                </select>
+                <span>設定價格</span>
+                <input type="text" name="shipperDetail[0].defaultShipping" value="" />
+            </div>
+            <br />
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input id="btn2" type="button" value="上一頁" class="btn btn-default" />
-                </div>
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="createshp" type="button" value="新增運費" class="btn btn-info" />
+                </span>
+                <span class="col-md-offset-2 col-md-10">
+                    <input id="deleteshp" type="button" value="刪除" class="btn btn-danger" />
+                </span>
+
             </div>
-        </div>
 
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+
+            <div class="form-group">
+                <spav class="col-md-offset-2 col-md-10">
+                    <input id="btn2" type="button" value="上一頁" class="btn btn-primary" />
+                </spav>
+                <spav class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </spav>
+
+
+
             </div>
         </div>
     </div>
+
+
+
 
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "OrderIndex","SellerHome")
     </div>
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script>
-    $(`.fstBtn`).click(() => {
-        $.get(@Url.Action("_GetCata","test"))
-    })
-</script>
+
 <script>
     var i = 1;
 
+    $('#deleteSPC').hide();
+
+
     $('#addSPC').click(function () {
-        $('#spc').append(`               <hr /> <fieldset>
+        if (i < 5) {
+            $('#spc').append(`
+                <hr /> <fieldset>
                 <legend>商品規格${i + 1}</legend>
                 <span>項目</span>
                 <input type="text" name="specification[${i}].Style" value="" />
@@ -136,11 +206,173 @@
                 <span>單價</span>
                 <input type="text" name="specification[${i}].Price" value="" />
             </fieldset>`);
+
+        }
         i++;
+
+        if (i > 1) {
+            $('#deleteSPC').show();
+        };
+
     });
 
-    $('#page2').hide();
+
+
+    $('#deleteSPC').click(function () {
+        if (i >= 2) {
+
+            $('fieldset').last().remove();
+            $('hr').last().remove();
+
+        }
+        i--;
+        if (i >= 0) {
+            $('#deleteSPC').hide();
+
+        }
+        if (i > 1) {
+            $('#deleteSPC').show();
+
+        }
+        if (i < 5) {
+            $('#addSPC').val("新增商品規格")
+            $("#addSPC").attr("disabled", false);
+        }
+
+
+    });
+    $('#addSPC').click(function () {
+        if (i == 5) {
+            $('#addSPC').val("已達上限")
+            $("#addSPC").attr("disabled", true);
+        }
+    });
+
+</script>
+
+
+
+<script>
+    var a = 1;
+
+            $('#deleteshp').hide();
+
+
+    $('#createshp').click(function () {
+        if (a < 5) {
+        $('#shp').append(`
+                <div id="aaa">
+                <span>選擇物流方式</span>
+                <select name="shipperDetail[${a}].shpID" value="">
+                    @foreach (var item in ViewBag.shipperDetail)
+                    {
+                        <option value="@item.shpID">@item.shpMethod</option>
+                    }
+                </select>
+                <span>設定價格</span>
+                <input type="text" name="shipperDetail[${a}].defaultShipping" value="" /></div>`);
+
+        }
+        a++;
+
+        if (a > 1) {
+            $('#deleteshp').show();
+        };
+    });
+
+    $('#deleteshp').click(function () {
+        if (a >= 2) {
+
+            $('#shp').children("div:last-child").remove();
+
+        }
+        a--;
+        if (a >= 0) {
+            $('#deleteshp').hide();
+
+        }
+        if (a > 1) {
+            $('#deleteshp').show();
+
+        }
+                if (a < 5) {
+            $('#createshp').val("新增運費")
+            $("#createshp").attr("disabled", false);
+        }
+
+
+    });
+
+        $('#createshp').click(function () {
+        if (a == 5) {
+            $('#createshp').val("已達上限")
+            $("#createshp").attr("disabled", true);
+        }
+    });
+
+
+</script>
+
+
+
+<script>
+    var b = 1;
+
+    $('#deletetag').hide();
+
+    $('#addTag').click(function () {
+        if (b < 10) {
+            $('#tag').append(`
+                <div id="bbb">Tag${b + 1}:<input type="text" name="tag[${b}].tagName" value="" /></div>`);
+
+        }
+        b++;
+        if (b > 1) {
+            $('#deletetag').show();
+        };
+    });
+
+    $('#deletetag').click(function () {
+        if (b >= 2) {
+
+            $('#tag').children("div:last-child").remove();
+
+        }
+        b--;
+        if (b >= 0) {
+            $('#deletetag').hide();
+
+        }
+        if (b > 1) {
+            $('#deletetag').show();
+
+        }
+        if (b < 10) {
+            $('#addTag').val("新增Tag")
+            $("#addTag").attr("disabled", false);
+        }
+
+
+    });
+
+
+
+    $('#addTag').click(function () {
+        if (b == 10) {
+            $('#addTag').val("已達上限")
+            $("#addTag").attr("disabled", true);
+        }
+    });
+
+</script>
+<script>
     $('#page1').hide();
+    $('#page2').hide();
+
+    $('#btn0').click(function () {
+        $('#page0').hide();
+        $('#page1').show();
+    })
 
     $('#btn1').click(function () {
         $('#page1').hide();
@@ -152,8 +384,126 @@
         $('#page1').show();
     })
 
-    $('#addImg').click(function () {
-        $('#pdtImg').append(`請上傳商品圖片: <input id="File1" type="file" name="photo" /><br />`);
+    $('#btn3').click(function () {
+        $('#page1').hide();
+        $('#page0').show();
+    })
+
+
+
+</script>
+
+<script>
+        $('#deleteimg').hide();
+
+    var n = 1;
+    if (n < 11) {
+        $('#addImg').click(function () {
+            $('#pdtImg').append(`<div id="ccc">請上傳商品圖片: <input id="File1" type="file" name="photo" /><br /></div>`);
+            n++;
+    if (n > 1) {
+            $('#deleteimg').show();
+        };
+        });
+    }
+
+        $('#deleteimg').click(function () {
+        if (n >= 2) {
+
+            $('#pdtImg').children("div:last-child").remove();
+
+        }
+        n--;
+        if (n >= 0) {
+            $('#deleteimg').hide();
+
+        }
+        if (n > 1) {
+            $('#deleteimg').show();
+
+        }
+        if (n < 11) {
+            $('#addImg').val("新增圖片")
+            $("#addImg").attr("disabled", false);
+        }
+
+
     });
+
+
+        $('#addImg').click(function () {
+        if (n == 11) {
+            $('#addImg').val("已達上限")
+            $("#addImg").attr("disabled", true);
+        }
+    });
+
+</script>
+
+
+@*抓取第二層分類資料*@
+<script>
+    $(document).ready(function () {
+        $('#fst').change(function () { Changefst(); });
+    });
+
+    function Changefst() {
+        var getfstID = $('#fst option:selected').val();
+            Getsnd(getfstID);
+    }
+
+    function Getsnd(fstID) {
+        $.ajax({
+            url: '@Url.Action("snd", "product_create")',
+            data: { fstID: fstID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#snd').empty();
+                    $('#snd').append($('<option></option>').val('').text('請選擇--'));
+                    $.each(data, function (i, item) {
+                        $('#snd').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+
+
+</script>
+@*抓取第三層分類*@
+<script>
+    $(document).ready(function () {
+        $('#snd').change(function () { Changesnd(); });
+    });
+
+    function Changesnd() {
+        var getsndID = $('#snd option:selected').val();
+            Gettrd(getsndID);
+    }
+
+    function Gettrd(sndID) {
+        $.ajax({
+            url: '@Url.Action("trd", "product_create")',
+            data: { sndID: sndID },
+            type: 'post',
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#trd').empty();
+                    $('#trd').append($('<option></option>').val('').text('請選擇--'));
+                    $.each(data, function (i, item) {
+                        $('#trd').append($('<option></option>').val(item.Key).text(item.Value));
+                    });
+                }
+            }
+        });
+    }
+
 
 </script>

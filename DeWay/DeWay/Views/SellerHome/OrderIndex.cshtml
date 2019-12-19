@@ -1,0 +1,115 @@
+﻿@model IEnumerable<DeWay.Models.Order>
+
+@{
+    ViewBag.Title = "OrderIndex";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
+    decimal? total = 0;
+    decimal? shipping = 0;
+}
+
+
+
+
+<h2>OrderIndex</h2>
+<div class="col-12">
+    <div>
+        <ul class="nav nav-tabs nav-fill mb-1">
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome")" class="nav-link active">全部</a></li>
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="未付款" })" class="nav-link">未付款</a></li>
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="處理中" })" class="nav-link">待處理</a></li>
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="運送中" })" class="nav-link">運送中</a></li>
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="待取貨" })" class="nav-link">待取貨</a></li>
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="已完成" })" class="nav-link">已完成</a></li>
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="糾紛中" })" class="nav-link">糾紛中</a></li>
+            <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome",new {odrStatus="已取消" })" class="nav-link">已取消</a></li>
+        </ul>
+
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row col-12">
+                <span class="col-3">商品</span>
+                <span class="col-2">買家應付金額</span>
+                <span class="col-1">狀態</span>
+                <span class="col-3">出貨時間</span>
+                <span class="col-1">送貨方式</span>
+                <span class="col-2">調整</span>
+            </div>
+        </div>
+        @if (Model.Count() == 0)
+        {<div>找不到訂單</div>}
+        else
+        {
+            foreach (var item in Model)
+            {
+
+                foreach (var i in item.Cart_OrderDetail)
+                {
+                    var subtotal = i.pdtPrice * (int)i.Discount * i.Quantity;
+
+                    total += subtotal;
+                    shipping = item.shpPrice;
+
+                }
+                
+                total = (total + shipping);
+                string newtotal = total.ToString().TrimEnd('0');
+                if (newtotal.EndsWith("."))
+                {
+                    newtotal = newtotal.Substring(0, newtotal.Length - 1);
+                }
+                <div class="card-body">
+                    <div class="row col-12">
+
+                        <span class="col-3">@item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName</span>
+                        <span class="col-2">@newtotal</span>
+                        <span class="col-1">@item.OrderStatus.odrStatus</span>
+                        <span class="col-3">@item.shpDate</span>
+                        <span class="col-1">@item.Cart_OrderDetail.FirstOrDefault().Shipper.shpMethod</span>
+
+                        <span class="col-2">
+                            <span>
+                                @Html.ActionLink("訂單詳情", "odrDetail", new { odrID = item.odrID }, new { @class = "btn btn-info " })
+                            </span>
+                            @if (item.odrStatusID == "ods0000004" || item.odrStatusID == "ods0000003")
+                            {
+                                <form class="form-horizontal" method="post" action="@Url.Action("arrival")">
+                                    <input name="odrID" type="text" hidden="hidden" value="@item.odrID" />
+                                    <span><input id="Submit1" type="submit" value="到貨" class="btn btn-warning" onclick="return confirm('到貨???')" /></span>
+                                </form>
+                            }
+
+                            @if (item.odrStatusID == "ods0000001" || item.odrStatusID == "ods0000002")
+                            {
+
+                                <form class="form-horizontal" method="post" action="@Url.Action("cancel")">
+                                        <input name="odrID" type="text" hidden="hidden" value="@item.odrID" />
+                                        <span><input id="Submit1" type="submit" value="取消訂單" class="btn btn-danger" onclick="return confirm('是否取消訂單?')" /></span>
+                                </form>
+
+                            }
+                        </span>
+                    </div>
+                </div>
+
+
+            }
+        }
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        $('.nav-link').each(function () {
+            if ($($(this))[0].href == String(window.location)) {
+                $('.nav-link').removeClass("active");
+                $(this).addClass('active');
+            }
+        });
+    });
+
+</script>

@@ -16,6 +16,9 @@ namespace DeWay.Controllers
         {
             var product = db.Product.Where(m => m.pdtID == pdtID).FirstOrDefault();
             string memberID = (string)Session["memberID"];
+            string memberSellID = db.Seller.Where(m => m.mbrID == memberID).Select(m => m.mbrID).ToString();
+            
+            
             string selID="";
             if (memberID != null) 
             {
@@ -25,15 +28,16 @@ namespace DeWay.Controllers
             if (product.Discontinued && product.selID != selID)
             {
                 return HttpNotFound();
-                //TODO ：製作404頁面
+                //TODO： 製作404頁面
             }
             return View(product);
-        }
+        } 
         public int GetProductStock(string specID)
         {
             int stockResult = db.Specification
                 .Where(m => m.spcID == specID)
                 .FirstOrDefault().Stock;
+            stockResult = stockResult >= 20 ? 20 : stockResult; //庫存超過20 則返回20
             return stockResult;
         }
 
