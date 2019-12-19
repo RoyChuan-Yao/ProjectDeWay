@@ -9,7 +9,7 @@
 <div id="welcome" class="container">
     <div class="p-2 bg-red-1 text-dark text-center" role="alert">
         @if (@Session["memberID"] != null)
-        {<span>歡迎你 @Session["memberID"]</span>}
+        {<span>歡迎你 @ViewBag.memberName</span>}
     else
     {<span>看到喜歡的商品嗎？登入後就可加入購物車囉！</span>}
         <span class="mr-0">
