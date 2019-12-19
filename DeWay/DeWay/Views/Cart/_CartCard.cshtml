@@ -47,18 +47,16 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card-body">
-                                @*<p class="text-primary">
-                                    選購數量：    <span id="count_@count">@Html.DisplayFor(modelItem => product.Quantity)</span>
-                                </p>*@
                                 <p class="text-primary">
                                     選購數量：
-                                    <select id="count_@count" spcID="@product.spcID">
+                                    <select id="count_@count" spcID="@product.spcID" class="quantitySelect">
                                         @for (int i = 1; i <= product.Specification.Stock; i++)
                                         {
                                             <option value="@i"
-                                                    @{ if (i == product.Quantity) { @("selected") } }>
+                                                    @{ if (i == product.Quantity) { @("selected")  } }>
                                                 @i
                                             </option>
+                                            if (i >= 20) { break; }
                                         }
                                     </select>
                                 </p>

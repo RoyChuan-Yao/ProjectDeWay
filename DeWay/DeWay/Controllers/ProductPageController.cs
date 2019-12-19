@@ -16,6 +16,9 @@ namespace DeWay.Controllers
         {
             var product = db.Product.Where(m => m.pdtID == pdtID).FirstOrDefault();
             string memberID = (string)Session["memberID"];
+            string memberSellID = db.Seller.Where(m => m.mbrID == memberID).Select(m => m.mbrID).ToString();
+            
+            
             string selID="";
             if (memberID != null) 
             {

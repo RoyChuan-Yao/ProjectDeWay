@@ -112,9 +112,14 @@
         $().ready(() => {
             initCheckStatus();
             updateTotalPrice(checkStatus);
-
-            $(select[id="count"])
+            soldOutAlert();
         });
+        function soldOutAlert() {
+            @if(ViewBag.boolSoldOut == true)
+            {
+                @Html.Raw("alert('部分商品已售罄，已從購物車移除')")
+            }
+        }
         function initCheckStatus() {//初始化陣列
             checkStatus = [];
             $(`input[type="checkbox"]`).each((index,e) => {
@@ -133,6 +138,16 @@
             updateTotalPrice(arr);//點選後更新訂單摘要
         }
 
+
+        //quantitySelect
+        //改比商品數量 勾選該商品 變更checkStatus
+        $(`.quantitySelect`).change((e) => {
+            var checkBox = $(e.target).closest('div[id^="no"]').find('input[type="checkbox"]')[0]
+            if (checkBox.checked)
+                updateTotalPrice(checkStatus);
+            else
+                checkBox.click();
+        });
 
         $(`#checkOutBtn`).click(() => {
             //改變結帳按鈕狀態
@@ -200,7 +215,7 @@
         function submitOrder() {
 
             var cartResult = "";
-            for (i = 0; i <= checkStatus.length ; i++) {//取得被點選的商品編號
+            for (i = 0; i < checkStatus.length ; i++) {//取得被點選的商品編號
                 cartResult += `<input type="" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
                 cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
                 cartResult += `<input type="" name="quantity[${i}]" value="${$('#count_'+i).val()}">`;
