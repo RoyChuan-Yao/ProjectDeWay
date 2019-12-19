@@ -21,7 +21,7 @@ namespace Project.Controllers
         public ActionResult AddToMyCart(string spcID, int quantity)
         {   //TODO:加入 請訪客登入
             //把memberID加入MBRID
-            
+
             string mbrID = (string)Session["memberID"]; //利用SESSION存取
             if (mbrID is null)
             {
@@ -29,14 +29,14 @@ namespace Project.Controllers
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return JavaScript(js);
             }
-           
+
 
             Cart_OrderDetail cod;
             //檢查是否已經加入購物車
             var getCartItem = db.Cart_OrderDetail.Where(m => m.mbrID == mbrID)
                 .Where(m => m.spcID == spcID)
                 .Where(m => m.odrID == null);
-                int inCartCount = getCartItem.Count();
+            int inCartCount = getCartItem.Count();
             if (inCartCount > 0)
             {
                 cod = getCartItem.FirstOrDefault();
@@ -70,18 +70,32 @@ namespace Project.Controllers
         public ActionResult MyCart()
         {
             string id = (string)Session["memberID"];
+            if (id == null) //未登入，倒回登入頁面
+                return RedirectToAction("login", "login");
             var cod = db.Cart_OrderDetail;
             var m = from p in cod
                     where p.mbrID == id
                     where p.odrID == null
                     select p;
+            //如果商品售完，直接從購物車移除
+            var soldOutItem = m.Where(q => q.Specification.Stock == 0).ToList();
+            if (soldOutItem.Count != 0)
+            {
+                foreach (var soldOut in soldOutItem)
+                {
+                    db.Cart_OrderDetail.Remove(soldOut);
+                }
+                db.SaveChanges();
+                ViewBag.boolSoldOut = true;
+            }
+
             ViewBag.memberName = db.Member.Find(id).mbrName;
             return View(m);
         }
-        
+
 
         [HttpPost]
-        public ActionResult receiveOrder(string[] cartID, string[] shipSelect,string[] quantity, Order order) //提交訂單
+        public ActionResult receiveOrder(string[] cartID, string[] shipSelect, string[] quantity, Order order) //提交訂單
         {
             var cod = db.Cart_OrderDetail;
             string memberID = Session["memberID"] as string;

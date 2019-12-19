@@ -53,9 +53,10 @@
                                         @for (int i = 1; i <= product.Specification.Stock; i++)
                                         {
                                             <option value="@i"
-                                                    @{ if (i == product.Quantity) { @("selected") } }>
+                                                    @{ if (i == product.Quantity) { @("selected")  } }>
                                                 @i
                                             </option>
+                                            if (i >= 20) { break; }
                                         }
                                     </select>
                                 </p>

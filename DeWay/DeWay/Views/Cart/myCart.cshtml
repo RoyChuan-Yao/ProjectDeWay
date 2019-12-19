@@ -112,8 +112,14 @@
         $().ready(() => {
             initCheckStatus();
             updateTotalPrice(checkStatus);
-
+            soldOutAlert();
         });
+        function soldOutAlert() {
+            @if(ViewBag.boolSoldOut == true)
+            {
+                @Html.Raw("alert('部分商品已售罄，已從購物車移除')")
+            }
+        }
         function initCheckStatus() {//初始化陣列
             checkStatus = [];
             $(`input[type="checkbox"]`).each((index,e) => {
