@@ -91,7 +91,7 @@
     </div>
 </div>
 <!--Modal-->
-@using (Html.BeginForm("receiveOrder", "Cart"))
+@using (Html.BeginForm("receiveOrder", "Cart",FormMethod.Post,new { id="checkOutForm"}))
 {
 
 }
@@ -184,7 +184,7 @@
             $("#backToCart").hide(100);//隱藏按鈕
             $("#checkOutBtn").text("前往結帳").attr("onclick", "checkOut()")
             $("input[type='checkbox'],a[href*='Delete']").show(100)
-            $("form").html('')
+            $("#checkOutForm").html('')
             $(`#receiverInfo`).hide(100)
             $(`#cart_title`).text(title)
         }
@@ -216,20 +216,20 @@
 
             var cartResult = "";
             for (i = 0; i < checkStatus.length ; i++) {//取得被點選的商品編號
-                cartResult += `<input type="" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
-                cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
-                cartResult += `<input type="" name="quantity[${i}]" value="${$('#count_'+i).val()}">`;
+                cartResult += `<input type="hidden" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
+                cartResult += `<input type="hidden" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
+                cartResult += `<input type="hidden" name="quantity[${i}]" value="${$('#count_'+i).val()}">`;
             }
 
             var reciverFormResult = "";//取得收寄人資料做成表單內容
             $(`div[class="modal-content"] input`).each((index, e) => {
-                reciverFormResult += `<input type="" name="${$(e).attr('name')}" value="${$(e).val()}">`;
+                reciverFormResult += `<input type="hidden" name="${$(e).attr('name')}" value="${$(e).val()}">`;
             })
 
-            var note = `<input type="" name="odrNote" value="${$('#note').val()}">`//取得給賣家的註解
+            var note = `<input type="hidden" name="odrNote" value="${$('#note').val()}">`//取得給賣家的註解
             var finalResult = cartResult + reciverFormResult + note;
-            $("form").html(finalResult)//將被點選商品加入表單
-            $("form").submit();//提交表單
+            $("#checkOutForm").html(finalResult)//將被點選商品加入表單
+            $("#checkOutForm").submit();//提交表單
         }
 
     </script>

@@ -146,11 +146,10 @@
             $.get(`@Url.Action("GetProductStock","ProductPage")?specID=` + this.id,
                 function (stock) {
                     var quantity = '';
-                    if (stock > 0) {
+                    if (stock > 0) {//庫存檢查
                         for (var i = 1; i <= stock; i++) {
                             quantity += `<option value="${i}">${i}</option>`;
                         }
-                        
                     } else {
                         quantity += `<option value="">-商品已經售完-</option>`;
                     }
