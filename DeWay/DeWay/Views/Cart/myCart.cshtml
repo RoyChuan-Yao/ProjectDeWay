@@ -113,7 +113,6 @@
             initCheckStatus();
             updateTotalPrice(checkStatus);
 
-            $(select[id="count"])
         });
         function initCheckStatus() {//初始化陣列
             checkStatus = [];
@@ -133,6 +132,16 @@
             updateTotalPrice(arr);//點選後更新訂單摘要
         }
 
+
+        //quantitySelect
+        //改比商品數量 勾選該商品 變更checkStatus
+        $(`.quantitySelect`).change((e) => {
+            var checkBox = $(e.target).closest('div[id^="no"]').find('input[type="checkbox"]')[0]
+            if (checkBox.checked)
+                updateTotalPrice(checkStatus);
+            else
+                checkBox.click();
+        });
 
         $(`#checkOutBtn`).click(() => {
             //改變結帳按鈕狀態
