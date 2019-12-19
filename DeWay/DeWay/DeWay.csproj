@@ -463,6 +463,10 @@
     <Content Include="Views\SellerHome\OrderIndex.cshtml" />
     <Content Include="Views\Shared\_Layout - seller.cshtml" />
     <Content Include="Views\Product_edit_Seller\Editsp.cshtml" />
+    <Content Include="Views\SellerHome\rfdIndex.cshtml" />
+    <Content Include="Views\SellerHome\odrDetail.cshtml" />
+    <Content Include="Views\SellerHome\deliveryIndex.cshtml" />
+    <Content Include="Views\SellerHome\_rvwIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -36,7 +36,7 @@ namespace DeWay.Controllers
             product.products.pdtID = GetpdtID;
             product.products.selID = getselID;  //用Session["member"]查
             product.products.pdtDate = DateTime.Now;
-            product.products.Discontinued = true;
+            product.products.Discontinued = false;
             product.products.ctgID = getctgID;  //擱置，資料表設計錯誤
             db.Product.Add(product.products);
             db.SaveChanges();
@@ -52,6 +52,7 @@ namespace DeWay.Controllers
                 spc.Size = specification[i].Size;
                 spc.Stock = specification[i].Stock;
                 spc.Price = specification[i].Price;
+                spc.Discount = 1;
                 string GetspcID = db.Database.SqlQuery<string>("Select dbo.GetSpecificationID()").FirstOrDefault();
                 spc.spcID = GetspcID;
 
@@ -121,7 +122,7 @@ namespace DeWay.Controllers
             //ViewBag.shp123 = new SelectList(db.Shipper, "shpID", "shpMethod");
             ViewBag.shipperDetail = db.Shipper.ToList();
 
-            return View();
+            return RedirectToAction("OrderIndex", "SellerHome");
         }
 
         [HttpPost]
