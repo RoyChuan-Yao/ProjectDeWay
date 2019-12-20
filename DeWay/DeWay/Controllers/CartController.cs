@@ -18,7 +18,7 @@ namespace Project.Controllers
         shopDBEntities db = new shopDBEntities();
 
         [HttpPost]
-        public ActionResult AddToMyCart(string spcID, int quantity)
+        public ActionResult AddToMyCart(string spcID, int quantity = 1)
         {   //TODO:加入 請訪客登入
             //把memberID加入MBRID
 

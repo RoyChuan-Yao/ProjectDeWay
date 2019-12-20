@@ -467,6 +467,7 @@
     <Content Include="Views\SellerHome\odrDetail.cshtml" />
     <Content Include="Views\SellerHome\deliveryIndex.cshtml" />
     <Content Include="Views\SellerHome\_rvwIndex.cshtml" />
+    <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
