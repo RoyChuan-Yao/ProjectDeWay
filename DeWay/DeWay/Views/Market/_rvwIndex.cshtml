@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DeWay.Models.Review>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+@{
+    Layout = null;
+}
+
+@if (Model.Count() == 0)
+{
+    <div>找不到評價</div>
+}
+else
+{
+    <div class="row col-12">
+        <span class="col-2">商品</span>
+        <span class="col-2">來自</span>
+        <span class="col-2">評分</span>
+        <span class="col-3">評語</span>
+        <span class="col-3">評價時間</span>
+    </div>
+    foreach (var item in Model)
+    {
+        <div class="row col-12">
+            <span class="col-2">@item.Product.pdtName</span>
+            <span class="col-2">@item.Member.nickName</span>
+            <input id="Text1" class="getstar" type="text" value="@item.rvwStar" hidden="hidden" />
+            <span class="col-2 star">@item.rvwStar</span>
+            <span class="col-3">@item.rvwContent</span>
+            <span class="col-3">@item.rvwTime</span>
+        </div>
+    }
+}
