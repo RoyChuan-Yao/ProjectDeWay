@@ -59,17 +59,14 @@
                     <div class="row col-12">
                         @foreach (var i in item.Order.Cart_OrderDetail)
                         {
-                            var subtotal = i.pdtPrice * (int)i.Discount * i.Quantity;
+                            var subtotal = (decimal)((int)i.pdtPrice * i.Discount * i.Quantity);
 
                             total += subtotal;
                         }
 
                         @{
-                            string newtotal = total.ToString().TrimEnd('0');
-                            if (newtotal.EndsWith("."))
-                            {
-                                newtotal = newtotal.Substring(0, newtotal.Length - 1);
-                            }
+                            string newtotal = total.ToString();
+                          
                         }
 
                         <span class="col-2">@item.rfdID</span>

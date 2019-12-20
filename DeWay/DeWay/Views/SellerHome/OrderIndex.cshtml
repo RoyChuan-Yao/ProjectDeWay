@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "OrderIndex";
     Layout = "~/Views/Shared/_Layout - seller.cshtml";
-    decimal? total = 0;
     decimal? shipping = 0;
+    decimal? total = 0;
+
 }
 
 
@@ -43,16 +44,15 @@
         {
             foreach (var item in Model)
             {
-
+                total = 0;
                 foreach (var i in item.Cart_OrderDetail)
                 {
-                    var subtotal = i.pdtPrice * (int)i.Discount * i.Quantity;
-
+                    var subtotal = (decimal)((int)i.pdtPrice * i.Discount * i.Quantity);
                     total += subtotal;
                     shipping = item.shpPrice;
 
                 }
-                
+
                 total = (total + shipping);
                 string newtotal = total.ToString().TrimEnd('0');
                 if (newtotal.EndsWith("."))
@@ -84,8 +84,8 @@
                             {
 
                                 <form class="form-horizontal" method="post" action="@Url.Action("cancel")">
-                                        <input name="odrID" type="text" hidden="hidden" value="@item.odrID" />
-                                        <span><input id="Submit1" type="submit" value="取消訂單" class="btn btn-danger" onclick="return confirm('是否取消訂單?')" /></span>
+                                    <input name="odrID" type="text" hidden="hidden" value="@item.odrID" />
+                                    <span><input id="Submit1" type="submit" value="取消訂單" class="btn btn-danger" onclick="return confirm('是否取消訂單?')" /></span>
                                 </form>
 
                             }
