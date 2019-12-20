@@ -92,7 +92,9 @@
 
                                 @Html.ActionLink("會員中心", "odrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("商品收藏", "Index", "WishLists", new { }, new { @class = "dropdown-item" })
-                                @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new { }, new { @class = "dropdown-item" })
+
+                                @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new {  }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("通知中心", "IndexForMember", "ntfRecordsAdm", new {  }, new { @class = "dropdown-item" })
 
                             </div>
                         </li>
