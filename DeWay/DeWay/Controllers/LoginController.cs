@@ -72,7 +72,7 @@ namespace DeWay.Controllers
             mbr.Points = 0;
             mbr.mbrAut = false;
             mbr.signupDate = DateTime.Now;
-            mbr.mbrImage = "";
+            mbr.mbrImage = "0.jpg";
             mbr.mbrBlock = false;
 
             if (ModelState.IsValid)
