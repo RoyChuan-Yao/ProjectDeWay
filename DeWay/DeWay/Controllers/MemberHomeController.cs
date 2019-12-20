@@ -99,7 +99,6 @@ namespace DeWay.Controllers
 
             string id = Session["memberID"].ToString();
             var account = db.MemberAccount.Find(id);
-            ViewBag.id = id;
             return View(account);
 
 
