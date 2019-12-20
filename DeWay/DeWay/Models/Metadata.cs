@@ -31,17 +31,17 @@ namespace DeWay.Models
 
 
             [DisplayName("活動照片")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string actImage { get; set; }
 
 
             [DisplayName("是否顯示")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public bool actDisplay { get; set; }
 
 
             [DisplayName("管理員編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string admID { get; set; }
 
 
@@ -55,13 +55,13 @@ namespace DeWay.Models
 
 
             [DisplayName("管理員姓名")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, ErrorMessage = "最多20個字")]
             public string admName { get; set; }
 
 
             [DisplayName("管理員信箱")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(64, ErrorMessage = "此欄位最長為64字")]
             [DataType(DataType.EmailAddress, ErrorMessage = "請輸入正確的Email格式!")]
             [EmailAddress]
@@ -69,7 +69,7 @@ namespace DeWay.Models
 
 
             [DisplayName("管理員電話")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, ErrorMessage = "最多20碼")]
             [RegularExpression(@"0[0-9]{3}-[0-9]{3}-[0-9]{3}|\([0-9]{2,3}\)[0-9]{3}-[0-9]{3,4}", ErrorMessage = "請輸入正確格式：xxxx-xxx-xxx |(xx)xxx-xxxx")]
             public string admPhone { get; set; }
@@ -81,16 +81,14 @@ namespace DeWay.Models
         {
 
             [DisplayName("管理員帳號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, ErrorMessage = "最多為20碼")]
             public string admAct { get; set; }
 
             [DisplayName("管理員密碼")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, ErrorMessage = "最多為20碼")]
             public string admPwd { get; set; }
-
-         
 
             [Key]
             [DisplayName("管理員編號")]
@@ -115,23 +113,21 @@ namespace DeWay.Models
             public string odrID { get; set; }
 
             [DisplayName("數量")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public int Quantity { get; set; }
 
             [DisplayName("折扣")]
             public Nullable<int> Discount { get; set; }
 
             [DisplayName("已使用點數")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public int usedPoints { get; set; }
 
             [DisplayName("物流編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string shpID { get; set; }
 
-            [DisplayName("價錢")]
-            [Required(ErrorMessage = "此欄位為必填")]
-            public Nullable<decimal> pdtPrice { get; set; }
+
         }
 
         public class MetadataFavoSeller
@@ -172,7 +168,7 @@ namespace DeWay.Models
             public string mbrID { get; set; }
 
             [DisplayName("姓名")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
             public string mbrName { get; set; }
 
@@ -182,13 +178,13 @@ namespace DeWay.Models
             public string nickName { get; set; }
 
             [DisplayName("電話")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
             [RegularExpression(@"0[0-9]{3}-[0-9]{3}-[0-9]{3}|\([0-9]{2,3}\)[0-9]{3}-[0-9]{3,4}", ErrorMessage = "請輸入正確格式：xxxx-xxx-xxx |(xx)xxx-xxxx")]
             public string mbrPhone { get; set; }
 
             [DisplayName("信箱")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(64, ErrorMessage = "此欄位最長為64字")]
             [DataType(DataType.EmailAddress, ErrorMessage = "請輸入正確的信箱格式!")]
             [EmailAddress]
@@ -200,11 +196,11 @@ namespace DeWay.Models
             public Nullable<System.DateTime> birthDate { get; set; }
 
             [DisplayName("我的點數")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public short Points { get; set; }
 
             [DisplayName("會員認證")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public bool mbrAut { get; set; }
 
             [DisplayName("註冊日期")]
@@ -213,7 +209,7 @@ namespace DeWay.Models
             public System.DateTime signupDate { get; set; }
 
             [DisplayName("大頭照")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string mbrImage { get; set; }
             [DisplayName("是否封鎖")]
             public Nullable<bool> mbrBlock { get; set; }
@@ -225,14 +221,14 @@ namespace DeWay.Models
         {
 
             [DisplayName("會員帳號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, MinimumLength = 8, ErrorMessage = "請輸入8~20碼的英文和數字!")]
             public string mbrAccount { get; set; }
 
 
             [DataType(DataType.Password)]
             [DisplayName("會員密碼")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, MinimumLength = 8, ErrorMessage = "請輸入8~20碼的英文和數字,且第一個字母需為大寫!")]
             [RegularExpression(@"[A-Z][a-zA-Z0-9]{7,}", ErrorMessage = "請輸入8~20碼的英文和數字，且第一個字母需為大寫!")]
             public string mbrPwd { get; set; }
@@ -249,7 +245,6 @@ namespace DeWay.Models
             [DisplayName("訊息編號")]
             public string msgID { get; set; }
 
-          
 
             [StringLength(120, ErrorMessage = "此欄位最長為120字")]
             public string msgContent { get; set; }
@@ -269,7 +264,7 @@ namespace DeWay.Models
             public string ntfCtgID { get; set; }
 
             [DisplayName("通知種類")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(10, ErrorMessage = "此欄位最長為10字")]
             public string ntfType { get; set; }
 
@@ -278,16 +273,16 @@ namespace DeWay.Models
         public class MetadatantfRecord
         {
             [DisplayName("通知內容")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(120, ErrorMessage = "此欄位最長為10字")]
             public string ntfContent { get; set; }
 
             [DisplayName("通知種類編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string ntfCtgID { get; set; }
 
             [DisplayName("會員編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string mbrID { get; set; }
 
             [DisplayName("通知標題")]
@@ -304,7 +299,7 @@ namespace DeWay.Models
             public string ntfID { get; set; }
 
         }
-        public class MetadataOrder
+        public class MetaDataOrder
         {
             [DisplayName("訂單編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -336,7 +331,6 @@ namespace DeWay.Models
             public string recAddress { get; set; }
             [DisplayName("收件人電話")]
             [Required(ErrorMessage = "此欄位為必填")]
-            [RegularExpression(@"0[0-9]{3}-[0-9]{3}-[0-9]{3}|\([0-9]{2,3}\)[0-9]{3}-[0-9]{3,4}", ErrorMessage = "請輸入正確格式：xxxx-xxx-xxx ")]
             [StringLength(20, ErrorMessage = "此欄位最長為20碼")]
             public string recPhone { get; set; }
 
@@ -363,17 +357,9 @@ namespace DeWay.Models
 
             [StringLength(25, ErrorMessage = "此欄位最長為25碼")]
             public string cashFlowID { get; set; }
-
-            [DisplayName("賣家編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
-            public string selID { get; set; }
-
-            [DisplayName("運費")]
-            [Required(ErrorMessage = "此欄位為必填")]
-            public Nullable<decimal> shpPrice { get; set; }
         }
 
-        public class MetadataOrderStatus
+        public class MetaDataOrderStatus
         {
             [DisplayName("訂單狀態編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -386,7 +372,7 @@ namespace DeWay.Models
             public string odrStatus { get; set; }
         }
 
-        public class MetadataPaymentMethod
+        public class MetaDataPaymentMethod
         {
             [DisplayName("付款方式編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -398,7 +384,7 @@ namespace DeWay.Models
             public string pmtMethod { get; set; }
         }
 
-        public class MetadataProduct
+        public class MetaDataProduct
         {
             [DisplayName("商品編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -414,7 +400,6 @@ namespace DeWay.Models
             public string pdtName { get; set; }
             [DisplayName("上架日期")]
             [Required(ErrorMessage = "此欄位為必填")]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public System.DateTime pdtDate { get; set; }
             [DisplayName("商品描述")]
             [StringLength(120, ErrorMessage = "此欄位最長為120字")]
@@ -429,7 +414,7 @@ namespace DeWay.Models
             public string ctgID { get; set; }
         }
 
-        public partial class MetadataProductCategory
+        public partial class MetaProductCategory
         {
             [DisplayName("種類編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -449,7 +434,7 @@ namespace DeWay.Models
             public string trdLayerID { get; set; }
         }
 
-        public partial class MetadataProductImage
+        public partial class MetaProductImage
         {
             [DisplayName("商品照片")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -465,7 +450,7 @@ namespace DeWay.Models
             public string pImgID { get; set; }
         }
 
-        public partial class MetadataReview
+        public partial class MetaReview
         {
             [DisplayName("評論流水編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -477,7 +462,6 @@ namespace DeWay.Models
             public string rvwContent { get; set; }
             [DisplayName("時間")]
             [Required(ErrorMessage = "此欄位為必填")]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public System.DateTime rvwTime { get; set; }
             [DisplayName("星數")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -497,7 +481,7 @@ namespace DeWay.Models
             public string odrID { get; set; }
         }
 
-        public partial class MetadataRefundStatus
+        public partial class MetaRefundStatus
         {
             [DisplayName("退貨單狀態編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -509,7 +493,7 @@ namespace DeWay.Models
             public string rfdStatus { get; set; }
         }
 
-        public partial class MetadataRefundAccount
+        public partial class MetaRefundAccount
         {
             [DisplayName("銀行帳號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -529,7 +513,7 @@ namespace DeWay.Models
             public string rfdID { get; set; }
         }
 
-        public partial class MetadataRefund
+        public partial class MetaRefund
         {
             [DisplayName("退貨流水編號")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -539,25 +523,27 @@ namespace DeWay.Models
             [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
             public string odrID { get; set; }
-
-            [DisplayName("退回商品的運費")]
-           
+            [DisplayName("商品編號")]
+            [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
-            public Nullable<decimal> rfdShip { get; set; }
+            public string pdtID { get; set; }
+            [DisplayName("數量")]
+            [Required(ErrorMessage = "此欄位為必填")]
+
+            public int rfdQuantity { get; set; }
             [DisplayName("退貨原因")]
             [StringLength(120, ErrorMessage = "此欄位最長為120字")]
             public string rfdReason { get; set; }
-
             [DisplayName("是否退回商品")]
-           
+            [Required(ErrorMessage = "此欄位為必填")]
+
             public bool rfdProduct { get; set; }
+            [DisplayName("是否退運費")]
+            [Required(ErrorMessage = "此欄位為必填")]
 
-            [DisplayName("賣家是否負擔退回商品的運費")]
             public bool rfdShipping { get; set; }
-
             [DisplayName("日期")]
             [Required(ErrorMessage = "此欄位為必填")]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public System.DateTime rfdDate { get; set; }
             [DisplayName("退貨單狀態")]
             [Required(ErrorMessage = "此欄位為必填")]
@@ -565,7 +551,7 @@ namespace DeWay.Models
             public string rfdStatusID { get; set; }
         }
 
-        public partial class MetadataQA
+        public partial class MetaQA
         {
             public string qaID { get; set; }
             [DisplayName("賣家已讀狀態")]
@@ -582,7 +568,6 @@ namespace DeWay.Models
             [StringLength(120, ErrorMessage = "此欄位最長為120字")]
             public string Answer { get; set; }
             [DisplayName("時間")]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public Nullable<System.DateTime> qaTime { get; set; }
             [DisplayName("顯示狀態")]
             public Nullable<bool> displayStatus { get; set; }
@@ -609,7 +594,6 @@ namespace DeWay.Models
             [StringLength(120, ErrorMessage = "此欄位最長為120字")]
             public string rptContent { get; set; }
             [DisplayName("時間")]
-            [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public System.DateTime rptTime { get; set; }
             [DisplayName("管理員編號")]
             public string admID { get; set; }
@@ -639,11 +623,11 @@ namespace DeWay.Models
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
             public string selAddress { get; set; }
             [DisplayName("統一編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string GUINumber { get; set; }
             [RegularExpression(@"[A-Z][1-2][0-9]{8}", ErrorMessage = "請輸入正確格式")]
             [DisplayName("身份證字號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public string IDNumber { get; set; }
             [DisplayName("賣場介紹")]
             [StringLength(500, ErrorMessage = "此欄位最長為500字")]
@@ -699,7 +683,7 @@ namespace DeWay.Models
             [DisplayName("規格流水編號")]
             public string spcID { get; set; }
             [DisplayName("項目")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
             public string Style { get; set; }
             [DisplayName("規格")]
@@ -708,7 +692,7 @@ namespace DeWay.Models
             [DisplayName("商品編號庫存")]
             public string Stock { get; set; }
             [DisplayName("商品定價")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            [Required(ErrorMessage = "必填")]
             public Nullable<decimal> Price { get; set; }
             [DisplayName("商品編號")]
             public string pdtID { get; set; }

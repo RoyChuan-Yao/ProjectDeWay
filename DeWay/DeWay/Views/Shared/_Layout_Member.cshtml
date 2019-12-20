@@ -9,7 +9,7 @@
     @*<link href="~/Content/cartCSS.css" rel="stylesheet" />*@
     <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <link href="~/Content/DeWayMemberHome.css" rel="stylesheet" />
+
 
     @RenderSection("CSS", false)
 </head>
@@ -65,14 +65,9 @@
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
-                        <li>
-                            <span style="width:48px;height:40px" class="nav-link " href="#"><img src="~/images/img-shop-4.png" style="width:50%" /></span>
-                        </li>
+
                         <li>
                             <span style="width:48px;height:40px" class="nav-link " href="#"><img src="~/images/Img-shopping-cart-12.png" style="width:50%" /></span>
-                        </li>
-                        <li>
-                            <span style="width:48px;height:40px" class="nav-link " href="#"><img src="~/images/Img-like-7.png" style="width:50%" /></span>
                         </li>
                         <li class="nav-item dropdown">
                             <span style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/img-user-15.png" style="width:50%" /></span>
@@ -136,37 +131,37 @@
                 </div>
             </div>
         </div>*@
-    <div class="content mt-5">
+    <div class="content">
 
         <div class="@*container*@ @*body-content*@ content-inside">
             <div class="row">
 
-                <div class="col-2 offset-1 ">
+                <div class="col-3 ml-5">
                     <ul class="nav flex-column dropdown">
                         個人資訊
 
-                        <li class="nav-item">@Html.ActionLink("修改個人基本資料", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black m-li" })</li>
-                        <li class="nav-item">@Html.ActionLink("變更密碼", "pwdEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black m-li " })</li>
-                        <li class="nav-item">@Html.ActionLink("會員聯絡資訊驗證", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black m-li" })</li>
+                        <li class="nav-item">@Html.ActionLink("修改個人基本資料", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
+                        <li class="nav-item">@Html.ActionLink("變更密碼", "pwdEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black " })</li>
+                        <li class="nav-item">@Html.ActionLink("會員聯絡資訊驗證", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black" })</li>
 
                     </ul>
                     <ul class="nav nav-pills flex-column">
                         訂單
-                        <li class="nav-item">@Html.ActionLink("檢視訂單", "odrIndex", "MemberHome", new { }, new { @class = "nav-link  text-black m-li" })</li>
-                        <li class="nav-item">@Html.ActionLink("檢視退貨", "rfdIndex", "MemberHome", new { }, new { @class = "nav-link  text-black m-li" })</li>
+                        <li class="nav-item"><a href="#">檢視訂單</a></li>
+                        <li class="nav-item"><a href="#">申請退貨</a></li>
                     </ul>
                     <ul class="nav flex-column">
                         評價
-                        <li class="nav-item">@Html.ActionLink("檢視評價", "rvwIndex", "MemberHome", new { }, new { @class = "nav-link text-black m-li" })</li>
+                        <li class="nav-item">@Html.ActionLink("檢視評價", "rvwIndex", "MemberHome", new { }, new { @class = "nav-link text-black" })</li>
                     </ul>
                     <ul class="nav nav-pills flex-column">
                         問與答
-                        <li class="nav-item">@Html.ActionLink("檢視問與答", "QAIndex", "MemberHome", new { code = 0 }, new { @class = "nav-link  text-black m-li" })</li>
+                        <li class="nav-item">@Html.ActionLink("檢視問與答", "QAIndex", "MemberHome", new { code = 0 }, new { @class = "nav-link  text-black" })</li>
                     </ul>
 
 
                 </div>
-                <div class="col-7">
+                <div class="col-8">
                     @RenderBody()
                 </div>
                 </div>

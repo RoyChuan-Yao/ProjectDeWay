@@ -11,18 +11,17 @@ namespace DeWay.Controllers
     {
         shopDBEntities db = new shopDBEntities();
         // GET: AdmCenter
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             if (Session["AdmID"] == null)
             { return RedirectToAction("Index", "AdmLogin"); }
             else
             {
-                var id = Session["AdmID"].ToString();
                 var cd = db.Adm;
                 var m = from p in cd
                         where p.admID == id
                         select p;
-                
+                Session["AdmID"] = id;
                 return View(m);
             }
         }

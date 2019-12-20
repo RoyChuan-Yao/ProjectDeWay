@@ -8,28 +8,26 @@
 
 
 
-<div>
-    <ul class="nav  nav-fill nav-bg">
-        <li class="nav-item "><a href="#item1" class="nav-link o-li d-active" data-toggle="tab">尚未給的評價</a></li>
-        <li class="nav-item"><a href="#item2" class="nav-link o-li" data-toggle="tab">已給的評價</a></li>
+        <div>
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item "><a href="#item1" class="nav-link active" data-toggle="tab">尚未給的評價</a></li>
+                <li class="nav-item"><a href="#item2" class="nav-link" data-toggle="tab">已給的評價</a></li>
 
-    </ul>
+            </ul>
 
-</div>
+        </div>
 
-
-
-<div class="tab-content mt-3">
-    <div class="tab-pane fade show active" id="item1">
-        @Html.Action("_rvwIndex", new { code = 0 })
-    </div>
-    <div class="tab-pane fade " id="item2">
-        @Html.Action("_rvwIndex", new { code = 1 })
+        <div class="tab-content mt-2">
+            <div class="tab-pane fade show active" id="item1">
+                @Html.Action("_rvwIndex", new { code = 0 })
+            </div>
+            <div class="tab-pane fade " id="item2">
+                @Html.Action("_rvwIndex", new { code = 1 })
 
 
-    </div>
+            </div>
 
-</div>
+        </div>
 
 
 
@@ -41,7 +39,6 @@
 
 
     <script>
-        $(`.givestars`).stars();
         function getStar(starCount) {
             var starsArray = ["☆", "☆", "☆", "☆", "☆"];
             var result = "";
@@ -67,7 +64,7 @@
             let odrid = $(this).next().val();
 
             $(`input.odrID`).attr("value", odrid);
-
+            $(`.givestars`).stars();
 
         });
 
@@ -78,21 +75,5 @@
         })
     </script>
 
-    <script>
 
-        $('.o-li').on("click",function () {
-          
-               
-                $('.o-li').removeClass("d-active");
-                $(this).addClass('d-active');
-            
-        });
-
-        ADD();
-        function ADD() {
-            if (String(window.location) == $('m-li').href) {
-                $('ul>li:first-child').addClass("d-active");
-            };
-        }
-    </script>
 }

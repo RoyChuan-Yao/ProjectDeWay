@@ -16,7 +16,8 @@ namespace DeWay.Models
     {
         public string rfdID { get; set; }
         public string odrID { get; set; }
-        public Nullable<decimal> rfdShip { get; set; }
+        public string pdtID { get; set; }
+        public int rfdQuantity { get; set; }
         public string rfdReason { get; set; }
         public bool rfdProduct { get; set; }
         public bool rfdShipping { get; set; }

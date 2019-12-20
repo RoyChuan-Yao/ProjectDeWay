@@ -85,14 +85,10 @@ namespace DeWay.Controllers
 
 
 
-                return RedirectToAction("Registercheck", "Login");
+                return RedirectToAction("Login", "Login");
             }
             return View("Login");
         }
 
-        public ActionResult Registercheck()
-        {
-            return View();
-        }
     }
 }

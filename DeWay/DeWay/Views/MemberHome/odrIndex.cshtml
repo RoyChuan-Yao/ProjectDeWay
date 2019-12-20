@@ -2,154 +2,196 @@
 
 @{
     ViewBag.Title = "odrIndex";
-    Layout = "~/Views/Shared/_Layout_Member.cshtml";
-    var odrstatus = "";
+     Layout = "~/Views/Shared/_Layout_Member.cshtml";
 }
 
+<h2>odrIndex</h2>
 
-<h5>購買訂單</h5>
 
 
-<div>
-    <ul class="nav nav-fill nav-bg">
-        <li class="nav-item d-active"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="未付款"})" class="nav-link o-li">未付款</a></li>
-        <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="處理中"})" class="nav-link o-li">處理中</a></li>
-        <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="運送中"})" class="nav-link o-li">運送中</a></li>
-        <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="待取貨"})" class="nav-link o-li">待取貨</a></li>
-        <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="已完成"})" class="nav-link o-li">已完成</a></li>
-        <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="糾紛中"})" class="nav-link o-li">糾紛中</a></li>
-        <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="已取消"})" class="nav-link o-li">已取消</a></li>
-    </ul>
 
-</div>
 
-<div class="tab-content mt-2">
 
-    @if (Model.Count() == 0)
-    {
-        <h3 class="m-center">@ViewBag.odrStatus</h3>
-    }
-    else
-    {
-        foreach (var item in Model)
-        {
-            <div class="card">
-                <div class="card-header">
-                    <div class="row  align-items-baseline">
-                        <div class="col-10">
+
+
+  
+        <div>
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="未付款"})" class="nav-link active">未付款</a></li>
+                <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="處理中"})" class="nav-link">處理中</a></li>
+                <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="運送中"})" class="nav-link">運送中</a></li>
+                <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="待取貨"})" class="nav-link">待取貨</a></li>
+                <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="已完成"})" class="nav-link">已完成</a></li>
+                <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="糾紛中"})" class="nav-link">糾紛中</a></li>
+                <li class="nav-item"><a href="@Url.Action("odrIndex","MemberHome",new {odrStatus="已取消"})" class="nav-link">已取消</a></li>
+            </ul>
+
+        </div>
+
+        <div class="tab-content mt-2">
+
+            @if (Model.Count() == 0)
+            {
+                <h3>@ViewBag.odrStatus</h3>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="card-header">
                             @Html.DisplayFor(modelItem => item.odrDate)
                             @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)
+                            @Html.ActionLink("詳細","odrDetail",new { odrID=item.odrID})
                         </div>
-
-                        <div class=" offset-1 ">
-                            @Html.ActionLink("詳細", "odrDetail", new { odrID = item.odrID },new { @class="btn btn-link"})
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <div class="row">
-
-                       
-                        <div class="col-6">
-                            <div class="row">
-                                <p class="col-4 text-right">狀態：</p>
-                                <div class="col-8">
-                                    @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
-                                </div>
-                            </div>
-                            <div class="row">
-                                <p class="col-4 text-right">寄往：</p>
-                                <div class="col-8">@Html.DisplayFor(modelItem => item.recCity)</div>
-                            </div>
-                            <div class="row">
-                                <p class="col-4 text-right">付款方式：</p>
-                                <div class="col-8">@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)</div>
-                            </div>
-
-
-                        </div>
-                        <div class="col-6">
-
-                            @if (item.odrNote != null)
-                            {
-                                <div class="row">
-                                    <p class="col-4  text-right">備註：</p>
-                                    <div class="col-8">@Html.DisplayFor(modelItem => item.odrNote)</div>
+                        <div class="card-body">
+                            <div class="col-6">
+                                <div>
+                                    <span>狀態</span>　@Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
                                 </div>
 
-                            }
-                            <div class="row">
-                                <p class="col-4  text-right ">商品：</p>
-                                <div class="col-8"><img src="~/images/@Html.Action("getImage", new { id = item.odrID})" style="width:100px" class="img-responsive img-rounded" /></div>
+                                <div>
+                                    <span>寄往</span>　@Html.DisplayFor(modelItem => item.recCity)
+                                </div>
+
+                                <div>
+                                    <span>付款方式</span>　@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
+                                </div>
+
+                                <div>
+                                    @*<span>訂單總計</span>　@Html.DisplayFor(modelItem => item.totalPrice)*@
+                                </div>
+
                             </div>
+                            <div class="col-6">
+                                @if (item.odrNote != null)
+                                {
+
+                                    <div>
+                                        <span>備註</span>　@Html.DisplayFor(modelItem => item.odrNote)
+                                    </div>
+                                }
+
+                                <div>
+                                    <span>購買項目</span>　<img src="~/images/@Html.Action("getImage", new { id = item.odrID})" style="width:100px" class="img-responsive img-rounded" />
+                                
+                                
+                                </div>
+                            </div>
+
                         </div>
-
-
-
                     </div>
-                    <br />
-                    @{
 
-                        if (item.OrderStatus.odrStatus == "未付款" || item.OrderStatus.odrStatus == "待取貨")
-                        {
-                            odrstatus = item.OrderStatus.odrStatus == "未付款" ? "已付款" : "已取貨";
-                            using (Html.BeginForm("changeStatus", "MemberHome", FormMethod.Post))
-                            {
-                                        <div class="text-right mr-4">
-                                            <input id="Hidden1" type="hidden" value="@item.odrID" name="odrID" />
-                                            <input id="Hidden1" type="hidden" value="@item.OrderStatus.odrStatus" name="odrStatus" />
-                                            <input id="Submit1" type="submit" value="@odrstatus" class="btn btn-info " />
-                                        </div>
-                                    if (odrstatus == "已付款")
-                        {
-                            <p class="d-text text-right">*付款後，請按下已付款按鈕，完成付款程序。</p>
-                        }
-                        else
-                        {
-                            <p class="d-text text-right">*取貨後，請按下已取貨按鈕，完成此交易。</p>
-                        }
-                               
-                            }
-                        }
+                }
+            }
 
-                    }
 
-                </div>
+        </div>
 
 
 
 
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.recName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recDist)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pmtDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.odrDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shpDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.odrNote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.traceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cashFlowID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus.odrStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMethod.pmtMethod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seller.selCompany)
+        </th>
+        <th></th>
+    </tr>
 
-
-            </div>
-
-            <br />
-        }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.recName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recDist)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pmtDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.odrDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shpDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.odrNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.traceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cashFlowID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seller.selCompany)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.odrID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.odrID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.odrID })
+            </td>
+        </tr>
     }
 
-
-</div>
-
-
-@section Script
-    {
-    <script>
-
-        $('.o-li').each(function () {
-            if ($($(this))[0].href == String(window.location)) {
-                $('ul>li:first-child').removeClass("d-active");
-                $('.o-li').removeClass("d-active");
-                $(this).addClass('d-active');
-            }
-        });
-
-        ADD();
-        function ADD() {
-            if (String(window.location) == $('m-li').href) {
-                $('ul>li:first-child').addClass("d-active");
-            };
-        }
-    </script>
-
-}
+</table>*@

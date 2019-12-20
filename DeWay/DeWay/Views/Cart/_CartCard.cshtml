@@ -5,10 +5,6 @@
     string sellerIDCheck = "";
 }
 
-@if (Model.Count()==0)
-{
-    <h3>購物車目前沒有商品</h3>
-}
 @foreach (DeWay.Models.Cart_OrderDetail item in selectBySelID)
 {
     if (item.Specification.Product.selID != sellerIDCheck)
@@ -16,7 +12,7 @@
         //創造卡片
         sellerIDCheck = item.Specification.Product.selID;
         string sellerCompany = item.Specification.Product.Seller.selCompany;
-
+        
         <div class="card mb-3" style="max-width: 700px;">
             <div class="card-header">
                 <div class="nav nav-pills card-header-pills">
@@ -36,7 +32,7 @@
                                    onclick="changeChckeStatus(checkStatus,@count)">
                         </div>
                         <div class="col-md-3 text-center my-auto">
-                            <img src="~/images/diamond-4229493_960_720.jpg" class="card-img" alt="圖片消失了" />
+                            <img src="~/images/diamond-4229493_960_720.jpg" class="card-img" alt="圖片消失了"/>
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
@@ -52,29 +48,19 @@
                         <div class="col-md-3">
                             <div class="card-body">
                                 <p class="text-primary">
-                                    選購數量：
-                                    <select id="count_@count" spcID="@product.spcID" class="quantitySelect">
-                                        @for (int i = 1; i <= product.Specification.Stock; i++)
-                                        {
-                                            <option value="@i"
-                                                    @{ if (i == product.Quantity) { @("selected")  } }>
-                                                @i
-                                            </option>
-                                            if (i >= 20) { break; }
-                                        }
-                                    </select>
+                                    選購數量：    <span id="count_@count">@Html.DisplayFor(modelItem => product.Quantity)</span>
                                 </p>
                                 <p class="text-secondary">
                                     折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
                                     點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />
                                 </p>
                                 <select id="shipSelect_@count">
-
-                                    @foreach (var item1 in product.Specification.Product.ShipperDetail)
-                                    {
-                                        <option>@item1.Shipper.shpMethod</option>
-                                    }
-
+                                    
+                                        @foreach (var item1 in product.Specification.Product.ShipperDetail)
+                                        {
+                                            <option>@item1.Shipper.shpMethod</option>
+                                        }
+                                   
 
                                 </select>
                             </div>

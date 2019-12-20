@@ -10,8 +10,8 @@
 
 @Html.ActionLink("活動公告管理", "Index", "actBulletinsAdm", new { }, new { @class = "nav-link text-primary" })
 
-@Html.ActionLink("訂單管理", "Index", "AdmOrdersAdm", new { id = Session["AdmID"] }, new { @class = "nav-link text-primary" })
+@Html.ActionLink("訂單管理", "Index", "OrdersAdm", new { id = Session["adm"] }, new { @class = "nav-link text-primary" })
 
-@Html.ActionLink("商品管理", "Index", "ProductsAdm", new { id = Session["AdmID"] }, new { @class = "nav-link text-primary" })
-@Html.ActionLink("會員管理", "Index", "MembersAdm", new { id = Session["AdmID"] }, new { @class = "nav-link text-primary" })
-
+@Html.ActionLink("商品管理", "Index", "ProductsAdm", new { id = Session["adm"] }, new { @class = "nav-link text-primary" })
+@Html.ActionLink("會員管理", "Index", "MembersAdm", new { id = Session["adm"] }, new { @class = "nav-link text-primary" })
+@Html.ActionLink("活動通知紀錄管理", "Index", "ntfRecordsAdm", new { id = Session["adm"] }, new { @class = "nav-link text-primary" })

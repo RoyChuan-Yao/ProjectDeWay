@@ -1,6 +1,6 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44331</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -54,8 +55,11 @@
     <Reference Include="LinqKit, Version=1.1.17.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqKit.1.1.17\lib\net45\LinqKit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -76,7 +80,6 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,6 +118,9 @@
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +166,6 @@
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
     <Content Include="images\pImg000014.jpg" />
-    <Content Include="Content\DeWayMemberHome.css" />
     <Content Include="Models\shopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>shopDB.edmx</DependentUpon>
@@ -240,11 +245,9 @@
     <Compile Include="Controllers\actBulletinsAdmController.cs" />
     <Compile Include="Controllers\AdmCenterController.cs" />
     <Compile Include="Controllers\AdmLoginController.cs" />
-    <Compile Include="Controllers\AdmOrderAdmController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MarketController.cs" />
     <Compile Include="Controllers\ntfRecordsAdmController.cs" />
     <Compile Include="Controllers\MemberHomeController.cs" />
     <Compile Include="Controllers\MembersAdmController.cs" />
@@ -384,8 +387,7 @@
     <Compile Include="App_Code\GmailSender.cs" />
     <Compile Include="ViewModels\VM_pdtCreate.cs" />
     <Compile Include="ViewModels\VM_Market.cs" />
-    <Compile Include="ViewModels\VM_rfdDetail.cs" />
-    <Compile Include="ViewModels\VM_pdtEdit.cs" />
+    <Compile Include="ViewModels\VM_MH_AllOrders.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -446,10 +448,13 @@
     <Content Include="Views\actBulletinsAdm\Index.cshtml" />
     <Content Include="Views\SellerCertification\IDNumber.cshtml" />
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
+    <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\ProductPage\ProductPage.cshtml" />
+    <Content Include="Views\SellerCertification\Create.cshtml" />
     <Content Include="Views\AdmLogin\Index.cshtml" />
     <Content Include="Views\AdmCenter\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\MembersAdm\Create.cshtml" />
     <Content Include="Views\MembersAdm\Delete.cshtml" />
     <Content Include="Views\MembersAdm\Details.cshtml" />
@@ -471,33 +476,11 @@
     <Content Include="Views\product_create\Create.cshtml" />
     <Content Include="Views\Seller_Market\sellerMarket.cshtml" />
     <Content Include="Views\SearchForLayout\Index.cshtml" />
-    <Content Include="Views\SellerCertification\SellerCreate.cshtml" />
-    <Content Include="Views\Login\Registercheck.cshtml" />
-    <Content Include="Views\AdmOrdersAdm\Index.cshtml" />
-    <Content Include="Views\AdmOrdersAdm\Details.cshtml" />
-    <Content Include="Views\AdmOrdersAdm\Edit.cshtml" />
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\MemberHome\odrDetail.cshtml" />
     <Content Include="Views\Shared\_Layout_Member.cshtml" />
-    <Content Include="Views\MemberHome\rfdCreate.cshtml" />
-    <Content Include="Views\MemberHome\rfdIndex.cshtml" />
-    <Content Include="Views\MemberHome\rfdDetail.cshtml" />
     <Content Include="Views\SellerHome\OrderIndex.cshtml" />
     <Content Include="Views\Shared\_Layout - seller.cshtml" />
-    <Content Include="Views\Product_edit_Seller\Editsp.cshtml" />
-    <Content Include="Views\SellerHome\rfdIndex.cshtml" />
-    <Content Include="Views\SellerHome\odrDetail.cshtml" />
-    <Content Include="Views\SellerHome\deliveryIndex.cshtml" />
-    <Content Include="Views\SellerHome\_rvwIndex.cshtml" />
-
-    <Content Include="Views\SellerHome\rfdDetail.cshtml" />
-
-    <Content Include="Views\Market\Index.cshtml" />
-    <Content Include="Views\Market\_rvwIndex.cshtml" />
-    <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
-
-    <Content Include="Views\SellerHome\editMarket.cshtml" />
-
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -510,8 +493,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="mbrPhoto\" />
     <Folder Include="productImage\" />
-    <Folder Include="sellerImage\" />
-    <Folder Include="Views\AdmOrderAdm\" />
     <Folder Include="Views\Seller_Maker\" />
   </ItemGroup>
   <ItemGroup>
@@ -553,7 +534,7 @@
     <PropertyGroup>
       <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

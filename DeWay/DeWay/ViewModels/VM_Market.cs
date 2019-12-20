@@ -10,7 +10,6 @@ namespace DeWay.ViewModels
     {
         public List<Seller> sellers { get; set; }
         public List<Product> products { get; set; }
-        public List<Review> reviews { get; set; }
 
     }
 }

@@ -5,15 +5,16 @@
     Layout = "~/Views/Shared/_Layout_Member.cshtml";
 }
 
-<h2 class="offset-3">修改個人資料</h2>
+<h2>修改個人資料</h2>
 
 
 @using (Html.BeginForm("mbrEdit","MemberHome",FormMethod.Post,new { enctype="multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal offset-3">
- 
+<div class="form-horizontal">
+   
+    <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.mbrID)
 
@@ -84,7 +85,7 @@
 </div>
 }
 
-<div class="offset-3">
+<div>
     @Html.ActionLink("編輯密碼", "pwdEdit", new { id = Model.mbrID })　|
    
     @Html.ActionLink("返回個人資料", "mbrIndex")

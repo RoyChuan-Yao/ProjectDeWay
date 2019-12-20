@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using DeWay.ViewModels;
 using DeWay.Email;
 using System.Net;
-using System.Data.Entity.Infrastructure;
 
 namespace DeWay.Controllers
 {
@@ -46,8 +45,6 @@ namespace DeWay.Controllers
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
-
-
             string fileName = "";
 
             if (Image != null)
@@ -143,7 +140,7 @@ namespace DeWay.Controllers
 
 
         }
-        public ActionResult odrIndex(string odrStatus = "未付款")
+        public ActionResult odrIndex(string odrStatus )
         {
 
             if (Session["memberID"] == null)
@@ -151,7 +148,7 @@ namespace DeWay.Controllers
 
             string id = Session["memberID"].ToString();
 
-            ViewBag.odrStatus = "目前尚未有" + odrStatus + "的訂單!";
+            ViewBag.odrStatus = "目前尚未有"+odrStatus+"的訂單!";
 
             List<string> orderID = (from o in db.Cart_OrderDetail
                                     where o.mbrID == id
@@ -160,11 +157,11 @@ namespace DeWay.Controllers
             string state = db.OrderStatus.Where(m => m.odrStatus == odrStatus).FirstOrDefault().odrStatusID.ToString();
             List<string> orderStateGroup = new List<string>();
 
-
+           
             switch (state)
             {
                 case "ods0000001":
-                    orderStateGroup.Add("ods0000001");
+                    orderStateGroup.Add( "ods0000001");
                     break;
                 case "ods0000002":
                     orderStateGroup.Add("ods0000002");
@@ -175,8 +172,6 @@ namespace DeWay.Controllers
                     break;
                 case "ods0000005":
                     orderStateGroup.Add("ods0000005");
-                    break;
-                case "ods0000006":
                     orderStateGroup.Add("ods0000006");
                     break;
                 case "ods0000007":
@@ -185,22 +180,46 @@ namespace DeWay.Controllers
                 case "ods0000008":
                     orderStateGroup.Add("ods0000008");
                     break;
+                case "ods0000009":
+                    orderStateGroup.Add("ods0000009");
+                    break;
 
             }
 
 
             var result = db.Order
                 .Where(m => orderID.Contains(m.odrID))
-                .Where(m => orderStateGroup.Contains(m.OrderStatus.odrStatusID)).ToList().OrderByDescending(m=>m.odrDate);
-
+                .Where(m => orderStateGroup.Contains(m.OrderStatus.odrStatusID)).ToList();
+  
             return View(result);
 
 
 
+            //IEnumerable<object> result ;
+            //if (code == 0)
+            //{
+            //     result = db.Order.Where(o => orderID.Contains(o.odrID) && o.odrStatusID == "ods0000001").ToList();
+            //}
+
+            //else if (code == 1)
+            //{
+            //     result = db.Order.Where(o => orderID.Contains(o.odrID) && o.odrStatusID == "ods0000002").ToList();
+            //}
+            //else if (code == 2)
+            //{
+            //     result = db.Order.Where(o => orderID.Contains(o.odrID) && o.odrStatusID. ).ToList();
+            //}
+            //else
+            //{
+
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //return View(result);
+
 
 
         }
-
+        
         public ActionResult QAIndex(int code = 0)
 
         {
@@ -214,19 +233,19 @@ namespace DeWay.Controllers
             if (code == 0)
             {
                 qa = db.QA.Where(m => m.mbrID == id).ToList().OrderByDescending(m => m.qaTime);
-
+               
             }
             // 未回覆的問題
             else if (code == 1)
             {
-                qa = db.QA.Where(m => m.mbrID == id).Where(m => m.Answer == null || m.Answer == "").ToList().OrderByDescending(m => m.qaTime);
-
+                 qa = db.QA.Where(m => m.mbrID == id).Where(m=>m.Answer == null || m.Answer == "").ToList().OrderByDescending(m => m.qaTime);
+                
             }
             //已回覆的問題
             else if (code == 2)
             {
-                qa = db.QA.Where(m => m.mbrID == id).Where(m => m.Answer != null).Where(m => m.Answer != "").ToList().OrderByDescending(m => m.qaTime);
-
+                 qa = db.QA.Where(m => m.mbrID == id ).Where(m=> m.Answer != null).Where(m=> m.Answer != "").ToList().OrderByDescending(m => m.qaTime);
+                
             }
             else
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -255,35 +274,35 @@ namespace DeWay.Controllers
             var rvwodrid = (from o in db.Review
                             where o.mbrID == id
                             select o.odrID).ToList();
-            IEnumerable<object> review;
-
-            // 沒給評價
             if (code == 0)
             {
 
-                review = db.Order.Where(m => !rvwodrid.Contains(m.odrID)).Where(m=> odrid.Contains(m.odrID)).ToList();
-                
+
+                var nonreview = db.Order.Where(m => !rvwodrid.Contains(m.odrID) && odrid.Contains(m.odrID)).ToList();
+
+                return PartialView(nonreview);
+
+
 
             }
-            // 已給評價
             else if (code == 1)
             {
 
-                review = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
+                var reviewed = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
+                return PartialView(reviewed);
                 
-
             }
-            // For odrDetail
+
             else if (code == 2)
             {
-                ViewBag.code = code;
-                review = db.Order.Where(m => m.odrID == odr).ToList();
-            
+                ViewBag.code=code;
+                var odrreview = db.Order.Where(m => m.odrID == odr).ToList();
+                return PartialView(odrreview);
+                
             }
-            else
-                return ViewBag.message;
+            return ViewBag.message;
 
-            return PartialView(review);
+
 
         }
 
@@ -300,9 +319,16 @@ namespace DeWay.Controllers
         }
 
 
-        
+        public ActionResult rvwCreate(string odrID)
+        {
+
+
+
+            ViewBag.odrID = odrID;
+            return View("rvwCreate");
+        }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult rvwCreate(string odrID, string rvwContent, short rvwStar, int code = 0)
+        public ActionResult rvwCreate(string odrID, string rvwContent,short rvwStar, int code = 0)
         {
             var pdtID = (from m in db.Cart_OrderDetail
                          where m.odrID == odrID
@@ -332,131 +358,13 @@ namespace DeWay.Controllers
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
-            ViewBag.refund = db.Refund.Where(o=>o.odrID==odrID);
             var odrdetail = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
-
+            
             return View(odrdetail);
 
         }
 
-        public ActionResult rfdIndex()
-        {
-            if (Session["memberID"] == null)
-                return RedirectToAction("Login", "Login");
-            string id = Session["memberID"].ToString();
-            var odrID = (from o in db.Cart_OrderDetail
-                         where o.mbrID == id
-                         select o.odrID).ToList();
-
-            var refund = db.Refund.Where(r => odrID.Contains(r.odrID)).ToList();
-            return View(refund);
-        }
-
-
-
-        public ActionResult rfdCreate(string odrID)
-        {
-            var rfdcreate = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
-            return View(rfdcreate);
-        }
-        [HttpPost,ValidateAntiForgeryToken]
-        public ActionResult rfdCreate(Refund Refund, RefundAccount RefundAccount)
-        {
-            if (ModelState.IsValid != true)
-            {
-                return View("rfdCreate");
-            }
-            using (var transaction = db.Database.BeginTransaction())
-            { 
-                Refund refund = new Refund();
-                string GetRefundID = db.Database.SqlQuery<string>("Select dbo.GetRefundID()").FirstOrDefault();
-                refund.rfdID = GetRefundID;
-                refund.odrID = Refund.odrID;
-                refund.rfdReason = Refund.rfdReason;
-                refund.rfdProduct = Refund.rfdProduct;
-                refund.rfdShipping = Refund.rfdShipping;
-                refund.rfdShip = Refund.rfdShip;
-                refund.rfdDate = DateTime.Now;
-                refund.rfdStatusID="rds0000001";
-                db.Refund.Add(refund);
-                    try
-                    {
-                        db.SaveChanges();
-                       
-                    }
-                    catch (DbUpdateException e)
-                    {
-                        transaction.Rollback();
-                        return JavaScript($"alert({e.Message})");
-                    }
-
-                RefundAccount refundAccount = new RefundAccount();
-
-                refundAccount.rfdID = GetRefundID;
-                refundAccount.bankCode = RefundAccount.bankCode;
-                refundAccount.bankName = RefundAccount.bankName;
-                refundAccount.bankAccount = RefundAccount.bankAccount;
-                db.RefundAccount.Add(refundAccount);
-                    try
-                    {
-                        db.SaveChanges();
-                        transaction.Commit();
-                        return RedirectToAction("rfdIndex");
-                    }
-                    catch (DbUpdateException e)
-                    {
-                        transaction.Rollback();
-                        return JavaScript($"alert({e.Message})");
-                    }
-         
-
-            
-            }
-        }
-        public ActionResult rfdDetail(string rfdID)
-        {
-            var odrID = (from r in db.Refund
-                         where r.rfdID == rfdID
-                         select r.odrID).ToList();
-
-            VM_rfdDetail refundDetail = new VM_rfdDetail()
-            {
-                refund = db.Refund.Where(r => r.rfdID == rfdID).ToList(),
-                cart_orderDetail = db.Cart_OrderDetail.Where(c => odrID.Contains(c.odrID)).ToList()
-            };
-
-            return View(refundDetail);
-        }
-
-
-        [HttpPost]
-        public ActionResult changeStatus(string odrID, string odrStatus)
-        {
-            var odr = db.Order.Find(odrID);
-            var odrstatus = "";
-            switch (odrStatus)
-            {
-                case "未付款":
-                    odrstatus = "ods0000002";
-                    odrStatus = "處理中";
-                    odr.pmtDate = DateTime.Now;
-                    break;
-                case "待取貨":
-                    odrstatus = "ods0000006";
-                    odrStatus = "已完成";
-                    break;
-
-            }
-
-
-           
-            odr.odrStatusID = odrstatus;
-            db.SaveChanges();
-
-            
-            return RedirectToAction("odrIndex", new { odrStatus = odrStatus });
-        }
     }
 
-
+  
 }
