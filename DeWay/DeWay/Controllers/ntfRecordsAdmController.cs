@@ -128,6 +128,14 @@ namespace DeWay.Controllers
             base.Dispose(disposing);
         }
 
+        public ActionResult IndexForMember()
+        {
+            string mbrID = (string)Session["memberID"];
+            var ntf = db.ntfRecord.Where(m => m.mbrID == mbrID);
+
+            return View(ntf);
+        }
+
        
 
        

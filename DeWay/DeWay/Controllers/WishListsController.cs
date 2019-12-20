@@ -22,8 +22,9 @@ namespace DeWay.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
+              
             var wishes = db.WishList.Where(m => m.mbrID == mbrID).ToList();
-
+                 
 
             return View(wishes);
 
