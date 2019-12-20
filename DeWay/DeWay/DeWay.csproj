@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44331</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -367,12 +366,8 @@
     <Compile Include="App_Code\GmailSender.cs" />
     <Compile Include="ViewModels\VM_pdtCreate.cs" />
     <Compile Include="ViewModels\VM_Market.cs" />
-
     <Compile Include="ViewModels\VM_rfdDetail.cs" />
-
-  
     <Compile Include="ViewModels\VM_pdtEdit.cs" />
-
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -466,11 +461,9 @@
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\MemberHome\odrDetail.cshtml" />
     <Content Include="Views\Shared\_Layout_Member.cshtml" />
-
     <Content Include="Views\MemberHome\rfdCreate.cshtml" />
     <Content Include="Views\MemberHome\rfdIndex.cshtml" />
     <Content Include="Views\MemberHome\rfdDetail.cshtml" />
-
     <Content Include="Views\SellerHome\OrderIndex.cshtml" />
     <Content Include="Views\Shared\_Layout - seller.cshtml" />
     <Content Include="Views\Product_edit_Seller\Editsp.cshtml" />
@@ -478,7 +471,7 @@
     <Content Include="Views\SellerHome\odrDetail.cshtml" />
     <Content Include="Views\SellerHome\deliveryIndex.cshtml" />
     <Content Include="Views\SellerHome\_rvwIndex.cshtml" />
-
+    <Content Include="Views\SellerHome\rfdDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

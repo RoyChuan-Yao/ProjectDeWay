@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DeWay.Models;
+using DeWay.ViewModels;
 
 namespace DeWay.Controllers
 {
@@ -274,7 +275,7 @@ namespace DeWay.Controllers
             //             select m.odrID).Distinct().ToList();
 
             var result = db.Refund
-                .Where(m => m.odrID.Contains(m.odrID))
+                .Where(m => odrID.Contains(m.odrID))
                 .Where(m => orderStateGroup.Contains(m.rfdStatusID)).ToList();
 
             ViewBag.status = rfdStatus;
@@ -282,6 +283,29 @@ namespace DeWay.Controllers
 
             return View(result);
 
+        }
+        public ActionResult rfdDetail(string rfdID)
+        {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            string id = Session["memberID"].ToString();
+            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+
+            string RfdodrID = db.Refund.Where(r => r.rfdID == rfdID).FirstOrDefault().odrID;
+
+            string odrID = db.Order.Where(o => o.selID == getselID).Where(o=>RfdodrID.Contains(o.odrID)).FirstOrDefault().odrID;
+
+            
+
+            VM_rfdDetail refundDetail = new VM_rfdDetail()
+            {
+                refund = db.Refund.Where(r => r.rfdID == rfdID).ToList(),
+                cart_orderDetail = db.Cart_OrderDetail.Where(c =>c.odrID==odrID).ToList()
+            };
+
+            return View(refundDetail);
+
+        
         }
 
         [HttpPost]

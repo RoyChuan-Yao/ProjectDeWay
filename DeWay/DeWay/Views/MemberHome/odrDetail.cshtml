@@ -2,8 +2,9 @@
 
 @{
     ViewBag.Title = "odrDetail";
-    decimal? total = 0;
-    decimal? shipping = 0;
+    decimal total = 0;
+    double Total = 0;
+    double shipping = 0;
     Layout = "~/Views/Shared/_Layout_Member.cshtml";
 }
 
@@ -57,7 +58,7 @@
                     var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
 
                     total += subtotal;
-                    shipping = item.Order.shpPrice;
+                    shipping = Math.Round((double)item.Order.shpPrice);
                     <div class="row">
                         <div class="col-3">
                             @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
@@ -80,12 +81,13 @@
                 }
                 <hr />
                 @{
-                    total = (total + shipping);
+                    Total = Math.Round((double)(total + (decimal)shipping ));
+                    
                 }
 
                 <div>
                     <p class="text-right">運費： @shipping </p>
-                    <p class="text-right">總計： @total</p>
+                    <p class="text-right">總計： @Total</p>
                 </div>
             </div>
         </div>

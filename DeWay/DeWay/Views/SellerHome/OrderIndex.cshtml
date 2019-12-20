@@ -47,6 +47,7 @@
                 foreach (var i in item.Cart_OrderDetail)
                 {
                     var subtotal = i.pdtPrice * (int)i.Discount * i.Quantity;
+                    
 
                     total += subtotal;
                     shipping = item.shpPrice;

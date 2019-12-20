@@ -60,6 +60,7 @@
                         @foreach (var i in item.Order.Cart_OrderDetail)
                         {
                             var subtotal = i.pdtPrice * (int)i.Discount * i.Quantity;
+                            
 
                             total += subtotal;
                         }
