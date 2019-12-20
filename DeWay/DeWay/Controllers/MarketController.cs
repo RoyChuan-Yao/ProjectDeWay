@@ -12,12 +12,13 @@ namespace DeWay.Controllers
     {
         shopDBEntities db = new shopDBEntities();
         // GET: Market
-        public ActionResult Index()
+        public ActionResult Index(string sellerID)
         {
-            var id = Session["memberID"].ToString();
-            string selID = (from m in db.Seller
-                            where m.mbrID == id
-                            select m).FirstOrDefault().selID;
+            //var id = Session["memberID"].ToString();
+            //string selID = (from m in db.Seller
+            //                where m.mbrID == id
+            //                select m).FirstOrDefault().selID;
+            var selID = sellerID;
 
             var pdtID = from m in db.Product
                         where m.selID == selID
@@ -34,10 +35,9 @@ namespace DeWay.Controllers
             return View(mk);
         }
 
-        public PartialViewResult _rvwIndex(int star)
+        public PartialViewResult _rvwIndex(int star,string sellerID)
         {
-            string id = Session["memberID"].ToString();
-            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+            string getselID = sellerID;
 
             List<string> odrid = (from m in db.Order
                                   where m.selID == getselID

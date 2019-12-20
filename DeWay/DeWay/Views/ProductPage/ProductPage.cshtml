@@ -95,7 +95,7 @@
         </div><hr />
         <div id="sellerInfo">
             <h4>賣家名稱 </h4>
-            <h2>@Html.DisplayFor(m => m.Seller.selCompany)</h2>
+            <h2><a href="@Url.Action("Index","Market",new {sellerID = Model.selID  })">@Html.DisplayFor(m => m.Seller.selCompany)</a></h2>
             <h4>賣家資訊</h4>
             <p class="rounded">店家圖片</p>
             <dl>

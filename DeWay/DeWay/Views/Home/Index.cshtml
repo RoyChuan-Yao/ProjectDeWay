@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="card col-12 col-md-2 mt-5">
+            <div class="card col-12 col-md-2 mt-5 d-none">
                 <div class="card-body img-pad-1">
                     <img src="~/images/img-p-54.png" class="shadow rounded card-img-top img-wh" alt="...">
                     <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
@@ -299,6 +299,7 @@
         </div>
     </div>
 </section>
+<img src="~/images/diamond-4229493_960_720.jpg" class="d-none"/>
 @section Script{
     <script>
 
@@ -310,12 +311,15 @@
             var specID = $(e.target).attr('specID');
             $.ajax({
                 url: "@Url.Action("AddToMyCart","Cart")?spcID=" + specID,
-                method:"post",
+                method: "post",
                 success: function () {
                     alert("success");
                 }
             });
-        })
+        });
+
+        //圖片遺失處理
+        $('img').one("error", (e) => { $(e.target).attr('src',"/images/diamond-4229493_960_720.jpg") })
 
         $('.likeImg ').click(function () {
             if ($(this).attr("src") != "/images/Img-like-7.png") {
@@ -330,18 +334,4 @@
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
