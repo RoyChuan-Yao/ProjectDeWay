@@ -17,6 +17,8 @@ namespace DeWay.Controllers
         // GET: OrdersAdm
         public ActionResult Index(string searchString)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             var order = from m in db.Order
                           select m;
             if (!String.IsNullOrEmpty(searchString))
@@ -29,6 +31,8 @@ namespace DeWay.Controllers
         // GET: OrdersAdm/Details/5
         public ActionResult Details(string id)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -46,6 +50,8 @@ namespace DeWay.Controllers
        
         public ActionResult Edit(string id)
         {
+            if (Session["AdmID"] == null)
+            { return RedirectToAction("Index", "AdmLogin"); }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

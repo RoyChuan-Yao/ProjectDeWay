@@ -1,0 +1,209 @@
+﻿@model IEnumerable<DeWay.Models.Cart_OrderDetail>
+
+@{
+    ViewBag.Title = "OrderDetail";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
+    var a = 1;
+}
+
+
+<div class="card">
+    <div class="card-header">
+        @Model.FirstOrDefault().Order.OrderStatus.odrStatus
+    </div>
+    <h3 class="card-body">
+        該筆訂單 :
+        @Model.FirstOrDefault().Order.OrderStatus.odrStatus
+    </h3>
+</div>
+
+@if (Model.FirstOrDefault().Order.Review.Count() != 0)
+{
+    <br />
+    <div>
+        @Html.Action("_rvwIndex", new { odr = Model.FirstOrDefault().odrID })
+    </div>
+}
+else if (Model.FirstOrDefault().Order.Review.Count() == 0 && @ViewBag.status == "ods0000006")
+{
+    <br />
+    <div class="card">
+        <div class="card-header">
+            賣家評價
+        </div>
+        <div class="card-body">
+            未評價
+        </div>
+    </div>
+}
+<br />
+<div class="card">
+    <div class="card-header">
+        訂單資訊
+    </div>
+    <div class="card-body">
+        <div>訂單編號</div>
+        <div style="font-size:8px">&nbsp&nbsp&nbsp&nbsp&nbsp @Model.FirstOrDefault().odrID</div>
+        <br />
+        <div>買家收件地址</div>
+        <div style="font-size:8px">&nbsp&nbsp&nbsp&nbsp&nbsp @Model.FirstOrDefault().Member.mbrName , @Model.FirstOrDefault().Member.mbrPhone</div>
+        <div style="font-size:8px">&nbsp&nbsp&nbsp&nbsp&nbsp @Model.FirstOrDefault().Order.recName @Model.FirstOrDefault().Order.recCity @Model.FirstOrDefault().Order.recDist @Model.FirstOrDefault().Order.recAddress</div>
+        <br />
+        <div>物流資訊</div>
+        <div style="font-size:20px">&nbsp&nbsp&nbsp&nbsp&nbsp @Model.FirstOrDefault().Shipper.shpMethod</div>
+        <br />
+    </div>
+</div>
+
+<br />
+
+<div class="card">
+    <div class="card-header">
+        付款資訊
+    </div>
+    <div class="card-body">
+        <div class="card">
+            <div class="card-header">
+                <div class="row col-12">
+                    <span class="col-2">編號</span>
+                    <span class="col-3">商品</span>
+                    <span class="col-3">規格</span>
+                    <span class="col-1">單價</span>
+                    <span class="col-1">數量</span>
+                    <span class="col-1">折扣</span>
+                    <span class="col-1">小計</span>
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach (var item in Model)
+                {
+                    decimal? total = 0;
+                    var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
+                    total += subtotal;
+                    var newtotal = total.ToString().TrimEnd('0');
+                    if (newtotal.EndsWith("."))
+                    {
+                        newtotal = newtotal.Substring(0, newtotal.Length - 1);
+                    }
+
+                    decimal? pdtPrice = 0;
+                    pdtPrice = @item.pdtPrice;
+                    string newpdtPrice = pdtPrice.ToString().TrimEnd('0');
+                    newpdtPrice = newpdtPrice.TrimEnd('.');
+
+                <div class="row col-12">
+                    <span class="col-2">@a</span>
+                    <span class="col-3">@item.Specification.Product.pdtName</span>
+                    <span class="col-3">@item.Specification.Style 
+                    @if (item.Specification.Size != null)
+                    {
+                        <span>&nbsp|&nbsp</span>
+                    }
+                     
+                    @item.Specification.Size</span>
+                    <span class="col-1">@newpdtPrice</span>
+                    <span class="col-1">@item.Quantity</span>
+                    @if (item.Discount != 1)
+                    {
+                        var dis = item.Discount * 10;
+                        <span class="col-1">@dis 折</span>
+                    }
+                    else
+                    {
+                        <span class="col-1">無折扣</span>
+                    }
+                    <span class="col-1">@subtotal NT</span>
+                </div>
+                    a++;
+                }
+            </div>
+        </div>
+        <div class="row col-12">
+            <div class="col-10">
+
+            </div>
+            <div class="col-1">
+                運費 :
+            </div>
+            <div class="col-1">
+                @{
+                    var shpprice = Model.FirstOrDefault().Order.shpPrice;
+                    string newshpprice = shpprice.ToString().TrimEnd('0');
+                    newshpprice = newshpprice.TrimEnd('.');
+                    @newshpprice
+                }
+                NT
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <div class="col-10">
+
+            </div>
+            <div class="col-1">
+                總計 :
+            </div>
+            <div class="col-1">
+                @{
+                    var totaltotal = (@ViewBag.total + shpprice);
+                    string newtotaltotal = totaltotal.ToString().TrimEnd('0');
+                    newtotaltotal = newtotaltotal.TrimEnd('.');
+
+                }
+
+                @newtotaltotal NT
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@Html.ActionLink("交貨", "delivery", new { odrID = Model.FirstOrDefault().odrID }, new { onclick = "return confirm('您確定已寄出商品嗎??')" })*@
+
+
+@section Script
+{
+    <script src="~/Scripts/stars.js"></script>
+
+    <script>
+
+    </script>
+
+    <script>
+        function getStar(starCount) {
+            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+            var result = "";
+            for (var i = 0; i < starCount; i++) {
+                starsArray.unshift("★");
+            }
+            for (var i = 0; i < 5; i++) {
+                result += starsArray[i];
+            }
+            var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
+
+            return result
+        }
+
+        $(`.star`).each((index, element) => {
+            $(element).html(
+                getStar($(element).attr("Stars"))
+            )
+        })
+
+        $(`.Button`).on("click", function () {
+
+            let odrid = $(this).next().val();
+
+            $(`input.odrID`).attr("value", odrid);
+            $(`.givestars`).stars();
+
+        });
+
+        $(`.Submit`).on("click", function () {
+
+            let starcount = $(`.givestars>i.selected`).length;
+            $(`input.rvwStar`).attr("value", starcount);
+        })
+    </script>
+
+
+}

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<DeWay.Models.Specification>
+
+@{
+    ViewBag.Title = "更改規格";
+}
+    <div class="container">
+        <h2>更改規格</h2>
+
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>規格</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => item.spcID, new { @Name = "spcID" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.Style, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Style, new { htmlAttributes = new { @class = "form-control", @Name = "Style" } })
+                            @*<input id="Style" name="Style" type="text" class="form-control" value="@item.Style"/>*@
+                            @Html.ValidationMessageFor(model => item.Style, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Size, new { htmlAttributes = new { @class = "form-control", @Name = "Size" } })
+                            @Html.ValidationMessageFor(model => item.Size, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.Stock, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Stock, new { htmlAttributes = new { @class = "form-control", @Name = "Stock" } })
+                            @Html.ValidationMessageFor(model => item.Stock, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Price, new { htmlAttributes = new { @class = "form-control", @Name = "Price" } })
+                            @Html.ValidationMessageFor(model => item.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => item.pdtID, "pdtID", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("pdtID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => item.pdtID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => item.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => item.Discount, new { htmlAttributes = new { @class = "form-control", @Name = "Discount",@placeholder="請輸入小數，如0.1、0.25" } })
+                            @Html.ValidationMessageFor(model => item.Discount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div>
+            @Html.ActionLink("回到賣場", "sellproduct")
+        </div>
+    </div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

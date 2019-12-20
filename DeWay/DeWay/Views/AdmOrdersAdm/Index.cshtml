@@ -1,0 +1,120 @@
+﻿@model IEnumerable<DeWay.Models.Order>
+
+@{
+    ViewBag.Title = "訂單";
+}
+    <div class="container">
+        <h2>Index</h2>
+
+        @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+        <p>
+
+
+            @using (Html.BeginForm())
+            {
+            <p>
+                Title:@Html.TextBox("searchString")
+                <input id="Submit1" type="submit" value="查詢" class="btn btn-primary" />
+            </p>
+
+        }
+
+
+            <table class="table ">
+                <tr>
+                    <th>
+                        姓名
+                    </th>
+                    <th>
+                        市
+                    </th>
+                    <th>
+                        區
+                    </th>
+                    <th>
+                        地址
+                    </th>
+                    <th>
+                        電話
+                    </th>
+                    <th>
+                        付款日期
+                    </th>
+                    <th>
+                        訂單日期
+                    </th>
+                    <th>
+                        出貨日期
+                    </th>
+                    <th>
+                        訂單備註
+                    </th>
+                    <th>
+                        託運單號
+                    </th>
+                    <th>
+                        金流單號
+                    </th>
+                    <th>
+                        訂單狀態
+                    </th>
+                    <th>
+                        付款方式
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.recName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.recCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.recDist)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.recAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.recPhone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pmtDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.odrDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.shpDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.odrNote)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.traceNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cashFlowID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)
+                        </td>
+                        <td>
+                            @Html.ActionLink("編輯", "Edit", new { id = item.odrID }) |
+                            @Html.ActionLink("詳細資料", "Details", new { id = item.odrID }) @*|
+                            @Html.ActionLink("Delete", "Delete", new { id=item.odrID })*@
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
