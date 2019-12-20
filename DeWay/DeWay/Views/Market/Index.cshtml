@@ -390,6 +390,35 @@
     <script src="Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/stars.js"></script>
+    <script src="~/Scripts/stars.js"></script>
+
+
+
+    <script>
+        refresh();
+        function getStar(starCount) {
+            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+            var result = "";
+            for (var i = 0; i < starCount; i++) {
+                starsArray.unshift("★");
+            }
+            for (var i = 0; i < 5; i++) {
+                result += starsArray[i];
+            }
+            var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
+
+            return result
+        }
+        function refresh() {
+
+            $(`.star`).each((index, element) => {
+                console.log(element);
+                $(element).html(
+                    getStar($(element).attr("starCount"))
+                )
+            })
+        }
+    </script>
 
 
     <script>

@@ -470,6 +470,7 @@
     <Content Include="Views\SellerHome\_rvwIndex.cshtml" />
     <Content Include="Views\Market\Index.cshtml" />
     <Content Include="Views\Market\_rvwIndex.cshtml" />
+    <Content Include="Views\SellerHome\editMarket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
