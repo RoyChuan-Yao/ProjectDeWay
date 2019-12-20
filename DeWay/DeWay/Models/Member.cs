@@ -17,7 +17,6 @@ namespace DeWay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Member()
         {
-            this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
             this.FavoSeller = new HashSet<FavoSeller>();
             this.Message = new HashSet<Message>();
             this.Message1 = new HashSet<Message>();
@@ -26,6 +25,7 @@ namespace DeWay.Models
             this.Seller = new HashSet<Seller>();
             this.WishList = new HashSet<WishList>();
             this.QA = new HashSet<QA>();
+            this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
         }
     
         public string mbrID { get; set; }
@@ -40,8 +40,6 @@ namespace DeWay.Models
         public string mbrImage { get; set; }
         public Nullable<bool> mbrBlock { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoSeller> FavoSeller { get; set; }
         public virtual MemberAccount MemberAccount { get; set; }
@@ -59,5 +57,7 @@ namespace DeWay.Models
         public virtual ICollection<WishList> WishList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QA> QA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
     }
 }

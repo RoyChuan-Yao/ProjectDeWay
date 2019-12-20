@@ -1,0 +1,76 @@
+﻿.d-active {
+    border-bottom: 3px solid #6b92a4;
+    background-color: rgba(248,249,250,0.8)
+}
+.nav-item:hover {
+    
+    background-color: rgba(174, 175, 176, 0.65);
+}
+.nav-bg {
+    background-color: rgba(248,249,250,0.8);
+    color: #ffffff;
+}
+a, a:link, a:visited {
+text-decoration:none;
+color:#7c7c7d;
+}
+.d-text {
+font-size:12px;
+color:#6b92a4;
+}
+
+.border-radius{
+    border-radius:10px;
+}
+
+.d-text-color {
+    color:#6b92a4;
+}
+.border-deway {
+    border-color: #6b92a4 !important;
+}
+.d-bg {
+    background-color:rgba(107, 146, 164, 0.3) !important;
+}
+.m-center {
+
+    
+    
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    margin-top:60px;
+    margin-left:-150px;
+}
+
+.card {
+    word-wrap: break-word;
+    background-color: #fff;
+    border: 1px;
+    border-color: none;
+}
+.card-header {
+    background-color: rgba(248,249,250,0.8);
+    border-color: none;
+    
+    border-bottom:none;
+}
+.card-footer {
+    background-color: rgba(248,249,250,0.9);
+    border-color: none;
+    border-top: none;
+}
+
+
+
+.table th,.table td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: none;
+
+}
+.table th {
+    border-bottom: 1px solid #dee2e6;
+}

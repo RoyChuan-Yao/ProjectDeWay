@@ -1,0 +1,116 @@
+﻿@model DeWay.ViewModels.VM_rfdDetail
+
+@{
+    ViewBag.Title = "rfdDetail";
+    decimal? total = 0;
+    double shipping = 0;
+    decimal? tempshipping = 0;
+    double? rfdshipping = 0;
+    double Total = 0;
+    var result = "";
+    Layout = "~/Views/Shared/_Layout_Member.cshtml";
+}
+
+<h2>退貨詳細資訊</h2>
+<div class="d-text-color">
+    @{
+        result = Model.refund.FirstOrDefault().rfdProduct == true ? "需退回商品" : "不需退回商品";
+    }
+    @result
+
+</div>
+<div class="card ">
+    <div class="card-header ">
+        <div class="row">
+            <div>退貨單</div>
+            <div class="offset-8">@Model.refund.FirstOrDefault().rfdDate</div>
+        </div>
+    </div>
+    <div class="card-body">
+
+        <div class="card-body">
+            <div class="row font-weight-bold">
+                <div class="col-3">商品</div>
+                <div class="col-3">規格</div>
+                <div class="col-3">數量</div>
+                <div class="col-3">小計</div>
+
+            </div>
+            @foreach (var item in Model.cart_orderDetail)
+            {
+                var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
+
+                total += subtotal;
+                shipping = Math.Round((double)item.Order.shpPrice);
+                <div class="row">
+                    <div class="col-3">
+                        @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
+                    </div>
+                    <div class="col-3">
+                        @Html.DisplayFor(modelItem => item.Specification.Style)
+                        @Html.DisplayFor(modelItem => item.Specification.Size)
+                    </div>
+                    <div class="col-3">
+                        ×@Html.DisplayFor(modelItem => item.Quantity)
+                    </div>
+                    <div class="col3">
+                        NT$ @subtotal
+                    </div>
+                </div>
+
+
+
+
+            }
+            <hr />
+            @{
+
+                tempshipping = Model.refund.FirstOrDefault().rfdShip;
+                if (tempshipping == null)
+                {
+                    rfdshipping = 0;
+                }
+
+                else
+                {
+                    rfdshipping = Math.Round((double)tempshipping);
+                }
+                Total = Math.Round((double)(total + (decimal)shipping + (decimal)rfdshipping));
+            }
+
+            <div>
+                <p class=" col-10 text-right">訂單運費： @shipping </p>
+                <p class=" col-10 text-right">賣家欲負擔退回商品的運費： @rfdshipping </p>
+                <p class="total col-10 text-right text-danger " id="total"><span>退款總金額：</span>@Total</p>
+            </div>
+            <br />
+            <div class="offset-1 ">
+                <div class="row">
+                    <h6 class="col-2 ">退貨原因：</h6>
+                    <div class=" col-9 ">@Model.refund.FirstOrDefault().rfdReason</div>
+                </div>
+            </div>
+
+            <p class="mt-3 d-text-color">收款資訊填寫</p>
+
+            <div class="offset-1">
+                <div class="row ">
+                    <p class="col-2">銀行代碼：</p>
+                    <div class="col-9 ">@Model.refund.FirstOrDefault().RefundAccount.bankCode</div>
+                </div>
+                <div class="row">
+                    <p class="col-2">銀行名稱：</p>
+                    <div class="col-9 ">@Model.refund.FirstOrDefault().RefundAccount.bankName</div>
+                </div>
+                <div class="row">
+                    <p class="col-2">銀行帳號：</p>
+                    <div class="col-9 ">@Model.refund.FirstOrDefault().RefundAccount.bankAccount</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer  ">
+            <div class="offset-6">@Model.refund.FirstOrDefault().RefundStatus.rfdStatus</div>
+        </div>
+    </div>
+</div>

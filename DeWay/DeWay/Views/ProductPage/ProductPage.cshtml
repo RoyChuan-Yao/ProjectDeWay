@@ -20,7 +20,6 @@
 }
 
 
-
 <div class="row">
     <div class="col-7">
         <section id="ProductInfo">
@@ -90,7 +89,9 @@
                 </select>
             </div>
             <hr />
+
             <button id="addToCartBtn" class="btn btn-warning" state="addToCart">加入購物車</button>
+
         </div><hr />
         <div id="sellerInfo">
             <h4>賣家名稱 </h4>
@@ -116,6 +117,7 @@
 </div>
 @section Script{
     <script>
+        //QA發送
         $(`#qaSubmitBtn`).on("click", function () {
             $.ajax({  //利用AJAX發送表單，成功後更新QAsection
                 url: "@Url.Action("CreateQA","QAs")",
@@ -136,6 +138,7 @@
         });
     </script>
     <script>
+        //取得庫存
         $(`.spec`).click(function () {
             $(`.spec[state="selected"]`).attr("state", "").toggleClass(`btn-outline-primary btn-primary`);
             $(this).attr("state", "selected").toggleClass(`btn-outline-primary btn-primary`);
@@ -143,18 +146,22 @@
             $.get(`@Url.Action("GetProductStock","ProductPage")?specID=` + this.id,
                 function (stock) {
                     var quantity = '';
-                    for (var i = 1; i <= stock; i++) {
-                        quantity += `<option value="${i}">${i}</option>`;
+                    if (stock > 0) {//庫存檢查
+                        for (var i = 1; i <= stock; i++) {
+                            quantity += `<option value="${i}">${i}</option>`;
+                        }
+                    } else {
+                        quantity += `<option value="">-商品已經售完-</option>`;
                     }
                     $(`#quantity`).html(
-                    quantity
-                    );
+                            quantity
+                        );
                 });
             //更新產品價格標籤
             $(`#price`).text("NT$ " + $(this).find(`.priceTag`).text());
             //購物車按鈕-->"加入購物車"
             $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`);
-        })
+        });
         $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`) });
         //購物車按鈕按下
         $(`#addToCartBtn`).click(function ()
