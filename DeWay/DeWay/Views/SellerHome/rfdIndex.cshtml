@@ -98,6 +98,8 @@
                             {
                                 @item.RefundStatus.rfdStatus
                             }
+                            @Html.ActionLink("退貨單明細", "rfdDetail", new { rfdID = item.rfdID}, new { @class = "btn btn-info " })
+
                         </span>
                     </div>
                 </div>

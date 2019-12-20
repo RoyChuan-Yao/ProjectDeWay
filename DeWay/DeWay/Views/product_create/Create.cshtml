@@ -3,184 +3,187 @@
 @{
     ViewBag.Title = "Create";
 }
-<h2>Create</h2>
-@using (Html.BeginForm("Create", "product_create", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+    <div class="container">
+        <h2>Create</h2>
 
-    <div class="form-horizontal">
-        <h4>Product</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("Create", "product_create", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
 
-
-        <div id="page0">
-            <p>
-                請選擇分類：@Html.DropDownList("fstID", (SelectList)ViewBag.fst, "請選擇--", new { id = "fst" })
-            </p>
-            <p>
-                請選擇子分類：<select id="snd" name="sndID"><option>請選擇--</option></select>
-            </p>
-            <p>
-                請選擇不知道怎麼命名好分類：<select id="trd" name="trdID"><option>請選擇--</option></select>
-            </p>
+            <div class="form-horizontal">
+                <h4>Product</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-            <hr />
-            <div id="tag">
-                <p>
-                    請輸入Tag:
-                </p>
-                Tag1:<input type="text" name="tag[0].tagName" value="" />
-            </div>
-            <br />
-            <div class="form-group">
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="addTag" type="button" value="新增Tag" class="btn btn-info" />
-                </span>
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="deletetag" type="button" value="刪除" class="btn btn-danger" />
-                </span>
-
-            </div>
+                <div id="page0">
+                    <p>
+                        請選擇分類：@Html.DropDownList("fstID", (SelectList)ViewBag.fst, "請選擇--", new { id = "fst" })
+                    </p>
+                    <p>
+                        請選擇子分類：<select id="snd" name="sndID"><option>請選擇--</option></select>
+                    </p>
+                    <p>
+                        請選擇不知道怎麼命名好分類：<select id="trd" name="trdID"><option>請選擇--</option></select>
+                    </p>
 
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input id="btn0" type="button" value="下一頁" class="btn btn-primary" />
-                </div>
-            </div>
-        </div>
-
-
-        <div id="page1">
-            <div class="form-group">
-                @Html.LabelFor(model => model.products.pdtName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.products.pdtName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.products.pdtName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.products.pdtDescribe, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.products.pdtDescribe, new { htmlAttributes = new { @class = "form-control " } })
-                    @Html.ValidationMessageFor(model => model.products.pdtDescribe, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <hr />
-                <div id="pdtImg">
-                    請上傳封面圖片: <input id="File1" type="file" name="photo" /><br />
-                </div>
-            <br />
-
-
-            <div class="form-group">
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="addImg" type="button" value="新增圖片" class="btn btn-info" />
-                </span>
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="deleteimg" type="button" value="刪除" class="btn btn-danger" />
-                </span>
-
-            </div>
-
-
-            <div id="spc">
-                <fieldset>
-                    <legend>商品規格1</legend>
-                    <span>項目</span>
-                    <input type="text" name="specification[0].Style" value="" />
+                    <hr />
+                    <div id="tag">
+                        <p>
+                            請輸入Tag:
+                        </p>
+                        Tag1:<input type="text" name="tag[0].tagName" value="" />
+                    </div>
                     <br />
-                    <span>規格</span>
-                    <input type="text" name="specification[0].Size" value="" />
+                    <div class="form-group">
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="addTag" type="button" value="新增Tag" class="btn btn-info" />
+                        </span>
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="deletetag" type="button" value="刪除" class="btn btn-danger" />
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input id="btn0" type="button" value="下一頁" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="page1">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.products.pdtName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.products.pdtName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.products.pdtName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.products.pdtDescribe, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.products.pdtDescribe, new { htmlAttributes = new { @class = "form-control " } })
+                            @Html.ValidationMessageFor(model => model.products.pdtDescribe, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="pdtImg">
+                        請上傳封面圖片: <input id="File1" type="file" name="photo" /><br />
+                    </div>
                     <br />
-                    <span>數量</span>
-                    <input type="text" name="specification[0].Stock" value="" />
+
+
+                    <div class="form-group">
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="addImg" type="button" value="新增圖片" class="btn btn-info" />
+                        </span>
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="deleteimg" type="button" value="刪除" class="btn btn-danger" />
+                        </span>
+
+                    </div>
+
+
+                    <div id="spc">
+                        <fieldset>
+                            <legend>商品規格1</legend>
+                            <span>項目</span>
+                            <input type="text" name="specification[0].Style" value="" />
+                            <br />
+                            <span>規格</span>
+                            <input type="text" name="specification[0].Size" value="" />
+                            <br />
+                            <span>數量</span>
+                            <input type="text" name="specification[0].Stock" value="" />
+                            <br />
+                            <span>單價</span>
+                            <input type="text" name="specification[0].Price" value="" />
+                        </fieldset>
+                    </div>
+
+
                     <br />
-                    <span>單價</span>
-                    <input type="text" name="specification[0].Price" value="" />
-                </fieldset>
+
+                    <div class="form-group">
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="addSPC" type="button" value="新增商品規格" class="btn btn-info" />
+                        </span>
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="deleteSPC" type="button" value="刪除" class="btn btn-danger" />
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="btn3" type="button" value="上一頁" class="btn btn-primary" />
+                        </span>
+
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="btn1" type="button" value="下一頁" class="btn btn-primary" />
+                        </span>
+
+
+                    </div>
+                </div>
+
+                <div id="page2">
+                    <div id="shp">
+                        <span>選擇物流方式</span>
+                        <select name="shipperDetail[0].shpID" value="">
+                            @foreach (var item in ViewBag.shipperDetail)
+                            {
+                                <option value="@item.shpID">@item.shpMethod</option>
+                            }
+                        </select>
+                        <span>設定價格</span>
+                        <input type="text" name="shipperDetail[0].defaultShipping" value="" />
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="createshp" type="button" value="新增運費" class="btn btn-info" />
+                        </span>
+                        <span class="col-md-offset-2 col-md-10">
+                            <input id="deleteshp" type="button" value="刪除" class="btn btn-danger" />
+                        </span>
+
+                    </div>
+
+
+
+
+
+                    <div class="form-group">
+                        <spav class="col-md-offset-2 col-md-10">
+                            <input id="btn2" type="button" value="上一頁" class="btn btn-primary" />
+                        </spav>
+                        <spav class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </spav>
+
+
+
+                    </div>
+                </div>
             </div>
 
 
-            <br />
 
-            <div class="form-group">
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="addSPC" type="button" value="新增商品規格" class="btn btn-info" />
-                </span>
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="deleteSPC" type="button" value="刪除" class="btn btn-danger" />
-                </span>
+
+
+            <div>
+                @Html.ActionLink("Back to List", "OrderIndex", "SellerHome")
             </div>
-
-            <div class="form-group">
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="btn3" type="button" value="上一頁" class="btn btn-primary" />
-                </span>
-
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="btn1" type="button" value="下一頁" class="btn btn-primary" />
-                </span>
-
-
-            </div>
-        </div>
-
-        <div id="page2">
-            <div id="shp">
-                <span>選擇物流方式</span>
-                <select name="shipperDetail[0].shpID" value="">
-                    @foreach (var item in ViewBag.shipperDetail)
-                    {
-                        <option value="@item.shpID">@item.shpMethod</option>
-                    }
-                </select>
-                <span>設定價格</span>
-                <input type="text" name="shipperDetail[0].defaultShipping" value="" />
-            </div>
-            <br />
-
-            <div class="form-group">
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="createshp" type="button" value="新增運費" class="btn btn-info" />
-                </span>
-                <span class="col-md-offset-2 col-md-10">
-                    <input id="deleteshp" type="button" value="刪除" class="btn btn-danger" />
-                </span>
-
-            </div>
-
-
-
-
-
-            <div class="form-group">
-                <spav class="col-md-offset-2 col-md-10">
-                    <input id="btn2" type="button" value="上一頁" class="btn btn-primary" />
-                </spav>
-                <spav class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-success" />
-                </spav>
-
-
-
-            </div>
-        </div>
+        }
     </div>
-
-
-
-
-
-    <div>
-        @Html.ActionLink("Back to List", "OrderIndex","SellerHome")
-    </div>
-}
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 
 <script>

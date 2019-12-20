@@ -61,7 +61,7 @@ namespace DeWay.Controllers
 
             if (db.Seller.Where(m =>m.mbrID==a).Count()>0)
             {
-                return RedirectToAction("mbrIndex", "MemberHome");
+                return RedirectToAction("OrderIndex", "SellerHome");
             }
 
 

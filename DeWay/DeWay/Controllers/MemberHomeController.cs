@@ -96,8 +96,10 @@ namespace DeWay.Controllers
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
 
+
             ViewBag.id = Session["memberID"].ToString();
             return View();
+
 
 
         }
