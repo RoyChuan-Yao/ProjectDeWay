@@ -137,9 +137,9 @@ namespace DeWay.Controllers
 
 
             }
+            ViewBag.error = "舊密碼不符";
 
-
-            return View(account);
+            return View();
 
 
 
