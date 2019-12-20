@@ -477,6 +477,7 @@
 
     <Content Include="Views\Market\Index.cshtml" />
     <Content Include="Views\Market\_rvwIndex.cshtml" />
+    <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
 
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -40,6 +40,10 @@ namespace DeWay.Controllers
             stockResult = stockResult >= 20 ? 20 : stockResult; //庫存超過20 則返回20
             return stockResult;
         }
-
+        public PartialViewResult _GetProductCard(string productID)
+        {
+            var product = db.Product.Find(productID);
+            return PartialView(product);
+        }
     }
 }
