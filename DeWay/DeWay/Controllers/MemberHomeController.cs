@@ -91,13 +91,13 @@ namespace DeWay.Controllers
 
 
         }
-        public ActionResult pwdEdit(string id)
+        public ActionResult pwdEdit()
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
 
-            var account = db.MemberAccount.Find(id);
-            return View(account);
+            ViewBag.id = Session["memberID"].ToString();
+            return View();
 
 
         }
