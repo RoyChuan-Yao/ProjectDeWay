@@ -7,15 +7,8 @@
 
 @using (Html.BeginForm())
 {
-    <p>
-        商品搜尋: @Html.TextBox("ProductName")
-        <input type="submit" value="查詢" />
-    </p>
-
-   <p>
-       種類篩選:@Html.DropDownList("fstID",null,htmlAttributes: new { @class = "form-control" })
-       
-   </p>
+   
+  
 
 }
         <table class="table">
@@ -39,31 +32,31 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.pdtName)
-                    </td>
-                    
-                <td>
-                    @if (item.ProductImage.Count > 0)
-                    {
-                        <img src="@item.ProductImage.FirstOrDefault().pdtImage" alt="商品圖片" />
+        <tr>
+            <td>
+                @Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
+            </td>
 
-                    }
-                    else
-                    {
-                        <span>圖片遺失</span>
-                    }
-   
-                </td>          
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductCategory.fstLayerID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Seller.selCompany)
-                    </td>
-                    
-                </tr>
+            <td>
+                @if (item.ProductImage.Count > 0)
+                {
+                    <img src="@item.ProductImage.FirstOrDefault().pdtImage" alt="商品圖片" />
+
+                }
+                else
+                {
+                    <span>圖片遺失</span>
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCategory.fstLayerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seller.selCompany)
+            </td>
+
+        </tr>
             }
 
         </table>
