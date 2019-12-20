@@ -17,6 +17,15 @@ namespace DeWay.Controllers
         {
             ViewBag.fst = new SelectList(db.FirstLayer, "fstLayerID", "fstLayer");
 
+            string id = Session["memberID"].ToString();
+
+            if (db.Seller.Where(m => m.mbrID == id).Count() == 0)
+            {
+                return RedirectToAction("SellerCreate", "SellerCertification");
+            }
+
+
+
             VM_pdtCreate vm = new VM_pdtCreate();
             vm.firstLayers = db.FirstLayer.ToList();
             ViewBag.shipperDetail = db.Shipper.ToList();
@@ -29,6 +38,8 @@ namespace DeWay.Controllers
             string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
 
             var getctgID = db.ProductCategory.Where(m => m.fstLayerID == fstID && m.sndLayerID == sndID && m.trdLayerID == trdID).FirstOrDefault().pdtCtgID;
+
+
 
 
             string GetpdtID = db.Database.SqlQuery<string>("Select dbo.GetProductID()").FirstOrDefault();

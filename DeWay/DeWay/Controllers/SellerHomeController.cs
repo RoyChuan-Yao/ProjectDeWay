@@ -25,10 +25,20 @@ namespace DeWay.Controllers
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
 
+            
 
 
             string id = Session["memberID"].ToString();
+
+
+            if (db.Seller.Where(m => m.mbrID == id).Count() == 0)
+            {
+                return RedirectToAction("SellerCreate", "SellerCertification");
+            }
+
+
             string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+
 
             if (odrStatus == null)
             {
@@ -356,6 +366,13 @@ namespace DeWay.Controllers
         public ActionResult editMarket()
         {
             string id = Session["memberID"].ToString();
+
+            if (db.Seller.Where(m => m.mbrID == id).Count() == 0)
+            {
+                return RedirectToAction("SellerCreate", "SellerCertification");
+            }
+
+
             string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
             var market = db.Seller.Where(m => m.selID == getselID).FirstOrDefault();
 
