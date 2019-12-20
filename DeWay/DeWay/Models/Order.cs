@@ -19,6 +19,7 @@ namespace DeWay.Models
         {
             this.Review = new HashSet<Review>();
             this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
+
             this.Refund = new HashSet<Refund>();
         }
     
@@ -45,8 +46,10 @@ namespace DeWay.Models
         public virtual ICollection<Review> Review { get; set; }
         public virtual Seller Seller { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
         public virtual ICollection<Refund> Refund { get; set; }
     }
 }

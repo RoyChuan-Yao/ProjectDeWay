@@ -59,7 +59,9 @@
                     <div class="row col-12">
                         @foreach (var i in item.Order.Cart_OrderDetail)
                         {
+
                             var subtotal = (decimal)((int)i.pdtPrice * i.Discount * i.Quantity);
+
 
                             total += subtotal;
                         }
