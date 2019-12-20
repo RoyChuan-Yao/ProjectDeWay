@@ -13,6 +13,8 @@ namespace DeWay.Controllers
     public class SearchForLayoutController : Controller
     {
         public shopDBEntities db = new shopDBEntities();
+
+       [HttpPost]
         public ActionResult Index( string ProductName = null,string fstID = null)
         {
             ViewBag.fstID = new SelectList(db.FirstLayer, "fstLayerID", "fstLayer");

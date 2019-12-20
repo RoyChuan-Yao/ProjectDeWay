@@ -17,6 +17,8 @@ namespace DeWay.Controllers
        
         public ActionResult Index(string searchtitle)
         {
+          
+
             var ntrcontent = from m in db.ntfRecord
                              select m;
             if(!String.IsNullOrEmpty(searchtitle))
@@ -32,6 +34,7 @@ namespace DeWay.Controllers
       
         public ActionResult Details(string id)
         {
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -47,6 +50,7 @@ namespace DeWay.Controllers
         // GET: ntfRecordsAdm/Create
         public ActionResult Create()
         {
+           
             ViewBag.mbrID = new SelectList(db.Member, "mbrID", "mbrName");
             ViewBag.ntfCtgID = new SelectList(db.ntfCategory, "ntfCtgID", "ntfType");
             return View();
@@ -77,6 +81,7 @@ namespace DeWay.Controllers
         
         public ActionResult Edit(string id)
         {
+           
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,31 +117,7 @@ namespace DeWay.Controllers
             return View(ntfRecord);
         }
 
-        // GET: ntfRecordsAdm/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ntfRecord ntfRecord = db.ntfRecord.Find(id);
-            if (ntfRecord == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ntfRecord);
-        }
-
-        // POST: ntfRecordsAdm/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            ntfRecord ntfRecord = db.ntfRecord.Find(id);
-            db.ntfRecord.Remove(ntfRecord);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+       
 
         protected override void Dispose(bool disposing)
         {
@@ -145,6 +126,14 @@ namespace DeWay.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult IndexForMember()
+        {
+            string mbrID = (string)Session["memberID"];
+            var ntf = db.ntfRecord.Where(m => m.mbrID == mbrID);
+
+            return View(ntf);
         }
 
        
