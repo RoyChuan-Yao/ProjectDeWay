@@ -97,9 +97,9 @@ namespace DeWay.Controllers
                 return RedirectToAction("Login", "Login");
 
 
-            string id = Session["memberID"].ToString();
-            var account = db.MemberAccount.Find(id);
-            return View(account);
+            ViewBag.id = Session["memberID"].ToString();
+            return View();
+
 
 
         }
@@ -137,9 +137,9 @@ namespace DeWay.Controllers
 
 
             }
+            ViewBag.error = "舊密碼不符";
 
-
-            return View(account);
+            return View();
 
 
 
