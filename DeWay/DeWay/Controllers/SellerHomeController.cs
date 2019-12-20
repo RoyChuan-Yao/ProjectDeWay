@@ -352,6 +352,31 @@ namespace DeWay.Controllers
             db.SaveChanges();
             return RedirectToAction("rfdIndex");
         }
+
+        public ActionResult editMarket()
+        {
+            string id = Session["memberID"].ToString();
+            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+            var market = db.Seller.Where(m => m.selID == getselID).FirstOrDefault();
+
+            return View(market);
+
+        }
+        [HttpPost]
+        public ActionResult editMarket(Seller seller)
+        {
+            string id = Session["memberID"].ToString();
+            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+            var market = db.Seller.Where(m => m.selID == getselID).FirstOrDefault();
+
+            market.selCompany = seller.selCompany;
+            market.selInfo = seller.selInfo;
+            db.SaveChanges();
+
+
+            return RedirectToAction("OrderIndex");
+
+        }
     }
 
 }

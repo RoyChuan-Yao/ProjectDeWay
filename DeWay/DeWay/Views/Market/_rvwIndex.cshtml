@@ -23,8 +23,7 @@ else
         <div class="row col-12">
             <span class="col-2">@item.Product.pdtName</span>
             <span class="col-2">@item.Member.nickName</span>
-            <input id="Text1" class="getstar" type="text" value="@item.rvwStar" hidden="hidden" />
-            <span class="col-2 star">@item.rvwStar</span>
+            <span class="col-2 star"Stars="@item.rvwStar" starCount="@item.rvwStar">@item.rvwStar</span>
             <span class="col-3">@item.rvwContent</span>
             <span class="col-3">@item.rvwTime</span>
         </div>
