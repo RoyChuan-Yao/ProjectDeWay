@@ -167,6 +167,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
+    <Content Include="images\img-deway-2.png" />
     <Content Include="images\pImg000014.jpg" />
     <Content Include="Content\DeWayMemberHome.css" />
     <Content Include="Models\shopDB.Context.tt">
@@ -497,15 +498,11 @@
     <Content Include="Views\SellerHome\odrDetail.cshtml" />
     <Content Include="Views\SellerHome\deliveryIndex.cshtml" />
     <Content Include="Views\SellerHome\_rvwIndex.cshtml" />
-
     <Content Include="Views\SellerHome\rfdDetail.cshtml" />
-
     <Content Include="Views\Market\Index.cshtml" />
     <Content Include="Views\Market\_rvwIndex.cshtml" />
     <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
-
     <Content Include="Views\SellerHome\editMarket.cshtml" />
-
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
