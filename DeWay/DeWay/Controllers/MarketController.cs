@@ -36,6 +36,9 @@ namespace DeWay.Controllers
                 reviews = db.Review.Where(m => m.Order.selID == selID).ToList(),
             };
 
+            ViewBag.fstLayer = db.Product.Where(m => m.selID == selID).Select(m => m.ProductCategory.FirstLayer).Distinct().ToList();
+
+
             return View(mk);
         }
 
@@ -65,5 +68,9 @@ namespace DeWay.Controllers
 
 
         }
+
+
+
+
     }
 }

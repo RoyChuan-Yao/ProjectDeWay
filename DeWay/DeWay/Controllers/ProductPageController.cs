@@ -45,5 +45,12 @@ namespace DeWay.Controllers
             var product = db.Product.Find(productID);
             return PartialView(product);
         }
+
+
+        public PartialViewResult _GetProductCardFst(string productID, string fstID)
+        {
+            var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
+            return PartialView("_GetProductCard", product);
+        }
     }
 }
