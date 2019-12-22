@@ -81,7 +81,7 @@
                             }
                             <div class="row">
                                 <p class="col-4  text-right ">商品：</p>
-                                <div class="col-8"><a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"><img src="~/images/@Html.Action("getImage", new { id = item.odrID})" style="width:100px" class="img-responsive img-rounded" /></a></div>
+                                <div class="col-8"><a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"><img src="~/productImage/@Html.Action("getImage", new { id = item.odrID})" style="width:100px" class="img-responsive img-rounded" /></a></div>
                             </div>
                         </div>
 
