@@ -396,6 +396,16 @@ namespace DeWay.Controllers
 
         }
 
+
+        public ActionResult productIndex()
+        {
+            string id = Session["memberID"].ToString();
+            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+
+            var pdt = db.Product.Where(m => m.selID == getselID).ToList();
+
+            return View(pdt);
+        }
         public ActionResult QAIndex(int code = 0)
 
         {
@@ -428,6 +438,7 @@ namespace DeWay.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             return View(qa);
+
 
 
 

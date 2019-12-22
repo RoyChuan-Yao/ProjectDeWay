@@ -706,6 +706,8 @@ namespace DeWay.Models
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
             public string Size { get; set; }
             [DisplayName("商品編號庫存")]
+            [Required(ErrorMessage = "此欄位為必填")]
+
             public string Stock { get; set; }
             [DisplayName("商品定價")]
             [Required(ErrorMessage = "此欄位為必填")]
