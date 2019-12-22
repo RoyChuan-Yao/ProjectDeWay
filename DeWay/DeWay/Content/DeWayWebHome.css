@@ -1,4 +1,8 @@
 ﻿/*HomeIndex 首頁*/
+.DeWay {
+    font-family: 'Dancing Script', cursive;
+    font-size:25px;
+}
 .navbar-light {
     height: 70px;
     position: relative;
@@ -150,16 +154,26 @@
 .form-control {
     width: 75%;
 }
-
+.body {    
+    padding: 0px 0px 0px 0px;
+    height: 100vh;
+}
+.header {
+    /*height: 50px;*/
+    position: absolute;
+    top: 0;
+    
+}
+.content {
+    min-height: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
 .footer-1 {
-    margin-top: -50px;
-    font-size: 20px;
-    /*z-index: 5;*/
-    /*position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;*/
-    height: 180px;
+    position: relative;
+    top: -100px;
+    height: 180px;   
+    font-size: 20px;   
 }
 
 .bg-red-1 {
@@ -174,14 +188,7 @@
     margin-bottom: 0rem;
 }
 
-.body {
-    /*height: 100vh;*/
-    padding: 0px 0px 0px 0px;
-}
 
-.content {
-    min-height: 100vh;
-}
 
 .content-inside {
     padding-bottom: 50px;
@@ -506,10 +513,14 @@
 
 .membercard {
     border: 0px solid;
+    
 }
-
+.membercardC {
+    text-align:center;
+}
 .membercardA {
     box-shadow: 13px 13px 8px -3px rgba(0, 0, 0, 0.2);
+    height: 80vh;
 }
 
 .membercardB {
@@ -521,7 +532,7 @@
     position: absolute;
     top: 92%;
     right: 25%;
-    height: 10%;
+    height: 8vh;
     width: 110%;
     background-color: rgba(0,0,0,0.1);
     color: #fff;
@@ -583,7 +594,7 @@
 }
 
 .memberIntroductionD {
-    position: absolute;
+    position: relative;
     left: 100%;
 }
 
@@ -655,6 +666,7 @@
     width: 20px;
     height: 20px;
     margin: 10px 10px 15px 10px;
+    cursor: pointer;
 }
 
 .cardProducts {
@@ -681,7 +693,9 @@
 }
 
 .memberAside {
-    position: absolute;
+    
+    position: relative;
+    top: 0px;
     left: 8%;
     width: 22%;
     height: 100%;
@@ -691,8 +705,9 @@
 }
 
 .memberArticle {
-    position: absolute;
-    right: 8%;
+    position: relative;
+    top: 0px;
+    left: 3%;
     width: 67%;
     height: 100%;
     margin: 100px 0px;
@@ -800,4 +815,69 @@
 .orderDB {
     position: absolute;
     right:0px;
+}
+
+
+
+
+
+
+
+/*管理員後台AdmBackstage*/
+.bodyAdmBg {
+    background-color: rgba(0,0,0,0.8);
+    color: #ffffff;
+}
+
+.AdmFontSize {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.AdmBackAside {
+    position: absolute;
+    left: 2%;
+    width: 14%;
+    height: 100%;
+    margin: 0px 0px;
+    padding-top: 100px;
+}
+
+.ABnav1 {
+    position: relative;
+    padding: 0rem 0rem;
+    min-width: 0rem;
+    width: 82%;
+}
+
+.aBcollapseA {
+    color: #ffffff;
+    padding: 1.5rem 0;
+    font-size: 20px;
+}
+
+    .aBcollapseA:hover {
+        color: #adcaff;
+    }
+
+.aBcollapseB {
+    color: #000000;
+    padding: 0.5rem;
+    font-size: 15px;
+    text-align: center;
+}
+
+    .aBcollapseB:hover {
+        color: #ffffff;
+        background-color: rgba(0,0,0,0.6)
+    }
+
+.AdmBackArticle {
+    background-color: #ffffff;
+    position: absolute;
+    left: 16%;
+    width: 84%;
+    height: 110%;
+    margin: 0px 0px;
+    padding-top: 100px;
 }

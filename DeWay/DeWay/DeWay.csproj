@@ -504,7 +504,6 @@
     <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
     <Content Include="Views\SellerHome\editMarket.cshtml" />
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
-    <Content Include="Views\Login\Login - 複製.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

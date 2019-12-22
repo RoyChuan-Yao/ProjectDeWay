@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - DeWay 設計之路</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
@@ -24,7 +25,7 @@
 
                 @*<a class="navbar-brand" href="#">DeWay</a>*@
 
-                @Html.ActionLink("DeWay", "Index", "Home", new { }, new { @class = "navbar-brand" })
+                @Html.ActionLink("DeWay", "Index", "Home", new { }, new { @class = "navbar-brand DeWay" })
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +96,6 @@
 
                                 @Html.ActionLink("會員中心", "odrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("商品收藏", "Index", "WishLists", new { }, new { @class = "dropdown-item" })
-
                                 @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("通知中心", "IndexForMember", "ntfRecordsAdm", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("開設計館", "", "", new { }, new { @class = "dropdown-item" })
