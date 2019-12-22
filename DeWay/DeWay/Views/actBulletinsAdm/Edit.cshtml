@@ -3,82 +3,82 @@
 @{
     ViewBag.Title = "Edit";
 }
+    <div class="container">
+        <h2>編輯公告</h2>
 
-<h2>Edit</h2>
 
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>活動公告</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.actID)
+            <div class="form-horizontal">
+                <h4>活動公告</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.actID)
 
-        <div class="form-group d-none">
-            @Html.LabelFor(model => model.pdtID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pdtID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pdtID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group d-none">
+                    @Html.LabelFor(model => model.pdtID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.pdtID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.pdtID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group d-none">
-            開始時間
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.actStrDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.actStrDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group d-none">
+                    開始時間
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.actStrDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.actStrDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group d-none">
-            結束時間
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.actEndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.actEndDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group d-none">
+                    結束時間
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.actEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.actEndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            照片
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.actImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.actImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    照片
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.actImage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.actImage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            顯示狀態
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.actDisplay)
-                    @Html.ValidationMessageFor(model => model.actDisplay, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    顯示狀態
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.actDisplay)
+                            @Html.ValidationMessageFor(model => model.actDisplay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group d-none">
+                    @Html.LabelFor(model => model.admID, "admID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("admID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.admID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="儲存" class="btn btn-primary" />
+                    </div>
                 </div>
             </div>
-        </div>
+        }
 
-        <div class="form-group d-none">
-            @Html.LabelFor(model => model.admID, "admID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("admID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.admID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="儲存" class="btn btn-primary" />
-            </div>
+        <div>
+            @Html.ActionLink("回到前一頁", "Index")
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("回到前一頁", "Index")
-</div>
-
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
