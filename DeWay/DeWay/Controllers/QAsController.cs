@@ -28,12 +28,19 @@ namespace DeWay.Controllers
                 string memberName = db.Member.Where(n => n.mbrID == m).FirstOrDefault().mbrName;
                 memberNames[m] = memberName;
             }
+            string mbrID = (string)Session["memberID"];
+            if (mbrID != null)
+            {
+                ViewBag.sellID = db.Seller.Where(s => s.mbrID == mbrID).FirstOrDefault().selID;
+            }
             ViewBag.memberNames = memberNames;//建成字典檔用於VIEW中調用
             return PartialView(qa);
         }
         [ChildActionOnly]
         public PartialViewResult _CreateQA(string productID)
         {
+           
+           
             ViewBag.productID = productID;
             return PartialView();
         }
@@ -47,7 +54,8 @@ namespace DeWay.Controllers
                 qaID = GetQAID,
                 mbrID = (string)Session["memberID"],
                 Question = question,//TODO:限制長度
-                pdtID = pdtID, 
+                pdtID = pdtID,
+                displayStatus = true,
                 qaTime = DateTime.Now,
             };
             //QA 預設值
@@ -58,6 +66,19 @@ namespace DeWay.Controllers
             db.QA.Add(qa);
             db.SaveChanges();
             return RedirectToAction("_GetQASection", new { productID = pdtID });
+        }
+
+        [HttpPost]
+        public ActionResult replyMessage(string qaID,string Answer)
+        {
+            var getpdtID = db.QA.Where(m => m.qaID == qaID).FirstOrDefault().pdtID;
+            var qa = db.QA.Where(m => m.qaID == qaID).FirstOrDefault();
+            qa.Answer = Answer;
+            db.SaveChanges();
+
+            return RedirectToAction("ProductPage", "ProductPage", new { pdtID = getpdtID });
+
+
         }
     }
 
