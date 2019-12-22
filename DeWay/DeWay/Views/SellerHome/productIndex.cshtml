@@ -1,0 +1,16 @@
+﻿@model IEnumerable<DeWay.Models.Product>
+
+@{
+    ViewBag.Title = "productIndex";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
+
+}
+
+<h2>productIndex</h2>
+<div class="row d-flex ">
+    @foreach (var pdtItem in Model)
+    {
+
+        @Html.Action("_GetProductCard", "ProductPage", new { productID = pdtItem.pdtID })
+    }
+    </div>

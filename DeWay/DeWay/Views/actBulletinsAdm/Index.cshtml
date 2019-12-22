@@ -3,61 +3,66 @@
 @{
     ViewBag.Title = "Index";
 }
+    <div class="container">
+        <h2>活動公告管理</h2>
 
-<h2>Index</h2>
+        <p>
+            @Html.ActionLink("創建公告", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    商品編號
+                </th>
+                <th>
+                    開始時間
+                </th>
+                <th>
+                    結束時間
+                </th>
+                <th>
+                    照片
+                </th>
+                <th>
+                    顯示狀態
+                </th>
+                <th>
+                    管理員
+                </th>
+                <th></th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            商品編號
-        </th>
-        <th>
-            開始時間
-        </th>
-        <th>
-            結束時間
-        </th>
-        <th>
-            照片
-        </th>
-        <th>
-            顯示狀態
-        </th>
-        <th>
-            管理員
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pdtID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.actStrDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.actEndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.actImage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.actDisplay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adm.admName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("編輯", "Edit", new { id = item.actID }) |
+                        @Html.ActionLink("詳細資料", "Details", new { id = item.actID }) |
+                        @Html.ActionLink("刪除", "Delete", new { id = item.actID })
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.pdtID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.actStrDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.actEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.actImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.actDisplay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adm.admName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.actID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.actID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.actID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+        <div>
+            @Html.ActionLink("回到前一頁", "Index","AdmCenter")
+        </div>
+    </div>
