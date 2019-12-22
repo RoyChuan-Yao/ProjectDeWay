@@ -167,6 +167,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
+    <Content Include="images\image-32.jpg" />
     <Content Include="images\img-deway-2.png" />
     <Content Include="images\pImg000014.jpg" />
     <Content Include="Content\DeWayMemberHome.css" />
