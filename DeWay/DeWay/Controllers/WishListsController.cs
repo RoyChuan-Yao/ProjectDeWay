@@ -24,7 +24,7 @@ namespace DeWay.Controllers
             }
               
             var wishes = db.WishList.Where(m => m.mbrID == mbrID).ToList();
-                 
+            ViewBag.Name = db.Member.Where(m => m.mbrID == mbrID).FirstOrDefault().mbrName;
 
             return View(wishes);
 

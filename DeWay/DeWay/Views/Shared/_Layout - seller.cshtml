@@ -8,6 +8,8 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <link href="~/Content/DeWayMemberHome.css" rel="stylesheet" />
+
 
 
     @RenderSection("CSS", false)
@@ -91,7 +93,7 @@
                             <a style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/img-user-15.png" style="width:50%" /></a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink2">
 
-                                @Html.ActionLink("會員中心", "mbrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("會員中心", "odrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("商品收藏", "Index", "WishLists", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new { }, new { @class = "dropdown-item" })
                             </div>
@@ -163,7 +165,7 @@
                     商品管理
                     <li class="nav-item"><a href="#" class="nav-link">我的商品</a></li>
                     <li class="nav-item"><a href="@Url.Action("Create","product_create")" class="nav-link">新增商品</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">檢視問答</a></li>
+                    <li class="nav-item"><a href="@Url.Action("QAIndex","SellerHome")" class="nav-link">檢視問答</a></li>
                 </ul>
                 <ul class="nav  flex-column">
                     賣場管理

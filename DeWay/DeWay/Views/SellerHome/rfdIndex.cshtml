@@ -89,7 +89,7 @@
                         </span>
                         <span class="col-2">@item.rfdDate</span>
                         <span class="col-2">
-                            @if (item.rfdStatusID == "rfd0000001")
+                            @if (item.rfdStatusID == "rds0000001")
                             {
                                 @Html.ActionLink("同意", "rfd", new { odrID = item.odrID, code = 1 }, new { @class = "btn btn-info " })
                                 @Html.ActionLink("拒絕", "rfd", new { odrID = item.odrID, code = 2 }, new { @class = "btn btn-danger " })

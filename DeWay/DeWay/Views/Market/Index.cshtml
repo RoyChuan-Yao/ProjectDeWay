@@ -16,7 +16,10 @@
     <div>
         <div class="row d-flex justify-content-between membercardA">
             <div class="card membercard col-12 col-12A col-md-6">
-                <img src="../../images/image-63.jpg" style="width:100%;" />
+
+                <img id="srcsrcsrc" src="../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage" style="width:100%;" />
+
+
             </div>
             <div class="card membercard  col-12 col-12A col-md-6">
                 <div class="tab-content" id="">
@@ -374,13 +377,13 @@
 
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-                @Html.Action("_rvwIndex", new { star = 6 })
+                @Html.Action("_rvwIndex", new { star = 6, sellerID = Model.sellers.FirstOrDefault().selID })
             </div>
-            <div class="tab-pane fade" id="pills-five" role="tabpanel" aria-labelledby="pills-five-tab">@Html.Action("_rvwIndex", new { star = 5 })</div>
-            <div class="tab-pane fade" id="pills-four" role="tabpanel" aria-labelledby="pills-four-tab">@Html.Action("_rvwIndex", new { star = 4 })</div>
-            <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">@Html.Action("_rvwIndex", new { star = 3 })</div>
-            <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">@Html.Action("_rvwIndex", new { star = 2 })</div>
-            <div class="tab-pane fade" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">@Html.Action("_rvwIndex", new { star = 1 })</div>
+            <div class="tab-pane fade" id="pills-five" role="tabpanel" aria-labelledby="pills-five-tab">@Html.Action("_rvwIndex", new { star = 5, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+            <div class="tab-pane fade" id="pills-four" role="tabpanel" aria-labelledby="pills-four-tab">@Html.Action("_rvwIndex", new { star = 4, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+            <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">@Html.Action("_rvwIndex", new { star = 3, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+            <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">@Html.Action("_rvwIndex", new { star = 2, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+            <div class="tab-pane fade" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">@Html.Action("_rvwIndex", new { star = 1, sellerID = Model.sellers.FirstOrDefault().selID })</div>
         </div>
     </div>
 
@@ -443,6 +446,7 @@
 
         //設計館商品
         $('.pIntroduction4').click(function () {
+            $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
             $('#pI2').addClass('sellEvaDis');
             if ($('#pI4').attr('class', 'productsDisplay') != 'productsDisplay') {
 
@@ -453,12 +457,14 @@
             }
         });
         $('.pIntroduction3').click(function () {
+            $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
             $('#pI4').addClass('productsDisplay');
             $('#pI2').addClass('sellEvaDis');
 
         });
         //評價
         $('.pIntroduction2').click(function () {
+            $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
             $('#pI4').addClass('productsDisplay');
             if ($('#pI2').attr('class', 'sellEvaDis') != 'sellEvaDis') {
                 $('#pI2').removeClass('sellEvaDis');
@@ -473,6 +479,7 @@
         $('.pIntroduction1').click(function () {
             $('#pI4').addClass('productsDisplay');
             $('#pI2').addClass('sellEvaDis');
+            $('#srcsrcsrc').attr("src","../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage")
 
         });
 

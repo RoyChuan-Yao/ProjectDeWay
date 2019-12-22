@@ -97,10 +97,9 @@ namespace DeWay.Controllers
                 return RedirectToAction("Login", "Login");
 
 
-            string id = Session["memberID"].ToString();
-            var account = db.MemberAccount.Find(id);
-            ViewBag.id = id;
-            return View(account);
+            ViewBag.id = Session["memberID"].ToString();
+            return View();
+
 
 
         }
@@ -138,9 +137,9 @@ namespace DeWay.Controllers
 
 
             }
+            ViewBag.error = "舊密碼不符";
 
-
-            return View(account);
+            return View();
 
 
 
@@ -307,6 +306,8 @@ namespace DeWay.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult rvwCreate(string odrID, string rvwContent, short rvwStar, int code = 0)
         {
+            
+
             var pdtID = (from m in db.Cart_OrderDetail
                          where m.odrID == odrID
                          select m.Specification.pdtID).Distinct().ToList();
