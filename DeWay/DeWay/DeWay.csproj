@@ -504,6 +504,7 @@
     <Content Include="Views\SellerHome\editMarket.cshtml" />
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
     <Content Include="Views\SellerHome\QAIndex.cshtml" />
+    <Content Include="Views\Shared\_Layout _Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
