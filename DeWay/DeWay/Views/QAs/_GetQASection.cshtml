@@ -13,19 +13,21 @@
                     <p class="card-text">@Html.Raw(@qa.Question.Replace("\n", "<br>"))</p>
                     <hr />
                     @if (@qa.Answer != null)
-                    {<p class="card-text text-primary">@Html.Raw(@qa.Answer.Replace("\n", "<br>"))</p>}
-                else
-                {
-                    <span class="card-text text-danger"> 店家目前尚未回覆 </span>
-                    if (qa.Product.selID == ViewBag.sellID )
                     {
-                        <form class="form-horizontal" method="post" action="@Url.Action("replyMessage","QAs")">
-                            <textarea name="Answer" id="Text1"></textarea>
-                            <input name="qaID" type="text" hidden="hidden" value="@qa.qaID" />
-                            <span><input id="Submit1" type="submit" value="回覆" class="btn btn-warning" onclick="return confirm('確定發送?')" /></span>
-                        </form>
+                        <p class="card-text text-primary">@Html.Raw(@qa.Answer.Replace("\n", "<br>"))</p>
                     }
-                }
+                    else
+                    {
+                        <span class="card-text text-danger"> 店家目前尚未回覆 </span>
+                        if (qa.Product.selID == ViewBag.sellID)
+                        {
+                            <form class="form-horizontal" method="post" action="@Url.Action("replyMessage","QAs")">
+                                <textarea name="Answer" id="Text1"></textarea>
+                                <input name="qaID" type="text" hidden="hidden" value="@qa.qaID" />
+                                <span><input id="Submit1" type="submit" value="回覆" class="btn btn-warning" onclick="return confirm('確定發送?')" /></span>
+                            </form>
+                        }
+                    }
 
                 </div>
                 <div class="card-footer bg-transparent border-success">@qa.qaTime</div>

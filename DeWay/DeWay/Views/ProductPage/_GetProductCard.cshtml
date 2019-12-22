@@ -26,8 +26,8 @@ height: 134px;" alt="...">*@
         <p class="text-secondary text-secondary-1"><span><a href="@Url.Action("ProductPage","ProductPage",new { pdtID=Model.pdtID})">@Model.pdtName</a></span></p>
         <p class="text-secondary text-secondary-2">NT: <span>@price</span></p>
         <div class="d-flex justify-content-between">
-            <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-            <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
+            <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2 " alt="...">
+            <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
         </div>
     </div>
 </div>
