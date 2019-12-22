@@ -697,7 +697,7 @@
     position: relative;
     top: 0px;
     left: 8%;
-    width: 22%;
+    width: 15%;
     height: 100%;
     margin: 100px 0px;
     /*background-color: rgba(0,0,0,0.4);
@@ -707,7 +707,7 @@
 .memberArticle {
     position: relative;
     top: 0px;
-    left: 3%;
+    left: 10%;
     width: 67%;
     height: 100%;
     margin: 100px 0px;
@@ -742,72 +742,19 @@
     text-align: center;
 }
 
-
-
-/*管理員後台AdmBackstage*/
-.bodyAdmBg {
-    background-color: rgba(0,0,0,0.8);
-    color: #ffffff;
+.memberNav-tabs .memberNav-link.active, .memberNav-tabs .memberNav-item.show .memberNav-link {
+    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+    border: 0px solid;
 }
 
-.AdmFontSize {
-    font-size: 25px;
-    margin-bottom: 10px;
+.memberNav-tabs {
+    border-bottom: 0px solid; 
 }
-
-.AdmBackAside {
-    position: absolute;
-    left: 2%;
-    width: 14%;
-    height: 100%;
-    margin: 0px 0px;
-    padding-top: 100px;
-}
-
-.ABnav1 {
-    position: relative;
-    padding: 0rem 0rem;
-    min-width: 0rem;
-    width: 82%;
-}
-
-.aBcollapseA {
-    color: #ffffff;
-    padding: 1.5rem 0;
-    font-size: 20px;
-}
-
-    .aBcollapseA:hover {
-        color: #adcaff;
-    }
-
-.aBcollapseB {
-    color: #000000;
-    padding: 0.5rem;
-    font-size: 15px;
-    text-align: center;
-}
-
-    .aBcollapseB:hover {
-        color: #ffffff;
-        background-color: rgba(0,0,0,0.6)
-    }
-
-.AdmBackArticle {
-    background-color: #ffffff;
-    position: absolute;
-    left: 16%;
-    width: 84%;
-    height: 110%;
-    margin: 0px 0px;
-    padding-top: 100px;
-}
-
-
-
 
 /*訂單詳細資料*/
-.orderDA {
+    .orderDA {
     position: absolute;
     left: 200px;
 }
@@ -816,6 +763,8 @@
     position: absolute;
     right:0px;
 }
+
+
 
 
 
