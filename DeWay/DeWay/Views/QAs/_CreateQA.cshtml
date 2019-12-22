@@ -6,34 +6,43 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal card ">
-            <h4>我要發問</h4>
-            <hr />
+    <div class="form-horizontal card cardCreateQA">
+        
+       
+        
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Question)
-                </div>
+        <div class="form-group">
+            <div class="createQAText">
+                我要發問:
             </div>
-            @Html.HiddenFor(m => m.pdtID, new { @Value = ViewBag.productID })
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col- md-10">
-                    <input id="qaSubmitBtn" type="button" value="送出" class="btn btn-primary" />
-                </div>
+            @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label " })
+            <div>
+                @Html.TextAreaFor(model => model.Question, htmlAttributes: new { @class = "QATextArea " })
             </div>
         </div>
+        @Html.HiddenFor(m => m.pdtID, new { @Value = ViewBag.productID })
+
+        <div class="form-group">
+            <div class="">
+                <input id="qaSubmitBtn" type="button" value="送出" class="btn ProductbtnB" />
+            </div>
+        </div>
+    </div>
     }
 
 }
 else
 {
-<div class="form-horizontal card ">
-    <h4>請先登入即可發問</h4>
-    <hr />
-
-    @Html.ActionLink("點我登入", "login", "login", null, htmlAttributes: new { @class = "btn btn-primary" })
-    @Html.ActionLink("點我註冊", "register", "login", null, htmlAttributes: new { @class = "btn btn-warning" })
+<div class="form-horizontal card cardCreateQA ">
+    <div class="createQAText">
+        請先登入即可發問
+    </div>
+    
+    
+    <div class="row d-flex justify-content-between createBtnA">
+        @Html.ActionLink("點我登入", "login", "login", null, htmlAttributes: new { @class = "btn ProductbtnB" })
+        @Html.ActionLink("點我註冊", "register", "login", null, htmlAttributes: new { @class = "btn ProductbtnB" })
+    </div>
+    
 </div>
 }
