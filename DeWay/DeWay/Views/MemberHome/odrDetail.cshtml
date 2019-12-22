@@ -13,7 +13,7 @@
     <div class="">
         <div class=" row ml-1 mr-1 justify-content-between mb-2">
             <div>
-                @Html.DisplayFor(model => model.FirstOrDefault().Specification.Product.Seller.selCompany)
+                <a href="@Url.Action("Index","Market",new { sellerID=Model.FirstOrDefault().Order.selID})"> @Html.DisplayFor(model => model.FirstOrDefault().Specification.Product.Seller.selCompany)</a>
             </div>
             <div>
                 @Html.DisplayFor(model => model.FirstOrDefault().Order.odrDate)
@@ -59,11 +59,13 @@
 
                     total += subtotal;
                     shipping = Math.Round((double)item.Order.shpPrice);
-                    <div class="row">
+                    <div class="row align-items-baseline">
                         <div class="col-3">
-                            @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
+                            <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Specification.pdtID})">
+                                <img src="~/images/@item.Specification.Product.ProductImage.FirstOrDefault().pdtImage" style="width:100px" class="img-responsive img-rounded" /></a>
+                                @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
                         </div>
-                        <div class="col-3">
+                        <div class="col-3 ">
                             @Html.DisplayFor(modelItem => item.Specification.Style)
                             @Html.DisplayFor(modelItem => item.Specification.Size)
                         </div>

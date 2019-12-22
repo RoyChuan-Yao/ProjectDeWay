@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "QAIndex";
-    Layout = "~/Views/Shared/_Layout_Member.cshtml";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
 }
 
 <h2>我的問答區</h2>
@@ -26,9 +26,9 @@
 
 <div class="mb-3">
     <ul class="nav nav-fill nav-bg">
-        <li class="nav-item d-active"><a href="@Url.Action("QAIndex","MemberHome",new {code=0})" class="nav-link o-li">全部的問題</a></li>
-        <li class="nav-item"><a href="@Url.Action("QAIndex","MemberHome",new {code=1})" class="nav-link o-li">未回覆的問題</a></li>
-        <li class="nav-item"><a href="@Url.Action("QAIndex","MemberHome",new {code=2})" class="nav-link o-li">已回覆的問題</a></li>
+        <li class="nav-item d-active"><a href="@Url.Action("QAIndex","SellerHome",new {code=0})" class="nav-link o-li">全部的問題</a></li>
+        <li class="nav-item"><a href="@Url.Action("QAIndex","SellerHome",new {code=1})" class="nav-link o-li">未回覆的問題</a></li>
+        <li class="nav-item"><a href="@Url.Action("QAIndex","SellerHome",new {code=2})" class="nav-link o-li">已回覆的問題</a></li>
 
     </ul>
 
@@ -43,7 +43,7 @@
                 <div class="card-header row">
                     <div>
                         @Html.DisplayFor(modelItem => item.Product.Seller.selCompany)
-                        
+
                         @Html.DisplayFor(modelItem => item.Product.pdtName)
                     </div>
                     <div class="offset-7">
@@ -51,31 +51,31 @@
                     </div>
                 </div>
                 <div class="card-body row">
-                    
+
                     <div class="col-3 mr-3">
                         @if (Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage == null || Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage == "")
                         {
-                           <img src="~/images/0.jpg"  style="width:200px" />
+                            <img src="~/images/0.jpg" style="width:200px" />
                         }
                         else
                         {
-                           <img src="~/images/@Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage" style="width:200px" />
+                            <img src="~/images/@Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage" style="width:200px" />
 
                         }
                     </div>
                     <div class="col-8 mt-5">
 
-                        @ViewBag.MemberName 發問：@Html.Raw( @Html.DisplayFor(modelItem => item.Question).ToString().Replace("\n","<br>"))
-                        
+                        @item.Member.nickName 發問：@Html.Raw(@Html.DisplayFor(modelItem => item.Question).ToString().Replace("\n", "<br>"))
+
                         @if (item.Answer != null && item.Answer != "")
                         {
                             <hr />
-                           
+
                             <p>@Html.DisplayFor(modelItem => item.Product.Seller.selCompany) 回答：@Html.Raw(@Html.DisplayFor(modelItem => item.Answer).ToString().Replace("\n", "<br>"))</p>
-                           
+
                         }
                     </div>
-                   
+
                 </div>
             </div>
         </a>

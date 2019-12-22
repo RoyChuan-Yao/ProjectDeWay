@@ -29,7 +29,7 @@
                     <div class="star" id="@Star" Stars="@Star" style=" font-size: 30px">
 
                     </div>
-                    @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
+                    @Html.Raw(@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent).ToString().Replace("\n","<br>"))
                 </div>
 
 
@@ -53,8 +53,8 @@
                 </div>
                 <div class="card-body row">
                     <div class="col-5">
-                        <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
-                    </div>
+                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" /></a>
+</div>
                     <div class="col-7 mt-5">
                         <div class="row">
                             <div class="col-2">
@@ -62,9 +62,10 @@
                             </div>
 
                             <div class="col-10">
-                                <div>@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)</div>
+                                <div>  <a href="@Url.Action("Index","Market",new { sellerID=item.Review.FirstOrDefault().Product.selID})">@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)</a></div>
                                 <div>
-                                    @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
+                                    
+                                    @Html.Raw(@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent).ToString().Replace("\n", "<br>"))
                                 </div>
                             </div>
                         </div>
@@ -104,32 +105,34 @@
                 </div>
                 <div class="card-body row">
                     <div class="col-5">
-                        <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" />
+                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/images/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" /></a>
 
-                    </div>
+</div>
                     <div class="col-7 mt-5">
+                        <div>
+                            <a href="@Url.Action("Index","Market",new { sellerID=item.Cart_OrderDetail.FirstOrDefault().Specification.Product.selID})">
+                            @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)</a>
+                        </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    購買的商品：@Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
+                                </div>
 
-                        @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)<hr />
-                        <div class="row">
-                            <div class="col-8">
-                                購買的商品：@Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
-                            </div>
+                                @{
+                                    if (item.odrStatusID == "ods0000006")
+                                    {
 
-                            @{
-                                if (item.odrStatusID == "ods0000006")
-                                {
+                                        <button class="Button btn btn-dark col-4 " data-toggle="modal" data-target="#form1">新增評論</button>
 
-                                    <button class="Button btn btn-dark col-4 " data-toggle="modal" data-target="#form1">新增評論</button>
+                                        <input id="odrID" type="hidden" value="@item.odrID" />
+                                    }
 
-                                    <input id="odrID" type="hidden" value="@item.odrID" />
+
                                 }
 
 
-                            }
-
-
-                        </div>
-                        <div> 付款方式：@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)</div>
+                            </div>
+                            <div> 付款方式：@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)</div>
 
 
 
@@ -158,7 +161,8 @@
                     <div class="form-group">
                         <p>評價內容</p>
                         <div class="col-md-9">
-                            <input id="rvwContent" type="text" name="rvwContent" />
+                            <textarea id="rvwContent" name="rvwContent" ></textarea>
+                            
                         </div>
                     </div>
                     <div class="form-group">
