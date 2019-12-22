@@ -38,8 +38,8 @@
                     <div class="row  align-items-baseline">
                         <div class="col-10">
                             @Html.DisplayFor(modelItem => item.odrDate)
-                            @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)
-                        </div>
+                            <a href="@Url.Action("Index","Market",new { sellerID=item.selID})"> @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)</a>
+</div>
 
                         <div class=" offset-1 ">
                             @Html.ActionLink("詳細", "odrDetail", new { odrID = item.odrID },new { @class="btn btn-link"})
@@ -81,7 +81,7 @@
                             }
                             <div class="row">
                                 <p class="col-4  text-right ">商品：</p>
-                                <div class="col-8"><img src="~/images/@Html.Action("getImage", new { id = item.odrID})" style="width:100px" class="img-responsive img-rounded" /></div>
+                                <div class="col-8"><a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"><img src="~/productImage/@Html.Action("getImage", new { id = item.odrID})" style="width:100px" class="img-responsive img-rounded" /></a></div>
                             </div>
                         </div>
 

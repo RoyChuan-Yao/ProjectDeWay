@@ -33,9 +33,12 @@
 
                     total += subtotal;
                     shipping = item.Order.shpPrice;
-                    <div class="row">
+                    <div class="row align-items-baseline">
                         <div class="col-3">
-                            @Html.DisplayFor(modelItem=>item.Specification.Product.pdtName)
+                            <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Specification.pdtID})">
+                                <img src="~/productImage/@item.Specification.Product.ProductImage.FirstOrDefault().pdtImage" style="width:100px" class="img-responsive img-rounded" />
+                            </a>
+                                @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
                         </div>
                         <div class="col-3">
                             @Html.DisplayFor(modelItem => item.Specification.Style)

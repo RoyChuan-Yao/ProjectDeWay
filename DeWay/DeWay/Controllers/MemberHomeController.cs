@@ -306,6 +306,8 @@ namespace DeWay.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult rvwCreate(string odrID, string rvwContent, short rvwStar, int code = 0)
         {
+            
+
             var pdtID = (from m in db.Cart_OrderDetail
                          where m.odrID == odrID
                          select m.Specification.pdtID).Distinct().ToList();

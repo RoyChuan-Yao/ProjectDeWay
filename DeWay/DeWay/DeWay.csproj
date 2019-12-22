@@ -506,6 +506,7 @@
     <Content Include="Views\SellerHome\editMarket.cshtml" />
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
     <Content Include="Views\SellerHome\productIndex.cshtml" />
+    <Content Include="Views\SellerHome\QAIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

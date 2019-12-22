@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeWay.Models;
@@ -395,6 +396,7 @@ namespace DeWay.Controllers
 
         }
 
+
         public ActionResult productIndex()
         {
             string id = Session["memberID"].ToString();
@@ -403,6 +405,43 @@ namespace DeWay.Controllers
             var pdt = db.Product.Where(m => m.selID == getselID).ToList();
 
             return View(pdt);
+        }
+        public ActionResult QAIndex(int code = 0)
+
+        {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            string id = Session["memberID"].ToString();
+            ViewBag.MemberName = db.Member.Where(m => m.mbrID == id).FirstOrDefault().nickName;
+            IEnumerable<object> qa;
+            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+
+            // 全部的問題
+            if (code == 0)
+            {
+                qa = db.QA.Where(m => m.Product.selID == getselID).ToList().OrderByDescending(m => m.qaTime);
+
+            }
+            // 未回覆的問題
+            else if (code == 1)
+            {
+                qa = db.QA.Where(m => m.Product.selID == getselID).Where(m => m.Answer == null || m.Answer == "").ToList().OrderByDescending(m => m.qaTime);
+
+            }
+            //已回覆的問題
+            else if (code == 2)
+            {
+                qa = db.QA.Where(m => m.Product.selID == getselID).Where(m => m.Answer != null).Where(m => m.Answer != "").ToList().OrderByDescending(m => m.qaTime);
+
+            }
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            return View(qa);
+
+
+
+
         }
 
     }
