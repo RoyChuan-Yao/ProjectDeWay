@@ -34,6 +34,15 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult Create(VM_pdtCreate product, Specification[] specification, HttpPostedFileBase[] photo, ProductImage[] image, ShipperDetail[] shipperDetail, Tag[] tag, string fstID, string sndID, string trdID)
         {
+            ViewBag.fst = new SelectList(db.FirstLayer, "fstLayerID", "fstLayer");
+            ViewBag.shipperDetail = db.Shipper.ToList();
+
+            if (ModelState.IsValid != true)
+            {
+                return View();
+            }
+
+
             string id = Session["memberID"].ToString();
             string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
 
@@ -50,8 +59,11 @@ namespace DeWay.Controllers
             product.products.Discontinued = false;
             product.products.ctgID = getctgID;  //擱置，資料表設計錯誤
             db.Product.Add(product.products);
-            db.SaveChanges();
+            if (ModelState.IsValid == true)
+            {
 
+                db.SaveChanges();
+            }
 
             //傳入規格資料表
             for (int i = 0; i < specification.Length; i++)
@@ -70,7 +82,11 @@ namespace DeWay.Controllers
 
 
                 db.Specification.Add(spc);
-                db.SaveChanges();
+                if (ModelState.IsValid == true)
+                {
+
+                    db.SaveChanges();
+                }
             }
 
             //傳入照片
@@ -96,7 +112,11 @@ namespace DeWay.Controllers
                         img.pdtImage = GetpImgID + ".jpg";
 
                         db.ProductImage.Add(img);
-                        db.SaveChanges();
+                        if (ModelState.IsValid == true)
+                        {
+
+                            db.SaveChanges();
+                        }
 
 
                     }
@@ -111,7 +131,11 @@ namespace DeWay.Controllers
                 shp.pdtID = GetpdtID;
                 shp.defaultShipping = shipperDetail[i].defaultShipping;
                 db.ShipperDetail.Add(shp);
-                db.SaveChanges();
+                if (ModelState.IsValid == true)
+                {
+
+                    db.SaveChanges();
+                }
             }
 
             //寫入tag
@@ -123,7 +147,11 @@ namespace DeWay.Controllers
                 tg.tagName = tag[i].tagName;
                 tg.pdtID = GetpdtID;
                 db.Tag.Add(tg);
-                db.SaveChanges();
+                if (ModelState.IsValid == true)
+                {
+
+                    db.SaveChanges();
+                }
             }
 
 
@@ -132,8 +160,12 @@ namespace DeWay.Controllers
 
             //ViewBag.shp123 = new SelectList(db.Shipper, "shpID", "shpMethod");
             ViewBag.shipperDetail = db.Shipper.ToList();
+            if (ModelState.IsValid == true)
+            {
+                return RedirectToAction("OrderIndex", "SellerHome");
+            }
 
-            return RedirectToAction("OrderIndex", "SellerHome");
+            return View(product);
         }
 
         [HttpPost]

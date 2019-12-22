@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44331</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -504,6 +505,7 @@
     <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
     <Content Include="Views\SellerHome\editMarket.cshtml" />
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
+    <Content Include="Views\SellerHome\productIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
