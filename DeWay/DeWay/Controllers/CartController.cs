@@ -104,7 +104,7 @@ namespace Project.Controllers
                                         where p.odrID == null
                                         orderby p.Specification.Product.selID
                                         select p).ToList();
-            List<string> sellerIDList = m.Select(s => s.Specification.Product.selID).Distinct().ToList();
+            List<string> sellerIDList = m.Where(sItem=>cartID.Contains(sItem.cartID)).Select(s => s.Specification.Product.selID).Distinct().ToList();
             if (ModelState.IsValid != true)
             {
                 return View("myCart");
