@@ -60,7 +60,7 @@
                             <div class="col-2">
                                 To：
                             </div>
-                           
+
                             <div class="col-10">
                                 <div>@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)</div>
                                 <div>
@@ -89,8 +89,9 @@
             {
                 <div class="">
                     <button class="Button btn btn-dark " data-toggle="modal" data-target="#form1">新增評論</button>
+                    <input id="odrID" type="hidden" value="@item.odrID" />
                 </div>
-                <input id="odrID" type="hidden" value="@item.odrID" />
+
             }
         }
         else
@@ -113,20 +114,20 @@
                             <div class="col-8">
                                 購買的商品：@Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
                             </div>
-                            
-                                @{
-                                    if (item.odrStatusID == "ods0000006")
-                                    {
 
-                                        <button class="Button btn btn-dark col-4 " data-toggle="modal" data-target="#form1">新增評論</button>
+                            @{
+                                if (item.odrStatusID == "ods0000006")
+                                {
 
-                                        <input id="odrID" type="hidden" value="@item.odrID" />
-                                    }
+                                    <button class="Button btn btn-dark col-4 " data-toggle="modal" data-target="#form1">新增評論</button>
 
-
+                                    <input id="odrID" type="hidden" value="@item.odrID" />
                                 }
 
-                           
+
+                            }
+
+
                         </div>
                         <div> 付款方式：@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)</div>
 
