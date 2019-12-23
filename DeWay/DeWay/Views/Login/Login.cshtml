@@ -4,13 +4,16 @@
     ViewBag.Title = "Login";
 }
 
-<div class="container loginPage">
+ 
+<div class=" container loginPage">
 
     <div class="form-structor">
+        
+
         <form class="form-horizontal" method="post" action="@Url.Action("Register")">
             @Html.AntiForgeryToken()
-            <div class="signup ">
-                <h2 class="form-title form-title1 d-flex justify-content-center" id="signup"><span>or</span>Sign up</h2>
+            <div class="signup slide-up">
+                <h2 class="form-title form-title1 d-flex justify-content-center" id="signup"><span class="spanSignup">or</span>Sign up</h2>
                 <div class="form-holder ">
                     <input id="Text1" type="text" name="act" class="input" placeholder="Account">
                     <input id="pwd" type="password" name="pwd" class="input" placeholder="Password">
@@ -18,7 +21,7 @@
                     <input class="input" id="mbrMail" name="mbrMail" type="text" placeholder="Email">
                     <input class="input" id="mbrName" name="mbrName" type="text" placeholder="Name">
                     <input class="input" id="mbrPhone" name="mbrPhone" type="text" placeholder="Phone">
-                    @Html.ValidationMessageFor(model => model.mbrPhone, "", new { @class = "text-danger" ,@style="font-size: 12px;" })
+                    @Html.ValidationMessageFor(model => model.mbrPhone, "", new { @class = "text-danger", @style = "font-size: 12px;" })
                     <input class="form-control text-box single-line" data-val="true" data-val-date="欄位 生日 必須是日期。" id="birthDate" name="birthDate" type="date" value="">
 
                     <!--<input type="password" class="input" placeholder="Password" />-->
@@ -27,12 +30,11 @@
             </div>
         </form>
 
-
         <form class="form-horizontal" method="post" action="@Url.Action("Login")">
 
-            <div class="login slide-up">
+            <div class="login">
                 <div class="center">
-                    <h2 class="form-title form-title2 d-flex justify-content-center" id="login"><span>or</span>Log in</h2>
+                    <h2 class="form-title form-title2 d-flex justify-content-center" id="login"><span class="spanLogin">or</span>Log in</h2>
                     <div class="form-holder">
                         <input class="input" name="id" placeholder="Account" />
                         <input type="password" class="input" name="pwd" placeholder="Password" />
@@ -43,10 +45,13 @@
             </div>
         </form>
 
+
     </div>
 </div>
+     
+    
 
-<div class="container ">
+@*<div class="container ">
         <div class="center">
             <h2>Login</h2>
             <form class="form-horizontal" method="post" action="@Url.Action("Login")">
@@ -76,10 +81,12 @@
             <h3 class="text-danger">@ViewBag.LoginErr</h3>
         </div>
 
-    </div>
+    </div>*@
+
 
 
 <script src="../../Scripts/jquery-3.3.1.min.js"></script>
+
 <script src="../../Scripts/bootstrap.min.js"></script>
 <script>
 

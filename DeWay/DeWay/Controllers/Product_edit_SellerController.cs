@@ -51,7 +51,7 @@ namespace DeWay.Controllers
             product.pdtDescribe = p.pdtDescribe;
             product.Discontinued = p.Discontinued;
             db.SaveChanges();
-            return RedirectToAction("sellproduct");
+            return RedirectToAction("myProduct", "SellerHome");
         }
         public ActionResult Editsp(string pdtid)
         {

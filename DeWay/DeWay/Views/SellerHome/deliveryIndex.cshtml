@@ -1,0 +1,134 @@
+﻿@model IEnumerable<DeWay.Models.Order>
+
+@{
+    ViewBag.Title = "deliveryIndex";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
+    var i = 0;
+
+
+}
+
+<h2>依照貨運方式排序</h2>
+
+<div>
+    <ul class="nav nav-tabs nav-fill mb-1">
+        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome")" class="nav-link active">全部</a></li>
+        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome",new {shpMethod="海運" })" class="nav-link">海運</a></li>
+        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome",new {shpMethod="宅配" })" class="nav-link">宅配</a></li>
+        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome",new {shpMethod="超商取貨" })" class="nav-link">超商取貨</a></li>
+        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome",new {shpMethod="面交" })" class="nav-link">面交</a></li>
+        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome",new {shpMethod="郵政" })" class="nav-link">郵政</a></li>
+    </ul>
+
+</div>
+
+<div class="card" id="card">
+    <div class="card-header">
+        <div class="row col-12">
+            <span class="col-3">商品</span>
+            <span class="col-2">訂單編號</span>
+            <span class="col-2">買家</span>
+            <span class="col-2">寄送方式</span>
+            <span class="col-2">信用卡付款</span>
+            <span class="col-1">出貨</span>
+        </div>
+    </div>
+    @if (Model.Count() == 0)
+    {<div>找不到訂單</div>}
+    else
+    {
+        foreach (var item in Model)
+        {
+            i++;
+            <div class="card-body">
+                <div class="row col-12">
+
+                    <span class="col-3">@item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName</span>
+                    <span class="col-2">@item.odrID</span>
+                    <span class="col-2">@item.Cart_OrderDetail.FirstOrDefault().Member.MemberAccount.mbrAccount</span>
+                    <span class="col-2">@item.Cart_OrderDetail.FirstOrDefault().Shipper.shpMethod</span>
+                    @if (@item.cashFlowID == null)
+                    {
+                        <span class="col-2">---</span>
+                    }
+                    else
+                    {
+                        <span class="col-2">@item.cashFlowID</span>
+                    }
+                    <span class="col-1">
+                        <input id="Button1" type="button" value="出貨" class="btn btn-info" />
+                    </span>
+                </div>
+                <form class="form-horizontal" method="post" action="@Url.Action("delivery")">
+
+                    @Html.AntiForgeryToken()
+                    <div class="row col-12" id="trace" hidden="hidden">
+                        <div class="col-6"> </div>
+                        <div class="col-1">
+
+                        </div>
+                        <div class="col-5">
+
+                            <input id="Text1" name="traceNumber" type="text" placeholder="請輸入託運單號---" />
+                            <input name="odrID" type="text" hidden="hidden" value="@item.odrID" />
+                            <span><input id="Submit1" type="submit" value="確定" class="btn btn-danger" onclick="return confirm('您確定已寄出商品嗎??')" /></span>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        }
+
+    }
+
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<script>
+
+
+    var flag = true;
+
+    //$("#card #Button1").click(function () {
+    //    if (flag == true) {
+    //        $(this).parent().parent().next().children().removeAttr("hidden");
+    //        $(this).parent().parent().next().children().show();
+
+    //        flag = false;
+    //        $(this).val("取消出貨");
+    //        $(this).removeClass("btn-info");
+    //        $(this).addClass("btn-secondary")
+
+    //    }
+    //    else {
+    //        $(this).parent().parent().next().children().hide();
+    //        flag = true;
+    //        $(this).val("出貨");
+    //        $(this).removeClass("btn-secondary");
+    //        $(this).addClass("btn-info")
+
+    //    }
+    //})
+    $("#card #Button1").click(function () {
+
+        var state = $(this).parent().parent().next().children("#trace").attr("hidden")
+        $(this).parent().parent().next().children("#trace").attr("hidden",!state)
+        
+    });
+
+
+
+    $(document).ready(function () {
+        $('.nav-link').each(function () {
+            if ($($(this))[0].href == String(window.location)) {
+                $('.nav-link').removeClass("active");
+                $(this).addClass('active');
+            }
+        });
+    });
+
+
+
+</script>

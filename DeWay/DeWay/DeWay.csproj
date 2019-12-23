@@ -1,6 +1,6 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -49,16 +49,43 @@
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="LinqKit, Version=1.1.17.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqKit.1.1.17\lib\net45\LinqKit.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -97,9 +124,6 @@
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +168,9 @@
     <Content Include="Global.asax" />
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
+    <Content Include="images\img-deway-2.png" />
     <Content Include="images\pImg000014.jpg" />
+    <Content Include="Content\DeWayMemberHome.css" />
     <Content Include="Models\shopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>shopDB.edmx</DependentUpon>
@@ -197,6 +223,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -226,6 +254,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MarketController.cs" />
     <Compile Include="Controllers\ntfRecordsAdmController.cs" />
     <Compile Include="Controllers\MemberHomeController.cs" />
     <Compile Include="Controllers\MembersAdmController.cs" />
@@ -365,7 +394,7 @@
     <Compile Include="App_Code\GmailSender.cs" />
     <Compile Include="ViewModels\VM_pdtCreate.cs" />
     <Compile Include="ViewModels\VM_Market.cs" />
-    <Compile Include="ViewModels\VM_MH_AllOrders.cs" />
+    <Compile Include="ViewModels\VM_rfdDetail.cs" />
     <Compile Include="ViewModels\VM_pdtEdit.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -398,11 +427,11 @@
     <Content Include="Views\ntfRecordsAdm\Details.cshtml" />
     <Content Include="Views\ntfRecordsAdm\Edit.cshtml" />
     <Content Include="Views\ntfRecordsAdm\Index.cshtml" />
-    <Content Include="Views\WishLists\WishListCreate.cshtml" />
-    <Content Include="Views\WishLists\WishListDelete.cshtml" />
-    <Content Include="Views\WishLists\WishListDetails.cshtml" />
-    <Content Include="Views\WishLists\WishListEdit.cshtml" />
-    <Content Include="Views\WishLists\WishListIndex.cshtml" />
+    <Content Include="Views\WishLists\Create.cshtml" />
+    <Content Include="Views\WishLists\Delete.cshtml" />
+    <Content Include="Views\WishLists\Details.cshtml" />
+    <Content Include="Views\WishLists\Edit.cshtml" />
+    <Content Include="Views\WishLists\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
@@ -410,8 +439,6 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\ntfRecordsAdm\searchorder.cshtml" />
     <Content Include="Views\SellerCertification\Index.cshtml" />
-    <Content Include="Views\ProductsAdm\Create.cshtml" />
-    <Content Include="Views\ProductsAdm\Delete.cshtml" />
     <Content Include="Views\ProductsAdm\Details.cshtml" />
     <Content Include="Views\ProductsAdm\Edit.cshtml" />
     <Content Include="Views\ProductsAdm\Index.cshtml" />
@@ -427,19 +454,16 @@
     <Content Include="Views\actBulletinsAdm\Index.cshtml" />
     <Content Include="Views\SellerCertification\IDNumber.cshtml" />
     <Content Include="Views\SellerCertification\GUINumber.cshtml" />
-    <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\ProductPage\ProductPage.cshtml" />
     <Content Include="Views\AdmLogin\Index.cshtml" />
     <Content Include="Views\AdmCenter\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
-    <Content Include="Views\Cart\receiveOrder.cshtml" />
-    <Content Include="Views\MembersAdm\Create.cshtml" />
-    <Content Include="Views\MembersAdm\Delete.cshtml" />
     <Content Include="Views\MembersAdm\Details.cshtml" />
     <Content Include="Views\MembersAdm\Edit.cshtml" />
     <Content Include="Views\MembersAdm\Index.cshtml" />
     <Content Include="Views\Product_edit_Seller\sellproduct.cshtml" />
     <Content Include="Views\Product_edit_Seller\Edit.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Cart\receiveOrder.cshtml" />
     <Content Include="Views\MemberHome\mbrIndex.cshtml" />
     <Content Include="Views\MemberHome\mbrEdit.cshtml" />
@@ -461,9 +485,27 @@
     <Content Include="Views\MemberHome\odrIndex.cshtml" />
     <Content Include="Views\MemberHome\odrDetail.cshtml" />
     <Content Include="Views\Shared\_Layout_Member.cshtml" />
+    <Content Include="Views\MemberHome\rfdCreate.cshtml" />
+    <Content Include="Views\MemberHome\rfdIndex.cshtml" />
+    <Content Include="Views\MemberHome\rfdDetail.cshtml" />
     <Content Include="Views\SellerHome\OrderIndex.cshtml" />
     <Content Include="Views\Shared\_Layout - seller.cshtml" />
     <Content Include="Views\Product_edit_Seller\Editsp.cshtml" />
+    <Content Include="Views\SellerHome\rfdIndex.cshtml" />
+    <Content Include="Views\SellerHome\odrDetail.cshtml" />
+    <Content Include="Views\SellerHome\deliveryIndex.cshtml" />
+    <Content Include="Views\SellerHome\_rvwIndex.cshtml" />
+    <Content Include="Views\SellerHome\rfdDetail.cshtml" />
+    <Content Include="Views\Market\Index.cshtml" />
+    <Content Include="Views\Market\_rvwIndex.cshtml" />
+    <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
+    <Content Include="Views\SellerHome\editMarket.cshtml" />
+    <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
+    <Content Include="Views\SellerHome\productIndex.cshtml" />
+    <Content Include="Views\SellerHome\QAIndex.cshtml" />
+    <Content Include="Views\Shared\_Layout _Search.cshtml" />
+    <Content Include="Views\SellerHome\myProduct.cshtml" />
+    <Content Include="Views\SellerHome\_GetProductCardFst.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -518,7 +560,7 @@
     <PropertyGroup>
       <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

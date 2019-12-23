@@ -13,14 +13,12 @@ namespace Project.Controllers
 {
     public class CartController : Controller
     {
-        //TODO : 假如商品下單成功，將庫存數 減去 商品下單數
-        //反之，假如訂單被取消，則加回相對應的庫存數
-        //TODO : 購物車內可以選擇購買數
-        //TODO : 增加"加入購物車"action AddToCart
+        //TODO :假如訂單被取消，加回相對應的庫存數
+        //TODO : 每筆訂單都有各自給賣家的話
         shopDBEntities db = new shopDBEntities();
 
         [HttpPost]
-        public ActionResult AddToMyCart(string spcID, int quantity)
+        public ActionResult AddToMyCart(string spcID, int quantity = 1)
         {   //TODO:加入 請訪客登入
             //把memberID加入MBRID
 
@@ -31,9 +29,10 @@ namespace Project.Controllers
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return JavaScript(js);
             }
+
+
             Cart_OrderDetail cod;
             //檢查是否已經加入購物車
-            //
             var getCartItem = db.Cart_OrderDetail.Where(m => m.mbrID == mbrID)
                 .Where(m => m.spcID == spcID)
                 .Where(m => m.odrID == null);
@@ -68,36 +67,44 @@ namespace Project.Controllers
                 return JavaScript($"alert('{e.Message}')");
             }
         }
-        public ActionResult MyCart(string id = "mbr0000001")
+        public ActionResult MyCart()
         {
+            string id = (string)Session["memberID"];
+            if (id == null) //未登入，倒回登入頁面
+                return RedirectToAction("login", "login");
             var cod = db.Cart_OrderDetail;
             var m = from p in cod
                     where p.mbrID == id
                     where p.odrID == null
                     select p;
+            //如果商品售完，直接從購物車移除
+            var soldOutItem = m.Where(q => q.Specification.Stock == 0).ToList();
+            if (soldOutItem.Count != 0)
+            {
+                foreach (var soldOut in soldOutItem)
+                {
+                    db.Cart_OrderDetail.Remove(soldOut);
+                }
+                db.SaveChanges();
+                ViewBag.boolSoldOut = true;
+            }
+
             ViewBag.memberName = db.Member.Find(id).mbrName;
-            //Session["member"] = id;
             return View(m);
         }
-        //string GetAvailableOdrId()
-        //{
-        //    string result = db.Database.SqlQuery<string>("Select dbo.GetOrderID()");
-        //    return result;
-        //}
+
 
         [HttpPost]
-        public ActionResult receiveOrder(string[] cartID, string[] shipSelect, Order order) //提交訂單
+        public ActionResult receiveOrder(string[] cartID, string[] shipSelect, string[] quantity, Order order) //提交訂單
         {
-            ///////////////////
             var cod = db.Cart_OrderDetail;
             string memberID = Session["memberID"] as string;
             List<Cart_OrderDetail> m = (from p in cod
-                                        where p.mbrID == "mbr0000001"
-                                        //where p.mbrID == memberID TODO
+                                        where p.mbrID == memberID
                                         where p.odrID == null
                                         orderby p.Specification.Product.selID
                                         select p).ToList();
-            List<string> sellerIDList = m.Select(s => s.Specification.Product.selID).Distinct().ToList();
+            List<string> sellerIDList = m.Where(sItem=>cartID.Contains(sItem.cartID)).Select(s => s.Specification.Product.selID).Distinct().ToList();
             if (ModelState.IsValid != true)
             {
                 return View("myCart");
@@ -144,7 +151,7 @@ namespace Project.Controllers
                         currentCart.pdtPrice = currentCart.Specification.Price;   //取得商品時價
                         currentCart.Discount = currentCart.Specification.Discount;//取得商品當時打折
 
-
+                        //庫存減去商品下單數
                         if ((currentCart.Specification.Stock - currentCart.Quantity) >= 0)
                         {
                             currentCart.Specification.Stock -= currentCart.Quantity;

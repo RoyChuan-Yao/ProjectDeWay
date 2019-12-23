@@ -17,16 +17,16 @@ namespace DeWay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shipper()
         {
-            this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
             this.ShipperDetail = new HashSet<ShipperDetail>();
+            this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
         }
     
         public string shpID { get; set; }
         public string shpMethod { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShipperDetail> ShipperDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
     }
 }

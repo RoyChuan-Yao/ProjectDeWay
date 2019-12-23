@@ -4,11 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1dd5cd37125f4ceb83f552829e24a5ab" Name="Diagram1">
+      <Diagram DiagramId="814f7cb8294547b0840e99c40349f9cb" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="shopDBModel.actBulletin" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Adm" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.AdmAccount" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Cart_OrderDetail" Width="1.5" PointX="3" PointY="23.375" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.FavoSeller" Width="1.5" PointX="6" PointY="24.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.FirstLayer" Width="1.5" PointX="6.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Member" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
@@ -23,7 +22,6 @@
         <EntityTypeShape EntityType="shopDBModel.ProductCategory" Width="1.5" PointX="9" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.ProductImage" Width="1.5" PointX="13.5" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.QA" Width="1.5" PointX="16.5" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Refund" Width="1.5" PointX="13.5" PointY="28.375" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.RefundAccount" Width="1.5" PointX="15.75" PointY="32.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.RefundStatus" Width="1.5" PointX="11.25" PointY="32.25" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Review" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
@@ -34,17 +32,12 @@
         <EntityTypeShape EntityType="shopDBModel.SellerPhone" Width="1.5" PointX="8.25" PointY="42.5" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Shipper" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.ShipperDetail" Width="1.5" PointX="16.5" PointY="29.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopDBModel.Specification" Width="1.5" PointX="13.5" PointY="34" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.Tag" Width="1.5" PointX="13.5" PointY="37.375" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.ThirdLayer" Width="1.5" PointX="6.75" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="shopDBModel.WishList" Width="1.5" PointX="13.5" PointY="21.875" IsExpanded="true" />
         <AssociationConnector Association="shopDBModel.FK__actBullet__admID__02084FDA" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__AdmAccoun__admID__02FC7413" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__rptRecord__admID__03F0984C" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__mbrID__14270015" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__shpID__0C85DE4D" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__spcID__123EB7A3" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK_Cart_OrderDetail_Order" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__FavoSelle__mbrID__6E01572D" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__FavoSelle__selID__7C4F7684" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__ProductCa__fstLa__04E4BC85" ManuallyRouted="false" />
@@ -59,7 +52,6 @@
         <AssociationConnector Association="shopDBModel.FK__ntfRecord__ntfCt__01142BA1" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Order__odrStatus__00200768" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Order__pmtID__7F2BE32F" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Refund__odrID__6754599E" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Review__odrID__68487DD7" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK_Order_Seller" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Product__pdtCtgI__0A9D95DB" ManuallyRouted="false" />
@@ -68,16 +60,24 @@
         <AssociationConnector Association="shopDBModel.FK__QA__pdtID__778AC167" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Review__pdtID__787EE5A0" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__ShipperDe__pdtID__09A971A2" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Specifica__pdtID__75A278F5" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Tag__pdtID__76969D2E" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__WishList__pdtID__74AE54BC" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__ProductCa__sndLa__05D8E0BE" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__ProductCa__trdLa__06CD04F7" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__Refund__rfdStatu__7E37BEF6" ManuallyRouted="false" />
-        <AssociationConnector Association="shopDBModel.FK__RefundAcc__rfdID__72C60C4A" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__Seller__selAut__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__SellerPho__selID__7B5B524B" ManuallyRouted="false" />
         <AssociationConnector Association="shopDBModel.FK__ShipperDe__shpID__0B91BA14" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="shopDBModel.Cart_OrderDetail" Width="1.5" PointX="18.75" PointY="25.5" />
+        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__mbrID__14270015" />
+        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__shpID__0C85DE4D" />
+        <AssociationConnector Association="shopDBModel.FK_Cart_OrderDetail_Order" />
+        <EntityTypeShape EntityType="shopDBModel.Specification" Width="1.5" PointX="13.5" PointY="32.625" />
+        <AssociationConnector Association="shopDBModel.FK__Cart_Orde__spcID__123EB7A3" />
+        <AssociationConnector Association="shopDBModel.FK__Specifica__pdtID__75A278F5" />
+        <EntityTypeShape EntityType="shopDBModel.Refund" Width="1.5" PointX="13.5" PointY="28.625" />
+        <AssociationConnector Association="shopDBModel.FK__Refund__odrID__6754599E" />
+        <AssociationConnector Association="shopDBModel.FK__Refund__rfdStatu__7E37BEF6" />
+        <AssociationConnector Association="shopDBModel.FK__RefundAcc__rfdID__72C60C4A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

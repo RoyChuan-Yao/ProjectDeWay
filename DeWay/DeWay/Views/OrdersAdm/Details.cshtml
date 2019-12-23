@@ -4,119 +4,163 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+    <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
 
-<div>
-    <h4>訂單</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            收件人姓名
-        </dt>
+    <div class="col-8 offset-2 ">
 
-        <dd>
-            @Html.DisplayFor(model => model.recName)
-        </dd>
 
-        <dt>
-            市
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.recCity)
-        </dd>
+        <h2 class="col-4 offset-4 rounded text-lg-center "style="margin-top:200px;">   訂單詳細資料  </h2>
+        <br />
+        <br />
+        <div>
 
-        <dt>
-            區
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.recDist)
-        </dd>
+            <div class="col-6 offset-3">
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2  text-primary">
+                        收件人姓名:
 
-        <dt>
-            地址
-        </dt>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.recName)
+                    </span>
+                </div>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        市:
 
-        <dd>
-            @Html.DisplayFor(model => model.recAddress)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.recCity)
+                    </span>
+                </div>
 
-        <dt>
-            收件人電話
-        </dt>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        區:
 
-        <dd>
-            @Html.DisplayFor(model => model.recPhone)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.recDist)
+                    </span>
+                </div>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        地址:
 
-        <dt>
-            付款日期
-        </dt>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.recAddress)
+                    </span>
+                </div>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        收件人電話:
 
-        <dd>
-            @Html.DisplayFor(model => model.pmtDate)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.recPhone)
+                    </span>
+                </div>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        付款日期:
 
-        <dt>
-            訂單日期
-        </dt>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.pmtDate)
+                    </span>
+                </div>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        訂單日期:
 
-        <dd>
-            @Html.DisplayFor(model => model.odrDate)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.odrDate)
+                    </span>
+                </div>
+                
 
-        <dt>
-            出貨日期
-        </dt>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        出貨日期:
 
-        <dd>
-            @Html.DisplayFor(model => model.shpDate)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.shpDate)
+                    </span>
+                </div>
 
-        <dt>
-            訂單備註
-        </dt>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        訂單備註:
 
-        <dd>
-            @Html.DisplayFor(model => model.odrNote)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.odrNote)
+                    </span>
+                </div>
 
-        <dt>
-            託運單號
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.traceNumber)
-        </dd>
 
-        <dt>
-            第三方金流單號
-        </dt>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        託運單號:
 
-        <dd>
-            @Html.DisplayFor(model => model.cashFlowID)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.traceNumber)
+                    </span>
+                </div>
 
-        <dt>
-            訂單狀態
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OrderStatus.odrStatus)
-        </dd>
 
-        <dt>
-            付款方式
-        </dt>
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        第三方金流單號:
 
-        <dd>
-            @Html.DisplayFor(model => model.PaymentMethod.pmtMethod)
-        </dd>
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.cashFlowID)
+                    </span>
+                </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.odrID }) |
-    @Html.ActionLink("回到前一頁", "Index")
-</p>
+
+
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        訂單狀態:
+
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.OrderStatus.odrStatus)
+                    </span>
+                </div>
+
+
+                <div class=" " style="font-size:20px;">
+                    <span class="col-sm-2 text-primary">
+                        付款方式:
+
+                    </span>
+                    <span class="col-sm-10  text-dark orderDA">
+                        @Html.DisplayFor(model => model.PaymentMethod.pmtMethod)
+                    </span>
+                </div>
+                <p class="orderDB">
+                    @Html.ActionLink("編輯", "Edit", new { id = Model.odrID }@*, new { @class="orderDB"}*@) 
+                    /
+                    @Html.ActionLink("回到前一頁", "Index"@*,new { @class="orderDB"}*@)
+                </p>
+
+
+            </div>
+
+           
+
+        </div>
+        
+
+    </div>

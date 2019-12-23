@@ -20,7 +20,7 @@
                     <p class="card-text">運費總計：<span id="shpTotal">NT$ 0</span></p>
                     <a href="">使用優惠券、紅利或禮物卡</a>
                     <hr />
-                    <button id="checkOutBtn" class="btn btn-warning btn-block" onclick="checkOut()" disabled>前往結帳</button>
+                    <button id="checkOutBtn" class="btn btn-warning btn-block">前往結帳</button>
                 </div>
             </div>
             <div id="receiverInfo" class="card mt-2" style="display: none">
@@ -91,11 +91,12 @@
     </div>
 </div>
 <!--Modal-->
-@using (Html.BeginForm("receiveOrder", "Cart"))
+@using (Html.BeginForm("receiveOrder", "Cart",FormMethod.Post,new { id="checkOutForm"}))
 {
 
 }
 @section Script{
+
     <script>
         function updateAddressToForm() {//顯示收件人資料
             var displayAddress = "";
@@ -106,24 +107,56 @@
         }
     </script>
     <script>
-        var len = $("input[type='checkbox']").length//檢查讀取了幾個商品項目
         var checkStatus = [];//利用陣列存取誰被點選
-        for (var i = 0; i < len; i++) { //初始化陣列(預設0個商品被勾選)
-            checkStatus.push(false);
+
+        $().ready(() => {
+            initCheckStatus();
+            updateTotalPrice(checkStatus);
+            soldOutAlert();
+        });
+        function soldOutAlert() {
+            @if(ViewBag.boolSoldOut == true)
+            {
+                @Html.Raw("alert('部分商品已售罄，已從購物車移除')")
+            }
+        }
+        function initCheckStatus() {//初始化陣列
+            checkStatus = [];
+            $(`input[type="checkbox"]`).each((index,e) => {
+                if ($(e).is(":checked")) {
+                    checkStatus.push(true);
+                } else {
+                    checkStatus.push(false);
+                }
+            });
+            console.log(checkStatus);
         }
 
         //點選其中一個商品後，改變checkStatus
         function changeChckeStatus(arr, index) {
-            arr[index] = !arr[index];
+            arr[index] = $(event.target).is(":checked") == true ? true : false;
             updateTotalPrice(arr);//點選後更新訂單摘要
-            //改變結帳按鈕狀態
-            if (arr.indexOf(true) == -1) {
-                $("#checkOutBtn").attr("disabled", "disabled")
-            } else {
-                $("#checkOutBtn").removeAttr("disabled")
-            }
         }
 
+
+        //quantitySelect
+        //改比商品數量 勾選該商品 變更checkStatus
+        $(`.quantitySelect`).change((e) => {
+            var checkBox = $(e.target).closest('div[id^="no"]').find('input[type="checkbox"]')[0]
+            if (checkBox.checked)
+                updateTotalPrice(checkStatus);
+            else
+                checkBox.click();
+        });
+
+        $(`#checkOutBtn`).click(() => {
+            //改變結帳按鈕狀態
+            if (checkStatus.indexOf(true) == -1) {
+                alert(`請先勾選想買商品`);
+            } else {
+                checkOut()
+            }
+        });
         //更新訂單摘要
         function updateTotalPrice(arr) {
             var price, count, totalPrice = 0;
@@ -131,7 +164,7 @@
                 if (arr[i] == true) {
                     //獲取被點選商品的價格與數量
                     price = parseInt($("#price_" + i).text());
-                    count = parseInt($("#count_" + i).text());
+                    count = parseInt($("#count_" + i).val());
                     //相乘後計算總價
                     totalPrice += price * count;
                 }
@@ -151,10 +184,12 @@
             $("#backToCart").hide(100);//隱藏按鈕
             $("#checkOutBtn").text("前往結帳").attr("onclick", "checkOut()")
             $("input[type='checkbox'],a[href*='Delete']").show(100)
-            $("form").html('')
+            $("#checkOutForm").html('')
             $(`#receiverInfo`).hide(100)
             $(`#cart_title`).text(title)
         }
+        //調整商品數量
+
 
         //前往結帳
         function checkOut() {//鎖定購物車，頁面改成結帳頁面
@@ -178,39 +213,39 @@
 
         //提交訂單
         function submitOrder() {
-            
+
             var cartResult = "";
-            for (i = 0; i <= len; i++) {//取得被點選的商品編號
-                cartResult += `<input type="" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
-                console.log($('#shipSelect_' + i + ' option:selected'));
-                cartResult += `<input type="" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
+            for (i = 0; i < checkStatus.length ; i++) {//取得被點選的商品編號
+                cartResult += `<input type="hidden" name="cartID[${i}]" value="${checkStatus[i] ? $('.cartID')[i].innerText : false}">`;
+                cartResult += `<input type="hidden" name="shipSelect[${i}]" value="${$('#shipSelect_' + i + ' option:selected').text()}">`;
+                cartResult += `<input type="hidden" name="quantity[${i}]" value="${$('#count_'+i).val()}">`;
             }
 
             var reciverFormResult = "";//取得收寄人資料做成表單內容
             $(`div[class="modal-content"] input`).each((index, e) => {
-                reciverFormResult += `<input type="" name="${$(e).attr('name')}" value="${$(e).val()}">`;
+                reciverFormResult += `<input type="hidden" name="${$(e).attr('name')}" value="${$(e).val()}">`;
             })
 
-            var note = `<input type="" name="odrNote" value="${$('#note').val()}">`//取得給賣家的註解
+            var note = `<input type="hidden" name="odrNote" value="${$('#note').val()}">`//取得給賣家的註解
             var finalResult = cartResult + reciverFormResult + note;
-            $("form").html(finalResult)//將被點選商品加入表單
-            $("form").submit();//提交表單
+            $("#checkOutForm").html(finalResult)//將被點選商品加入表單
+            $("#checkOutForm").submit();//提交表單
         }
 
     </script>
     <script>
-        //M
-        //JSON 資料 {cartItem:[{cartID:"",count:"",price:""}],order:{address,name,phone}
-        //
+                    //M
+                    //JSON 資料 {cartItem:[{cartID:"",count:"",price:""}],order:{address,name,phone}
+                    //
 
 
-        //V
-        //showTotalPrice
-        //
+                    //V
+                    //showTotalPrice
+                    //
 
-        //C
-        //CheckBtn =>{add to cartItem; showTotalPrice}
-        //ChangeBtn=> add
+                    //C
+                    //CheckBtn =>{add to cartItem; showTotalPrice}
+                    //ChangeBtn=> add
     </script>
 }
 

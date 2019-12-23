@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+    <div class="container">
+<h2>詳細資料</h2>
 
 <div>
     <h4>Product</h4>
@@ -61,6 +61,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.pdtID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("編輯是否上架", "Edit", new { id = Model.pdtID }) |
+    @Html.ActionLink("回到前一頁", "Index")
 </p>
+</div>

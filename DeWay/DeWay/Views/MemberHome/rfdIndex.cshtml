@@ -1,0 +1,82 @@
+﻿@model IEnumerable<DeWay.Models.Refund>
+
+@{
+    ViewBag.Title = "rfdIndex";
+    var result = "";
+    Layout = "~/Views/Shared/_Layout_Member.cshtml";
+    int i = 1;
+}
+
+
+
+<table class="table">
+    <tr class="text-center">
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
+        </th>
+              
+        <th>
+           @Html.DisplayNameFor(model => model.rfdReason)
+        </th>
+        <th>
+           是否需退回商品
+        </th>
+        <th>
+            賣家負擔運費
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rfdDate)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.RefundStatus.rfdStatus)
+        </th>
+        
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model)
+{
+    <tr class="text-center">
+        <td>
+            @i
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
+        </td>
+        
+        <td>
+            @Html.Raw(@Html.DisplayFor(modelItem => item.rfdReason).ToString().Replace("\n","<br>"))
+        </td>
+        <td>
+            @{ 
+                result = item.rfdProduct == true ? "是" : "否";
+            }
+            @result
+        </td>
+        <td>
+            @{
+                result = item.rfdShipping == true ? "是" : "否";
+            }
+            @result
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rfdDate)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.RefundStatus.rfdStatus)
+        </td>
+        
+        <td>
+            
+            @Html.ActionLink("詳細", "rfdDetail", new { rfdID=item.rfdID }) 
+            
+        </td>
+    </tr>
+                    i++;
+                }
+
+</table>

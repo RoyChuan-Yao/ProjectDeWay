@@ -5,43 +5,37 @@
     Layout = "~/Views/Shared/_Layout_Member.cshtml";
 }
 
-    <h2>修改密碼</h2>
+    <h2 class="offset-3">修改密碼</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal">
-    
-    <hr />
-    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.mbrAccount, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DisplayFor(model => model.mbrAccount, new { htmlAttributes = new { @class = "form-control" } })
+<div class="form-horizontal offset-3">
 
-        </div>
-    </div>*@
+    <input id="Hidden1" type="hidden" name="id" value="@ViewBag.id" />
     <div class="form-group">
-        <label class="control-label col-md-2" for="oldPwd">會員舊密碼</label>
+        <label class="control-label col-md-3" for="oldPwd">會員舊密碼</label>
         <div class="col-md-10">
             <input class="form-control text-box single-line password" data-val="true" data-val-length="請輸入8~20碼的英文和數字,且第一個字母需為大寫!" @*data-val-length-max="20" data-val-length-min="8"*@ data-val-regex="請輸入8~20碼的英文和數字，且第一個字母需為大寫!" @*data-val-regex-pattern="[A-Z][a-zA-Z0-9]{7,}"*@ data-val-required="必填" id="oldPwd" name="oldPwd" type="password" />
             <span class="field-validation-valid text-danger" data-valmsg-for="oldPwd" data-valmsg-replace="true"></span>
+            <p class="text-danger">@ViewBag.error</p>
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.mbrPwd, htmlAttributes: new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-3" for="oldPwd">會員新密碼</label>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.mbrPwd, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.EditorFor(model => model.mbrPwd, new { htmlAttributes = new { @class = "form-control",type="password" } })
             @Html.ValidationMessageFor(model => model.mbrPwd, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        <label for="agnPwd" class="control-label col-md-2">確認密碼</label>
+        <label for="agnPwd" class="control-label col-md-3">確認密碼</label>
         <div class="col-md-10">
-            <input id="agnPwd" name="agnPwd" type="password" class="form-control  text-box single-line password" onchange="checkPwd(this.id)" />
+            <input id="agnPwd" name="agnPwd" type="password" class="form-control  text-box single-line password" onkeyup="checkPwd(this.id)" />
         </div>
     </div>
 
@@ -55,8 +49,8 @@
 </div>
 }
 
-<div>
-    @Html.ActionLink("返回會員詳細資料", "mbrEdit",new { id=Model.mbrID}) 
+<div class="offset-3">
+    @Html.ActionLink("修改個人基本資料", "mbrEdit",new { id=@ViewBag.id}) 
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -68,7 +62,7 @@
         var agnPwd = $("#agnPwd").val();
         if (mbrPwd != agnPwd) {
             if (!$("#error").length)
-                $("<span id='error'>Error</span>").insertAfter("#agnPwd");
+                $("<span id='error' class=`text-danger`>Error</span>").insertAfter("#agnPwd");
              $("#submit").prop('type','button');
         }
         else {
@@ -81,6 +75,8 @@
             $("#submit").prop('type', 'submit');
         }
                 
-    };
+        };
+
+    $('#mbrPwd').attr('value','')
 
 </script>
