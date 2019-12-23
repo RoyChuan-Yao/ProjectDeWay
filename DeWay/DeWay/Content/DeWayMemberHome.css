@@ -39,17 +39,56 @@ color:#6b92a4;
 .d-bg-blue {
     background-color: #6b92a4 !important;
 }
+.img-adjust {
+    width: 100px;
+    height: 100px;
+    border-radius: 7px;
+}
+
+.text-ellipsis {
+    overflow: hidden;
+    width: 80px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.img-adjust-index {
+    width: 200px;
+    height: 200px;
+    border-radius: 7px;
+}
+.d-optional-btn {
+    padding: 5px;
+    border: 2px solid rgba(107, 146, 164, 0.3);
+    color: #6b92a4;
+    border-radius: 10%;
+}
+
+    .d-optional-btn:hover {
+
+        background-color: #6b92a4;
+        color: white;
+        border-radius: 10%;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+
+.textarea-rvw {
+width:72%;
+
+
+}
+
+input, select, textarea-rvw {
+    max-width: 72%;
+}
 .m-center {
-
-    
-    
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    margin-top:60px;
-    margin-left:-150px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: 60px;
+    margin-left: -150px;
 }
 
 .card {

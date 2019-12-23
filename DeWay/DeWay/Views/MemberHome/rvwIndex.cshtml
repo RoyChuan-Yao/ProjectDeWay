@@ -41,7 +41,9 @@
 
 
     <script>
-        $(`.givestars`).stars();
+        $(`.givestars`).stars({
+            value: 1
+        });
         function getStar(starCount) {
             var starsArray = ["☆", "☆", "☆", "☆", "☆"];
             var result = "";
@@ -102,8 +104,9 @@
         $(`.btn-text`).click(function (evt) {
             
             let btnText = evt.target.textContent;
-                Text= Text+btnText;
-            $(`textarea`).text(Text);
+            let text = $(`textarea`).val();
+            Text = text + btnText  ;
+            $(`textarea`).val(Text);
             
         })
     </script>

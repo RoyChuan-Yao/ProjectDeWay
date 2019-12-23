@@ -36,7 +36,7 @@
                     <div class="row align-items-baseline">
                         <div class="col-3">
                             <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Specification.pdtID})">
-                                <img src="~/productImage/@item.Specification.Product.ProductImage.FirstOrDefault().pdtImage" style="width:100px" class="img-responsive img-rounded" />
+                                <img src="~/productImage/@item.Specification.Product.ProductImage.FirstOrDefault().pdtImage" class="img-responsive img-rounded img-adjust" />
                             </a>
                                 @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
                         </div>
