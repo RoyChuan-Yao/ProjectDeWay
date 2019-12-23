@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-    <div class="container">
+    
         @using (Html.BeginForm())
         {
 
@@ -75,10 +75,10 @@
         </table>*@
 
 
-
+    <div class="container">
         <div id="pI4" class="pI4 ">
             <div class="productspI4">
-                
+
                 <div class="row">
                     <div class="memberAside ">
                         <div class="mb-5">
@@ -140,8 +140,7 @@
                                         <div class="card col-4 col-md-2 productsCard membercardB">
                                             <div>
                                                 <div class="card-body productsCardbody">
-
-                                                    <img src="@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
+                                                    <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
                                                     <p class="text-secondary productsCardText">@Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })<span></span></p>
                                                     <p class="text-secondary productsCardText">NT: <span>@item.Specification.FirstOrDefault().Price</span></p>
                                                     <div class="d-flex justify-content-between">
@@ -160,7 +159,7 @@
                             @*大分類A-classA*@
                             <div class="tab-pane memberTab-pane fade" id="classA">
                                 <div class="row justify-content-start ">
-                                    
+
 
 
                                     <div class="card col-4 col-md-2 productsCard membercardB">
@@ -280,7 +279,7 @@
 
 
 
-        
+
 
     </div>
 
