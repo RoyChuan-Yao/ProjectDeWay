@@ -4,55 +4,58 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+    <div class="container">
+        <h2>活動詳細資料</h2>
 
-<div>
-    <h4>ntfRecord</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ntfContent)
-        </dt>
+        <div>
+            
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ntfContent)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ntfContent)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ntfContent)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ntfTitle)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ntfTitle)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ntfTitle)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ntfTitle)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ntfTime)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ntfTime)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ntfTime)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ntfTime)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Member.mbrName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Member.mbrName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Member.mbrName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Member.mbrName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ntfCategory.ntfType)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ntfCategory.ntfType)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ntfCategory.ntfType)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ntfCategory.ntfType)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ntfID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ntfID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+    </div>

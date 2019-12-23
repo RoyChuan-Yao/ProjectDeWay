@@ -509,6 +509,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="actImage\" />
     <Folder Include="App_Data\" />
     <Folder Include="mbrPhoto\" />
     <Folder Include="productImage\" />

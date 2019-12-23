@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DeWay.Models;
+using System.IO;
 
 namespace DeWay.Controllers
 {
@@ -53,17 +54,33 @@ namespace DeWay.Controllers
         // POST: actBulletinsAdm/Create      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(actBulletin act) 
+        public ActionResult Create(actBulletin act, HttpPostedFileBase actImage) 
         {
+            string fileName = "";
             string GetActID = db.Database.SqlQuery<string>("Select dbo.GetActID()").FirstOrDefault();
             act.actID = GetActID;
+            act.actImage = GetActID + ".jpg";
+            
+            if (actImage != null)
+            {
+                if (actImage.ContentLength > 0)
+                {
+                    fileName = GetActID + ".jpg";
+                    actImage.SaveAs(Server.MapPath("~/actImage/" + fileName));
+                }
+            }
+
+            if (actImage == null)
+            {
+                act.actImage= "act0000000.jpg";
+            }
             //if (ModelState.IsValid)
             //{
             //    db.actBulletin.Add(actBulletin);
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-            
+
             db.actBulletin.Add(act);
             db.SaveChanges();
             ViewBag.admID = new SelectList(db.Adm, "admID", "admName", act.admID);
@@ -91,8 +108,25 @@ namespace DeWay.Controllers
         // POST: actBulletinsAdm/Edit/5       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "actID,pdtID,actStrDate,actEndDate,actImage,actDisplay,admID")] actBulletin actBulletin)
+        public ActionResult Edit([Bind(Include = "actID,pdtID,actStrDate,actEndDate,actImage,actDisplay,admID")] actBulletin actBulletin, HttpPostedFileBase actImage)
         {
+            string fileName = "";
+           
+            if (actImage != null)
+            {
+                if (actImage.ContentLength > 0)
+                {
+                    fileName = actBulletin.actID + ".jpg";
+                    actImage.SaveAs(Server.MapPath("~/actImage/" + fileName));
+                    actBulletin.actImage = fileName;
+                }
+            }
+
+            if (actImage == null)
+            {
+                actBulletin.actImage = "act0000000.jpg";
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(actBulletin).State = EntityState.Modified;

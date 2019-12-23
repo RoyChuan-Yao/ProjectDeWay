@@ -4,10 +4,9 @@
     ViewBag.Title = "詳細資料";
 }
     <div class="container">
-        <h2>Details</h2>
+        <h2>詳細資料</h2>
 
         <div>
-            <h4>Member</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
@@ -50,11 +49,11 @@
                     @Html.DisplayFor(model => model.birthDate)
                 </dd>
 
-                <dt>
+                <dt class="d-none">
                     @Html.DisplayNameFor(model => model.Points)
                 </dt>
 
-                <dd>
+                <dd class="d-none">
                     @Html.DisplayFor(model => model.Points)
                 </dd>
 
@@ -74,11 +73,11 @@
                     @Html.DisplayFor(model => model.signupDate)
                 </dd>
 
-                <dt>
+                <dt class="d-none">
                     @Html.DisplayNameFor(model => model.mbrImage)
                 </dt>
 
-                <dd>
+                <dd class="d-none">
                     @Html.DisplayFor(model => model.mbrImage)
                 </dd>
 
@@ -90,11 +89,11 @@
                     @Html.DisplayFor(model => model.mbrBlock)
                 </dd>
 
-                <dt>
+                <dt class="d-none">
                     @Html.DisplayNameFor(model => model.MemberAccount.mbrAccount)
                 </dt>
 
-                <dd>
+                <dd class="d-none">
                     @Html.DisplayFor(model => model.MemberAccount.mbrAccount)
                 </dd>
 

@@ -7,7 +7,7 @@
         <h2>編輯公告</h2>
 
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "actBulletinsAdm", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -44,7 +44,7 @@
                 <div class="form-group">
                     照片
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.actImage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.actImage, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
                         @Html.ValidationMessageFor(model => model.actImage, "", new { @class = "text-danger" })
                     </div>
                 </div>
