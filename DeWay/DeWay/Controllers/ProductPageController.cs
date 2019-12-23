@@ -57,5 +57,11 @@ namespace DeWay.Controllers
             var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
             return PartialView("_GetProductCard", product);
         }
+        
+        public PartialViewResult _GetSetOfProductCard(int takeCount,int skipCount =0)
+        {
+            var pdts = db.Product.Where(m => m.Discontinued != true).OrderBy(m=>m.pdtID).Skip(skipCount).Take(takeCount);
+            return PartialView(pdts);
+        }
     }
 }
