@@ -444,6 +444,33 @@ namespace DeWay.Controllers
 
         }
 
+        public ActionResult myProduct(string fstID=null)
+        {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            string id = Session["memberID"].ToString();
+            string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+            ViewBag.fstLayer = db.Product.Where(m => m.selID == getselID).Select(m => m.ProductCategory.FirstLayer).Distinct().ToList();
+
+            if (fstID == null)
+            {
+                var pdt = db.Product.Where(m => m.selID == getselID).ToList();
+                return View(pdt);
+
+            }
+
+            var pdt2 = db.Product.Where(m => m.selID == getselID&&m.ProductCategory.fstLayerID==fstID).ToList();
+
+
+            return View(pdt2);
+
+        }
+
+        public PartialViewResult _GetProductCardFst(string productID, string fstID)
+        {
+            var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
+            return PartialView(product);
+        }
     }
 
 }
