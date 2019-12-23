@@ -51,7 +51,8 @@
             for (var i = 0; i < 5; i++) {
                 result += starsArray[i];
             }
-            var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
+            var result = `${result}`
+            
 
             return result
         }
@@ -94,5 +95,16 @@
                 $('ul>li:first-child').addClass("d-active");
             };
         }
+    </script>
+
+    <script>
+        let Text = "";
+        $(`.btn-text`).click(function (evt) {
+            
+            let btnText = evt.target.textContent;
+                Text= Text+btnText;
+            $(`textarea`).text(Text);
+            
+        })
     </script>
 }
