@@ -21,7 +21,7 @@
             <div class="card-header">
                 <div class="nav nav-pills card-header-pills">
                     <div class="w-25 form-inline">
-                        <div class="h4 ml-2">@sellerCompany</div>
+                        <div class=" ml-2">@sellerCompany</div>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,8 @@
                             <div class="card-body">
                                 <a class="card-title h3 text-decoration-none" href="@Url.Action("ProductPage","ProductPage",new { pdtID=$"{product.Specification.pdtID}"})">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</a>
                                 <p class="card-text">
-                                    商品樣式：
+                                    規格：
+
                                     @Html.DisplayFor(modelItem => product.Specification.Size)
                                     @Html.DisplayFor(modelItem => product.Specification.Style)
                                 </p>

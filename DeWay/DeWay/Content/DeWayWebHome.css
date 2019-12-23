@@ -78,6 +78,21 @@
     padding-left: 0px;
 }
 
+@media (min-width: 800px) {
+    .img-wh {
+        position: relative;
+        top: -28px;
+        left: -4px;
+        width: 120%;
+        height: 17vh;
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+
+
+
 .img-wh-2 {
     width: 20px;
     height: 20px;
