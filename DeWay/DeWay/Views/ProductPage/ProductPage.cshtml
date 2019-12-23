@@ -18,103 +18,361 @@
 @{
     ViewBag.Title = "ProductPage";
 }
+<link href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Noto+Sans+TC|Noto+Serif+TC|ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
 
 
-<div class="row">
-    <div class="col-7">
-        <section id="ProductInfo">
-            <div>
-                @foreach (var photoItem in Model.ProductImage)
-                {
-                    <img src="@Html.DisplayNameFor(m => photoItem.pdtImage)" alt="商品照片" />
-                }
-                <img class="img-fluid" src="~/images/diamond-4229493_960_720.jpg" />
-            </div>
-            <div>
-                <h3>產品描述</h3>
-                <p>@Html.DisplayFor(m => m.pdtDescribe)</p>
-                <div>
-                    <h4>生合是回母產工為歡</h4>
-                    <p>色得構不為率賽食，止家時場子老家應願展話全總熱上實直日委表接臺路羅思。濟注拿力其處散麼日爭增。紀放多領直。</p>
-                    <p>又選得己，回次個斷的常人有得會果收……法也了功管空後方傳酒現代；表現生我在電綠？嚴了代落的山女，山大下知人建，對其神死入，老響身就自模不的……表分為：畫西及他的格路有北學類來日上手靈，息告果……不造手的友，麼夠稱認色清營告樣風資局乎國體的老大以中看過少這拉頭很案獲已考民見個；想受府起動再場區得、論麼同們，親下南間是十大的我市藝史來長重要自們王題樂出發廣也分沒，向無收倒活書初倒代大識產如個重放保太民！充大。</p>
-                    <p>的真準能例華中資灣大己一位，聲黃狀水資各天機話部人觀，有展重文片來……看被我在，的生友。起大然大在這落龍驗力計者只再大要，過開麼性存程然中論一的張精？底乎使深都行接安富出子關！開景商解去體。統百看示農我過境海他得出此高統是後學不連的此跑天內師前家可面。問路明安無認漸球做只做……產招足……長是病漸這過小走，看頭龍策找成者登那苦不立往。</p>
+
+
+
+
+<div class=" ">
+    <div class="container ">
+        <div class="ProductPage">
+            <div class="row">
+                @*商品幻燈片*@
+                <div id="ProductPagecarlousel" class="carousel ProductPagecarousel slide" data-ride="carousel">
+                    <div class="carousel-inner  pPcInner">
+                        @*注意寫(foreach)   active*@
+                        <div class="carousel-item active " data-interval="20000">
+                            @*商品照片partial View*@
+                            <img src="~/images/image-88.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        @* 無active*@
+                        <div class="carousel-item " data-interval="20000">
+                            @*商品照片partial View*@
+                            <img src="~/images/image-89.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        @* 無active *@
+                        <div class="carousel-item " data-interval="20000">
+                            @*商品照片partial View*@
+                            <img src="~/images/image-90.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#ProductPagecarlousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#ProductPagecarlousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-            </div>
-        </section>
-        <hr />
-        <section id="ReviewSection">
-            <h2>購買評價</h2>
-            <div>
-                @Html.Action("_GetReviewSection", "Review", new { productID = Model.pdtID })
-            </div>
-        </section>
-        <hr />
-        <section id="QASection">
-            <h2>QA問答區</h2>
-            @Html.Action("_CreateQA", "QAs", new { productID = Model.pdtID })
-            @Html.Action("_GetQASection", "QAs", new { productID = Model.pdtID })
-        </section>
 
-    </div>
-    <div class="col-5">
-        <div id="CartInfo" class="mb-2">
-            <h2>@Html.DisplayFor(m => m.pdtName)</h2>
-            <h2 id="price" class="text-danger">
-                @{
-                    var price = Model.Specification.OrderByDescending(m => m.Price).Select(p => p.Price).ToArray();
-                    var max = Convert.ToInt32(price[0]);
-                    var min = Convert.ToInt32(price[price.Length - 1]);
-                    if (max == min)
-                    {
-                        @("NT$ " + max)
-                    }
-                    else
-                    {
-                        @("NT$ " + min + "~" + max)
-                    }
-                }
-            </h2>
-            <p>規格與尺寸</p>
-            @foreach (var specItem in Model.Specification)
-            {
-                <span id="@specItem.spcID" class="btn btn-outline-primary spec mb-2">
-                    @specItem.Size
-                    @specItem.Style
-                    <span class="d-none priceTag">@(Convert.ToInt32(specItem.Price))</span>
-                </span>
-            }
-            <div>
-                <select id="quantity" class="form-control ">
-                    <option>請選擇商品規格或尺寸</option>
-                </select>
+                @*商品簡介/選擇*@
+                <div class="ProductSyn">
+                    @*商品名稱*@
+                    <div class="ProductName">
+
+                        @Html.DisplayFor(m => m.pdtName)
+                    </div>
+                    @*商品價格*@
+                    <div class="ProductPrice">
+                        @{
+                            var price = Model.Specification.OrderByDescending(m => m.Price).Select(p => p.Price).ToArray();
+                            var max = Convert.ToInt32(price[0]);
+                            var min = Convert.ToInt32(price[price.Length - 1]);
+                            if (max == min)
+                            {
+                                @("NT$ " + max)
+                            }
+                            else
+                            {
+                                @("NT$ " + min + "~" + max)
+                            }
+                        }
+                    </div>
+
+
+
+                    @*商品規格 須核對*@
+                    <div class="ProductSpec">
+                        <span class="ProductSpecA">規格</span>
+                        <div class="form-group">
+                            <label for="ProductSpec"></label>
+                            <select class="form-control form-controlSpec form-control-sm" id="ProductSpec">
+                                @foreach (var specItem in Model.Specification)
+                                {
+                                    <option>
+                                        @specItem.Style
+                                        <text>  </text>
+                                        @specItem.Size
+
+
+                                    </option>
+                                    @*<span class="d-none priceTag">@(Convert.ToInt32(specItem.Price))</span>*@
+                                }
+
+                            </select>
+
+                        </div>
+                    </div>
+
+                    @*商品數量 須放相對值*@
+                    <div class="ProductSpec">
+                        <span class="ProductSpecA">數量</span>
+                        <div class="form-group">
+                            <label for="ProductSpec"></label>
+                            <select class="form-control form-controlSpec form-control-sm" id="ProductSpec">
+
+                                <option class="ProductSpecA">
+                                    請先選規格
+                                </option>
+
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="ProductbtnA d-flex flex-column ">
+                        <button id="addToCartBtn" class="btn ProductbtnB " state="addToCart">加入購物車</button>
+
+                        <button id="" class="btn ProductbtnB " state="">收藏商品</button>
+                    </div>
+
+                    <div class="Productmem">
+                        <span class="ProductSpecA">關於設計館</span>
+                        <div class=" ">
+                            <div class="row ProductmemRow d-flex justify-content-start ">
+                                <div class="card ProductmemcardA">
+                                    @*賣家圖片*@
+                                    <img src="~/images/image-40.jpg" class="w-100 h-100" />
+                                </div>
+                                <div class="card ProductmemcardB">
+                                    @*賣家相關資料*@
+                                    <div class="ProductmemcardC">
+                                        @*賣家名稱*@
+                                        <a href="@Url.Action("Index","Market",new {sellerID = Model.selID  })">@Html.DisplayFor(m => m.Seller.selCompany)</a>
+                                    </div>
+                                    @*星星評價*@
+                                    <a href="">
+                                        <img src="~/images/img-s-4.png" style="width:70%" />
+                                    </a>
+                                    @*加入關注*@
+                                    <div class="ProductmemcardC">
+                                        @**@
+                                        <button id="" class="btn ProductmemcardD  " state="">加入關注</button>
+                                        <a href=""></a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
             </div>
-            <hr />
 
-            <button id="addToCartBtn" class="btn btn-warning" state="addToCart">加入購物車</button>
+            @*20191223 master merge前的程式碼請川川核對
+                <div class="row">
+                <div class="col-7">
+                    <section id="ProductInfo">
+                        <div>
+                            @foreach (var photoItem in Model.ProductImage)
+                            {
+                                <img src="~/productImage/@photoItem.pdtImage" alt="商品照片" class="w-75" />
+                            }
+                        </div>
+                        <div>
+                            <h3>產品描述</h3>
+                            <p>@Html.Raw(@Model.pdtDescribe.Replace("\n", "<br>"))</p>
 
-        </div><hr />
-        <div id="sellerInfo">
-            <h4>賣家名稱 </h4>
-            <h2><a href="@Url.Action("Index","Market",new {sellerID = Model.selID  })">@Html.DisplayFor(m => m.Seller.selCompany)</a></h2>
-            <h4>賣家資訊</h4>
-            <p class="rounded">店家圖片</p>
-            <dl>
-                <dt>@Html.DisplayNameFor(m => m.Seller.selInfo)</dt>
-                <dd>@Html.DisplayFor(m => m.Seller.selInfo)</dd>
-                <dt>@Html.DisplayNameFor(m => m.Seller.SellerPhone.FirstOrDefault().selPhone)</dt>
-                <dd>@Html.DisplayFor(m => m.Seller.SellerPhone.FirstOrDefault().selPhone)</dd>
-                <dt>@Html.DisplayNameFor(m => m.Seller.selAddress)</dt>
-                <dd>@Html.DisplayFor(m => m.Seller.selAddress)</dd>
-                <dt>@Html.DisplayNameFor(m => m.Seller.selCity)</dt>
-                <dd>@Html.DisplayFor(m => m.Seller.selCity)</dd>
-            </dl>
-        </div><hr />
-        <div id="RelativeItem">
-            <p>相關的商品</p>
+                        </div>
+                    </section>
+                    <hr />
+                    <section id="ReviewSection">
+                        <h2>購買評價</h2>
+                        <div>
+                            @Html.Action("_GetReviewSection", "Review", new { productID = Model.pdtID })
+                        </div>
+                    </section>
+                    <hr />
+                    <section id="QASection">
+                        <h2>QA問答區</h2>
+                        @Html.Action("_CreateQA", "QAs", new { productID = Model.pdtID })
+                        @Html.Action("_GetQASection", "QAs", new { productID = Model.pdtID })
+                    </section>*@
+
+
+
+
+
+            <div class="ProductPageNav">
+                <div>
+                    <div class="ProductNav-pills ">
+                        <ul class="nav nav-pills nav-pillsEva d-flex justify-content-center " id="pills-tab" role="tablist">
+                            <li class="nav-item nav-itemEva">
+                                <a class="nav-link nav-linkEva active" id="pills-A-tab" data-toggle="pill" href="#pills-A" role="tab" aria-controls="pills-A" aria-selected="true">商品描述</a>
+                            </li>
+                            <li class="nav-item nav-itemEva">
+                                <a class="nav-link nav-linkEva" id="pills-B-tab" data-toggle="pill" href="#pills-B" role="tab" aria-controls="pills-B" aria-selected="false">商品評價</a>
+                            </li>
+                            <li class="nav-item nav-itemEva">
+                                <a class="nav-link nav-linkEva" id="pills-C-tab" data-toggle="pill" href="#pills-C" role="tab" aria-controls="pills-C" aria-selected="false">商品問答</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="tab-content ProductTabA" id="pills-tabContent">
+                        <div class="tab-pane ProductTabB fade show active" id="pills-A" role="tabpanel" aria-labelledby="pills-A-tab">
+
+                            @Html.DisplayFor(m => m.pdtDescribe)
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-B" role="tabpanel" aria-labelledby="pills-B-tab">
+
+
+                            @Html.Action("_GetReviewSection", "Review", new { productID = Model.pdtID })
+                        </div>
+                        <div class="tab-pane fade" id="pills-C" role="tabpanel" aria-labelledby="pills-C-tab">
+
+                            @Html.Action("_CreateQA", "QAs", new { productID = Model.pdtID })
+                            @Html.Action("_GetQASection", "QAs", new { productID = Model.pdtID })
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+            @*原本結構*@
+            @*<div class="row">
+                    <div class="col-7">
+                        <section id="ProductInfo">
+                            <div>
+                                @foreach (var photoItem in Model.ProductImage)
+                                {
+                                    <img src="@Html.DisplayNameFor(m => photoItem.pdtImage)" alt="商品照片" />
+                                }
+                                <img class="img-fluid" src="~/images/diamond-4229493_960_720.jpg" />
+                                <img src="~/images/image-31.jpg" class="d-block w-75" alt="...">
+                            </div>
+                            <div>
+                                <h3>產品描述</h3>
+                                <p>@Html.DisplayFor(m => m.pdtDescribe)</p>
+                                <div>
+                                    <h4>生合是回母產工為歡</h4>
+                                    <p>色得構不為率賽食，止家時場子老家應願展話全總熱上實直日委表接臺路羅思。濟注拿力其處散麼日爭增。紀放多領直。</p>
+                                    <p>又選得己，回次個斷的常人有得會果收……法也了功管空後方傳酒現代；表現生我在電綠？嚴了代落的山女，山大下知人建，對其神死入，老響身就自模不的……表分為：畫西及他的格路有北學類來日上手靈，息告果……不造手的友，麼夠稱認色清營告樣風資局乎國體的老大以中看過少這拉頭很案獲已考民見個；想受府起動再場區得、論麼同們，親下南間是十大的我市藝史來長重要自們王題樂出發廣也分沒，向無收倒活書初倒代大識產如個重放保太民！充大。</p>
+                                    <p>的真準能例華中資灣大己一位，聲黃狀水資各天機話部人觀，有展重文片來……看被我在，的生友。起大然大在這落龍驗力計者只再大要，過開麼性存程然中論一的張精？底乎使深都行接安富出子關！開景商解去體。統百看示農我過境海他得出此高統是後學不連的此跑天內師前家可面。問路明安無認漸球做只做……產招足……長是病漸這過小走，看頭龍策找成者登那苦不立往。</p>
+                                </div>
+                            </div>
+                        </section>
+
+
+
+
+
+
+
+
+
+
+
+                        <hr />
+                        <section id="ReviewSection">
+                            <h2>購買評價</h2>
+                            <div>
+                                @Html.Action("_GetReviewSection", "Review", new { productID = Model.pdtID })
+                            </div>
+                        </section>
+                        <hr />
+                        <section id="QASection">
+                            <h2>QA問答區</h2>
+                            @Html.Action("_CreateQA", "QAs", new { productID = Model.pdtID })
+                            @Html.Action("_GetQASection", "QAs", new { productID = Model.pdtID })
+                        </section>
+
+                    </div>
+                    <div class="col-5">
+                        <div id="CartInfo" class="mb-2">
+                            <h2>@Html.DisplayFor(m => m.pdtName)</h2>
+                            <h2 id="price" class="text-danger">
+                                @{
+                                    var price = Model.Specification.OrderByDescending(m => m.Price).Select(p => p.Price).ToArray();
+                                    var max = Convert.ToInt32(price[0]);
+                                    var min = Convert.ToInt32(price[price.Length - 1]);
+                                    if (max == min)
+                                    {
+                                        @("NT$ " + max)
+                                    }
+                                    else
+                                    {
+                                        @("NT$ " + min + "~" + max)
+                                    }
+                                }
+                            </h2>
+                            <p>規格與尺寸</p>
+                            @foreach (var specItem in Model.Specification)
+                            {
+                                <span id="@specItem.spcID" class="btn btn-outline-primary spec mb-2">
+                                    @specItem.Size
+                                    @specItem.Style
+                                    <span class="d-none priceTag">@(Convert.ToInt32(specItem.Price))</span>
+                                </span>
+                            }
+                            <div>
+                                <select id="quantity" class="form-control ">
+                                    <option>請選擇商品規格或尺寸</option>
+                                </select>
+                            </div>
+                            <hr />
+
+                            <button id="addToCartBtn" class="btn btn-warning" state="addToCart">加入購物車</button>
+
+                        </div><hr />
+                        <div id="sellerInfo">
+                            <h4>賣家名稱 </h4>
+                            <h2><a href="@Url.Action("Index","Market",new {sellerID = Model.selID  })">@Html.DisplayFor(m => m.Seller.selCompany)</a></h2>
+                            <h4>賣家資訊</h4>
+                            <p class="rounded">店家圖片</p>
+                            <dl>
+                                <dt>@Html.DisplayNameFor(m => m.Seller.selInfo)</dt>
+                                <dd>@Html.DisplayFor(m => m.Seller.selInfo)</dd>
+                                <dt>@Html.DisplayNameFor(m => m.Seller.SellerPhone.FirstOrDefault().selPhone)</dt>
+                                <dd>@Html.DisplayFor(m => m.Seller.SellerPhone.FirstOrDefault().selPhone)</dd>
+                                <dt>@Html.DisplayNameFor(m => m.Seller.selAddress)</dt>
+                                <dd>@Html.DisplayFor(m => m.Seller.selAddress)</dd>
+                                <dt>@Html.DisplayNameFor(m => m.Seller.selCity)</dt>
+                                <dd>@Html.DisplayFor(m => m.Seller.selCity)</dd>
+                            </dl>
+                        </div><hr />
+                        <div id="RelativeItem">
+                            <p>相關的商品</p>
+                        </div>
+                        <form action="@Url.Action()" method="post"></form>
+                    </div>
+
+
+                </div>*@
         </div>
-        <form action="@Url.Action()" method="post"></form>
+
+
+
+
     </div>
 </div>
+
+
+
+
+
+
+
+
+
 @section Script{
     <script>
         //QA發送

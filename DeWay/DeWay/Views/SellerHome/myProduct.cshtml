@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DeWay.Models.Product>
+
+
+
+@{
+    ViewBag.Title = "myProduct";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
+
+}
+
+<div>
+    <ul class="nav nav-tabs nav-fill mb-1">
+        <li class="nav-item"><a href="@Url.Action("myProduct","SellerHome")" class="nav-link active">全部</a></li>
+
+        @foreach (var item in @ViewBag.fstLayer)
+        {
+            <li class="nav-item"><a href="@Url.Action("myProduct","SellerHome",new {fstID=item.fstLayerID })" class="nav-link">@item.fstLayer</a></li>
+        }
+    </ul>
+
+</div>
+
+@foreach (var aaa in @ViewBag.fstLayer)
+{
+
+
+        <div class="row justify-content-start ">
+            @foreach (var item in Model)
+            {
+                if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
+                {
+                    @Html.Action("_GetProductCardFst", "SellerHome", new { productID = item.pdtID, fstID = aaa.fstLayerID })
+                }
+
+            }
+
+
+        </div>
+}
+
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        $('.nav-link').each(function () {
+            if ($($(this))[0].href == String(window.location)) {
+                $('.nav-link').removeClass("active");
+                $(this).addClass('active');
+            }
+        });
+    });
+
+</script>

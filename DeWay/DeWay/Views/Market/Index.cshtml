@@ -11,323 +11,182 @@
 
 <!--會員/賣家 個人頁面-->
 
+<div>
+    <div class="container col-10 col-xl-7 De-mtmb-15">
+        <div>
+            <div class="row d-flex justify-content-between membercardA">
+                <div class="card membercard membercardC col-12 col-12A col-md-6">
 
-<div class="container col-10 col-xl-7 De-mtmb-15">
-    <div>
-        <div class="row d-flex justify-content-between membercardA">
-            <div class="card membercard col-12 col-12A col-md-6">
-
-                <img id="srcsrcsrc" src="../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage" style="width:100%;" />
+                    <img id="srcsrcsrc" src="../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage" style="width:100%;height:100%" />
 
 
-            </div>
-            <div class="card membercard  col-12 col-12A col-md-6">
-                <div class="tab-content" id="">
-                    <div class="tab-pane active" id="Introduction1">
-                        <div class="memberIntroduction">
-                            <div>
-                                <a href="#" class="text-primary">個人名片</a>
-                            </div>
-
-                            <div class="memberIntroductionB">
-                                <div class="memberIntroductionC">
-                                    Name:<span class="memberIntroductionD">@Model.sellers.FirstOrDefault().Member.nickName</span>
-                                    <br />
-                                    <br />
-                                    live:<span class="memberIntroductionD">@Model.sellers.FirstOrDefault().selCity</span>
+                </div>
+                <div class="card membercard  col-12 col-12A col-md-6" style="width:100%;">
+                    <div class="tab-content" id="">
+                        <div class="tab-pane active" id="Introduction1">
+                            <div class="memberIntroduction">
+                                <div>
+                                    <a href="#" class="text-primary">個人名片</a>
                                 </div>
-                            </div>
 
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="Introduction2">
-                        <div class="memberIntroduction">
-                            <div>
-                                <a href="#" class="text-primary">評價:</a>
-                            </div>
-                            <div>
                                 <div class="memberIntroductionB">
+                                    <div class="memberIntroductionC">
+                                        Name:<span class="memberIntroductionD">@Model.sellers.FirstOrDefault().Member.nickName</span>
+                                        <br />
+                                        <br />
+                                        live:<span class="memberIntroductionD">@Model.sellers.FirstOrDefault().selCity</span>
+                                    </div>
+                                </div>
 
-                                    <br />
-                                    @if (Model.reviews.Count() != 0)
-                                    {
-                                        <div>
-                                            5 顆星
-                                            <div class="progress memberIntroductionE">
-                                                @{
-                                                    decimal bar5 = (decimal)Model.reviews.Where(m => m.rvwStar == 5).Count() / (decimal)Model.reviews.Count() * 100;
-                                                    decimal bar4 = (decimal)Model.reviews.Where(m => m.rvwStar == 4).Count() / (decimal)Model.reviews.Count() * 100;
-                                                    decimal bar3 = (decimal)Model.reviews.Where(m => m.rvwStar == 3).Count() / (decimal)Model.reviews.Count() * 100;
-                                                    decimal bar2 = (decimal)Model.reviews.Where(m => m.rvwStar == 2).Count() / (decimal)Model.reviews.Count() * 100;
-                                                    decimal bar1 = (decimal)Model.reviews.Where(m => m.rvwStar == 1).Count() / (decimal)Model.reviews.Count() * 100;
-
-                                                }
-                                                <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar5%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 5).Count()  (筆數)</div>
-
-                                            </div>
-                                            4 顆星
-                                            <div class="progress memberIntroductionE ">
-
-                                                <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar4%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 4).Count() (筆數)</div>
-
-                                            </div>
-                                            3 顆星
-                                            <div class="progress memberIntroductionE">
-
-                                                <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar3%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 3).Count() (筆數)</div>
-                                            </div>
-                                            2 顆星
-                                            <div class="progress memberIntroductionE">
-
-                                                <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar2%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 2).Count() (筆數)</div>
-                                            </div>
-                                            1 顆星
-                                            <div class="progress memberIntroductionE">
-
-                                                <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar1%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                                <span> @Model.reviews.Where(m => m.rvwStar == 1).Count() (筆數)</span>
-                                            </div>
-                                        </div>
-
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Introduction2">
+                            <div class="memberIntroduction">
+                                <div>
+                                    <a href="#" class="text-primary">評價:</a>
+                                </div>
+                                <div>
+                                    <div class="memberIntroductionB">
 
                                         <br />
-                                        <span>總評價數:</span><span class="memberIntroductionG">@Model.reviews.Count()</span>
-                                    }
-                                    else
-                                    {
-                                        <div>暫無評價</div>
-                                    }
-                                    <br />
+                                        @if (Model.reviews.Count() != 0)
+                                        {
+                                            <div>
+                                                5 顆星
+                                                <div class="progress memberIntroductionE">
+                                                    @{
+                                                        decimal bar5 = (decimal)Model.reviews.Where(m => m.rvwStar == 5).Count() / (decimal)Model.reviews.Count() * 100;
+                                                        decimal bar4 = (decimal)Model.reviews.Where(m => m.rvwStar == 4).Count() / (decimal)Model.reviews.Count() * 100;
+                                                        decimal bar3 = (decimal)Model.reviews.Where(m => m.rvwStar == 3).Count() / (decimal)Model.reviews.Count() * 100;
+                                                        decimal bar2 = (decimal)Model.reviews.Where(m => m.rvwStar == 2).Count() / (decimal)Model.reviews.Count() * 100;
+                                                        decimal bar1 = (decimal)Model.reviews.Where(m => m.rvwStar == 1).Count() / (decimal)Model.reviews.Count() * 100;
 
-                                </div>
-                            </div>
-                        </div>
+                                                    }
+                                                    <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar5%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 5).Count()  (筆數)</div>
 
-                    </div>
-                    <div class="tab-pane fade" id="Introduction3">
-                        <div class="memberIntroduction">
-                            <div>
-                                <a href="#" class="text-primary">設計館故事:</a>
-                            </div>
-                            <div class="memberIntroductionB">
-                                <div>
-                                    @Model.sellers.FirstOrDefault().selInfo。
-                                    <br />
-                                    <br />
-                                    For your better life。
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="Introduction4">
-                        <div class="memberIntroduction">
-                            <div>
-                                <a href="#" class="text-primary">商品購買須知:</a>
-                            </div>
-                            <div class="memberIntroductionB">
-                                <div>
-                                    設計館不提供換貨服務。
-                                    <br />
-                                    <br />
-                                    <br />
-                                    如對商品或訂單有疑問，請直接詢問設計師。
-                                    <br />
+                                                </div>
+                                                4 顆星
+                                                <div class="progress memberIntroductionE ">
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="memberNav">
-                    <ul class="nav nav-tabs nav-tabsA" id="">
-                        <li class="nav-item nav-itemA">
-                            <a class="nav-link nav-linkA active  pIntroduction1" id="Introduction1" href="#Introduction1" data-toggle="tab">關於我</a>
-                        </li>
-                        <li class="nav-item nav-itemA ">
-                            <a class="nav-link nav-linkA  pIntroduction2" id="Introduction2" href="#Introduction2" data-toggle="tab">信用評價</a>
-                        </li>
-                        <li class="nav-item nav-itemA">
-                            <a class="nav-link nav-linkA pIntroduction3" id="Introduction3" href="#Introduction3" data-toggle="tab">設計館</a>
-                        </li>
-                        <li class="nav-item nav-itemA">
-                            <a class="nav-link nav-linkA pIntroduction4" id="Introduction4" href="#Introduction4" data-toggle="tab">商品</a>
-                        </li>
-                    </ul>
+                                                    <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar4%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 4).Count() (筆數)</div>
 
-                </div>
-                <div class="DesignShop mt-3 ">
-                    @Model.sellers.FirstOrDefault().selCompany
+                                                </div>
+                                                3 顆星
+                                                <div class="progress memberIntroductionE">
 
-                    <span>
-                        <img class="DSstar" src="../../images/img-s-4.png" />
-                    </span>
+                                                    <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar3%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 3).Count() (筆數)</div>
+                                                </div>
+                                                2 顆星
+                                                <div class="progress memberIntroductionE">
+
+                                                    <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar2%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"> @Model.reviews.Where(m => m.rvwStar == 2).Count() (筆數)</div>
+                                                </div>
+                                                1 顆星
+                                                <div class="progress memberIntroductionE">
+
+                                                    <div class="progress-bar memberIntroductionF" role="progressbar" style="width: @bar1%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    <span> @Model.reviews.Where(m => m.rvwStar == 1).Count() (筆數)</span>
+                                                </div>
+                                            </div>
 
 
-                    <button type="button" class="btn btn-outline-dark productsDisplay">加入關注</button>
-                </div>
+                                            <br />
+                                            <span>總評價數:</span><span class="memberIntroductionG">@Model.reviews.Count()</span>
+                                        }
+                                        else
+                                        {
+                                            <div>暫無評價</div>
+                                        }
+                                        <br />
 
-
-            </div>
-
-        </div>
-    </div>
-
-</div>
-<!--設計館商品-->
-<section id="pI4" class="pI4 productsDisplay">
-    <div class="productspI4">
-        <div class=" col-10 offset-1 bg-light productsIntroduction4">
-            <div class="mt-5 mb-5 m-lg-5">
-                <p><a href="#" class="text-primary text-left">本館熱賣</a></p>
-            </div>
-            <div class="products selling">
-                <div class="row d-flex justify-content-between">
-                    <div class="card col-4 col-md-2 productsCard membercardB">
-                        <div>
-                            <div class="card-body productsCardbody">
-
-                                <img src="../../images/img-p-39.png" class=" rounded card-img-top productsImg " alt="...">
-                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                <div class="d-flex justify-content-between">
-                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col-4 col-md-2 productsCard membercardB">
-                        <div>
-                            <div class="card-body productsCardbody">
-
-                                <img src="../../images/img-p-2.png" class=" rounded card-img-top productsImg " alt="...">
-                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                <div class="d-flex justify-content-between">
-                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col-4 col-md-2 productsCard membercardB">
-                        <div>
-                            <div class="card-body productsCardbody">
-
-                                <img src="../../images/img-p-23.png" class=" rounded card-img-top productsImg " alt="...">
-                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                <div class="d-flex justify-content-between">
-                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card col-4 col-md-2 productsCard membercardB">
-                        <div>
-                            <div class="card-body productsCardbody">
-
-                                <img src="../../images/img-p-31.png" class=" rounded card-img-top productsImg " alt="...">
-                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                <div class="d-flex justify-content-between">
-                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-
-
-            </div>
-
-
-
-        </div>
-        <div>
-            <div class="memberAside ">
-                <div class="">
-                    <div class="text-dark flex-column">
-                        商品分類
-                    </div>
-
-
-                    <ul class="nav flex-column">
-
-
-                        <li class="nav-item flex-column">
-                            <a href="#" class="text-secondary">
-                                大分類A
-                            </a>
-
-                        </li>
-
-                        <li class="nav-item flex-column">
-                            <a href="#" class="text-secondary">
-                                大分類B
-                            </a>
-
-                        </li>
-
-                    </ul>
-                </div>
-                <div>
-                    <div class="text-dark flex-column">
-                        商品標籤
-                    </div>
-                    <ul class="nav flex-column">
-                        <li class="nav-item flex-column">
-                            <a href="#" class="text-primary nav-link">
-                                標籤-1
-                            </a>
-
-                        </li>
-                        <li class="nav-item flex-column">
-                            <a href="#" class="text-primary nav-link">
-                                標籤-2
-                            </a>
-
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="memberArticle">
-                <div class="products ">
-                    <div class="row justify-content-start ">
-
-                        @foreach (var item in Model.products)
-                        {
-                            <div class="card col-4 col-md-2 productsCard membercardB">
-                                <div>
-                                    <div class="card-body productsCardbody">
-
-                                        <img src="../../productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
-                                        <p class="text-secondary productsCardText">@item.pdtName<span></span></p>
-                                        <p class="text-secondary productsCardText">NT:<span>@item.Specification.FirstOrDefault().Price</span></p>
-                                        <div class="d-flex justify-content-between">
-                                            <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                            <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        }
+
+                        </div>
+                        <div class="tab-pane fade" id="Introduction3">
+                            <div class="memberIntroduction">
+                                <div>
+                                    <a href="#" class="text-primary">設計館故事:</a>
+                                </div>
+                                <div class="memberIntroductionB">
+                                    <div>
+                                        @Model.sellers.FirstOrDefault().selInfo。
+                                        <br />
+                                        <br />
+                                        For your better life。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Introduction4">
+                            <div class="memberIntroduction">
+                                <div>
+                                    <a href="#" class="text-primary">商品購買須知:</a>
+                                </div>
+                                <div class="memberIntroductionB">
+                                    <div>
+                                        設計館不提供換貨服務。
+                                        <br />
+                                        <br />
+                                        <br />
+                                        如對商品或訂單有疑問，請直接詢問設計師。
+                                        <br />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="memberNav">
+                        <ul class="nav nav-tabs nav-tabsA" id="">
+                            <li class="nav-item nav-itemA">
+                                <a class="nav-link nav-linkA active  pIntroduction1" id="Introduction1" href="#Introduction1" data-toggle="tab">關於我</a>
+                            </li>
+                            <li class="nav-item nav-itemA ">
+                                <a class="nav-link nav-linkA  pIntroduction2" id="Introduction2" href="#Introduction2" data-toggle="tab">信用評價</a>
+                            </li>
+                            <li class="nav-item nav-itemA">
+                                <a class="nav-link nav-linkA pIntroduction3" id="Introduction3" href="#Introduction3" data-toggle="tab">設計館</a>
+                            </li>
+                            <li class="nav-item nav-itemA">
+                                <a class="nav-link nav-linkA pIntroduction4" id="Introduction4" href="#Introduction4" data-toggle="tab">商品</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="DesignShop mt-3 ">
+                        @Model.sellers.FirstOrDefault().selCompany
+
+                        <span>
+                            <img class="DSstar" src="../../images/img-s-4.png" />
+                        </span>
 
 
+                        <button type="button" class="btn btn-outline-dark productsDisplay">加入關注</button>
+                    </div>
 
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!--設計館商品-->
+    <div id="pI4" class="pI4 productsDisplay">
+        <div class="productspI4">
+            <div class=" col-10 offset-1 bg-light productsIntroduction4">
+                <div class="mt-5 mb-5 m-lg-5">
+                    <p><a href="#" class="text-primary text-left">本館熱賣</a></p>
+                </div>
+                <div class="products selling">
+                    <div class="row d-flex justify-content-between">
                         <div class="card col-4 col-md-2 productsCard membercardB">
                             <div>
                                 <div class="card-body productsCardbody">
 
-                                    <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
+                                    <img src="../../images/img-p-39.png" class=" rounded card-img-top productsImg " alt="...">
                                     <p class="text-secondary productsCardText">商品名稱<span></span></p>
                                     <p class="text-secondary productsCardText">NT:<span>590</span></p>
                                     <div class="d-flex justify-content-between">
@@ -338,56 +197,227 @@
                             </div>
                         </div>
 
+                        <div class="card col-4 col-md-2 productsCard membercardB">
+                            <div>
+                                <div class="card-body productsCardbody">
+
+                                    <img src="../../images/img-p-2.png" class=" rounded card-img-top productsImg " alt="...">
+                                    <p class="text-secondary productsCardText">商品名稱<span></span></p>
+                                    <p class="text-secondary productsCardText">NT:<span>590</span></p>
+                                    <div class="d-flex justify-content-between">
+                                        <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                        <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card col-4 col-md-2 productsCard membercardB">
+                            <div>
+                                <div class="card-body productsCardbody">
+
+                                    <img src="../../images/img-p-23.png" class=" rounded card-img-top productsImg " alt="...">
+                                    <p class="text-secondary productsCardText">商品名稱<span></span></p>
+                                    <p class="text-secondary productsCardText">NT:<span>590</span></p>
+                                    <div class="d-flex justify-content-between">
+                                        <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                        <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card col-4 col-md-2 productsCard membercardB">
+                            <div>
+                                <div class="card-body productsCardbody">
+
+                                    <img src="../../images/img-p-31.png" class=" rounded card-img-top productsImg " alt="...">
+                                    <p class="text-secondary productsCardText">商品名稱<span></span></p>
+                                    <p class="text-secondary productsCardText">NT:<span>590</span></p>
+                                    <div class="d-flex justify-content-between">
+                                        <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                        <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div>
+
+
                 </div>
 
 
 
             </div>
-        </div>
-    </div>
+            <div class="row">
+                <div class="memberAside ">
+                    <div class="mb-5">
+                        <div class="text-dark flex-column">
+                            商品分類
+                        </div>
+                        <ul class="nav nav-tabs memberNav-tabs flex-column">
+                            <li class="nav-item memberNav-item flex-column">
+                                <a class="nav-link memberNav-link active text-secondary" data-toggle="tab" href="#all">
+                                    全部
+                                </a>
+                            </li>
 
-</section>
+                            @*<li class="nav-item memberNav-item flex-column">
+                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classA">
+                                        大分類A
+                                    </a>
+                                </li>
+                                <li class="nav-item memberNav-item flex-column">
+                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classB">
+                                        大分類B
+                                    </a>
+                                </li>*@
+                            @foreach (var item in ViewBag.fstLayer)
+                            {
+                                <li class="nav-item memberNav-item flex-column">
+                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#@item.fstLayerID">
+                                        @item.fstLayer
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                   
 
-<!--評價-->
-<section id="pI2" class="sellEvaDis">
-    <div class="container col-10 col-xl-7 De-mtmb-15 ">
-        <div class="sellEvaluation">
-            <ul class="nav nav-pills nav-pillsEva d-flex justify-content-center " id="pills-tab" role="tablist">
-                <li class="nav-item nav-itemEva">
-                    <a class="nav-link nav-linkEva active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">全部評價</a>
-                </li>
-                <li class="nav-item nav-itemEva">
-                    <a class="nav-link nav-linkEva" id="pills-five-tab" data-toggle="pill" href="#pills-five" role="tab" aria-controls="pills-five" aria-selected="false">5 顆星</a>
-                </li>
-                <li class="nav-item nav-itemEva">
-                    <a class="nav-link nav-linkEva" id="pills-four-tab" data-toggle="pill" href="#pills-four" role="tab" aria-controls="pills-four" aria-selected="false">4 顆星</a>
-                </li>
-                <li class="nav-item nav-itemEva">
-                    <a class="nav-link nav-linkEva" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">3 顆星</a>
-                </li>
-                <li class="nav-item nav-itemEva">
-                    <a class="nav-link nav-linkEva" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">2 顆星</a>
-                </li>
-                <li class="nav-item nav-itemEva">
-                    <a class="nav-link nav-linkEva" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="false">1 顆星</a>
-                </li>
-            </ul>
-        </div>
+                </div>
+                <div class="memberArticle">
+                    <div class="products tab-content">
 
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-                @Html.Action("_rvwIndex", new { star = 6, sellerID = Model.sellers.FirstOrDefault().selID })
+                        @*全部分類-all*@
+                        <div class="tab-pane memberTab-pane active" id="all">
+                            <div class="row justify-content-start ">
+                                @foreach (var item in Model.products)
+                                {
+                                    @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID})
+
+                                }
+
+
+
+
+
+                            </div>
+                        </div>
+                        @*大分類A-classA*@
+
+                        @foreach (var aaa in ViewBag.fstLayer)
+                        {
+
+
+                            <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
+                                <div class="row justify-content-start ">
+                                    @foreach (var item in Model.products)
+                                    {
+                                        @*<div class="card col-4 col-md-2 productsCard membercardB">
+                                                <div>
+                                                    <div class="card-body productsCardbody">
+
+                                                        <img src="../../productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
+                                                        <p class="text-secondary productsCardText">@item.pdtName<span></span></p>
+                                                        <p class="text-secondary productsCardText">NT:<span>@item.Specification.FirstOrDefault().Price</span></p>
+                                                        <div class="d-flex justify-content-between">
+                                                            <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                                            <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
+                                        {
+                                            @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
+                                        }
+
+                                    }
+
+
+                                </div>
+                            </div>
+                        }
+
+
+                            </div>
+                        </div>
+                        @*大分類A-classA*@
+                        <div class="tab-pane memberTab-pane fade" id="classA">
+                            <div class="row justify-content-start ">
+                                @foreach (var item in Model.products)
+                                {
+                                    <div class="card col-4 col-md-2 productsCard membercardB">
+                                        <div>
+                                            <div class="card-body productsCardbody">
+
+                                                <img src="../../productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
+                                                <p class="text-secondary productsCardText">@item.pdtName<span></span></p>
+                                                <p class="text-secondary productsCardText">NT:<span>@item.Specification.FirstOrDefault().Price</span></p>
+                                                <div class="d-flex justify-content-between">
+                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+
+                    </div>
+
+
+
             </div>
-            <div class="tab-pane fade" id="pills-five" role="tabpanel" aria-labelledby="pills-five-tab">@Html.Action("_rvwIndex", new { star = 5, sellerID = Model.sellers.FirstOrDefault().selID })</div>
-            <div class="tab-pane fade" id="pills-four" role="tabpanel" aria-labelledby="pills-four-tab">@Html.Action("_rvwIndex", new { star = 4, sellerID = Model.sellers.FirstOrDefault().selID })</div>
-            <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">@Html.Action("_rvwIndex", new { star = 3, sellerID = Model.sellers.FirstOrDefault().selID })</div>
-            <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">@Html.Action("_rvwIndex", new { star = 2, sellerID = Model.sellers.FirstOrDefault().selID })</div>
-            <div class="tab-pane fade" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">@Html.Action("_rvwIndex", new { star = 1, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+            </div>
         </div>
+
     </div>
 
-</section>
+    <!--評價-->
+    <div id="pI2" class="sellEvaDis">
+        <div class="container col-10 col-xl-7 De-mtmb-15 ">
+            <div class="sellEvaluation">
+                <ul class="nav nav-pills nav-pillsEva d-flex justify-content-center " id="pills-tab" role="tablist">
+                    <li class="nav-item nav-itemEva">
+                        <a class="nav-link nav-linkEva active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">全部評價</a>
+                    </li>
+                    <li class="nav-item nav-itemEva">
+                        <a class="nav-link nav-linkEva" id="pills-five-tab" data-toggle="pill" href="#pills-five" role="tab" aria-controls="pills-five" aria-selected="false">5 顆星</a>
+                    </li>
+                    <li class="nav-item nav-itemEva">
+                        <a class="nav-link nav-linkEva" id="pills-four-tab" data-toggle="pill" href="#pills-four" role="tab" aria-controls="pills-four" aria-selected="false">4 顆星</a>
+                    </li>
+                    <li class="nav-item nav-itemEva">
+                        <a class="nav-link nav-linkEva" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">3 顆星</a>
+                    </li>
+                    <li class="nav-item nav-itemEva">
+                        <a class="nav-link nav-linkEva" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">2 顆星</a>
+                    </li>
+                    <li class="nav-item nav-itemEva">
+                        <a class="nav-link nav-linkEva" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="false">1 顆星</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                    @Html.Action("_rvwIndex", new { star = 6, sellerID = Model.sellers.FirstOrDefault().selID })
+                </div>
+                <div class="tab-pane fade" id="pills-five" role="tabpanel" aria-labelledby="pills-five-tab">@Html.Action("_rvwIndex", new { star = 5, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+                <div class="tab-pane fade" id="pills-four" role="tabpanel" aria-labelledby="pills-four-tab">@Html.Action("_rvwIndex", new { star = 4, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+                <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">@Html.Action("_rvwIndex", new { star = 3, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+                <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">@Html.Action("_rvwIndex", new { star = 2, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+                <div class="tab-pane fade" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">@Html.Action("_rvwIndex", new { star = 1, sellerID = Model.sellers.FirstOrDefault().selID })</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 @section Script{
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery-3.3.1.min.js"></script>
@@ -409,11 +439,9 @@
                 result += starsArray[i];
             }
             var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
-
             return result
         }
         function refresh() {
-
             $(`.star`).each((index, element) => {
                 console.log(element);
                 $(element).html(
@@ -429,7 +457,6 @@
         //const navPI4 = $(".pIntroduction4").get(0);用get(0),會轉成Html原生Dom用法;
         //const navPI4 = $(".pIntroduction4").eq(0);用eq(0),是jquery用法;
         //const proPI4 =document.getElementsByClassName('pI4');
-
         //navPI4[0].addEventListener('click',function () {
         //    if (proPI4.ClassList != 'productsDisplay') {
         //        proPI4.ClassList.add('productsDisplay');
@@ -439,17 +466,11 @@
         //        proPI4.ClassList.remove('productsDisplay');
         //    }
         //});
-
-
-
-
-
         //設計館商品
         $('.pIntroduction4').click(function () {
             $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
             $('#pI2').addClass('sellEvaDis');
             if ($('#pI4').attr('class', 'productsDisplay') != 'productsDisplay') {
-
                 $('#pI4').removeClass('productsDisplay');
             }
             else {
@@ -460,7 +481,6 @@
             $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
             $('#pI4').addClass('productsDisplay');
             $('#pI2').addClass('sellEvaDis');
-
         });
         //評價
         $('.pIntroduction2').click(function () {
@@ -472,20 +492,12 @@
             else {
                 $('#pI2').addClass('sellEvaDis');
             }
-
-
         });
-
         $('.pIntroduction1').click(function () {
             $('#pI4').addClass('productsDisplay');
             $('#pI2').addClass('sellEvaDis');
             $('#srcsrcsrc').attr("src","../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage")
-
         });
-
-
-
-
         $('.pImg2 ').click(function () {
             if ($(this).attr("src") != "/images/Img-like-7.png") {
                 $(this).attr("src", "/images/Img-like-7.png")
@@ -494,10 +506,6 @@
                 $(this).attr("src", "/images/Img-like-8.png")
             }
         });
-
-
-
-
     </script>
 
 

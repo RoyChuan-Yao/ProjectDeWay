@@ -15,6 +15,7 @@ namespace DeWay.Models
     using static DeWay.Models.Metadata;
 
     [MetadataType(typeof(MetadataProduct))]
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

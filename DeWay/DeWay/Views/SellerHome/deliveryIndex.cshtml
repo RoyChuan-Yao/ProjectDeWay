@@ -91,26 +91,32 @@
 
     var flag = true;
 
+    //$("#card #Button1").click(function () {
+    //    if (flag == true) {
+    //        $(this).parent().parent().next().children().removeAttr("hidden");
+    //        $(this).parent().parent().next().children().show();
+
+    //        flag = false;
+    //        $(this).val("取消出貨");
+    //        $(this).removeClass("btn-info");
+    //        $(this).addClass("btn-secondary")
+
+    //    }
+    //    else {
+    //        $(this).parent().parent().next().children().hide();
+    //        flag = true;
+    //        $(this).val("出貨");
+    //        $(this).removeClass("btn-secondary");
+    //        $(this).addClass("btn-info")
+
+    //    }
+    //})
     $("#card #Button1").click(function () {
-        if (flag == true) {
-            $(this).parent().parent().next().children().removeAttr("hidden");
-            $(this).parent().parent().next().children().show();
 
-            flag = false;
-            $(this).val("取消出貨");
-            $(this).removeClass("btn-info");
-            $(this).addClass("btn-secondary")
-
-        }
-        else {
-            $(this).parent().parent().next().children().hide();
-            flag = true;
-            $(this).val("出貨");
-            $(this).removeClass("btn-secondary");
-            $(this).addClass("btn-info")
-
-        }
-    })
+        var state = $(this).parent().parent().next().children("#trace").attr("hidden")
+        $(this).parent().parent().next().children("#trace").attr("hidden",!state)
+        
+    });
 
 
 

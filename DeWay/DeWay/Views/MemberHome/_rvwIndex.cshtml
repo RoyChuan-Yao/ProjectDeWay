@@ -29,7 +29,7 @@
                     <div class="star" id="@Star" Stars="@Star" style=" font-size: 30px">
 
                     </div>
-                    @Html.Raw(@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent).ToString().Replace("\n","<br>"))
+                    @Html.Raw(@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent).ToString().Replace("\n", "<br>"))
                 </div>
 
 
@@ -40,33 +40,39 @@
             star[i] = item.Review.FirstOrDefault().rvwStar;
 
             <div class="card">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="star col-5" id="@star[i]" Stars="@star[i]" style=" font-size: 30px">
+                <div>
+                    <span class="d-bg text-white border-radius ">　@Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)　</span>
 
-                        </div>
-                        <div class="offset-4">
-                            @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)
-                        </div>
-                    </div>
-
+                    <span class="offset-8"> @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)</span>
                 </div>
+
+
+
                 <div class="card-body row">
-                    <div class="col-5">
-                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" /></a>
-</div>
-                    <div class="col-7 mt-5">
-                        <div class="row">
-                            <div class="col-2">
-                                To：
+                    <div class="col-4">
+
+                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" style="width:200px;height:200px" class="img-responsive img-rounded" /></a>
+                    </div>
+                    <div class="col-8 mt-5">
+                        <div class="row align-items-baseline">
+                            <div class="col-1">
+                                To
                             </div>
 
-                            <div class="col-10">
-                                <div>  <a href="@Url.Action("Index","Market",new { sellerID=item.Review.FirstOrDefault().Product.selID})">@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)</a></div>
+                            <div class="col-8  align-items-baseline">
+                                <div class="mb-1">
+                                    <a href="@Url.Action("Index","Market",new { sellerID=item.Review.FirstOrDefault().Product.selID})">@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().Product.Seller.selCompany)</a>
+
+                                </div>
                                 <div>
-                                    
+
                                     @Html.Raw(@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent).ToString().Replace("\n", "<br>"))
                                 </div>
+
+
+                            </div>
+                            <div class="col-3">
+                                <div class="star " id="@star[i]" Stars="@star[i]" style=" font-size: 25px ;color:#E4AD22"></div>
                             </div>
                         </div>
                     </div>
@@ -105,34 +111,36 @@
                 </div>
                 <div class="card-body row">
                     <div class="col-5">
-                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" style="width:200px" class="img-responsive img-rounded" /></a>
+                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" style="width:200px;height:200px" class="img-responsive img-rounded" /></a>
 
-</div>
+                    </div>
                     <div class="col-7 mt-5">
                         <div>
                             <a href="@Url.Action("Index","Market",new { sellerID=item.Cart_OrderDetail.FirstOrDefault().Specification.Product.selID})">
-                            @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)</a>
+                                @Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.Seller.selCompany)
+                            </a>
+                            <hr />
                         </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    購買的商品：@Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
-                                </div>
+                        <div class="row">
+                            <div class="col-8">
+                                購買的商品：@Html.DisplayFor(modelItem => item.Cart_OrderDetail.FirstOrDefault().Specification.Product.pdtName)
+                            </div>
 
-                                @{
-                                    if (item.odrStatusID == "ods0000006")
-                                    {
+                            @{
+                                if (item.odrStatusID == "ods0000006")
+                                {
 
-                                        <button class="Button btn btn-dark col-4 " data-toggle="modal" data-target="#form1">新增評論</button>
+                                    <button class="Button btn btn-dark col-4 " data-toggle="modal" data-target="#form1">新增評論</button>
 
-                                        <input id="odrID" type="hidden" value="@item.odrID" />
-                                    }
-
-
+                                    <input id="odrID" type="hidden" value="@item.odrID" />
                                 }
 
 
-                            </div>
-                            <div> 付款方式：@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)</div>
+                            }
+
+
+                        </div>
+                        <div> 付款方式：@Html.DisplayFor(modelItem => item.PaymentMethod.pmtMethod)</div>
 
 
 
@@ -149,26 +157,33 @@
 @using (Html.BeginForm("rvwCreate", "MemberHome", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="modal fade" id="form1">
+    <div class="modal fade " id="form1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Review</h4>
+            <div class="modal-content border-radius">
+                <div class="modal-header d-bg-blue text-white ">
+                    <h5>新增評論</h5>
                     <button data-dismiss="modal" class="close">&times;</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body ">
                     <input class="odrID" type="hidden" name="odrID" />
                     <div class="form-group">
-                        <p>評價內容</p>
-                        <div class="col-md-9">
-                            <textarea id="rvwContent" name="rvwContent" ></textarea>
-                            
+                        <p class="text-center">評價內容</p>
+                        <div class="text-center">
+
+                            <textarea id="rvwContent" name="rvwContent"></textarea>
+                            <br />
+
+
+                            <span class="btn-text">出貨速度快！</span>
+                            <span class="btn-text">商品品質佳！</span>
+                            <span class="btn-text">賣家真可愛！</span>
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <p>評價等級</p>
-                        <div class="col-md-9">
-                            <div class="givestars"></div>
+                        <p class="text-center">評價等級</p>
+                        <div class="text-center">
+                            <div class="givestars " style="font-size:25px"></div>
                             <input class="rvwStar" type="hidden" name="rvwStar" />
                         </div>
                     </div>

@@ -23,6 +23,10 @@ color:#6b92a4;
     border-radius:10px;
 }
 
+.card-border-radius {
+    border-radius: 10px;
+}
+
 .d-text-color {
     color:#6b92a4;
 }
@@ -31,6 +35,9 @@ color:#6b92a4;
 }
 .d-bg {
     background-color:rgba(107, 146, 164, 0.3) !important;
+}
+.d-bg-blue {
+    background-color: #6b92a4 !important;
 }
 .m-center {
 
