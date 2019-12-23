@@ -34,21 +34,31 @@
                 @*商品幻燈片*@
                 <div id="ProductPagecarlousel" class="carousel ProductPagecarousel slide" data-ride="carousel">
                     <div class="carousel-inner  pPcInner">
-                        @*注意寫(foreach)   active*@
+                        @{int photoCount = 0;
+                            string active;}
+                        @foreach (var photo in Model.ProductImage)
+                        {
+                            <div class="carousel-item @(active=photoCount==0?"active":"") " data-interval="20000">
+                                <img src="~/productImage/@photo.pdtImage" class="d-block w-100" alt="...">
+                            </div>
+                            photoCount++;
+                        }
+                        @*注意寫(foreach)   active
                         <div class="carousel-item active " data-interval="20000">
-                            @*商品照片partial View*@
+                            商品照片partial View
                             <img src="~/images/image-88.jpg" class="d-block w-100" alt="...">
                         </div>
-                        @* 無active*@
+                        
+                         無active
                         <div class="carousel-item " data-interval="20000">
-                            @*商品照片partial View*@
+                            商品照片partial View
                             <img src="~/images/image-89.jpg" class="d-block w-100" alt="...">
                         </div>
-                        @* 無active *@
+                         無active 
                         <div class="carousel-item " data-interval="20000">
-                            @*商品照片partial View*@
+                            商品照片partial View
                             <img src="~/images/image-90.jpg" class="d-block w-100" alt="...">
-                        </div>
+                        </div>*@
                     </div>
                     <a class="carousel-control-prev" href="#ProductPagecarlousel" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -98,8 +108,6 @@
                                         @specItem.Style
                                         <text>  </text>
                                         @specItem.Size
-
-
                                     </option>
                                     @*<span class="d-none priceTag">@(Convert.ToInt32(specItem.Price))</span>*@
                                 }
@@ -115,10 +123,16 @@
                         <div class="form-group">
                             <label for="ProductSpec"></label>
                             <select class="form-control form-controlSpec form-control-sm quantitySpec" id="ProductSpec">
+                                @{int stockCount = Model.Specification.FirstOrDefault().Stock;}
+                                @for (int i = 1; i <= stockCount; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                    if (i == 20) { break; };
+                                }
 
-                                <option class="ProductSpecA">
-                                    請先選規格
-                                </option>
+                                @*<option class="ProductSpecA">
+                                        請先選規格
+                                    </option>*@
 
                             </select>
 
@@ -152,7 +166,7 @@
                                     @*加入關注*@
                                     <div class="ProductmemcardC">
                                         @**@
-                                        <button id="" class="btn ProductmemcardD  " state="">加入關注</button>
+                                        <button id="" class="btn ProductmemcardD" state="">加入關注</button>
                                         <a href=""></a>
                                     </div>
                                 </div>
@@ -404,7 +418,7 @@
             //取得該規格商品庫存
             $.get(`@Url.Action("GetProductStock","ProductPage")?specID=` + $(`.specSelect`).val(), //取得ID
                 function (stock) {
-                    var quantity = ''; 
+                    var quantity = '';
                     if (stock > 0) {//庫存檢查
                         for (var i = 1; i <= stock; i++) {
                             quantity += `<option value="${i}">${i}</option>`;
@@ -424,26 +438,24 @@
         });
         $(`#quantity`).change(() => { $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`) });
         //購物車按鈕按下
-        $(`#addToCartBtn`).click(function ()
-        {//更新購物車資料
+        $(`#addToCartBtn`).click(function () {//更新購物車資料
             var btn = $(`#addToCartBtn`);
             var qty = $(`.quantitySpec`);
             var validOrderNumber = /\d?\d/; //前端驗證(訂購數量合理性)
-            if (validOrderNumber.test(qty.text()) &&
-                btn.attr(`state`) == `addToCart`)
-            {
+            if (validOrderNumber.test(qty.val()) &&
+                btn.attr(`state`) == `addToCart`) {
                 sendCartMsg();
             }
             else if (btn.attr(`state`) == "goToCart") {
-                    window.location.href = `@Url.Action("MyCart","Cart")`;//重新導向至購物車
-                }
-                else alert("請選擇規格與數量");//提醒選擇數量與規格
-            })
+                window.location.href = `@Url.Action("MyCart","Cart")`;//重新導向至購物車
+            }
+            else alert("請選擇規格與數量");//提醒選擇數量與規格
+        });
         function sendCartMsg() { //發送訂單
             $.post("@Url.Action("AddToMyCart","Cart")",
                 {
-                    spcID: $(`.spec[state="selected"]`).attr(`id`),
-                    quantity: parseInt($(`#quantity`).find(":selected").val())
+                    spcID: $(`.specSelect`).val(),
+                    quantity: parseInt($(`.quantitySpec`).val())
                 })
                 .done(() => {
                     $(`#addToCartBtn`).attr(`state`, `goToCart`)

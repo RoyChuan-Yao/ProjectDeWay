@@ -36,7 +36,8 @@
                                    onclick="changeChckeStatus(checkStatus,@count)">
                         </div>
                         <div class="col-md-3 text-center my-auto">
-                            <img src="~/images/diamond-4229493_960_720.jpg" class="card-img" alt="圖片消失了" />
+                            @*<img src="~/images/diamond-4229493_960_720.jpg" class="card-img" alt="圖片消失了" />*@
+                            <img src="~/productImage/@product.Specification.Product.ProductImage.FirstOrDefault().pdtImage" class="card-img" alt="圖片消失了" />
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
@@ -47,7 +48,7 @@
                                     @Html.DisplayFor(modelItem => product.Specification.Size)
                                     @Html.DisplayFor(modelItem => product.Specification.Style)
                                 </p>
-                                <p class="text-primary">NT$ <span id="price_@count">@Html.DisplayFor(modelItem => product.Specification.Price)</span></p>
+                                <p class="text-primary h3">NT$ <span id="price_@count">@Convert.ToInt32(product.Specification.Price) </span></p>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -66,8 +67,8 @@
                                     </select>
                                 </p>
                                 <p class="text-secondary">
-                                    折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
-                                    點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />
+                                    @*折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
+                                    點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />*@
                                 </p>
                                 <select id="shipSelect_@count">
 
