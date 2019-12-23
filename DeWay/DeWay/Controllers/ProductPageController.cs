@@ -21,6 +21,8 @@ namespace DeWay.Controllers
             var checksel = db.Seller.Where(m => m.mbrID == memberID).Count();
             //應急處理 不然登入者不是賣家會報錯
 
+            
+            ViewBag.Stars = product.Review.Average(m => m.rvwStar);
 
             string selID ="";
             if (memberID != null && checksel != 0) 

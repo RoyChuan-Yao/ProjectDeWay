@@ -44,21 +44,21 @@
                             photoCount++;
                         }
                         @*注意寫(foreach)   active
-                        <div class="carousel-item active " data-interval="20000">
-                            商品照片partial View
-                            <img src="~/images/image-88.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        
-                         無active
-                        <div class="carousel-item " data-interval="20000">
-                            商品照片partial View
-                            <img src="~/images/image-89.jpg" class="d-block w-100" alt="...">
-                        </div>
-                         無active 
-                        <div class="carousel-item " data-interval="20000">
-                            商品照片partial View
-                            <img src="~/images/image-90.jpg" class="d-block w-100" alt="...">
-                        </div>*@
+                            <div class="carousel-item active " data-interval="20000">
+                                商品照片partial View
+                                <img src="~/images/image-88.jpg" class="d-block w-100" alt="...">
+                            </div>
+
+                             無active
+                            <div class="carousel-item " data-interval="20000">
+                                商品照片partial View
+                                <img src="~/images/image-89.jpg" class="d-block w-100" alt="...">
+                            </div>
+                             無active
+                            <div class="carousel-item " data-interval="20000">
+                                商品照片partial View
+                                <img src="~/images/image-90.jpg" class="d-block w-100" alt="...">
+                            </div>*@
                     </div>
                     <a class="carousel-control-prev" href="#ProductPagecarlousel" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -155,14 +155,13 @@
                                 </div>
                                 <div class="card ProductmemcardB">
                                     @*賣家相關資料*@
-                                    <div class="ProductmemcardC">
+                                    <div class="ProductmemcardC ">
                                         @*賣家名稱*@
                                         <a href="@Url.Action("Index","Market",new {sellerID = Model.selID  })">@Html.DisplayFor(m => m.Seller.selCompany)</a>
                                     </div>
                                     @*星星評價*@
-                                    <a href="">
-                                        <img src="~/images/img-s-4.png" style="width:70%" />
-                                    </a>
+                                        <div class="star mt-4 mb-4 " starCount="@ViewBag.Stars"></div>
+                                        @*<img src="~/images/img-s-4.png" style="width:70%" />*@
                                     @*加入關注*@
                                     <div class="ProductmemcardC">
                                         @**@
@@ -463,5 +462,27 @@
                 });
         }
     </script>
-
+    <script>
+        function getStar(starCount) {
+            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+            var result = "";
+            for (var i = 0; i < starCount; i++) {
+                starsArray.unshift("★");
+            }
+            for (var i = 0; i < 5; i++) {
+                result += starsArray[i];
+            }
+            var result = `<span style=" font-size: 22px;color:#ff9797">${result}</span>`
+            return result
+        }
+        function refresh() {
+            $(`.star`).each((index, element) => {
+                console.log(element);
+                $(element).html(
+                    getStar($(element).attr("starCount"))
+                )
+            })
+        }
+        refresh();
+    </script>
 }
