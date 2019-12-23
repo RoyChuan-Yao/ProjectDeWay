@@ -25,7 +25,7 @@
                     <div class="tab-content" id="">
                         <div class="tab-pane active" id="Introduction1">
                             <div class="memberIntroduction">
-                                <div >
+                                <div>
                                     <a href="#" class="text-primary">個人名片</a>
                                 </div>
 
@@ -42,7 +42,7 @@
                         </div>
                         <div class="tab-pane fade" id="Introduction2">
                             <div class="memberIntroduction">
-                                <div >
+                                <div>
                                     <a href="#" class="text-primary">評價:</a>
                                 </div>
                                 <div>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="tab-pane fade" id="Introduction3">
                             <div class="memberIntroduction">
-                                <div >
+                                <div>
                                     <a href="#" class="text-primary">設計館故事:</a>
                                 </div>
                                 <div class="memberIntroductionB">
@@ -121,7 +121,7 @@
                         </div>
                         <div class="tab-pane fade" id="Introduction4">
                             <div class="memberIntroduction">
-                                <div >
+                                <div>
                                     <a href="#" class="text-primary">商品購買須知:</a>
                                 </div>
                                 <div class="memberIntroductionB">
@@ -263,42 +263,28 @@
                                     全部
                                 </a>
                             </li>
-                            <li class="nav-item memberNav-item flex-column">
-                                <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classA">
-                                    大分類A
-                                </a>
-                            </li>
-                            <li class="nav-item memberNav-item flex-column">
-                                <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classB">
-                                    大分類B
-                                </a>
-                            </li>
 
+                            @*<li class="nav-item memberNav-item flex-column">
+                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classA">
+                                        大分類A
+                                    </a>
+                                </li>
+                                <li class="nav-item memberNav-item flex-column">
+                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classB">
+                                        大分類B
+                                    </a>
+                                </li>*@
+                            @foreach (var item in ViewBag.fstLayer)
+                            {
+                                <li class="nav-item memberNav-item flex-column">
+                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#@item.fstLayerID">
+                                        @item.fstLayer
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </div>
-                    <div class="mb-5">
-                        <div class="text-dark flex-column">
-                            商品標籤
-                        </div>
-                        <ul class="nav nav-tabs memberNav-tabs flex-column">
-                            <li class="nav-item memberNav-item flex-column">
-                                <a class="nav-link memberNav-link  text-secondary" data-toggle="tab" href="#tagAll">
-                                    全部
-                                </a>
-                            </li>
-                            <li class="nav-item memberNav-item flex-column">
-                                <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#tagA">
-                                    標籤-1
-                                </a>
-                            </li>
-                            <li class="nav-item memberNav-item flex-column">
-                                <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#tagB">
-                                    標籤-2
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
+                   
 
                 </div>
                 <div class="memberArticle">
@@ -309,38 +295,52 @@
                             <div class="row justify-content-start ">
                                 @foreach (var item in Model.products)
                                 {
-                                    <div class="card col-4 col-md-2 productsCard membercardB">
-                                        <div>
-                                            <div class="card-body productsCardbody">
+                                    @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID})
 
-                                                <img src="../../productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
-                                                <p class="text-secondary productsCardText">@item.pdtName<span></span></p>
-                                                <p class="text-secondary productsCardText">NT:<span>@item.Specification.FirstOrDefault().Price</span></p>
-                                                <div class="d-flex justify-content-between">
-                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 }
 
 
 
-                                <div class="card col-4 col-md-2 productsCard membercardB">
-                                    <div>
-                                        <div class="card-body productsCardbody">
 
-                                            <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
-                                            <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                            <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                            <div class="d-flex justify-content-between">
-                                                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                            </div>
-                                        </div>
-                                    </div>
+
+                            </div>
+                        </div>
+                        @*大分類A-classA*@
+
+                        @foreach (var aaa in ViewBag.fstLayer)
+                        {
+
+
+                            <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
+                                <div class="row justify-content-start ">
+                                    @foreach (var item in Model.products)
+                                    {
+                                        @*<div class="card col-4 col-md-2 productsCard membercardB">
+                                                <div>
+                                                    <div class="card-body productsCardbody">
+
+                                                        <img src="../../productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
+                                                        <p class="text-secondary productsCardText">@item.pdtName<span></span></p>
+                                                        <p class="text-secondary productsCardText">NT:<span>@item.Specification.FirstOrDefault().Price</span></p>
+                                                        <div class="d-flex justify-content-between">
+                                                            <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                                            <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
+                                        {
+                                            @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
+                                        }
+
+                                    }
+
+
                                 </div>
+                            </div>
+                        }
+
 
                             </div>
                         </div>
@@ -364,96 +364,6 @@
                                         </div>
                                     </div>
                                 }
-
-
-
-
-                            </div>
-                        </div>
-
-                        @*大分類B-classB*@
-                        <div class="tab-pane memberTab-pane fade " id="classB">
-                            <div class="row justify-content-start ">
-                                <div class="card col-4 col-md-2 productsCard membercardB">
-                                    <div>
-                                        <div class="card-body productsCardbody">
-
-                                            <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
-                                            <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                            <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                            <div class="d-flex justify-content-between">
-                                                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        @*全部標籤-tagAll*@
-                        <div class="tab-pane memberTab-pane fade " id="tagAll">
-                            <div class="row justify-content-start ">
-                                <div class="card col-4 col-md-2 productsCard membercardB">
-                                    <div>
-                                        <div class="card-body productsCardbody">
-
-                                            <img src="../../images/img-p-33.png" class=" rounded card-img-top productsImg " alt="...">
-                                            <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                            <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                            <div class="d-flex justify-content-between">
-                                                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        @*標籤-1-tagA*@
-                        <div class="tab-pane memberTab-pane fade " id="tagA">
-                            <div class="row justify-content-start ">
-                                <div class="card col-4 col-md-2 productsCard membercardB">
-                                    <div>
-                                        <div class="card-body productsCardbody">
-
-                                            <img src="../../images/img-p-45.png" class=" rounded card-img-top productsImg " alt="...">
-                                            <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                            <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                            <div class="d-flex justify-content-between">
-                                                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        @*標籤-2-tagB*@
-                        <div class="tab-pane memberTab-pane fade " id="tagB">
-                            <div class="row justify-content-start ">
-                                <div class="card col-4 col-md-2 productsCard membercardB">
-                                    <div>
-                                        <div class="card-body productsCardbody">
-
-                                            <img src="../../images/img-p-42.png" class=" rounded card-img-top productsImg " alt="...">
-                                            <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                            <p class="text-secondary productsCardText">NT:<span>590</span></p>
-                                            <div class="d-flex justify-content-between">
-                                                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
 
 
 
@@ -529,11 +439,9 @@
                 result += starsArray[i];
             }
             var result = `<span style=" font-size: 30px;color:#E4AD22">${result}</span>`
-
             return result
         }
         function refresh() {
-
             $(`.star`).each((index, element) => {
                 console.log(element);
                 $(element).html(
@@ -549,7 +457,6 @@
         //const navPI4 = $(".pIntroduction4").get(0);用get(0),會轉成Html原生Dom用法;
         //const navPI4 = $(".pIntroduction4").eq(0);用eq(0),是jquery用法;
         //const proPI4 =document.getElementsByClassName('pI4');
-
         //navPI4[0].addEventListener('click',function () {
         //    if (proPI4.ClassList != 'productsDisplay') {
         //        proPI4.ClassList.add('productsDisplay');
@@ -559,17 +466,11 @@
         //        proPI4.ClassList.remove('productsDisplay');
         //    }
         //});
-
-
-
-
-
         //設計館商品
         $('.pIntroduction4').click(function () {
             $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
             $('#pI2').addClass('sellEvaDis');
             if ($('#pI4').attr('class', 'productsDisplay') != 'productsDisplay') {
-
                 $('#pI4').removeClass('productsDisplay');
             }
             else {
@@ -580,7 +481,6 @@
             $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
             $('#pI4').addClass('productsDisplay');
             $('#pI2').addClass('sellEvaDis');
-
         });
         //評價
         $('.pIntroduction2').click(function () {
@@ -592,20 +492,12 @@
             else {
                 $('#pI2').addClass('sellEvaDis');
             }
-
-
         });
-
         $('.pIntroduction1').click(function () {
             $('#pI4').addClass('productsDisplay');
             $('#pI2').addClass('sellEvaDis');
             $('#srcsrcsrc').attr("src","../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage")
-
         });
-
-
-
-
         $('.pImg2 ').click(function () {
             if ($(this).attr("src") != "/images/Img-like-7.png") {
                 $(this).attr("src", "/images/Img-like-7.png")
@@ -614,10 +506,6 @@
                 $(this).attr("src", "/images/Img-like-8.png")
             }
         });
-
-
-
-
     </script>
 
 

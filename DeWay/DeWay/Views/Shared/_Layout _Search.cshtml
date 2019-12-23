@@ -8,7 +8,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <link href="~/Content/DeWayMemberHome.css" rel="stylesheet" />
+
 
     @RenderSection("CSS", false)
 </head>
@@ -32,8 +32,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse bg-light" id="navbarToggleExternalContent">
-                    <form class="form-inline mr-auto" method="post" action="@Url.Action("Index","SearchForLayout")">
-                        <input class="form-control mr-sm-1 " type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline mr-auto" method="post" action="@Url.Action("Index","SearchForLayout")" >
+                        <input class="form-control mr-sm-1 " type="search" placeholder="Search" aria-label="Search" name="ProductName">
                         <button class="btn btn-outline-secondary my-1 my-sm-0 ml-auto" type="submit">Search</button>
                     </form>
                     <ul class="navbar-nav mr-auto">
@@ -45,7 +45,6 @@
                                 <a class="dropdown-item" href="#">衣著良品</a>
                                 <a class="dropdown-item" href="#">包包提袋</a>
                                 <a class="dropdown-item" href="#">配件飾品</a>
-
                             </div>
                         </li>
 
@@ -62,21 +61,20 @@
                         <li class="nav-item ">
 
                             @*<a class="nav-link" href="#">登入</a>*@
-                            @if (Session["memberID"] == null)
-                            {
-                                @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link" })
-                            }
+                            @if (Session["memberID"] == null) 
+                                    { 
+                                    @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link" })
+                                    }
+                            else    {
+                                    @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link" })
+                                    }
                         </li>
-
+                        
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
 
-
+                     
 
                         <li>
                             <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("SellerCreate","SellerCertification")"><img src="~/images/img-shop-4.png" style="width:50%" /></a>
@@ -94,7 +92,9 @@
 
                                 @Html.ActionLink("會員中心", "odrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("商品收藏", "Index", "WishLists", new { }, new { @class = "dropdown-item" })
-                                @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new { }, new { @class = "dropdown-item" })
+
+                                @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new {  }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("通知中心", "IndexForMember", "ntfRecordsAdm", new {  }, new { @class = "dropdown-item" })
 
                             </div>
                         </li>
@@ -151,42 +151,15 @@
                 </div>
             </div>
         </div>*@
-    <div class="content mt-5">
-
+    <div class="content">
         <div class="@*container*@ @*body-content*@ content-inside">
-            <div class="row">
 
-                <div class="col-2 offset-1 ">
-                    <ul class="nav flex-column dropdown">
-                        個人資訊
-
-                        <li class="nav-item">@Html.ActionLink("修改個人基本資料", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black m-li" })</li>
-                        <li class="nav-item">@Html.ActionLink("變更密碼", "pwdEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black m-li " })</li>
-                        <li class="nav-item">@Html.ActionLink("會員聯絡資訊驗證", "mbrEdit", "MemberHome", new { id = Session["memberID"] }, new { @class = "nav-link text-black m-li" })</li>
-
-                    </ul>
-                    <ul class="nav nav-pills flex-column">
-                        訂單
-                        <li class="nav-item">@Html.ActionLink("檢視訂單", "odrIndex", "MemberHome", new { }, new { @class = "nav-link  text-black m-li" })</li>
-                        <li class="nav-item">@Html.ActionLink("檢視退貨", "rfdIndex", "MemberHome", new { }, new { @class = "nav-link  text-black m-li" })</li>
-                    </ul>
-                    <ul class="nav flex-column">
-                        評價
-                        <li class="nav-item">@Html.ActionLink("檢視評價", "rvwIndex", "MemberHome", new { }, new { @class = "nav-link text-black m-li" })</li>
-                    </ul>
-                    <ul class="nav nav-pills flex-column">
-                        問與答
-                        <li class="nav-item">@Html.ActionLink("檢視問與答", "QAIndex", "MemberHome", new { code = 0 }, new { @class = "nav-link  text-black m-li" })</li>
-                    </ul>
+            @RenderBody()
 
 
-                </div>
-                <div class="col-7">
-                    @RenderBody()
-                </div>
-            </div>
         </div>
-    </div>    <footer class="footer-1 bg-light text-center">
+    </div>
+    <footer class="footer-1 bg-light text-center">
 
         <div class="jumbotron bg-light">
             DeWay

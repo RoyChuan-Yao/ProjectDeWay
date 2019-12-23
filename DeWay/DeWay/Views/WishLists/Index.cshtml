@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<div class="container" >
+<div class="container">
     <div style="margin:200px 0 300px 0;">
         <h2 class="mb-5 " id="cart_title">@ViewBag.Name 。 慾望清單</h2>
 
@@ -62,60 +62,64 @@
 
         </div>
 
-
-
-
-        @*@if (Model.Count() > 0)
-        {
-            <table class="table">
-                <tr>
-                    <th>商品</th>
-
-                </tr>
-
-
-                @foreach (var item in Model)
-                {
-
-
-
-
-
-
-                    <tr>
-
-                        <td>
-                            @Html.ActionLink($"{item.Product.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
-                        </td>
-
-                        <td>
-                            @Html.ActionLink("刪除", "Delete", new { id = item.wishID })
-                        </td>
-
-                    </tr>
-                }
-
-
-
-            </table>
-        }
-        else
-        {
-            <div>
-                <p>慾望清單中還是空的喔~!</p>
-            </div>
-
-        }*@
-
-
-
     </div>
-    
 
 
-
-
-
-    
 
 </div>
+
+
+
+
+
+@if (Model.Count() > 0)
+{
+    <div class="col-10 offset-1 container" style="margin-top:200px;">
+        <h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的慾望清單</h2>
+
+
+
+
+
+
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>商品</th>
+            </tr>
+
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/productImage/@item.Product.ProductImage.FirstOrDefault().pdtImage" width="60" height="60" alt="商品圖片" />
+
+
+                    </td>
+                    <td>
+                        @Html.ActionLink($"{item.Product.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("刪除", "Delete", new { id = item.wishID })
+                    </td>
+
+                </tr>
+            }
+
+
+
+        </table>
+    </div>}
+
+else
+{
+    <div class="container">
+        <p>慾望清單中還是空的喔~!</p>
+    </div>
+
+}
+
+

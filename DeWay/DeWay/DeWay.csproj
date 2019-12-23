@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44331</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -439,8 +440,6 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\ntfRecordsAdm\searchorder.cshtml" />
     <Content Include="Views\SellerCertification\Index.cshtml" />
-    <Content Include="Views\ProductsAdm\Create.cshtml" />
-    <Content Include="Views\ProductsAdm\Delete.cshtml" />
     <Content Include="Views\ProductsAdm\Details.cshtml" />
     <Content Include="Views\ProductsAdm\Edit.cshtml" />
     <Content Include="Views\ProductsAdm\Index.cshtml" />
@@ -460,8 +459,6 @@
     <Content Include="Views\AdmLogin\Index.cshtml" />
     <Content Include="Views\AdmCenter\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
-    <Content Include="Views\MembersAdm\Create.cshtml" />
-    <Content Include="Views\MembersAdm\Delete.cshtml" />
     <Content Include="Views\MembersAdm\Details.cshtml" />
     <Content Include="Views\MembersAdm\Edit.cshtml" />
     <Content Include="Views\MembersAdm\Index.cshtml" />
@@ -505,6 +502,11 @@
     <Content Include="Views\ProductPage\_GetProductCard.cshtml" />
     <Content Include="Views\SellerHome\editMarket.cshtml" />
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
+    <Content Include="Views\SellerHome\productIndex.cshtml" />
+    <Content Include="Views\SellerHome\QAIndex.cshtml" />
+    <Content Include="Views\Shared\_Layout _Search.cshtml" />
+    <Content Include="Views\SellerHome\myProduct.cshtml" />
+    <Content Include="Views\SellerHome\_GetProductCardFst.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
