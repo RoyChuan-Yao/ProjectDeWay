@@ -4,97 +4,119 @@
     ViewBag.Title = "我的購物車";
 }
 @*TODO: 後端驗證阻擋：收件人地址*@
-<h2 class="mb-3" id="cart_title">@Html.Raw(ViewBag.memberName)的購物車</h2>
-<div class="row">
-    <div class="col-8">
-        @Html.Partial("_CartCard", Model)
-    </div>
-    <div class="col-4">
-        <div class="sticky-top">
-            <div class="card ">
-                <div class="card-header">
-                    訂單摘要
-                </div>
-                <div class="card-body">
-                    <p class="card-text">商品總計：<span id="priceTotal">NT$ 0</span></p>
-                    <p class="card-text">運費總計：<span id="shpTotal">NT$ 0</span></p>
-                    <a href="">使用優惠券、紅利或禮物卡</a>
-                    <hr />
-                    <button id="checkOutBtn" class="btn btn-warning btn-block">前往結帳</button>
-                </div>
+
+    <div class="container">
+
+
+        <div class="mb-3" id="cart_title">@Html.Raw(ViewBag.memberName)的購物車</div>
+        <div class="row">
+            <div class="col-8">
+                @Html.Partial("_CartCard", Model)
             </div>
-            <div id="receiverInfo" class="card mt-2" style="display: none">
-                <div class="card-header">
-                    收件資訊
-                </div>
-                <div class="card-body">
-                    <button class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">請填寫收件人與購買人資料</button>
-                    <p id="receiverBoard" class="card-text"></p>
-                    <label for="">給設計師的訊息或注意事項</label>
-                    <textarea id="note" value="" placeholder="給設計師的訊息或注意事項" class="form-control" cols="2" rows="2"></textarea>
+            <div class="col-4">
+                <div class="sticky-top">
+                    <div class="card ">
+                        <div class="card-header">
+                            訂單摘要
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">商品總計：<span id="priceTotal">NT$ 0</span></p>
+                            <p class="card-text">運費總計：<span id="shpTotal">NT$ 0</span></p>
+                            <a href="">使用優惠券、紅利或禮物卡</a>
+                            <hr />
+                            <button id="checkOutBtn" class="btn btn-warning btn-block">前往結帳</button>
+                        </div>
+                    </div>
+                    <div id="receiverInfo" class="card mt-2" style="display: none">
+                        <div class="card-header">
+                            收件資訊
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModalCenter">請填寫收件人與購買人資料</button>
+                            <p id="receiverBoard" class="card-text"></p>
+                            <label for="">給設計師的訊息或注意事項</label>
+                            <textarea id="note" value="" placeholder="給設計師的訊息或注意事項" class="form-control" cols="2" rows="2"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--Modal-->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">收件人與購買資料</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+        <!--Modal-->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">收件人與購買資料</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recName, new { @class = "control-label col-12" })
-                    <div class="col-md-10">
-                        @Html.Editor("recName", new { @class = "form-control " })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recName, new { @class = "control-label col-12" })
+                            <div class="col-md-10">
+                                @Html.Editor("recName", new { @class = "form-control " })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recPhone, new { @class = "control-label col-12" })
+                            <div class="col-md-10">
+                                @Html.Editor("recPhone", new { @class = "form-control " })
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            @Html.Label("商品寄往", new { @class = "control-label col-12 h5" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recCity, new { @class = "control-label col-12" })
+                            <div class="col-md-10">
+                                @Html.Editor("recCity", new { @class = "form-control " })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recDist, new { @class = "control-label col-12" })
+                            <div class="col-md-10">
+                                @Html.Editor("recDist", new { @class = "form-control " })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recAddress, new { @class = "control-label col-12" })
+                            <div class="col-md-10">
+                                @Html.Editor("recAddress", new { @class = "form-control " })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="updateAddress" type="button" class="btn btn-primary" onclick="updateAddressToForm()" data-dismiss="modal">Save changes</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recPhone, new { @class = "control-label col-12" })
-                    <div class="col-md-10">
-                        @Html.Editor("recPhone", new { @class = "form-control " })
-                    </div>
-                </div>
-                <div class="form-group ">
-                    @Html.Label("商品寄往", new { @class = "control-label col-12 h5" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recCity, new { @class = "control-label col-12" })
-                    <div class="col-md-10">
-                        @Html.Editor("recCity", new { @class = "form-control " })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recDist, new { @class = "control-label col-12" })
-                    <div class="col-md-10">
-                        @Html.Editor("recDist", new { @class = "form-control " })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstOrDefault().Member.Review.FirstOrDefault().Order.recAddress, new { @class = "control-label col-12" })
-                    <div class="col-md-10">
-                        @Html.Editor("recAddress", new { @class = "form-control " })
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="updateAddress" type="button" class="btn btn-primary" onclick="updateAddressToForm()" data-dismiss="modal">Save changes</button>
             </div>
         </div>
-    </div>
-</div>
-<!--Modal-->
-@using (Html.BeginForm("receiveOrder", "Cart",FormMethod.Post,new { id="checkOutForm"}))
-{
+        <!--Modal-->
+        @using (Html.BeginForm("receiveOrder", "Cart", FormMethod.Post, new { id = "checkOutForm" }))
+        {
 
-}
+        }
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
 @section Script{
 
     <script>
