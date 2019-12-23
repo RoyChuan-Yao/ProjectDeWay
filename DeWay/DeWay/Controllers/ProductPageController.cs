@@ -17,10 +17,13 @@ namespace DeWay.Controllers
             var product = db.Product.Where(m => m.pdtID == pdtID).FirstOrDefault();
             string memberID = (string)Session["memberID"];
             string memberSellID = db.Seller.Where(m => m.mbrID == memberID).Select(m => m.mbrID).ToString();
-            
-            
-            string selID="";
-            if (memberID != null) 
+
+            var checksel = db.Seller.Where(m => m.mbrID == memberID).Count();
+            //應急處理 不然登入者不是賣家會報錯
+
+
+            string selID ="";
+            if (memberID != null && checksel != 0) 
             {
                 selID = db.Seller.Where(m => m.mbrID == memberID).FirstOrDefault().selID;
             }
