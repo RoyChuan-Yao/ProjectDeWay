@@ -98,10 +98,15 @@
     height: 20px;
     cursor:pointer;
 }
-
-.img-pad-1 {
-    padding: 10px 0px;
+.img-wh-3 {
+    position: relative;
+    bottom: -10px;
+    padding-bottom: 10px;
 }
+
+    .img-pad-1 {
+        padding: 10px 0px;
+    }
 
 
 .text-secondary-1 {
