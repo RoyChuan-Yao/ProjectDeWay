@@ -18,6 +18,8 @@ namespace DeWay.Controllers
         public ActionResult Index( string ProductName = null,string fstID = null)
         {
             ViewBag.fstID = new SelectList(db.FirstLayer, "fstLayerID", "fstLayer");
+            ViewBag.fst = db.FirstLayer.ToList();
+
 
             if (fstID != null && ProductName != null)
             {
