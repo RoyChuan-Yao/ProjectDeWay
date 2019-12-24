@@ -141,8 +141,7 @@
 
                     <div class="ProductbtnA d-flex flex-column ">
                         <button id="addToCartBtn" class="btn ProductbtnB " state="addToCart">加入購物車</button>
-
-                        <button id="" class="btn ProductbtnB " state="">收藏商品</button>
+                        <button id="add" class="btn ProductbtnB " pdtID="@Model.pdtID">收藏商品</button>
                     </div>
 
                     <div class="Productmem">
@@ -160,8 +159,8 @@
                                         <a href="@Url.Action("Index","Market",new {sellerID = Model.selID  })">@Html.DisplayFor(m => m.Seller.selCompany)</a>
                                     </div>
                                     @*星星評價*@
-                                        <div class="star mt-4 mb-4 " starCount="@ViewBag.Stars"></div>
-                                        @*<img src="~/images/img-s-4.png" style="width:70%" />*@
+                                    <div class="star mt-4 mb-4 " starCount="@ViewBag.Stars"></div>
+                                    @*<img src="~/images/img-s-4.png" style="width:70%" />*@
                                     @*加入關注*@
                                     <div class="ProductmemcardC">
                                         @**@
@@ -484,5 +483,29 @@
             })
         }
         refresh();
+    </script>
+
+    <script>
+        $('#add').on("click", function () {
+            $.ajax({
+                url: "@Url.Action("AddToWishList","WishLists")",
+                type: 'post',
+                data: {
+                    pdtID: $('#add').attr("pdtID")
+                },
+                success: function (data) {
+                    alert("已經加入至我的最愛！")
+                },
+                error: function () {
+                    alert("加入購物車之前請先登入！")
+                }
+            })
+        });
+
+
+
+
+
+
     </script>
 }

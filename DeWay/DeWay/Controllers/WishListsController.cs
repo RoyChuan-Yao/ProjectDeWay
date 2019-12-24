@@ -117,5 +117,30 @@ namespace DeWay.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult AddToWishList(string pdtID)
+        {
+            string mbrID = (string)Session["memberID"];
+            if (mbrID is null)
+            {
+                string js = "(function(){window.location.href =\"../login/login\"})()";
+                Response.StatusCode = 400;
+                return JavaScript(js);
+            }
+            string GetWishID = db.Database.SqlQuery<string>("Select dbo.GetWishID()").FirstOrDefault();
+
+            WishList wish = new WishList();
+            wish.pdtID = pdtID;
+            wish.wishID = GetWishID;
+            wish.mbrID = mbrID;
+
+            db.WishList.Add(wish);
+            db.SaveChanges();
+
+            return RedirectToAction("ProductPage", "ProductPage");
+
+        
+        }
     }
 }
