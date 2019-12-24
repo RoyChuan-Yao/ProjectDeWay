@@ -576,6 +576,11 @@
             height: 100%;
         }
 
+
+
+
+
+
 .nav-linkA {
     height: 100%;
     text-align: center;
@@ -597,6 +602,7 @@
     margin-left: 2rem;
     font-family: 'Poiret One', cursive;
     font-size: 20px;
+    
 }
 
 .memberIntroductionB {
@@ -606,6 +612,7 @@
 
 .memberIntroductionC {
     font-size: 15px;
+    
 }
 
 .memberIntroductionD {
@@ -767,6 +774,39 @@
 .memberNav-tabs {
     border-bottom: 0px solid; 
 }
+
+.nav-tabsMbr {
+    border-bottom: 0px solid #dee2e6;
+    height: 100%;
+}
+
+    .nav-tabsMbr .nav-itemMbr {
+        margin-bottom: 0px;
+        width: 100%;
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    .nav-tabsMbr .nav-linkMbr {
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+    }
+
+        .nav-tabsMbr .nav-linkMbr.active, .nav-tabsMbr .nav-itemMbr.show .nav-linkMbr {
+            color: #ffffff;
+            background-color: rgba(0,0,0,0.3);
+            border-color: #dee2e6 #dee2e6 #fff;
+            height: 100%;
+            text-align: center;
+            padding-top: 4%;
+        }
+.MbrName {
+    position: absolute;
+    top: 5%;
+    left: 15%;
+    font-family: 'Parisienne', cursive;
+    font-size: 28px;
+}
+
 
 /*訂單詳細資料*/
     .orderDA {

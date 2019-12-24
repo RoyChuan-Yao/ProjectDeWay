@@ -138,7 +138,7 @@ namespace DeWay.Controllers
 
             }
             ViewBag.error = "舊密碼不符";
-
+            ViewBag.id = Session["memberID"].ToString();
             return View();
 
 
