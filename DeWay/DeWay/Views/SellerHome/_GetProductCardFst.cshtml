@@ -18,8 +18,20 @@
                         <a href="@Url.Action("Edit", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-primary text-white" style="width:45%">編輯商品</a>
                         <a href="@Url.Action("Editsp", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-secondary text-white" style="width:45%">編輯規格</a>
                     }
+                    else
+                    {
+                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2 " alt="...">
+                        <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
+
+                    }
                 }
 
+                @if (ViewBag.id == null)
+                {
+                    <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2 " alt="...">
+                    <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
+
+                }
             </div>
         </div>
     </div>
