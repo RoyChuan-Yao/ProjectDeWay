@@ -111,7 +111,7 @@
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink3">
                                 @Html.ActionLink("商品上架", "Create", "Product_create", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("賣家中心", "OrderIndex", "SellerHome", new { }, new { @class = "dropdown-item" })
-                                @Html.ActionLink("賣場設定", "editMarket", "SellerHome", new { }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("賣場設定", "selEdit", "SellerHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("我的賣場", "Index", "Market", new { }, new { @class = "dropdown-item" })
 
                             </div>
@@ -179,7 +179,7 @@
                 </ul>
                 <ul class="nav  flex-column">
                     賣場管理
-                    <li class="nav-item"><a href="#" class="nav-link">賣場設定</a></li>
+                    <li class="nav-item"><a href="@Url.Action("selEdit","SellerHome")" class="nav-link">賣場設定</a></li>
                 </ul>
 
 
