@@ -1,20 +1,21 @@
 ﻿@model DeWay.Models.Seller
 
 @{
-    ViewBag.Title = "SellerCreate";
+    ViewBag.Title = "selEdit";
+    Layout = "~/Views/Shared/_Layout - seller.cshtml";
 }
-    <div class="container">
-        <h2>開設計館</h2>
 
-        @using (Html.BeginForm("SellerCreate","SellerCertification",FormMethod.Post,new { enctype="multipart/form-data"}))
-        {
-            @Html.AntiForgeryToken()
+<h2 class="offset-3">修改個人資料</h2>
 
-    <div class="form-horizontal">
 
-        <hr />
+@using (Html.BeginForm("selEdit", "SellerHome", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal offset-3">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+        @Html.HiddenFor(model => model.mbrID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.selCompany, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -49,49 +50,51 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GUINumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GUINumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GUINumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IDNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IDNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <p class="text-danger"><span>@ViewBag.Message</span></p>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.selInfo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.selInfo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.selInfo, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-
         <div class="form-group">
-            @Html.LabelFor(model => model.selImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.selImage, new { htmlAttributes = new { @class = "form-control", @type = "file" ,@Name = "photo"} })
-                @Html.ValidationMessageFor(model => model.selImage, "", new { @class = "text-danger" })
+
+            <input name="GUINumber" type="text" hidden="hidden" value="@Model.GUINumber" />
+            <input name="IDNumber" type="text" hidden="hidden" value="@Model.IDNumber" />
+
+
+            @Html.HiddenFor(model => model.selImage)
+            <div>
+                @if (Model.selImage == null || Model.selImage == "")
+                {
+                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" class="ml-3 img-adjust-index" /></a>
+                }
+                else
+                {
+                    <a href="~/sellerImage/@Model.selImage"><img src="~/mbrPhoto/@Model.selImage" class="ml-3 img-adjust-index" /></a>
+
+                }
             </div>
+            <div>
+                <input id="File1" type="file" name="Image" class="btn btn-defaut ml-3 " />
+            </div>
+
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="送出申請" class="btn btn-info" />
+                <input type="submit" value="更改資料" class="btn btn-success" />
             </div>
         </div>
     </div>
-        }
+}
 
-        <div>
-            @Html.ActionLink("回到會員中心", "mbrIndex", "MemberHome")
-        </div>
-    </div>
+<div class="offset-3 mb-5">
+    @Html.ActionLink("編輯密碼", "pwdEdit", new { id = Model.mbrID })　|
+
+    @Html.ActionLink("返回個人資料", "mbrIndex")
+
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

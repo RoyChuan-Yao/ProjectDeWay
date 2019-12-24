@@ -19,24 +19,25 @@
     </ul>
 
 </div>
+<div class="row d-flex justify-content-center">
 
-@foreach (var aaa in @ViewBag.fstLayer)
-{
+    @foreach (var aaa in @ViewBag.fstLayer)
+    {
 
 
-        <div class="row justify-content-start ">
-            @foreach (var item in Model)
+        foreach (var item in Model)
+        {
+            if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
             {
-                if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
-                {
-                    @Html.Action("_GetProductCardFst", "SellerHome", new { productID = item.pdtID, fstID = aaa.fstLayerID })
-                }
-
+                @Html.Action("_GetProductCardFst", "SellerHome", new { productID = item.pdtID, fstID = aaa.fstLayerID })
             }
 
+        }
 
-        </div>
-}
+
+
+    }
+</div>
 
 
 

@@ -471,6 +471,74 @@ namespace DeWay.Controllers
             var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
             return PartialView(product);
         }
+
+        public ActionResult selEdit()
+        {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+
+            string id = Session["memberID"].ToString();
+
+
+
+            var seller = db.Seller.Where(m => m.mbrID == id).FirstOrDefault();
+            return View(seller);
+
+
+        }
+        [HttpPost]
+        public ActionResult selEdit(Seller m, HttpPostedFileBase Image)
+        {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+
+
+            string fileName = "";
+
+            if (Image != null)
+            {
+                if (Image.ContentLength > 0)
+                {
+
+                    fileName = m.mbrID + ".jpg";
+                    Image.SaveAs(Server.MapPath("~/mbrPhoto/" + fileName));
+                }
+            }
+            else
+            {
+                fileName = m.selImage;
+            }
+
+
+            var seller = db.Seller.Where(a => a.mbrID == m.mbrID).FirstOrDefault();
+            seller.selCompany = m.selCompany;
+            seller.selCity = m.selCity;
+            seller.selDist = m.selDist;
+            seller.selAddress = m.selAddress;
+            seller.selInfo = m.selInfo;
+            seller.selImage = fileName;
+            
+
+
+
+
+
+            if (ModelState.IsValid)
+            {
+                db.SaveChanges();
+                return RedirectToAction("OrderIndex");
+            }
+
+            else
+                return View(m);
+
+
+
+
+
+        }
+
+
     }
 
 }

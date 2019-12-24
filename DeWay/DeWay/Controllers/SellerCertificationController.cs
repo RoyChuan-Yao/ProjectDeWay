@@ -90,7 +90,7 @@ namespace DeWay.Controllers
                     }
                 }
 
-            if (photo == null)
+            if (f == null)
             {
                 seller.selImage = "sel0000000.jpg";
             }
