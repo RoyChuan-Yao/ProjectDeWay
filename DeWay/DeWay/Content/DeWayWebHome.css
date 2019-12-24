@@ -223,11 +223,11 @@
         border: 0px solid transparent;
         color: #000000;
         background-color: #ffffff;
-        
+        border-bottom: 3px solid #6b92a4;
     }
-.nav-tabsHome .nav-linkHome:hover {
-    color: #ff9797;
-}
+    .nav-tabsHome .nav-linkHome:hover {
+        background-color: #c4c4c4;
+    }
 .btn.focus, .btn:focus {
     outline: 0;
     box-shadow: 0 0 0 0rem rgba(0,0,0,0.6);
