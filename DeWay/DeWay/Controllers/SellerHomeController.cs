@@ -467,8 +467,23 @@ namespace DeWay.Controllers
 
         }
 
-        public PartialViewResult _GetProductCardFst(string productID, string fstID)
+        public PartialViewResult _GetProductCardFst(string productID, string fstID=null)
         {
+            if (Session["memberID"] != null)
+            {
+                string id = Session["memberID"].ToString();
+                string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+
+                ViewBag.id = getselID;
+            }
+
+            if(fstID==null)
+            {
+                var product1 = db.Product.Where(m => m.pdtID == productID).FirstOrDefault();
+                return PartialView(product1);
+
+            }
+
             var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
             return PartialView(product);
         }
