@@ -4,7 +4,7 @@
     ViewBag.Title = "mbrIndex";
 }
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Parisienne|Poiret+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Parisienne|Poiret+One&display=swap" rel="stylesheet">
 
 
 
@@ -14,7 +14,17 @@
         <div class="row d-flex justify-content-between membercardA">
             <div class="card membercard membercardC col-12 col-12A col-md-6">
 
-                <img id="srcsrcsrc" src="/mbrPhoto/0.jpg"" style="width:100%;height:100%" />
+                @if (@Model.FirstOrDefault().mbrImage == null || @Model.FirstOrDefault().mbrImage == "")
+                {
+                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" style="width:100%;height:100%" /></a>
+                }
+                else
+                {
+                    <a href="/mbrPhoto/@Model.FirstOrDefault().mbrImage"><img id="srcsrcsrc" src="/mbrPhoto/@Model.FirstOrDefault().mbrImage" style="width:100%;height:100%" /></a>
+
+                }
+
+
 
 
             </div>
@@ -26,34 +36,64 @@
                                 <a href="#" class="text-primary ">個人名片</a>
                                 <br />
                             </div>
+                            @if (ViewBag.id == null)
+                            {
+                                <div class="memberIntroductionB">
+                                    <div class="memberIntroductionC">
+                                        Name:<span class="memberIntroductionD">@Model.FirstOrDefault().mbrName</span>
+                                        <br />
+                                        <br />
+                                        Nickname:<span class="memberIntroductionD">@Model.FirstOrDefault().nickName</span>
+                                        <br />
+                                        <br />
+                                        Birthday:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
 
-                            <div class="memberIntroductionB">
-                                <div class="memberIntroductionC">
-                                    Name:<span class="memberIntroductionD"></span>
-                                    <br />
-                                    <br />
-                                    live:<span class="memberIntroductionD"></span>
+
+                                    </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
 
+                                <div class="memberIntroductionB">
+                                    <div class="memberIntroductionC">
+                                        Name:<span class="memberIntroductionD">@Model.FirstOrDefault().mbrName</span>
+                                        <br />
+                                        <br />
+                                        Nickname:<span class="memberIntroductionD">@Model.FirstOrDefault().nickName</span>
+                                        <br />
+                                        <br />
+                                        Birthday:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
+
+
+                                        <br />
+                                        <br />
+                                        Phone:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().mbrPhone)</span>
+                                        <br />
+                                        <br />
+                                        E - mail:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().mbrMail)</span>
+
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
-                    
-                   
+
+
                 </div>
                 <div class="memberNav">
                     <ul class="nav nav-tabs nav-tabsMbr" id="">
                         <li class="nav-item nav-itemMbr">
                             <a class="nav-link nav-linkMbr active  pIntroduction1" id="Introduction1" href="#Introduction1" data-toggle="tab">關於我</a>
                         </li>
-                       
+
                     </ul>
 
                 </div>
                 <div class="MbrName mt-3 ">
-                    
+
                     Name
-                    
+
                 </div>
 
 
@@ -80,62 +120,62 @@
 
 @*<div class="container">
 
-    @foreach (var item in Model)
-    {
-        <div class="row"><h6>註冊日期 @Html.DisplayFor(modelItem => item.signupDate)</h6></div>
-        <hr />
-        <div class="row">
-            <div class="col-3">
+        @foreach (var item in Model)
+        {
+            <div class="row"><h6>註冊日期 @Html.DisplayFor(modelItem => item.signupDate)</h6></div>
+            <hr />
+            <div class="row">
+                <div class="col-3">
 
 
-                @if (item.mbrImage == null || item.mbrImage == "")
-                {
-                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" /></a>
-                }
-                else
-                {
-                    <a href="/mbrPhoto/@item.mbrImage"><img src="/mbrPhoto/@item.mbrImage" /></a>
+                    @if (item.mbrImage == null || item.mbrImage == "")
+                    {
+                        <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" /></a>
+                    }
+                    else
+                    {
+                        <a href="/mbrPhoto/@item.mbrImage"><img src="/mbrPhoto/@item.mbrImage" /></a>
 
-                }
+                    }
 
 
+                </div>
+                <div class="col-5">
+                    <h3>
+                        @Html.DisplayFor(modelItem => item.mbrName)
+                        @Html.DisplayFor(modelItem => item.nickName)
+                    </h3>
+                    <div>
+
+                        <h4>電話:　@Html.DisplayFor(modelItem => item.mbrPhone)</h4>
+                    </div>
+
+                    <div>
+
+                        <h4>信箱:　@Html.DisplayFor(modelItem => item.mbrMail)</h4>
+                    </div>
+
+
+                </div>
+                <div class="col-3">
+                    <div>
+
+                        <h4>生日:　@Html.DisplayFor(modelItem => item.birthDate)</h4>
+                    </div>
+                    <div>
+
+                        <h4>點數:　@Html.DisplayFor(modelItem => item.Points)</h4>
+                    </div>
+
+                </div>
+                <div class="col-1"> @Html.ActionLink("編輯", "mbrEdit", new { id = item.mbrID }, new { @class = "btn btn-primary" })</div>
+                <div class="col-1"> @Html.ActionLink("訂單", "odrIndex", new { odrStatus = "處理中" }, new { @class = "btn btn-primary" })</div>
             </div>
-            <div class="col-5">
-                <h3>
-                    @Html.DisplayFor(modelItem => item.mbrName)
-                    @Html.DisplayFor(modelItem => item.nickName)
-                </h3>
-                <div>
-
-                    <h4>電話:　@Html.DisplayFor(modelItem => item.mbrPhone)</h4>
-                </div>
-
-                <div>
-
-                    <h4>信箱:　@Html.DisplayFor(modelItem => item.mbrMail)</h4>
-                </div>
 
 
-            </div>
-            <div class="col-3">
-                <div>
+        }
 
-                    <h4>生日:　@Html.DisplayFor(modelItem => item.birthDate)</h4>
-                </div>
-                <div>
-
-                    <h4>點數:　@Html.DisplayFor(modelItem => item.Points)</h4>
-                </div>
-
-            </div>
-            <div class="col-1"> @Html.ActionLink("編輯", "mbrEdit", new { id = item.mbrID }, new { @class = "btn btn-primary" })</div>
-            <div class="col-1"> @Html.ActionLink("訂單", "odrIndex", new { odrStatus = "處理中" }, new { @class = "btn btn-primary" })</div>
-        </div>
-
-
-    }
-
-</div>*@
+    </div>*@
 
 
 
