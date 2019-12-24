@@ -860,12 +860,15 @@
     margin:100px 0px 100px 0px; 
 }
 .ProductPagecarousel {
-    width:35vw;
-    
+    width: 600px;
+    height: 600px;
+    margin-top: 110px;
 }
 .pPcInner {
-    /*height: 90vh;*/
-    
+    height: 600px;
+}
+.pPcInnerB {
+    height:100%;
 }
 .pPcd-block {
     align-items: center;
@@ -897,7 +900,7 @@
     font-size: 15px;
 }
 .form-controlSpec {
-    width: 15vw;
+    width: 100%;
 }
 
 .ProductbtnA {
@@ -907,7 +910,7 @@
 .ProductbtnB {
     margin-top: 10px;
     margin-bottom: 5px;
-    width: 15vw;
+    width: 100%;
     color: #ff9797;
     border: 1px solid #ff9797;
 }
@@ -932,7 +935,7 @@
 }
 .ProductmemcardD {
     font-size: 8px;
-    width: 4vw;
+    width: 88px;
     color: #4c90fb;
     border: 1px solid #4c90fb;
 }
