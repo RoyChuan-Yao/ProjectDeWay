@@ -78,7 +78,7 @@
                         @Html.DisplayFor(m => m.pdtName)
                     </div>
                     @*商品價格*@
-                    <div class="ProductPrice">
+                    <div class="ProductPrice" id="price">
                         @{
                             var price = Model.Specification.OrderByDescending(m => m.Price).Select(p => p.Price).ToArray();
                             var max = Convert.ToInt32(price[0]);
@@ -104,7 +104,7 @@
                             <select class="form-control form-controlSpec form-control-sm specSelect" id="ProductSpec">
                                 @foreach (var specItem in Model.Specification)
                                 {
-                                    <option class="spec" value="@specItem.spcID">
+                                    <option class="spec" value="@specItem.spcID" specPrice="@specItem.Price">
                                         @specItem.Style
                                         <text>  </text>
                                         @specItem.Size
@@ -430,7 +430,7 @@
                 }
             );
             //更新產品價格標籤
-            $(`#price`).text("NT$ " + $(this).find(`.priceTag`).text());
+            $(`#price`).text("NT$ " + parseInt($('option:selected').attr("specPrice")));
             //購物車按鈕-->"加入購物車"
             $(`#addToCartBtn`).text(`加入購物車`).attr(`state`, `addToCart`);
         });
@@ -501,11 +501,5 @@
                 }
             })
         });
-
-
-
-
-
-
     </script>
 }
