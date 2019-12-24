@@ -11,7 +11,7 @@
 
 
 
-    <h4>銷售訂單</h4>
+<h4>銷售訂單</h4>
 <div class="col-12">
     <div>
         <ul class="nav nav-tabs nav-fill mb-1">
@@ -39,7 +39,9 @@
             </div>
         </div>
         @if (Model.Count() == 0)
-        {<div>找不到訂單</div>}
+        {
+            <h3 class="m-center">找不到訂單</h3>
+        }
         else
         {
             foreach (var item in Model)
@@ -100,6 +102,7 @@
         }
 
     </div>
+
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
