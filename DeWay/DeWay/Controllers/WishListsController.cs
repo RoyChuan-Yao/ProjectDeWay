@@ -29,7 +29,12 @@ namespace DeWay.Controllers
             return View(wishes);
 
         }
-
+        [ChildActionOnly]
+        public ActionResult _GetWishCard(string pdtID)
+        {
+            var pdt = db.Product.Find(pdtID);
+            return PartialView(pdt);
+        }
         // GET: WishLists/Details/5
         public ActionResult Details(string id)
         {
