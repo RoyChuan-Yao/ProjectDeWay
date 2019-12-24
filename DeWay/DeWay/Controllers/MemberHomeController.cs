@@ -17,16 +17,62 @@ namespace DeWay.Controllers
         shopDBEntities db = new shopDBEntities();
         // GET: MemberHome 
 
-        public ActionResult mbrIndex()
+        public ActionResult mbrIndex(string mbrID = null)
         {
-            if (Session["memberID"] == null)
+            //mbrID =null 預設找自己的
+            if (Session["memberID"] == null && mbrID == null)
                 return RedirectToAction("Login", "Login");
 
-            string id = Session["memberID"].ToString();
+            string memberID;
+            memberID = mbrID;
 
-            var member = db.Member.Where(m => m.mbrID == id).ToList();
 
+            if (memberID == null)
+            {
+                memberID = Session["memberID"].ToString();
+
+            }
+            //else if (memberID == Session["memberID"].ToString())
+            //{
+            //    memberID = Session["memberID"].ToString();
+            //}
+
+            if (Session["memberID"].ToString() != null && mbrID != null)
+            {
+                ViewBag.id = Session["memberID"].ToString();
+            }
+
+
+
+            //ViewBag.id = Session["memberID"].ToString();
+            //ViewBag.memberID = memberID;
+            var member = db.Member.Where(m => m.mbrID == memberID).ToList();
             return View(member);
+
+            ////沒登入又沒給參數丟到登入頁面
+
+
+            //if (Session["memberID"] == null && mbrID != null)
+            //{
+            //    ViewBag.id = Session["memberID"].ToString();
+            //    var member = db.Member.Where(m => m.mbrID == mbrID).ToList();
+            //    return View(member);
+            //}
+            //if (Session["memberID"] != null && mbrID == null)
+            //{
+            //    string id = Session["memberID"].ToString();
+            //    var member = db.Member.Where(m => m.mbrID == id).ToList();
+            //    return View(member);
+            //}
+
+            //var member = db.Member.Where(m => m.mbrID == mbrID).ToList();
+
+
+
+
+
+
+
 
 
         }
@@ -193,7 +239,7 @@ namespace DeWay.Controllers
 
             var result = db.Order
                 .Where(m => orderID.Contains(m.odrID))
-                .Where(m => orderStateGroup.Contains(m.OrderStatus.odrStatusID)).ToList().OrderByDescending(m=>m.odrDate);
+                .Where(m => orderStateGroup.Contains(m.OrderStatus.odrStatusID)).ToList().OrderByDescending(m => m.odrDate);
 
             return View(result);
 
@@ -263,8 +309,8 @@ namespace DeWay.Controllers
             if (code == 0)
             {
 
-                review = db.Order.Where(m => !rvwodrid.Contains(m.odrID)).Where(m=> odrid.Contains(m.odrID)).ToList();
-                
+                review = db.Order.Where(m => !rvwodrid.Contains(m.odrID)).Where(m => odrid.Contains(m.odrID)).ToList();
+
 
             }
             // 已給評價
@@ -272,7 +318,7 @@ namespace DeWay.Controllers
             {
 
                 review = db.Order.Where(m => rvwodrid.Contains(m.odrID)).ToList();
-                
+
 
             }
             // For odrDetail
@@ -280,7 +326,7 @@ namespace DeWay.Controllers
             {
                 ViewBag.code = code;
                 review = db.Order.Where(m => m.odrID == odr).ToList();
-            
+
             }
             else
                 return ViewBag.message;
@@ -302,11 +348,11 @@ namespace DeWay.Controllers
         }
 
 
-        
+
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult rvwCreate(string odrID, string rvwContent, short rvwStar, int code = 0)
         {
-            
+
 
             var pdtID = (from m in db.Cart_OrderDetail
                          where m.odrID == odrID
@@ -336,7 +382,7 @@ namespace DeWay.Controllers
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
-            ViewBag.refund = db.Refund.Where(o=>o.odrID==odrID);
+            ViewBag.refund = db.Refund.Where(o => o.odrID == odrID);
             var odrdetail = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
 
             return View(odrdetail);
@@ -363,7 +409,7 @@ namespace DeWay.Controllers
             var rfdcreate = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
             return View(rfdcreate);
         }
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult rfdCreate(Refund Refund, RefundAccount RefundAccount)
         {
             if (ModelState.IsValid != true)
@@ -371,7 +417,7 @@ namespace DeWay.Controllers
                 return View("rfdCreate");
             }
             using (var transaction = db.Database.BeginTransaction())
-            { 
+            {
                 Refund refund = new Refund();
                 string GetRefundID = db.Database.SqlQuery<string>("Select dbo.GetRefundID()").FirstOrDefault();
                 refund.rfdID = GetRefundID;
@@ -381,18 +427,18 @@ namespace DeWay.Controllers
                 refund.rfdShipping = Refund.rfdShipping;
                 refund.rfdShip = Refund.rfdShip;
                 refund.rfdDate = DateTime.Now;
-                refund.rfdStatusID="rds0000001";
+                refund.rfdStatusID = "rds0000001";
                 db.Refund.Add(refund);
-                    try
-                    {
-                        db.SaveChanges();
-                       
-                    }
-                    catch (DbUpdateException e)
-                    {
-                        transaction.Rollback();
-                        return JavaScript($"alert({e.Message})");
-                    }
+                try
+                {
+                    db.SaveChanges();
+
+                }
+                catch (DbUpdateException e)
+                {
+                    transaction.Rollback();
+                    return JavaScript($"alert({e.Message})");
+                }
 
                 RefundAccount refundAccount = new RefundAccount();
 
@@ -401,20 +447,20 @@ namespace DeWay.Controllers
                 refundAccount.bankName = RefundAccount.bankName;
                 refundAccount.bankAccount = RefundAccount.bankAccount;
                 db.RefundAccount.Add(refundAccount);
-                    try
-                    {
-                        db.SaveChanges();
-                        transaction.Commit();
-                        return RedirectToAction("rfdIndex");
-                    }
-                    catch (DbUpdateException e)
-                    {
-                        transaction.Rollback();
-                        return JavaScript($"alert({e.Message})");
-                    }
-         
+                try
+                {
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return RedirectToAction("rfdIndex");
+                }
+                catch (DbUpdateException e)
+                {
+                    transaction.Rollback();
+                    return JavaScript($"alert({e.Message})");
+                }
 
-            
+
+
             }
         }
         public ActionResult rfdDetail(string rfdID)
@@ -453,11 +499,11 @@ namespace DeWay.Controllers
             }
 
 
-           
+
             odr.odrStatusID = odrstatus;
             db.SaveChanges();
 
-            
+
             return RedirectToAction("odrIndex", new { odrStatus = odrStatus });
         }
     }
