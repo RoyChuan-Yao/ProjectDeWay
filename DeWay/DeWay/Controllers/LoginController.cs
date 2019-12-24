@@ -22,6 +22,20 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult Login(string id, string pwd)
         {
+            var checkmbr = db.Member.Where(m => m.MemberAccount.mbrAccount == id).Count();
+
+            if (checkmbr != 0)
+            {
+                var getmbrBlock = db.Member.Where(m => m.MemberAccount.mbrAccount == id).FirstOrDefault().mbrBlock;
+
+                if (getmbrBlock == true)
+                {
+                    ViewBag.LoginErr = "您已被停權!!!";
+
+                    return View();
+
+                }
+            }
             string sql = "select * from MemberAccount where mbrAccount = @mbrAccount and mbrPwd=@mbrPwd";
             SqlCommand cmd = new SqlCommand(sql, Conn);
             cmd.Parameters.AddWithValue("@mbrAccount", id);

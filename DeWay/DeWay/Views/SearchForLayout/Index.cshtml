@@ -4,279 +4,179 @@
     ViewBag.Title = "Index";
 }
 
-    
-        @using (Html.BeginForm())
-        {
+
+@using (Html.BeginForm())
+{
 
 
 
 
-        }
-        @*<table class="table">
+}
+@*<table class="table">
 
-            <tr>
-                <th>
-                    商品名稱
-                </th>
+    <tr>
+        <th>
+            商品名稱
+        </th>
 
-                <th>
-                    商品圖片
-                </th>
+        <th>
+            商品圖片
+        </th>
 
-                <th>
-                    價格
-                </th>
-                <th></th>
-            </tr>
+        <th>
+            價格
+        </th>
+        <th></th>
+    </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
-                    </td>
-                    <td>
-                        @if (item.ProductImage.Count > 0)
-                        {
-                            <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" width="60" height="60" alt="商品圖片" />
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
+            </td>
+            <td>
+                @if (item.ProductImage.Count > 0)
+                {
+                    <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" width="60" height="60" alt="商品圖片" />
 
-                        }
-                        else
-                        {
-                            <span>圖片遺失</span>
-                        }
-                    </td>
-                    <td>
-                        @(Convert.ToInt32(item.Specification.OrderBy(m => m.Price).FirstOrDefault().Price).ToString())
-                        ~
+                }
+                else
+                {
+                    <span>圖片遺失</span>
+                }
+            </td>
+            <td>
+                @(Convert.ToInt32(item.Specification.OrderBy(m => m.Price).FirstOrDefault().Price).ToString())
+                ~
 
-                        @(Convert.ToInt32(item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price).ToString())
-                        
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelitem => item.ProductCategory.FirstLayer.fstLayer)
-                       
+                @(Convert.ToInt32(item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price).ToString())
 
-                        @Html.DisplayFor(modelitem => item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price)
-                        @Html.DisplayFor(modelItem => item.ProductCategory.fstLayerID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelitem => item)
-                        @Html.DisplayFor(modelItem => item.Seller.selCompany)
-
-                    </td>
-                </tr>
-            }
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.ProductCategory.FirstLayer.fstLayer)
 
 
-        </table>*@
+                @Html.DisplayFor(modelitem => item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price)
+                @Html.DisplayFor(modelItem => item.ProductCategory.fstLayerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item)
+                @Html.DisplayFor(modelItem => item.Seller.selCompany)
+
+            </td>
+        </tr>
+    }
 
 
-    <div class="container">
-        <div id="pI4" class="pI4 ">
-            <div class="productspI4">
+</table>*@
 
-                <div class="row">
-                    <div class="memberAside ">
-                        <div class="mb-5">
-                            <div class="text-dark flex-column">
-                                商品分類
-                            </div>
-                            <ul class="nav nav-tabs memberNav-tabs flex-column">
-                                <li class="nav-item memberNav-item flex-column">
-                                    <a class="nav-link memberNav-link active text-secondary" data-toggle="tab" href="#all">
-                                        全部
-                                    </a>
-                                </li>
-                                <li class="nav-item memberNav-item flex-column">
-                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classA">
-                                        大分類A
-                                    </a>
-                                </li>
-                                <li class="nav-item memberNav-item flex-column">
-                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classB">
-                                        大分類B
-                                    </a>
-                                </li>
 
-                            </ul>
-                        </div>
-                        <div class="mb-5">
-                            <div class="text-dark flex-column">
-                                商品標籤
-                            </div>
-                            <ul class="nav nav-tabs memberNav-tabs flex-column">
-                                <li class="nav-item memberNav-item flex-column">
-                                    <a class="nav-link memberNav-link  text-secondary" data-toggle="tab" href="#tagAll">
-                                        全部
-                                    </a>
-                                </li>
-                                <li class="nav-item memberNav-item flex-column">
-                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#tagA">
-                                        標籤-1
-                                    </a>
-                                </li>
-                                <li class="nav-item memberNav-item flex-column">
-                                    <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#tagB">
-                                        標籤-2
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
+<div id="pI4" class="pI4 ">
+    <div class="productspI4">
+        <div class="row">
+            <div class="memberAside ">
+                <div class="mb-5">
+                    <div class="text-dark flex-column">
+                        商品分類
                     </div>
-                    <div class="memberArticle">
-                        <div class="products tab-content">
+                    <ul class="nav nav-tabs memberNav-tabs flex-column">
+                        <li class="nav-item memberNav-item flex-column">
+                            <a class="nav-link memberNav-link active text-secondary" data-toggle="tab" href="#all">
+                                全部
+                            </a>
+                        </li>
 
-                            @*全部分類-all*@
-                            <div class="tab-pane memberTab-pane active" id="all">
-                                <div class="row justify-content-start ">
-                                    @foreach (var item in Model)
+                        @foreach (var item in ViewBag.fst)
+                        {
+                            <li class="nav-item memberNav-item flex-column">
+                                <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#@item.fstLayerID">
+                                    @item.fstLayer
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+
+            </div>
+            <div class="memberArticle">
+                <div class="products tab-content">
+
+                    @*全部分類-all*@
+                    <div class="tab-pane memberTab-pane active" id="all">
+                        <div class="row justify-content-start ">
+                            @foreach (var item in Model)
+                            {
+                                @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
+
+                            }
+
+
+
+
+
+                        </div>
+                    </div>
+                    @*大分類A-classA*@
+
+                    @foreach (var aaa in ViewBag.fst)
+                    {
+
+
+                        <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
+                            <div class="row justify-content-start cateSlot">
+                                @foreach (var item in Model)
+                                {
+
+                                    if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
                                     {
-                                        <div class="card col-4 col-md-2 productsCard membercardB">
-                                            <div>
-                                                <div class="card-body productsCardbody">
-                                                    <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
-                                                    <p class="text-secondary productsCardText">@Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })<span></span></p>
-                                                    <p class="text-secondary productsCardText">NT: <span>@item.Specification.FirstOrDefault().Price</span></p>
-                                                    <div class="d-flex justify-content-between">
-                                                        <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                        <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
                                     }
 
+                                }
 
-
-                                </div>
                             </div>
-                            @*大分類A-classA*@
-                            <div class="tab-pane memberTab-pane fade" id="classA">
-                                <div class="row justify-content-start ">
-
-
-
-                                    <div class="card col-4 col-md-2 productsCard membercardB">
-                                        <div>
-                                            <div class="card-body productsCardbody">
-
-                                                <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
-                                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                                <p class="text-secondary productsCardText">NT: <span>590</span></p>
-                                                <div class="d-flex justify-content-between">
-                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            @*大分類B-classB*@
-                            <div class="tab-pane memberTab-pane fade " id="classB">
-                                <div class="row justify-content-start ">
-                                    <div class="card col-4 col-md-2 productsCard membercardB">
-                                        <div>
-                                            <div class="card-body productsCardbody">
-
-                                                <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
-                                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                                <p class="text-secondary productsCardText">NT: <span>590</span></p>
-                                                <div class="d-flex justify-content-between">
-                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            @*全部標籤-tagAll*@
-                            <div class="tab-pane memberTab-pane fade " id="tagAll">
-                                <div class="row justify-content-start ">
-                                    <div class="card col-4 col-md-2 productsCard membercardB">
-                                        <div>
-                                            <div class="card-body productsCardbody">
-
-                                                <img src="../../images/img-p-33.png" class=" rounded card-img-top productsImg " alt="...">
-                                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                                <p class="text-secondary productsCardText">NT: <span>590</span></p>
-                                                <div class="d-flex justify-content-between">
-                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            @*標籤-1-tagA*@
-                            <div class="tab-pane memberTab-pane fade " id="tagA">
-                                <div class="row justify-content-start ">
-                                    <div class="card col-4 col-md-2 productsCard membercardB">
-                                        <div>
-                                            <div class="card-body productsCardbody">
-
-                                                <img src="../../images/img-p-45.png" class=" rounded card-img-top productsImg " alt="...">
-                                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                                <p class="text-secondary productsCardText">NT: <span>590</span></p>
-                                                <div class="d-flex justify-content-between">
-                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            @*標籤-2-tagB*@
-                            <div class="tab-pane memberTab-pane fade " id="tagB">
-                                <div class="row justify-content-start ">
-                                    <div class="card col-4 col-md-2 productsCard membercardB">
-                                        <div>
-                                            <div class="card-body productsCardbody">
-
-                                                <img src="../../images/img-p-42.png" class=" rounded card-img-top productsImg " alt="...">
-                                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                                                <p class="text-secondary productsCardText">NT: <span>590</span></p>
-                                                <div class="d-flex justify-content-between">
-                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-
                         </div>
+                    }
 
 
-
-                    </div>
                 </div>
             </div>
 
         </div>
 
-
-
-
-
-
     </div>
+
+</div>
+
+
+@section Script{
+    <script>
+
+        $(".cateSlot").each((index, element) => {
+            if ($(element).children().length == 0) {
+                $(element).append(`<div class='CenterIt '>
+                    <h2>收尋結果無相關商品</h2 >
+                    </div>
+                    `)
+            }
+        });
+
+    </script>
+}
+@section CSS{
+
+    <style>
+        .CenterIt {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+                width:75%;
+                height:318.72px;
+        }
+    </style>
+}
+
+
 

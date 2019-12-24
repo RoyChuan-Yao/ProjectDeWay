@@ -33,7 +33,9 @@
                         <p>
                             請輸入Tag:
                         </p>
-                        Tag1:<input type="text" name="tag[0].tagName" value="" />
+                        Tag1:
+                        @Html.EditorFor(model => model.tag[0].tagName, new { htmlAttributes = new { @class = "" } })
+                        @Html.ValidationMessageFor(model => model.tag[0].tagName, "", new { @class = "text-danger" })
                     </div>
                     <br />
                     <div class="form-group">
@@ -95,20 +97,20 @@
                         <fieldset>
                             <legend>商品規格1</legend>
                             <span>項目</span>
-                            @Html.EditorFor(model => model.specifications[0].Style, new { htmlAttributes = new { @class = "form-control " } })
-                            @Html.ValidationMessageFor(model => model.specifications[0].Style, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.specification[0].Style, new { htmlAttributes = new { @class = "form-control " } })
+                            @Html.ValidationMessageFor(model => model.specification[0].Style, "", new { @class = "text-danger" })
                             <br />
                             <span>規格</span>
-                            @Html.EditorFor(model => model.specifications[0].Size, new { htmlAttributes = new { @class = "form-control " } })
-                            @Html.ValidationMessageFor(model => model.specifications[0].Size, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.specification[0].Size, new { htmlAttributes = new { @class = "form-control " } })
+                            @Html.ValidationMessageFor(model => model.specification[0].Size, "", new { @class = "text-danger" })
                             <br />
                             <span>數量</span>
-                            @Html.EditorFor(model => model.specifications[0].Stock, new { htmlAttributes = new { @class = "form-control ",@Value = "1" } })
-                            @Html.ValidationMessageFor(model => model.specifications[0].Stock, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.specification[0].Stock, new { htmlAttributes = new { @class = "form-control ",@Value = "1" } })
+                            @Html.ValidationMessageFor(model => model.specification[0].Stock, "", new { @class = "text-danger" })
                             <br />
                             <span>單價</span>
-                            @Html.EditorFor(model => model.specifications[0].Price, new { htmlAttributes = new { @class = "form-control " } })
-                            @Html.ValidationMessageFor(model => model.specifications[0].Price, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.specification[0].Price, new { htmlAttributes = new { @class = "form-control " } })
+                            @Html.ValidationMessageFor(model => model.specification[0].Price, "", new { @class = "text-danger" })
                         </fieldset>
                     </div>
 
@@ -147,7 +149,9 @@
                             }
                         </select>
                         <span>設定價格</span>
-                        <input type="text" name="shipperDetail[0].defaultShipping" value="" />
+                        @Html.EditorFor(model => model.shipperDetail[0].defaultShipping, new { htmlAttributes = new { @class = "" } })
+                        @Html.ValidationMessageFor(model => model.shipperDetail[0].defaultShipping, "", new { @class = "text-danger" })
+
                     </div>
                     <br />
 
@@ -202,16 +206,16 @@
                 <hr /> <fieldset>
                 <legend>商品規格${i + 1}</legend>
                 <span>項目</span>
-                <input type="text" name="specification[${i}].Style" value="" />
+                <input type="text" name="specification[${i}].Style" value="" class="form-control"/>
                 <br />
                 <span>規格</span>
-                <input type="text" name="specification[${i}].Size" value="" />
+                <input type="text" name="specification[${i}].Size" value="" class="form-control"/>
                 <br />
                 <span>數量</span>
-                <input type="text" name="specification[${i}].Stock" value="" />
+                <input type="text" name="specification[${i}].Stock" value="1" class="form-control"/>
                 <br />
                 <span>單價</span>
-                <input type="text" name="specification[${i}].Price" value="" />
+                <input type="text" name="specification[${i}].Price" value="" class="form-control"/>
             </fieldset>`);
 
         }
