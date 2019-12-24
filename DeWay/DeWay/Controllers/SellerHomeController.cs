@@ -519,8 +519,8 @@ namespace DeWay.Controllers
                 if (Image.ContentLength > 0)
                 {
 
-                    fileName = m.mbrID + ".jpg";
-                    Image.SaveAs(Server.MapPath("~/mbrPhoto/" + fileName));
+                    fileName = m.selID + ".jpg";
+                    Image.SaveAs(Server.MapPath("~/sellerImage/" + fileName));
                 }
             }
             else
