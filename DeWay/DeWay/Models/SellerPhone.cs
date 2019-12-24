@@ -11,7 +11,7 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    
+   
     public partial class SellerPhone
     {
         public string selPhone { get; set; }

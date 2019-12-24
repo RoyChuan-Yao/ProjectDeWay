@@ -23,7 +23,7 @@
                         請選擇子分類：<select id="snd" name="sndID"><option>請選擇--</option></select>
                     </p>
                     <p>
-                        請選擇不知道怎麼命名好分類：<select id="trd" name="trdID"><option>請選擇--</option></select>
+                        請選擇產品類別：<select id="trd" name="trdID"><option>請選擇--</option></select>
                     </p>
 
 
@@ -70,7 +70,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.products.pdtDescribe, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.products.pdtDescribe, new { htmlAttributes = new { @class = "form-control " } })
+                            @Html.TextAreaFor(model => model.products.pdtDescribe, new { htmlAttributes = new { @class = "form-control " } })
                             @Html.ValidationMessageFor(model => model.products.pdtDescribe, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                             <input id="btn2" type="button" value="上一頁" class="btn btn-primary" />
                         </spav>
                         <spav class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-success" />
+                            <input type="submit" value="上架" class="btn btn-success" />
                         </spav>
 
 
@@ -187,7 +187,7 @@
 
 
             <div>
-                @Html.ActionLink("Back to List", "OrderIndex", "SellerHome")
+                @Html.ActionLink("返回賣家中心", "OrderIndex", "SellerHome")
             </div>
         }
     </div>

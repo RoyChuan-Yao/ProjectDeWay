@@ -4,7 +4,7 @@
     ViewBag.Title = "SellerCreate";
 }
     <div class="container">
-        <h2>成為賣家</h2>
+        <h2>開設計館</h2>
 
         @using (Html.BeginForm("SellerCreate","SellerCertification",FormMethod.Post,new { enctype="multipart/form-data"}))
         {
@@ -68,7 +68,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.selInfo, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.selInfo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextAreaFor(model => model.selInfo, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.selInfo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -85,7 +85,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="送出申請" class="btn btn-info" />
                     </div>
                 </div>
             </div>

@@ -11,7 +11,10 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using static DeWay.Models.Metadata;
+
+    [MetadataType(typeof(MetadataCart_OrderDetail))]
     public partial class Cart_OrderDetail
     {
         public string cartID { get; set; }
