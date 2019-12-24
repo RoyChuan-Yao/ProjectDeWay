@@ -1,0 +1,22 @@
+﻿@model DeWay.Models.Product
+
+@{
+    int price = Convert.ToInt32(@Model.Specification.FirstOrDefault().Price);
+}
+
+<div class="card col-4 col-md-2 productsCard membercardB">
+    <div>
+        <div class="card-body productsCardbody">
+
+            <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
+            <p class="text-secondary productsCardText"><span>@Model.pdtName</span></p>
+            <p class="text-secondary productsCardText">NT: <span>price</span></p>
+            <div class="d-flex justify-content-between">
+                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+            </div>
+
+            <button id="" class="btn WishbtnA " state="">刪除</button>
+        </div>
+    </div>
+</div>
