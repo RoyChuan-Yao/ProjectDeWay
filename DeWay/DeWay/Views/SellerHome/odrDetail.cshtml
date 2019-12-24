@@ -78,8 +78,12 @@ else if (Model.FirstOrDefault().Order.Review.Count() == 0 && @ViewBag.status == 
                 @foreach (var item in Model)
                 {
                     decimal? total = 0;
-                    var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
+                    var subtotal = Math.Round((decimal)((int)item.pdtPrice * item.Discount * item.Quantity));
+
                     total += subtotal;
+
+
+
                     var newtotal = total.ToString().TrimEnd('0');
                     if (newtotal.EndsWith("."))
                     {
@@ -91,29 +95,31 @@ else if (Model.FirstOrDefault().Order.Review.Count() == 0 && @ViewBag.status == 
                     string newpdtPrice = pdtPrice.ToString().TrimEnd('0');
                     newpdtPrice = newpdtPrice.TrimEnd('.');
 
-                <div class="row col-12">
-                    <span class="col-2">@a</span>
-                    <span class="col-3">@item.Specification.Product.pdtName</span>
-                    <span class="col-3">@item.Specification.Style 
-                    @if (item.Specification.Size != null)
-                    {
-                        <span>&nbsp|&nbsp</span>
-                    }
-                     
-                    @item.Specification.Size</span>
-                    <span class="col-1">@newpdtPrice</span>
-                    <span class="col-1">@item.Quantity</span>
-                    @if (item.Discount != 1)
-                    {
-                        var dis = item.Discount * 10;
-                        <span class="col-1">@dis 折</span>
-                    }
-                    else
-                    {
-                        <span class="col-1">無折扣</span>
-                    }
-                    <span class="col-1">@subtotal NT</span>
-                </div>
+                    <div class="row col-12">
+                        <span class="col-2">@a</span>
+                        <span class="col-3">@item.Specification.Product.pdtName</span>
+                        <span class="col-3">
+                            @item.Specification.Style
+                            @if (item.Specification.Size != null)
+                            {
+                                <span>&nbsp|&nbsp</span>
+                            }
+
+                            @item.Specification.Size
+                        </span>
+                        <span class="col-1">@newtotal</span>
+                        <span class="col-1">@item.Quantity</span>
+                        @if (item.Discount != 1)
+                        {
+                            var dis = item.Discount * 10;
+                            <span class="col-1">@dis 折</span>
+                        }
+                        else
+                        {
+                            <span class="col-1">無折扣</span>
+                        }
+                        <span class="col-1">@subtotal NT</span>
+                    </div>
                     a++;
                 }
             </div>

@@ -43,7 +43,7 @@
             </div>
             @foreach (var item in Model.cart_orderDetail)
             {
-                var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
+                    var subtotal = Math.Round((decimal)((int)item.pdtPrice * item.Discount * item.Quantity));
 
                 total += subtotal;
                 shipping = Math.Round((double)item.Order.shpPrice);

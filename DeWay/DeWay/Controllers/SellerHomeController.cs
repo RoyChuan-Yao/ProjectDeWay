@@ -103,10 +103,11 @@ namespace DeWay.Controllers
             decimal? total = 0;
             foreach (var item in odrdetail)
             {
-                var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
+                var subtotal = Math.Round((decimal)((int)item.pdtPrice * item.Discount * item.Quantity));
 
                 total = total + subtotal;
                 string newtotal = total.ToString().TrimEnd('0');
+
                 if (newtotal.EndsWith("."))
                 {
                     newtotal = newtotal.Substring(0, newtotal.Length - 1);

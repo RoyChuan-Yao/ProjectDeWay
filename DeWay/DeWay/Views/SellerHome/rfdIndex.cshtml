@@ -49,7 +49,9 @@
             </div>
         </div>
         @if (Model.Count() == 0)
-        {<div>找不到退貨單</div>}
+        {
+            <h3 class="m-center">找不到退貨單</h3>
+        }
         else
         {
             foreach (var item in Model)
@@ -68,7 +70,7 @@
 
                         @{
                             string newtotal = total.ToString();
-                          
+
                         }
 
                         <span class="col-2">@item.rfdID</span>
@@ -98,7 +100,7 @@
                             {
                                 @item.RefundStatus.rfdStatus
                             }
-                            @Html.ActionLink("退貨單明細", "rfdDetail", new { rfdID = item.rfdID}, new { @class = "btn btn-info " })
+                            @Html.ActionLink("退貨單明細", "rfdDetail", new { rfdID = item.rfdID }, new { @class = "btn btn-info " })
 
                         </span>
                     </div>
@@ -111,3 +113,18 @@
     </div>
 
 </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        $('.nav-link').each(function () {
+            if ($($(this))[0].href == String(window.location)) {
+                $('.nav-link').removeClass("active");
+                $(this).addClass('active');
+            }
+        });
+    });
+
+</script>
