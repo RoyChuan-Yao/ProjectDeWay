@@ -52,6 +52,7 @@ namespace Project.Controllers
                     spcID = spcID,
                     usedPoints = 0,
                     Discount = 0,
+                    pdtPrice = 0,
                     shpID = "shp0000001" //預設運送方式
                 };
                 db.Cart_OrderDetail.Add(cod);
