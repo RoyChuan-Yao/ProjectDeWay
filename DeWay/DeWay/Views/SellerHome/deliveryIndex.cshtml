@@ -71,10 +71,7 @@
                         </div>
                         <div class="col-5">
 
-                            <input id="Text1" name="traceNumber" type="text" placeholder="請輸入託運單號---" />
                             @Html.EditorFor(model => model.FirstOrDefault().traceNumber, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.FirstOrDefault().traceNumber, "", new { @class = "text-danger" })
-
                             <input name="odrID" type="text" hidden="hidden" value="@item.odrID" />
                             <span><input id="Submit1" type="submit" value="確定" class="btn btn-danger" onclick="return confirm('您確定已寄出商品嗎??')" /></span>
 
