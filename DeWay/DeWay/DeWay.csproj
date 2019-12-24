@@ -168,6 +168,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\beGood.jpg" />
     <Content Include="images\diamond-4229493_960_720.jpg" />
+    <Content Include="images\image-32.jpg" />
     <Content Include="images\img-deway-2.png" />
     <Content Include="images\pImg000014.jpg" />
     <Content Include="Content\DeWayMemberHome.css" />
@@ -503,9 +504,9 @@
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
     <Content Include="Views\SellerHome\productIndex.cshtml" />
     <Content Include="Views\SellerHome\QAIndex.cshtml" />
-    <Content Include="Views\Shared\_Layout _Search.cshtml" />
     <Content Include="Views\SellerHome\myProduct.cshtml" />
     <Content Include="Views\SellerHome\_GetProductCardFst.cshtml" />
+    <Content Include="Views\ProductPage\_GetSetOfProductCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -514,6 +515,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="actImage\" />
     <Folder Include="App_Data\" />
     <Folder Include="mbrPhoto\" />
     <Folder Include="productImage\" />

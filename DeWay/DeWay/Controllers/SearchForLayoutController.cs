@@ -48,5 +48,13 @@ namespace DeWay.Controllers
                 return View(result);
             }         
         }
+
+        public ActionResult GetCategory(string category)
+        {
+
+            var show = db.Product.Where(m => m.ProductCategory.fstLayerID == category);
+            
+            return View("Index",show);
+        }
     }
 }

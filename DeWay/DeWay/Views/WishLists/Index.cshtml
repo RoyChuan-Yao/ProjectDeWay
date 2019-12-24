@@ -1,15 +1,83 @@
 ﻿@model IEnumerable<DeWay.Models.WishList>
 
-
 @{
     ViewBag.Title = "Index";
 }
 
+<div class="container">
+    <div style="margin:200px 0 300px 0;">
+        <h2 class="mb-5 " id="cart_title">@ViewBag.Name 。 慾望清單</h2>
+
+        <div class="row justify-content-start mt-5">
+            @if (Model.Count() > 0)
+            {
+
+                //partial View
+                <div class="card col-4 col-md-2 productsCard membercardB">
+                    <div>
+                        <div class="card-body productsCardbody">
+
+                            <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
+                            <p class="text-secondary productsCardText">商品名稱<span></span></p>
+                            <p class="text-secondary productsCardText">NT: <span></span></p>
+                            <div class="d-flex justify-content-between">
+                                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                            </div>
+
+                            <button id="" class="btn WishbtnA " state="">刪除</button>
+                        </div>
+                    </div>
+                </div>
+                //partial View
+                <div class="card col-4 col-md-2 productsCard membercardB">
+                    <div>
+                        <div class="card-body productsCardbody">
+
+                            <img src="../../images/img-p-45.png" class=" rounded card-img-top productsImg " alt="...">
+                            <p class="text-secondary productsCardText">商品名稱<span></span></p>
+                            <p class="text-secondary productsCardText">NT: <span></span></p>
+                            <div class="d-flex justify-content-between">
+                                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                            </div>
+
+                            <button id="" class="btn WishbtnA " state="">刪除</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            }
+            else
+            {
+                <div>
+                    <p>慾望清單中還是空的喔~!</p>
+                </div>
+
+            }
+
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
 
 @if (Model.Count() > 0)
 {
-    <div class="col-10 offset-1 container"  style="margin-top:200px;" >
+    <div class="col-10 offset-1 container" style="margin-top:200px;">
         <h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的慾望清單</h2>
+
+
 
 
 
@@ -53,4 +121,5 @@ else
     </div>
 
 }
+
 

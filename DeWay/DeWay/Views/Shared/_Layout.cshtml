@@ -33,52 +33,56 @@
                 </button>
 
                 <div class="collapse navbar-collapse bg-light" id="navbarToggleExternalContent">
-                    <form class="form-inline mr-auto" method="post" action="@Url.Action("Index","SearchForLayout")" >
+
+                    <form class="form-inline" method="post" action="@Url.Action("Index","SearchForLayout")" >
+
                         <input class="form-control mr-sm-1 " type="search" placeholder="Search" aria-label="Search" name="ProductName">
                         <button class="btn btn-outline-secondary my-1 my-sm-0 ml-auto" type="submit">Search</button>
                     </form>
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav ml-0 ">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 所有分類
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">衣著良品</a>
-                                <a class="dropdown-item" href="#">包包提袋</a>
-                                <a class="dropdown-item" href="#">配件飾品</a>
+                                @Html.ActionLink("配件飾品", "GetCategory", "SearchForLayout", new { category = "fst0000001" }, new { @class="nav-link"})
+                                @Html.ActionLink("居家生活", "GetCategory", "SearchForLayout", new { category = "fst0000002" }, new { @class="nav-link"})
+                                @Html.ActionLink("包包提袋", "GetCategory", "SearchForLayout", new { category = "fst0000003" }, new { @class="nav-link"})
+                                @Html.ActionLink("衣著良品", "GetCategory", "SearchForLayout", new { category = "fst0000004" }, new { @class="nav-link"})
+                                @Html.ActionLink("文具卡片", "GetCategory", "SearchForLayout", new { category = "fst0000005" }, new { @class="nav-link"})
+                                @Html.ActionLink("鞋類", "GetCategory", "SearchForLayout", new { category = "fst0000006" }, new { @class="nav-link"})
+                               
                             </div>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">如何開間設計館</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">推薦商品</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">主題活動<span class="sr-only">(current)</span></a>
-                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>*@
+                        
 
                         <li class="nav-item ">
 
-                            @*<a class="nav-link" href="#">登入</a>*@
-                            @if (Session["memberID"] == null) 
-                                    { 
-                                    @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link", })
-                                    }
-                            else    {
-                                    @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link" })
-                                    }
 
-
+                            
+                            @if (Session["memberID"] == null)
+                            {
+                                @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link" })
+                            }
 
                         </li>
-                        
+
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
 
-                     
+
 
                         <li>
                             <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("SellerCreate","SellerCertification")"><img src="~/images/img-shop-4.png" style="width:50%" /></a>
@@ -87,7 +91,7 @@
                             <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("myCart","Cart")"><img src="~/images/Img-shopping-cart-12.png" style="width:50%" /></a>
                         </li>
                         <li>
-                            <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("Index","WishLists")"><img src="~/images/Img-like-7.png" style="width:50%" /></a>
+                            <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("Index","WishLists")"><img src="~/images/Img-like-8.png" style="width:50%" /></a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -99,6 +103,7 @@
                                 @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("通知中心", "IndexForMember", "ntfRecordsAdm", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("開設計館", "", "", new { }, new { @class = "dropdown-item" })
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">

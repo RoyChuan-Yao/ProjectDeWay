@@ -11,6 +11,8 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
+   
+
     
     public partial class SellerAut
     {
@@ -20,6 +22,7 @@ namespace DeWay.Models
             this.Seller = new HashSet<Seller>();
         }
     
+       
         public string selAut { get; set; }
         public string autCategory { get; set; }
     

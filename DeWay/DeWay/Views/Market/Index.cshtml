@@ -263,6 +263,7 @@
                                     全部
                                 </a>
                             </li>
+
                             @*<li class="nav-item memberNav-item flex-column">
                                     <a class="nav-link memberNav-link text-secondary" data-toggle="tab" href="#classA">
                                         大分類A
@@ -341,13 +342,36 @@
                         }
 
 
+                            </div>
+                        </div>
+                        @*大分類A-classA*@
+                        <div class="tab-pane memberTab-pane fade" id="classA">
+                            <div class="row justify-content-start ">
+                                @foreach (var item in Model.products)
+                                {
+                                    <div class="card col-4 col-md-2 productsCard membercardB">
+                                        <div>
+                                            <div class="card-body productsCardbody">
+
+                                                <img src="../../productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
+                                                <p class="text-secondary productsCardText">@item.pdtName<span></span></p>
+                                                <p class="text-secondary productsCardText">NT:<span>@item.Specification.FirstOrDefault().Price</span></p>
+                                                <div class="d-flex justify-content-between">
+                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
 
 
                     </div>
 
 
 
-                </div>
+            </div>
             </div>
         </div>
 

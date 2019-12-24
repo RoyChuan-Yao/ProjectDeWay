@@ -19,7 +19,7 @@
                 <input id="Checkbox1" type="checkbox" /> 選擇此訂單
             </div>
             <div class="card-body">
-                <div class="row bg-light font-weight-bold">
+                <div class="row bg-light font-weight-bold mb-3">
                     <div class="col-3">商品</div>
                     <div class="col-3">規格</div>
                     <div class="col-3">數量</div>
@@ -36,7 +36,7 @@
                     <div class="row align-items-baseline">
                         <div class="col-3">
                             <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Specification.pdtID})">
-                                <img src="~/productImage/@item.Specification.Product.ProductImage.FirstOrDefault().pdtImage" style="width:100px" class="img-responsive img-rounded" />
+                                <img src="~/productImage/@item.Specification.Product.ProductImage.FirstOrDefault().pdtImage" class="img-responsive img-rounded img-adjust" />
                             </a>
                                 @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-
+                    <br />
 
 
                 }

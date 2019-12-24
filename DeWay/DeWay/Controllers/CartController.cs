@@ -105,10 +105,10 @@ namespace Project.Controllers
                                         orderby p.Specification.Product.selID
                                         select p).ToList();
             List<string> sellerIDList = m.Where(sItem=>cartID.Contains(sItem.cartID)).Select(s => s.Specification.Product.selID).Distinct().ToList();
-            if (ModelState.IsValid != true)
-            {
-                return View("myCart");
-            }
+            //if (ModelState.IsValid != true)
+            //{
+            //    return View("myCart");
+            //}
             using (var transaction = db.Database.BeginTransaction())
             {
 
@@ -117,6 +117,9 @@ namespace Project.Controllers
                 order.pmtID = "pmt0000001";            //付款方式
                 order.odrStatusID = "ods0000001";      //訂單狀態
                 order.odrDate = DateTime.Now;          //訂單成立時間
+                order.shpPrice = 100;
+                order.traceNumber = "123456";
+                order.recPhone = "0911-111-111";
 
                 foreach (var sellerID in sellerIDList)
                 {
