@@ -50,7 +50,7 @@
                 foreach (var i in item.Cart_OrderDetail)
                 {
 
-                    var subtotal = (decimal)((int)i.pdtPrice * i.Discount * i.Quantity);
+                    var subtotal = Math.Round((decimal)((int)i.pdtPrice * i.Discount * i.Quantity));
 
                     total += subtotal;
                     shipping = item.shpPrice;
@@ -74,7 +74,7 @@
 
                         <span class="col-2">
                             <span>
-                                @Html.ActionLink("訂單詳情", "odrDetail", new { odrID = item.odrID }, new { @class = "btn btn-info " })
+                                @Html.ActionLink("訂單詳情", "odrDetail", new { odrID = item.odrID }, new { @class = "btn btn-info text-white" })
                             </span>
                             @if (item.odrStatusID == "ods0000004" || item.odrStatusID == "ods0000003")
                             {
