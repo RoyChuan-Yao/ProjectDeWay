@@ -474,7 +474,7 @@ namespace DeWay.Models
             public System.DateTime rvwTime { get; set; }
             [DisplayName("星數")]
             [Required(ErrorMessage = "此欄位為必填")]
-            [MinLength(1)]
+            
             public short rvwStar { get; set; }
             [DisplayName("評論者編號")]
             [Required(ErrorMessage = "此欄位為必填")]
