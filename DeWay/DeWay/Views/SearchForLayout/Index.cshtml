@@ -105,21 +105,13 @@
                             @foreach (var item in Model)
                             {
                                 @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
-
                             }
-
-
-
-
-
                         </div>
                     </div>
                     @*大分類A-classA*@
 
                     @foreach (var aaa in ViewBag.fst)
                     {
-
-
                         <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
                             <div class="row justify-content-start cateSlot">
                                 @foreach (var item in Model)
@@ -153,7 +145,7 @@
         $(".cateSlot").each((index, element) => {
             if ($(element).children().length == 0) {
                 $(element).append(`<div class='CenterIt '>
-                    <h2>收尋結果無相關商品</h2 >
+                    <h2>搜尋結果無相關商品</h2 >
                     </div>
                     `)
             }
