@@ -204,7 +204,8 @@
             $(`div[class='card mb-3']`).show()
             $("div[id^='no']").show(100)
             $("#backToCart").hide(100);//隱藏按鈕
-            $("#checkOutBtn").text("前往結帳").attr("onclick", "checkOut()")
+            //$("#checkOutBtn").text("前往結帳").attr("onclick", "")
+            $("#checkOutBtn").text("前往結帳").off().on("click", () => { checkOut()})
             $("input[type='checkbox'],a[href*='Delete']").show(100)
             $("#checkOutForm").html('')
             $(`#receiverInfo`).hide(100)
@@ -228,7 +229,8 @@
             })
             $("input[type='checkbox'],a[href*='Delete']").hide(100)
             $("#backToCart").show(100)
-            $("#checkOutBtn").text("確認付款").attr("onclick", "submitOrder()")
+            //$("#checkOutBtn").text("確認付款").attr("onclick", "submitOrder()")
+            $("#checkOutBtn").text("確認付款").on("click", () => { submitOrder()})
             $(`#receiverInfo`).show(100)
             $(`#cart_title`).text("填寫地址與付款")
         }
