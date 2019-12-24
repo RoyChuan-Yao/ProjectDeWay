@@ -64,7 +64,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="#block2" data-toggle="tab" class="nav-itemH btn nav-link nav-linkHome ">開啟我的設計之路</a>
+                    <a href="#block2" data-toggle="tab" class="nav-itemH btn nav-link nav-linkHome" id="design">開啟我的設計之路</a>
                 </li>
                 <li class="nav-item">
                     <a href="#block3" data-toggle="tab" class="nav-itemH btn nav-link nav-linkHome">公告</a>
@@ -87,8 +87,10 @@
                         Step 4 : 填寫、驗證相關資料<br /><br />
                         Step 5 : 待審核<br /><br />
                     </div>
-                    <div class="btn btn btn-outline-danger tab-paneHomeB" >
-                        <a href="#" class="tab-paneHomeA">開設計館</a>
+                    <div class="btn btn btn-outline-danger tab-paneHomeB">
+                        @*<a href="#" class="tab-paneHomeA">開設計館</a>*@
+                        @Html.ActionLink("開設計館", "SellerCreate", "SellerCertification", new { }, new { @class = "tab-paneHomeA" })
+
                     </div>
                 </div>
                 <div class="container tab-pane tab-paneHome pt-5 pb-5" id="block3">
@@ -167,7 +169,7 @@
         });
 
         //圖片遺失處理
-        $('img').one("error", (e) => { $(e.target).attr('src',"/images/diamond-4229493_960_720.jpg") })
+        $('img').one("error", (e) => { $(e.target).attr('src', "/images/diamond-4229493_960_720.jpg") });
 
         //$('.likeImg ').click(function () {
         //    if ($(this).attr("src") != "/images/Img-like-7.png") {
@@ -177,6 +179,9 @@
         //        $(this).attr("src", "/images/Img-like-8.png")
         //    }
         //});
+        $('#way').click(function () {
+            $("html,body").animate({ scrollTop: $('#design').offset().top }, 700);
+        });
     </script>
 
 
