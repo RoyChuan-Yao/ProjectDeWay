@@ -105,8 +105,9 @@
 
 
                 @*全部分類-all*@
-                <div class="tab-pane memberTab-pane active" >
-                    <div class="row justify-content-start ">
+
+                @*<div class="tab-pane memberTab-pane active" id="all">
+                    <div class="row justify-content-start ">*@
                         @*@foreach (var item in Model)
                         {
                             @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
@@ -171,8 +172,9 @@
 
         </div>
 
-    </div>
-    </div>
+
+    @*</div>*@
+
 
     @section Script{
         <script>
@@ -193,7 +195,7 @@
 
         <style>
             .CenterIt {
-                display: flex;
+                /*display: flex;*/
                 justify-content: center;
                 align-items: center;
                 width: 75%;

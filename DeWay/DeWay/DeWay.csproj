@@ -17,8 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44331</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -508,6 +507,7 @@
     <Content Include="Views\SellerHome\_GetProductCardFst.cshtml" />
     <Content Include="Views\ProductPage\_GetSetOfProductCard.cshtml" />
     <Content Include="Views\WishLists\_GetWishCard.cshtml" />
+    <Content Include="Views\SellerHome\selEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
