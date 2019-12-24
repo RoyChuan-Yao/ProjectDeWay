@@ -518,7 +518,6 @@
     <Folder Include="mbrPhoto\" />
     <Folder Include="productImage\" />
     <Folder Include="sellerImage\" />
-    <Folder Include="Views\AdmOrderAdm\" />
     <Folder Include="Views\Seller_Maker\" />
   </ItemGroup>
   <ItemGroup>
