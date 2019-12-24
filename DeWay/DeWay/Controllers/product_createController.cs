@@ -41,14 +41,17 @@ namespace DeWay.Controllers
         {
             ViewBag.fst = new SelectList(db.FirstLayer, "fstLayerID", "fstLayer");
             ViewBag.shipperDetail = db.Shipper.ToList();
+            if (photo[0] == null)
+            {
+                ModelState.AddModelError("Photo", "沒有封面圖片");
+            }
 
             if (ModelState.IsValid != true)
             {
                 return View();
             }
 
-
-
+            
             string id = Session["memberID"].ToString();
             string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
 
