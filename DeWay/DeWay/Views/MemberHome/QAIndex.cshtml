@@ -40,11 +40,11 @@
                     <div class="col-3 mr-3">
                         @if (Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage == null || Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage == "")
                         {
-                           <img src="~/productImage/0.jpg"  style="width:200px" />
+                           <img src="~/productImage/0.jpg"  class="img-responsive img-rounded img-adjust-index" />
                         }
                         else
                         {
-                           <img src="~/productImage/@Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage" style="width:200px" />
+                           <img src="~/productImage/@Model.FirstOrDefault().Product.ProductImage.FirstOrDefault().pdtImage"  class="img-responsive img-rounded img-adjust-index" />
 
                         }
                     </div>

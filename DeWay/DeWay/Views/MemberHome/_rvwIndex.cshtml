@@ -51,7 +51,7 @@
                 <div class="card-body row">
                     <div class="col-4">
 
-                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" style="width:200px;height:200px" class="img-responsive img-rounded" /></a>
+                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" class="img-responsive img-rounded img-adjust-index" /></a>
                     </div>
                     <div class="col-8 mt-5">
                         <div class="row align-items-baseline">
@@ -111,7 +111,7 @@
                 </div>
                 <div class="card-body row">
                     <div class="col-5">
-                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" style="width:200px;height:200px" class="img-responsive img-rounded" /></a>
+                        <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Cart_OrderDetail.FirstOrDefault().Specification.pdtID})"> <img src="~/productImage/@Html.Action("getImage", new { id = item.odrID })" class="img-responsive img-rounded img-adjust-index" /></a>
 
                     </div>
                     <div class="col-7 mt-5">
@@ -170,13 +170,13 @@
                         <p class="text-center">評價內容</p>
                         <div class="text-center">
 
-                            <textarea id="rvwContent" name="rvwContent"></textarea>
+                            <textarea class="mb-2 textarea-rvw" name="rvwContent"></textarea>
                             <br />
 
 
-                            <span class="btn-text">出貨速度快！</span>
-                            <span class="btn-text">商品品質佳！</span>
-                            <span class="btn-text">賣家真可愛！</span>
+                            <span class="btn-text d-optional-btn ">出貨速度快！</span>
+                            <span class="btn-text d-optional-btn ">商品品質佳！</span>
+                            <span class="btn-text d-optional-btn ">賣家真可愛！</span>
 
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                     <input id="Hidden1" type="hidden" name="code" value="@ViewBag.code" />
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Create" class="btn btn-default Submit" />
+                    <input type="submit" value="Create" class="btn text-white d-bg-blue Submit" />
 
                 </div>
 

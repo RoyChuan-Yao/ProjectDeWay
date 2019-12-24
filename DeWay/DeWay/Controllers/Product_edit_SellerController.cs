@@ -63,17 +63,17 @@ namespace DeWay.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Editsp(Specification sp)
         {
-            
+            var getroute = sp.pdtID;
             var spc = db.Specification.Where(m => m.spcID == sp.spcID).FirstOrDefault(); //只修改單筆
             spc.Style= sp.Style;
             spc.Size = sp.Size;
             spc.Stock = sp.Stock;
             spc.Price = sp.Price;
             spc.Discount = sp.Discount;
-
-            db.SaveChanges();
-
-            var getroute = sp.pdtID;
+           
+                db.SaveChanges();
+                
+            
 
             return RedirectToAction("Editsp", "Product_edit_Seller",new { pdtid = getroute }); //存檔後留在原頁面
         }

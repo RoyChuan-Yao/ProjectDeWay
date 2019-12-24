@@ -504,9 +504,9 @@
     <Content Include="Views\ntfRecordsAdm\IndexForMember.cshtml" />
     <Content Include="Views\SellerHome\productIndex.cshtml" />
     <Content Include="Views\SellerHome\QAIndex.cshtml" />
-    <Content Include="Views\Shared\_Layout _Search.cshtml" />
     <Content Include="Views\SellerHome\myProduct.cshtml" />
     <Content Include="Views\SellerHome\_GetProductCardFst.cshtml" />
+    <Content Include="Views\ProductPage\_GetSetOfProductCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -520,7 +520,6 @@
     <Folder Include="mbrPhoto\" />
     <Folder Include="productImage\" />
     <Folder Include="sellerImage\" />
-    <Folder Include="Views\AdmOrderAdm\" />
     <Folder Include="Views\Seller_Maker\" />
   </ItemGroup>
   <ItemGroup>

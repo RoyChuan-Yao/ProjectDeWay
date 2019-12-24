@@ -17,10 +17,15 @@ namespace DeWay.Controllers
             var product = db.Product.Where(m => m.pdtID == pdtID).FirstOrDefault();
             string memberID = (string)Session["memberID"];
             string memberSellID = db.Seller.Where(m => m.mbrID == memberID).Select(m => m.mbrID).ToString();
+
+            var checksel = db.Seller.Where(m => m.mbrID == memberID).Count();
+            //應急處理 不然登入者不是賣家會報錯
+
             
-            
-            string selID="";
-            if (memberID != null) 
+            ViewBag.Stars = product.Review.Average(m => m.rvwStar);
+
+            string selID ="";
+            if (memberID != null && checksel != 0) 
             {
                 selID = db.Seller.Where(m => m.mbrID == memberID).FirstOrDefault().selID;
             }
@@ -51,6 +56,12 @@ namespace DeWay.Controllers
         {
             var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
             return PartialView("_GetProductCard", product);
+        }
+        
+        public PartialViewResult _GetSetOfProductCard(int takeCount,int skipCount =0)
+        {
+            var pdts = db.Product.Where(m => m.Discontinued != true).OrderBy(m=>m.pdtID).Skip(skipCount).Take(takeCount);
+            return PartialView(pdts);
         }
     }
 }

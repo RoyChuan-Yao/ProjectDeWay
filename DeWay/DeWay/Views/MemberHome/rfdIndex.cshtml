@@ -47,8 +47,9 @@
         </td>
         
         <td>
-            @Html.Raw(@Html.DisplayFor(modelItem => item.rfdReason).ToString().Replace("\n","<br>"))
-        </td>
+            <div  class="text-ellipsis">
+                @Html.DisplayFor(modelItem => item.rfdReason)
+            </div>
         <td>
             @{ 
                 result = item.rfdProduct == true ? "是" : "否";

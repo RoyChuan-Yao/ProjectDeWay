@@ -33,10 +33,12 @@
                     <div id="no_@count" class="row no-gutters">
                         <div class="col-md-1 m-auto text-center">
                             <input type="checkbox"
-                                   onclick="changeChckeStatus(checkStatus,@count)">
+                                   onclick="changeChckeStatus(checkStatus,@count)"
+                                   style="width:20px">
                         </div>
                         <div class="col-md-3 text-center my-auto">
-                            <img src="~/images/diamond-4229493_960_720.jpg" class="card-img" alt="圖片消失了" />
+                            @*<img src="~/images/diamond-4229493_960_720.jpg" class="card-img" alt="圖片消失了" />*@
+                            <img src="~/productImage/@product.Specification.Product.ProductImage.FirstOrDefault().pdtImage" class="card-img" alt="圖片消失了" />
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
@@ -47,14 +49,14 @@
                                     @Html.DisplayFor(modelItem => product.Specification.Size)
                                     @Html.DisplayFor(modelItem => product.Specification.Style)
                                 </p>
-                                <p class="text-primary">NT$ <span id="price_@count">@Html.DisplayFor(modelItem => product.Specification.Price)</span></p>
+                                <p class="text-primary h3">NT$ <span id="price_@count">@Convert.ToInt32(product.Specification.Price) </span></p>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card-body">
-                                <p class="text-primary">
-                                    選購數量：
-                                    <select id="count_@count" spcID="@product.spcID" class="quantitySelect">
+                            <div class="card-body h5">
+                                <p class="text-primary mb-4 ">
+                                    <span class="mb-3">選購數量：</span>
+                                    <select style="width:200px" id="count_@count" spcID="@product.spcID" class="quantitySelect">
                                         @for (int i = 1; i <= product.Specification.Stock; i++)
                                         {
                                             <option value="@i"
@@ -66,10 +68,11 @@
                                     </select>
                                 </p>
                                 <p class="text-secondary">
-                                    折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
-                                    點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />
+                                    @*折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
+            點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />*@
                                 </p>
-                                <select id="shipSelect_@count">
+                                <span class="mb-3 text-primary">運送方式：</span>
+                                <select id="shipSelect_@count" style="width:200px">
 
                                     @foreach (var item1 in product.Specification.Product.ShipperDetail)
                                     {

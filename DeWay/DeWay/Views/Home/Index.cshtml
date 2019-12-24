@@ -64,7 +64,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="#block2" data-toggle="tab" class="nav-itemH btn nav-link nav-linkHome ">開啟我的設計之路</a>
+                    <a href="#block2" data-toggle="tab" class="nav-itemH btn nav-link nav-linkHome" id="design">開啟我的設計之路</a>
                 </li>
                 <li class="nav-item">
                     <a href="#block3" data-toggle="tab" class="nav-itemH btn nav-link nav-linkHome">公告</a>
@@ -87,8 +87,10 @@
                         Step 4 : 填寫、驗證相關資料<br /><br />
                         Step 5 : 待審核<br /><br />
                     </div>
-                    <div class="btn btn btn-outline-danger tab-paneHomeB" >
-                        <a href="#" class="tab-paneHomeA">開設計館</a>
+                    <div class="btn btn btn-outline-danger tab-paneHomeB">
+                        @*<a href="#" class="tab-paneHomeA">開設計館</a>*@
+                        @Html.ActionLink("開設計館", "SellerCreate", "SellerCertification", new { }, new { @class = "tab-paneHomeA" })
+
                     </div>
                 </div>
                 <div class="container tab-pane tab-paneHome pt-5 pb-5" id="block3">
@@ -111,28 +113,12 @@
     <div class="m-100">
         <p><a href="#" class="text-primary text-left">促銷優惠</a></p>
         <div class="row d-flex justify-content-center">
-            @Html.Action("_GetProductCard", "ProductPage", new { productID = "pdt0000001" })
-            @Html.Action("_GetProductCard", "ProductPage", new { productID = "pdt0000006" })
-            @Html.Action("_GetProductCard", "ProductPage", new { productID = "pdt0000007" })
-            @Html.Action("_GetProductCard", "ProductPage", new { productID = "pdt0000008" })
-
-            @*partial view*@
-            <div class="card col-5 col-sm-3 col-lg-2  homeIndexcard">
-                <div class="card-body img-pad-1">
-
-                    <img src="~/images/img-p-3.png" class="shadow rounded card-img-top img-wh " alt="...">
+            @Html.Action("_GetSetOfProductCard", "ProductPage", new { takeCount = 5, skipCount = 0 })
+            @*@Html.Action("_GetProductCard", "ProductPage", new { productID = "pdt0000006" })
+        @Html.Action("_GetProductCard", "ProductPage", new { productID = "pdt0000007" })
+        @Html.Action("_GetProductCard", "ProductPage", new { productID = "pdt0000008" })*@
 
 
-                    <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                    <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                    <div class="d-flex justify-content-between">
-                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                        <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="..." />
-                    </div>
-                </div>
-            </div>
-
-           
         </div>
     </div>
 
@@ -143,71 +129,8 @@
         <div class="m-100">
             <p><a href="#" class="text-primary text-left">熱門商品</a></p>
             <div class="row d-flex justify-content-center">
-                @*partial view*@
-                <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                    <div class="card-body img-pad-1">
-                        <img src="~/images/img-p-17.png" class="shadow rounded card-img-top img-wh " alt="...">
-                        <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                        <p class="text-secondary text-secondary-2">價格:<span>590</span></p>
-                        <div class="d-flex justify-content-between">
-                            <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                            <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">
-                        </div>
-                    </div>
-                </div>
+                @Html.Action("_GetSetOfProductCard", "ProductPage", new { takeCount = 5,skipCount = 5 })
 
-                @*partial view*@
-                <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                    <div class="card-body img-pad-1">
-                        <img src="~/images/img-p-19.png" class="shadow rounded card-img-top img-wh" alt="...">
-                        <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                        <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                        <div class="d-flex justify-content-between">
-                            <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                            <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">
-                        </div>
-                    </div>
-                </div>
-
-                @*partial view*@
-                <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                    <div class="card-body img-pad-1">
-                        <img src="~/images/img-p-24.png" class="shadow rounded card-img-top img-wh" alt="...">
-                        <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                        <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                        <div class="d-flex justify-content-between">
-                            <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                            <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">
-                        </div>
-                    </div>
-                </div>
-
-                @*partial view*@
-                <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                    <div class="card-body img-pad-1">
-                        <img src="~/images/img-p-32.png" class="shadow rounded card-img-top img-wh" alt="...">
-                        <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                        <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                        <div class="d-flex justify-content-between">
-                            <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                            <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">
-                        </div>
-                    </div>
-                </div>
-
-                @*partial view*@
-                <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                    <div class="card-body img-pad-1">
-                        <img src="~/images/img-p-34.png" class="shadow rounded card-img-top img-wh" alt="...">
-                        <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                        <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                        <div class="d-flex justify-content-between">
-                            <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                            <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">
-                        </div>
-
-                    </div>
-                </div>
 
             </div>
 
@@ -224,67 +147,8 @@
     <div class="m-100">
         <p><a href="#" class="text-primary text-left">推薦商品</a></p>
         <div class="row d-flex justify-content-center ">
-            @*partial view*@
-            <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                <div class="card-body img-pad-1">
-                    <img src="~/images/img-p-39.png" class="shadow rounded card-img-top img-wh " alt="...">
-                    <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                    <p class="text-secondary text-secondary-2">價格:<span>590</span></p>
-                    <div class="d-flex justify-content-between">
-                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                        <img id="cartImg" src="~/images/Img-shopping-cart-12.png" class="cartImg card-img-top img-wh-2" alt="...">
-                    </div>
-                </div>
-            </div>
-            @*partial view*@
-            <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                <div class="card-body img-pad-1">
-                    <img src="~/images/img-p-42.png" class="shadow rounded card-img-top img-wh" alt="...">
-                    <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                    <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                    <div class="d-flex justify-content-between">
-                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                        <img src="~/images/Img-shopping-cart-12.png" class="cartImg card-img-top img-wh-2" alt="...">
-                    </div>
-                </div>
-            </div>
-            @*partial view*@
-            <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                <div class="card-body img-pad-1">
-                    <img src="~/images/img-p-50.png" class="shadow rounded card-img-top img-wh" alt="...">
-                    <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                    <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                    <div class="d-flex justify-content-between">
-                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                        <img src="~/images/Img-shopping-cart-12.png" class="cartImg card-img-top img-wh-2" alt="...">
-                    </div>
-                </div>
-            </div>
-            @*partial view*@
-            <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                <div class="card-body img-pad-1">
-                    <img src="~/images/img-p-52.png" class="shadow rounded card-img-top img-wh" alt="...">
-                    <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                    <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                    <div class="d-flex justify-content-between">
-                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                        <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2" alt="...">
-                    </div>
-                </div>
-            </div>
-            @*partial view*@
-            <div class="card col-5 col-sm-3 col-lg-2 homeIndexcard">
-                <div class="card-body img-pad-1">
-                    <img src="~/images/img-p-55.png" class="shadow rounded card-img-top img-wh" alt="...">
-                    <p class="text-secondary text-secondary-1">商品名稱:<span></span></p>
-                    <p class="text-secondary text-secondary-2">NT:<span>590</span></p>
-                    <div class="d-flex justify-content-between">
-                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2" alt="...">
-                        <img src="~/images/Img-shopping-cart-12.png" class="cartImg card-img-top img-wh-2" alt="...">
-                    </div>
+            @Html.Action("_GetSetOfProductCard", "ProductPage", new { takeCount = 5, skipCount = 10 })
 
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -305,7 +169,7 @@
         });
 
         //圖片遺失處理
-        $('img').one("error", (e) => { $(e.target).attr('src',"/images/diamond-4229493_960_720.jpg") })
+        $('img').one("error", (e) => { $(e.target).attr('src', "/images/diamond-4229493_960_720.jpg") });
 
         //$('.likeImg ').click(function () {
         //    if ($(this).attr("src") != "/images/Img-like-7.png") {
@@ -315,6 +179,9 @@
         //        $(this).attr("src", "/images/Img-like-8.png")
         //    }
         //});
+        $('#way').click(function () {
+            $("html,body").animate({ scrollTop: $('#design').offset().top }, 700);
+        });
     </script>
 
 
