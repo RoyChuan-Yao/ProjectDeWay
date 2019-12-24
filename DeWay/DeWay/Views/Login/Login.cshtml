@@ -38,13 +38,14 @@
                     <div class="form-holder">
                         <input class="input" name="id" placeholder="Account" />
                         <input type="password" class="input" name="pwd" placeholder="Password" />
+
+
                     </div>
+                    <span class="text-danger text-center" style="font-size:12px;padding-left:5px;">@ViewBag.LoginErr</span>
                     <button id="Submit1" type="submit" class="submit-btn">Log in</button>
                 </div>
-                <h3 class="text-danger">@ViewBag.LoginErr</h3>
             </div>
         </form>
-
 
     </div>
 </div>

@@ -56,7 +56,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">如何開間設計館</a>
+                            <a id="way" class="nav-link" href="#design">如何開間設計館</a>
                         </li>
                         @*<li class="nav-item">
                             <a class="nav-link" href="#"></a>
@@ -102,7 +102,7 @@
                                 @Html.ActionLink("商品收藏", "Index", "WishLists", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("通知中心", "IndexForMember", "ntfRecordsAdm", new { }, new { @class = "dropdown-item" })
-                                @Html.ActionLink("開設計館", "", "", new { }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("開設計館", "SellerCreate", "SellerCertification", new { }, new { @class = "dropdown-item" })
 
                             </div>
                         </li>
@@ -184,7 +184,8 @@
 
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @RenderSection("Script", false)
-
+<script>        $('img').one("error", (e) => { $(e.target).attr('src', "/images/diamond-4229493_960_720.jpg") });
+</script>
 </body>
 </html>
 
