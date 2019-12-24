@@ -12,9 +12,18 @@ namespace DeWay.Controllers
     {
         shopDBEntities db = new shopDBEntities();
         // GET: Market
+
+
+
         public ActionResult Index(string sellerID = null)
         {
-            if (Session["memberID"].ToString() != null && sellerID == null)
+
+            if (sellerID == null && Session["memberID"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+                if (sellerID == null && Session["memberID"] != null ) //是非賣家會員
             {
                 var a = Session["memberID"].ToString();
                 if (db.Seller.Where(m => m.mbrID == a).Count() == 0)
@@ -35,11 +44,14 @@ namespace DeWay.Controllers
             selID = sellerID;
             if (selID == null)
             {
+                
                 var id = Session["memberID"].ToString();
                 selID = (from m in db.Seller
                          where m.mbrID == id
                          select m).FirstOrDefault().selID;
             }
+
+            ViewBag.Stars = db.Review.Where(m => m.Product.selID == selID).Count() == 0 ? 0 : db.Review.Where(m => m.Product.selID == selID).Average(m => m.rvwStar);
 
             var pdtID = from m in db.Product
                         where m.selID == selID
