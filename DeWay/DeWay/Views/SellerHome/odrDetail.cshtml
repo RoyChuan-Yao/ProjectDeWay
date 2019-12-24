@@ -52,6 +52,9 @@ else if (Model.FirstOrDefault().Order.Review.Count() == 0 && @ViewBag.status == 
         <div>物流資訊</div>
         <div style="font-size:20px">&nbsp&nbsp&nbsp&nbsp&nbsp @Model.FirstOrDefault().Shipper.shpMethod</div>
         <br />
+        <div>備註</div>
+        <div style="font-size:20px">&nbsp&nbsp&nbsp&nbsp&nbsp @Model.FirstOrDefault().Order.odrNote</div>
+        <br />
     </div>
 </div>
 
@@ -107,7 +110,7 @@ else if (Model.FirstOrDefault().Order.Review.Count() == 0 && @ViewBag.status == 
 
                             @item.Specification.Size
                         </span>
-                        <span class="col-1">@newtotal</span>
+                        <span class="col-1">@newpdtPrice</span>
                         <span class="col-1">@item.Quantity</span>
                         @if (item.Discount != 1)
                         {
