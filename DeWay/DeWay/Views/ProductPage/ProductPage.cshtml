@@ -27,8 +27,8 @@
 
 
 
-<div class=" ">
-    <div class="container ">
+<div class="container ">
+    <div class=" ">
         <div class="ProductPage">
             <div class="row">
                 @*商品幻燈片*@
@@ -38,8 +38,8 @@
                             string active;}
                         @foreach (var photo in Model.ProductImage)
                         {
-                            <div class="carousel-item @(active=photoCount==0?"active":"") " data-interval="20000">
-                                <img src="~/productImage/@photo.pdtImage" class="d-block w-100" alt="...">
+                            <div class="carousel-item pPcInnerB @(active=photoCount==0?"active":"") " data-interval="20000">
+                                <img src="~/productImage/@photo.pdtImage" class="d-block w-100 h-100" alt="...">
                             </div>
                             photoCount++;
                         }
