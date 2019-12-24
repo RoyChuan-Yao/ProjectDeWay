@@ -162,38 +162,38 @@
                 </div>
             </div>
         </div>*@
-<div class="content">
-    <div class="@*container*@ body-content content-inside">
-        <div class="row">
-            <div class="col-2 ml-5">
-                <ul class="nav nav-pills flex-column">
-                    訂單管理
-                    <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome")" class="nav-link">銷售訂單</a></li>
-                    <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome")" class="nav-link">訂單出貨</a></li>
-                    <li class="nav-item"><a href="@Url.Action("rfdIndex","SellerHome")" class="nav-link">退貨/退款</a></li>
-                </ul>
-                <ul class="nav flex-column">
-                    商品管理
-                    <li class="nav-item"><a href="@Url.Action("myProduct","SellerHome")" class="nav-link">我的商品</a></li>
-                    <li class="nav-item"><a href="@Url.Action("Create","product_create")" class="nav-link">新增商品</a></li>
-                    <li class="nav-item"><a href="@Url.Action("QAIndex","SellerHome")" class="nav-link">檢視問答</a></li>
-                </ul>
-                <ul class="nav  flex-column">
-                    賣場管理
-                    <li class="nav-item"><a href="@Url.Action("selEdit","SellerHome")" class="nav-link">賣場設定</a></li>
-                </ul>
+    <div class="content">
+        <div class="@*container*@ body-content content-inside">
+            <div class="row">
+                <div class="col-2 ml-5">
+                    <ul class="nav nav-pills flex-column">
+                        訂單管理
+                        <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome")" class="nav-link">銷售訂單</a></li>
+                        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome")" class="nav-link">訂單出貨</a></li>
+                        <li class="nav-item"><a href="@Url.Action("rfdIndex","SellerHome")" class="nav-link">退貨/退款</a></li>
+                    </ul>
+                    <ul class="nav flex-column">
+                        商品管理
+                        <li class="nav-item"><a href="@Url.Action("myProduct","SellerHome")" class="nav-link">我的商品</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Create","product_create")" class="nav-link">新增商品</a></li>
+                        <li class="nav-item"><a href="@Url.Action("QAIndex","SellerHome")" class="nav-link">檢視問答</a></li>
+                    </ul>
+                    <ul class="nav  flex-column">
+                        賣場管理
+                        <li class="nav-item"><a href="@Url.Action("selEdit","SellerHome")" class="nav-link">賣場設定</a></li>
+                    </ul>
 
 
-            </div>
-            <div class="col-9">
+                </div>
+                <div class="col-9">
 
-                @RenderBody()
+                    @RenderBody()
+                </div>
+
             </div>
 
         </div>
-
     </div>
-</div>
     <footer class="footer-1 bg-light text-center">
 
         <div class="jumbotron bg-light">
@@ -209,9 +209,8 @@
 
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @RenderSection("Script", false)
-    <script>
-    $('img').one("error", (e) => { $(e.target).attr('src', "/images/diamond-4229493_960_720.jpg") });
-    </script>
+
+    <script src="~/Scripts/CoverMissingProductImages.js"></script>
 </body>
 </html>
 
