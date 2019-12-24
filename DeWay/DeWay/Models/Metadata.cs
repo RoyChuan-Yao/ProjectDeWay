@@ -200,11 +200,9 @@ namespace DeWay.Models
             public Nullable<System.DateTime> birthDate { get; set; }
 
             [DisplayName("我的點數")]
-            [Required(ErrorMessage = "此欄位為必填")]
             public short Points { get; set; }
 
             [DisplayName("會員認證")]
-            [Required(ErrorMessage = "此欄位為必填")]
             public bool mbrAut { get; set; }
 
             [DisplayName("註冊日期")]
@@ -213,7 +211,6 @@ namespace DeWay.Models
             public System.DateTime signupDate { get; set; }
 
             [DisplayName("大頭照")]
-            [Required(ErrorMessage = "此欄位為必填")]
             public string mbrImage { get; set; }
             [DisplayName("是否封鎖")]
             public Nullable<bool> mbrBlock { get; set; }
@@ -237,7 +234,6 @@ namespace DeWay.Models
             [RegularExpression(@"[A-Z][a-zA-Z0-9]{7,}", ErrorMessage = "請輸入8~20碼的英文和數字，且第一個字母需為大寫!")]
             public string mbrPwd { get; set; }
 
-            [Key]
             [DisplayName("會員編號")]
             public string mbrID { get; set; }
 
