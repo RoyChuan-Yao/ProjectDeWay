@@ -9,12 +9,12 @@
                 <img src="../../productImage/@Model.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
                 <p class="text-secondary productsCardText">@Model.pdtName<span></span></p>
                 <p class="text-secondary productsCardText">NT:<span>@Model.Specification.FirstOrDefault().Price</span></p>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-around">
 
-                    <a href="@Url.Action("Edit","Product_edit_Seller",new {pdtid=Model.pdtID })" class="btn btn-primary text-white">編輯商品資訊</a>
-                    <a href="@Url.Action("Editsp","Product_edit_Seller",new {pdtid=Model.pdtID })" class="btn btn-secondary text-white">編輯規格</a>
+                    <a href="@Url.Action("Edit","Product_edit_Seller",new {pdtid=Model.pdtID })" class="btn btn-primary text-white" style="width:45%">編輯商品</a>
+                    <a href="@Url.Action("Editsp","Product_edit_Seller",new {pdtid=Model.pdtID })" class="btn btn-secondary text-white" style="width:45%">編輯規格</a>
 
-                    <div></div>
+                    
                 </div>
             </div>
         </div>

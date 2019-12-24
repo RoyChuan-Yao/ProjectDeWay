@@ -4,14 +4,13 @@
     ViewBag.Title = "Create";
 }
     <div class="container">
-        <h2>Create</h2>
+        <h4>商品上架</h4>
 
         @using (Html.BeginForm("Create", "product_create", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>Product</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
