@@ -65,7 +65,7 @@ namespace Project.Controllers
             }
             catch (Exception e)
             {
-                return JavaScript($"alert('{e.Message}')");
+                return JavaScript($"alert('失敗了，請再嘗試一次')");
             }
         }
         public ActionResult MyCart()
@@ -136,7 +136,7 @@ namespace Project.Controllers
                     catch (Exception d)
                     {
                         transaction.Rollback();
-                        return JavaScript($"alert({d.Message})");
+                        return JavaScript($"alert('失敗了，請再嘗試一次')");
                     }
                 }
                 //寫入COD資料
@@ -197,7 +197,7 @@ namespace Project.Controllers
                 catch (DbUpdateException e)
                 {
                     transaction.Rollback();
-                    return JavaScript($"alert({e.Entries})");
+                    return JavaScript($"alert('失敗了，請再嘗試一次')");
                 }
 
             }
