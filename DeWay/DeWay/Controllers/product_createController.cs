@@ -15,6 +15,11 @@ namespace DeWay.Controllers
         shopDBEntities db = new shopDBEntities();
         public ActionResult Create()
         {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+
+
+
             ViewBag.fst = new SelectList(db.FirstLayer, "fstLayerID", "fstLayer");
 
             string id = Session["memberID"].ToString();
@@ -41,6 +46,7 @@ namespace DeWay.Controllers
             {
                 return View();
             }
+
 
 
             string id = Session["memberID"].ToString();
@@ -139,22 +145,19 @@ namespace DeWay.Controllers
             }
 
             //寫入tag
-            for (int i = 0; i < tag.Length; i++)
-            {
-                Tag tg = new Tag();
-                string GetTagID = db.Database.SqlQuery<string>("Select dbo.GetTagID()").FirstOrDefault();
-                tg.tagID = GetTagID;
-                tg.tagName = tag[i].tagName;
-                tg.pdtID = GetpdtID;
-                db.Tag.Add(tg);
-                if (ModelState.IsValid == true)
+                for (int i = 0; i < tag.Length; i++)
                 {
-
-                    db.SaveChanges();
+                    Tag tg = new Tag();
+                    string GetTagID = db.Database.SqlQuery<string>("Select dbo.GetTagID()").FirstOrDefault();
+                    tg.tagID = GetTagID;
+                    tg.tagName = tag[i].tagName;
+                    tg.pdtID = GetpdtID;
+                    db.Tag.Add(tg);
+                    if (ModelState.IsValid == true)
+                    {
+                        db.SaveChanges();
+                    }
                 }
-            }
-
-
 
 
 

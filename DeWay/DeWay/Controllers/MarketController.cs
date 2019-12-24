@@ -14,6 +14,23 @@ namespace DeWay.Controllers
         // GET: Market
         public ActionResult Index(string sellerID = null)
         {
+            if (Session["memberID"].ToString() != null && sellerID == null)
+            {
+                var a = Session["memberID"].ToString();
+                if (db.Seller.Where(m => m.mbrID == a).Count() == 0)
+                {
+                    return RedirectToAction("SellerCreate", "SellerCertification");
+                }
+            }
+
+            //if (Session["memberID"].ToString() != null && db.Seller.Where(m => m.mbrID == Session["memberID"].ToString()).Count() == 0) 
+            //{
+
+            //        return RedirectToAction("SellerCreate", "SellerCertification");
+
+            //}
+
+
             string selID;
             selID = sellerID;
             if (selID == null)
