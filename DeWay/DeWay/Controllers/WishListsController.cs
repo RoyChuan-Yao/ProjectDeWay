@@ -22,7 +22,7 @@ namespace DeWay.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-              
+
             var wishes = db.WishList.Where(m => m.mbrID == mbrID).ToList();
             ViewBag.Name = db.Member.Where(m => m.mbrID == mbrID).FirstOrDefault().mbrName;
 
@@ -50,7 +50,7 @@ namespace DeWay.Controllers
             return View(wishList);
         }
 
-        
+
 
         // GET: WishLists/Edit/5
         //public ActionResult Edit(string id)
@@ -129,13 +129,14 @@ namespace DeWay.Controllers
             string mbrID = (string)Session["memberID"];
             if (mbrID is null)
             {
-                string js = "(function(){window.location.href =\"../login/login\"})()";
+                //string js = "(function(){window.location.href =\"../login/login\"})()";
+                string js = "";
                 Response.StatusCode = 400;
                 return JavaScript(js);
             }
 
             var InWishList = db.WishList.Where(m => m.mbrID == mbrID).Where(m => m.pdtID == pdtID).FirstOrDefault();
-            if(InWishList != null)
+            if (InWishList != null)
             {
                 db.WishList.Remove(InWishList);
                 db.SaveChanges();
@@ -155,7 +156,7 @@ namespace DeWay.Controllers
 
             return Content("商品成功新增至慾望清單！");
 
-        
+
         }
     }
 }
