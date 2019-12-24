@@ -620,6 +620,9 @@
     left: 100%;
 }
 
+
+
+
 .memberIntroductionE {
     width: 250px;
     margin: 10px 0px 5px 15px;
@@ -806,6 +809,39 @@
     font-family: 'Parisienne', cursive;
     font-size: 28px;
 }
+
+.MbrIntroduction {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    margin-top: 5rem;
+    margin-left: 2rem;
+    font-family: 'Poiret One', cursive;
+    font-size: 20px;
+}
+
+.MbrIntroductionD {
+    position: absolute;
+    right: -200px;
+    font-family: 'Montserrat Subrayada', sans-serif;
+    font-size: 15px;
+}
+
+.MbrIntroductionB {
+    position: relative;
+    margin-top: 5rem;
+    font-family: 'Montserrat Subrayada', sans-serif;
+    font-size: 15px;
+}
+
+
+
+.MbrIntroductionC {
+    font-size: 15px;
+}
+
+
+
 
 
 /*訂單詳細資料*/

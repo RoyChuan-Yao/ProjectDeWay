@@ -19,35 +19,35 @@ namespace DeWay.Controllers
 
         public ActionResult mbrIndex(string mbrID = null)
         {
-            //mbrID =null 預設找自己的
-            if (Session["memberID"] == null && mbrID == null)
-                return RedirectToAction("Login", "Login");
+            ////mbrID =null 預設找自己的
+            //if (Session["memberID"] == null && mbrID == null)
+            //    return RedirectToAction("Login", "Login");
 
-            string memberID;
-            memberID = mbrID;
+            //string memberID;
+            //memberID = mbrID;
 
 
-            if (memberID == null)
-            {
-                memberID = Session["memberID"].ToString();
-
-            }
-            //else if (memberID == Session["memberID"].ToString())
+            //if (memberID == null)
             //{
             //    memberID = Session["memberID"].ToString();
+
+            //}
+            ////else if (memberID == Session["memberID"].ToString())
+            ////{
+            ////    memberID = Session["memberID"].ToString();
+            ////}
+
+            //if (Session["memberID"].ToString() != null && mbrID != null)
+            //{
+            //    ViewBag.id = Session["memberID"].ToString();
             //}
 
-            if (Session["memberID"].ToString() != null && mbrID != null)
-            {
-                ViewBag.id = Session["memberID"].ToString();
-            }
 
 
-
-            //ViewBag.id = Session["memberID"].ToString();
-            //ViewBag.memberID = memberID;
-            var member = db.Member.Where(m => m.mbrID == memberID).ToList();
-            return View(member);
+            ////ViewBag.id = Session["memberID"].ToString();
+            ////ViewBag.memberID = memberID;
+            //var member = db.Member.Where(m => m.mbrID == memberID).ToList();
+            //return View(member);
 
             ////沒登入又沒給參數丟到登入頁面
 
@@ -68,12 +68,44 @@ namespace DeWay.Controllers
             //var member = db.Member.Where(m => m.mbrID == mbrID).ToList();
 
 
+            if (mbrID == null && Session["memberID"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            if (mbrID == null && Session["memberID"] != null) 
+            {
+                var a = Session["memberID"].ToString();
+                var member1 = db.Member.Where(m => m.mbrID == a).ToList();
+                ViewBag.id = Session["memberID"].ToString();
+
+                return View(member1);
+
+            }
+            string memberID;
+            memberID = mbrID;
+            if (memberID == null)
+            {
+
+                memberID = Session["memberID"].ToString();
+
+
+            }
+            if (Session["memberID"] != null && Session["memberID"].ToString() == memberID)
+            {
+                ViewBag.id = Session["memberID"].ToString();
+            }
+            else
+            {
+                ViewBag.id = null;
+            }
+
+            var member = db.Member.Where(m => m.mbrID == memberID).ToList();
 
 
 
 
-
-
+            return View(member);
 
         }
         public ActionResult mbrEdit(string id)

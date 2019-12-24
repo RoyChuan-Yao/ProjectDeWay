@@ -31,22 +31,22 @@
             <div class="card membercard  col-12 col-12A col-md-6" style="width:100%;">
                 <div class="tab-content" id="">
                     <div class="tab-pane active" id="Introduction1">
-                        <div class="memberIntroduction">
+                        <div class="MbrIntroduction">
                             <div>
-                                <a href="#" class="text-primary ">個人名片</a>
+                                <a class="text-primary ">個人名片</a>
                                 <br />
                             </div>
                             @if (ViewBag.id == null)
                             {
-                                <div class="memberIntroductionB">
-                                    <div class="memberIntroductionC">
-                                        Name:<span class="memberIntroductionD">@Model.FirstOrDefault().mbrName</span>
+                                <div >
+                                    <div class="MbrIntroductionC">
+                                        <span class="MbrIntroductionB">Name:</span>  <span class="MbrIntroductionD">  @Model.FirstOrDefault().mbrName</span>
                                         <br />
                                         <br />
-                                        Nickname:<span class="memberIntroductionD">@Model.FirstOrDefault().nickName</span>
+                                        <span class="MbrIntroductionB">Nickname:</span><span class="MbrIntroductionD">  @Model.FirstOrDefault().nickName</span>
                                         <br />
                                         <br />
-                                        Birthday:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
+                                        <span class="MbrIntroductionB">Birthday:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
 
 
                                     </div>
@@ -55,23 +55,23 @@
                             else
                             {
 
-                                <div class="memberIntroductionB">
-                                    <div class="memberIntroductionC">
-                                        Name:<span class="memberIntroductionD">@Model.FirstOrDefault().mbrName</span>
+                                <div >
+                                    <div class="MbrIntroductionC">
+                                        <span class="MbrIntroductionB">Name:</span><span class="MbrIntroductionD">  @Model.FirstOrDefault().mbrName</span>
                                         <br />
                                         <br />
-                                        Nickname:<span class="memberIntroductionD">@Model.FirstOrDefault().nickName</span>
+                                        <span class="MbrIntroductionB">Nickname:</span><span class="MbrIntroductionD">  @Model.FirstOrDefault().nickName</span>
                                         <br />
                                         <br />
-                                        Birthday:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
+                                        <span class="MbrIntroductionB">Birthday:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
 
 
                                         <br />
                                         <br />
-                                        Phone:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().mbrPhone)</span>
+                                        <span class="MbrIntroductionB">Phone:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().mbrPhone)</span>
                                         <br />
                                         <br />
-                                        E - mail:<span class="memberIntroductionD">@Html.DisplayFor(model => model.FirstOrDefault().mbrMail)</span>
+                                        <span class="MbrIntroductionB">Email:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().mbrMail)</span>
 
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="MbrName mt-3 ">
 
-                    Name
+                  My  Profile
 
                 </div>
 

@@ -23,7 +23,7 @@ namespace DeWay.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-                if (sellerID == null && Session["memberID"] != null ) //是非賣家會員
+            if (sellerID == null && Session["memberID"] != null) //是非賣家會員
             {
                 var a = Session["memberID"].ToString();
                 if (db.Seller.Where(m => m.mbrID == a).Count() == 0)
@@ -44,7 +44,7 @@ namespace DeWay.Controllers
             selID = sellerID;
             if (selID == null)
             {
-                
+
                 var id = Session["memberID"].ToString();
                 selID = (from m in db.Seller
                          where m.mbrID == id
