@@ -4,67 +4,178 @@
     ViewBag.Title = "mbrIndex";
 }
 
-<h2>會員資料</h2>
+<link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada|Parisienne|Poiret+One&display=swap" rel="stylesheet">
 
 
-<div class="container">
-
-    @foreach (var item in Model)
-    {
-        <div class="row"><h6>註冊日期 @Html.DisplayFor(modelItem => item.signupDate)</h6></div>
-        <hr />
-        <div class="row">
-            <div class="col-3">
 
 
-                @if (item.mbrImage == null || item.mbrImage == "")
+<div class="container col-10 col-xl-7 De-mtmb-15">
+    <div>
+        <div class="row d-flex justify-content-between membercardA">
+            <div class="card membercard membercardC col-12 col-12A col-md-6">
+
+                @if (@Model.FirstOrDefault().mbrImage == null || @Model.FirstOrDefault().mbrImage == "")
                 {
-                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" /></a>
+                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" style="width:100%;height:100%" /></a>
                 }
                 else
                 {
-                    <a href="/mbrPhoto/@item.mbrImage"><img src="/mbrPhoto/@item.mbrImage" /></a>
+                    <a href="/mbrPhoto/@Model.FirstOrDefault().mbrImage"><img id="srcsrcsrc" src="/mbrPhoto/@Model.FirstOrDefault().mbrImage" style="width:100%;height:100%" /></a>
 
                 }
 
 
-            </div>
-            <div class="col-5">
-                <h3>
-                    @Html.DisplayFor(modelItem => item.mbrName)
-                    @Html.DisplayFor(modelItem => item.nickName)
-                </h3>
-                <div>
-
-                    <h4>電話:　@Html.DisplayFor(modelItem => item.mbrPhone)</h4>
-                </div>
-
-                <div>
-
-                    <h4>信箱:　@Html.DisplayFor(modelItem => item.mbrMail)</h4>
-                </div>
 
 
             </div>
-            <div class="col-3">
-                <div>
+            <div class="card membercard  col-12 col-12A col-md-6" style="width:100%;">
+                <div class="tab-content" id="">
+                    <div class="tab-pane active" id="Introduction1">
+                        <div class="MbrIntroduction">
+                            <div>
+                                <a class="text-primary ">個人名片</a>
+                                <br />
+                            </div>
+                            @if (ViewBag.id == null)
+                            {
+                                <div >
+                                    <div class="MbrIntroductionC">
+                                        <span class="MbrIntroductionB">Name:</span>  <span class="MbrIntroductionD">  @Model.FirstOrDefault().mbrName</span>
+                                        <br />
+                                        <br />
+                                        <span class="MbrIntroductionB">Nickname:</span><span class="MbrIntroductionD">  @Model.FirstOrDefault().nickName</span>
+                                        <br />
+                                        <br />
+                                        <span class="MbrIntroductionB">Birthday:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
 
-                    <h4>生日:　@Html.DisplayFor(modelItem => item.birthDate)</h4>
-                </div>
-                <div>
 
-                    <h4>點數:　@Html.DisplayFor(modelItem => item.Points)</h4>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+
+                                <div >
+                                    <div class="MbrIntroductionC">
+                                        <span class="MbrIntroductionB">Name:</span><span class="MbrIntroductionD">  @Model.FirstOrDefault().mbrName</span>
+                                        <br />
+                                        <br />
+                                        <span class="MbrIntroductionB">Nickname:</span><span class="MbrIntroductionD">  @Model.FirstOrDefault().nickName</span>
+                                        <br />
+                                        <br />
+                                        <span class="MbrIntroductionB">Birthday:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().birthDate)</span>
+
+
+                                        <br />
+                                        <br />
+                                        <span class="MbrIntroductionB">Phone:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().mbrPhone)</span>
+                                        <br />
+                                        <br />
+                                        <span class="MbrIntroductionB">Email:</span><span class="MbrIntroductionD">  @Html.DisplayFor(model => model.FirstOrDefault().mbrMail)</span>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
                 </div>
+                <div class="memberNav">
+                    <ul class="nav nav-tabs nav-tabsMbr" id="">
+                        <li class="nav-item nav-itemMbr">
+                            <a class="nav-link nav-linkMbr active  pIntroduction1" id="Introduction1" href="#Introduction1" data-toggle="tab">關於我</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="MbrName mt-3 ">
+
+                  My  Profile
+
+                </div>
+
 
             </div>
-            <div class="col-1"> @Html.ActionLink("編輯", "mbrEdit", new { id = item.mbrID }, new { @class = "btn btn-primary" })</div>
-            <div class="col-1"> @Html.ActionLink("訂單", "odrIndex", new { odrStatus = "處理中" }, new { @class = "btn btn-primary" })</div>
+
         </div>
-
-
-    }
+    </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="container">
+
+        @foreach (var item in Model)
+        {
+            <div class="row"><h6>註冊日期 @Html.DisplayFor(modelItem => item.signupDate)</h6></div>
+            <hr />
+            <div class="row">
+                <div class="col-3">
+
+
+                    @if (item.mbrImage == null || item.mbrImage == "")
+                    {
+                        <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" /></a>
+                    }
+                    else
+                    {
+                        <a href="/mbrPhoto/@item.mbrImage"><img src="/mbrPhoto/@item.mbrImage" /></a>
+
+                    }
+
+
+                </div>
+                <div class="col-5">
+                    <h3>
+                        @Html.DisplayFor(modelItem => item.mbrName)
+                        @Html.DisplayFor(modelItem => item.nickName)
+                    </h3>
+                    <div>
+
+                        <h4>電話:　@Html.DisplayFor(modelItem => item.mbrPhone)</h4>
+                    </div>
+
+                    <div>
+
+                        <h4>信箱:　@Html.DisplayFor(modelItem => item.mbrMail)</h4>
+                    </div>
+
+
+                </div>
+                <div class="col-3">
+                    <div>
+
+                        <h4>生日:　@Html.DisplayFor(modelItem => item.birthDate)</h4>
+                    </div>
+                    <div>
+
+                        <h4>點數:　@Html.DisplayFor(modelItem => item.Points)</h4>
+                    </div>
+
+                </div>
+                <div class="col-1"> @Html.ActionLink("編輯", "mbrEdit", new { id = item.mbrID }, new { @class = "btn btn-primary" })</div>
+                <div class="col-1"> @Html.ActionLink("訂單", "odrIndex", new { odrStatus = "處理中" }, new { @class = "btn btn-primary" })</div>
+            </div>
+
+
+        }
+
+    </div>*@
 
 
 

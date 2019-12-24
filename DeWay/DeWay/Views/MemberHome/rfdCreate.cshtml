@@ -12,7 +12,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
+    <div class="form-horizontal mb-5">
         <input id="Hidden1" type="hidden" value="@Model.FirstOrDefault().odrID" name="odrID" />
         <div class="card ">
             <div>

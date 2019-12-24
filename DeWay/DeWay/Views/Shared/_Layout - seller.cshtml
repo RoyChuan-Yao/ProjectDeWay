@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - DeWay 設計之路</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <link href="~/Content/DeWayMemberHome.css" rel="stylesheet" />
-
 
 
     @RenderSection("CSS", false)
@@ -26,7 +25,7 @@
 
                 @*<a class="navbar-brand" href="#">DeWay</a>*@
 
-                @Html.ActionLink("DeWay", "Index", "Home", new { }, new { @class = "navbar-brand" })
+                @Html.ActionLink("DeWay", "Index", "Home", new { }, new { @class = "navbar-brand DeWay" })
 
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,35 +33,40 @@
                 </button>
 
                 <div class="collapse navbar-collapse bg-light" id="navbarToggleExternalContent">
-                    <form class="form-inline mr-auto" method="post" action="@Url.Action("Index","SearchForLayout")">
-                        <input class="form-control mr-sm-1 " type="search" placeholder="Search" aria-label="Search">
+
+                    <form class="form-inline" method="post" action="@Url.Action("Index","SearchForLayout")">
+
+                        <input class="form-control mr-sm-1 " type="search" placeholder="Search" aria-label="Search" name="ProductName">
                         <button class="btn btn-outline-secondary my-1 my-sm-0 ml-auto" type="submit">Search</button>
                     </form>
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav ml-0 ">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 所有分類
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">衣著良品</a>
-                                <a class="dropdown-item" href="#">包包提袋</a>
-                                <a class="dropdown-item" href="#">配件飾品</a>
+                                @Html.ActionLink("配件飾品", "GetCategory", "SearchForLayout", new { category = "fst0000001" }, new { @class = "nav-link" })
+                                @Html.ActionLink("居家生活", "GetCategory", "SearchForLayout", new { category = "fst0000002" }, new { @class = "nav-link" })
+                                @Html.ActionLink("包包提袋", "GetCategory", "SearchForLayout", new { category = "fst0000003" }, new { @class = "nav-link" })
+                                @Html.ActionLink("衣著良品", "GetCategory", "SearchForLayout", new { category = "fst0000004" }, new { @class = "nav-link" })
+                                @Html.ActionLink("文具卡片", "GetCategory", "SearchForLayout", new { category = "fst0000005" }, new { @class = "nav-link" })
+                                @Html.ActionLink("鞋類", "GetCategory", "SearchForLayout", new { category = "fst0000006" }, new { @class = "nav-link" })
+
                             </div>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">新手教學</a>
+                            <a id="way" class="nav-link" href="#design">如何開間設計館</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">推薦商品</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">主題活動<span class="sr-only">(current)</span></a>
-                        </li>
+                        @*<li class="nav-item">
+                                <a class="nav-link" href="#"></a>
+                            </li>*@
+
 
                         <li class="nav-item ">
 
-                            @*<a class="nav-link" href="#">登入</a>*@
+
+
                             @if (Session["memberID"] == null)
                             {
                                 @Html.ActionLink("登入", "Login", "login", new { }, new { @class = "nav-link" })
@@ -71,6 +75,7 @@
                             {
                                 @Html.ActionLink("登出", "Logout", "login", new { }, new { @class = "nav-link" })
                             }
+
                         </li>
 
                     </ul>
@@ -86,16 +91,19 @@
                             <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("myCart","Cart")"><img src="~/images/Img-shopping-cart-12.png" style="width:50%" /></a>
                         </li>
                         <li>
-                            <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("Index","WishLists")"><img src="~/images/Img-like-7.png" style="width:50%" /></a>
+                            <a style="width:48px;height:40px" class="nav-link " href="@Url.Action("Index","WishLists")"><img src="~/images/Img-like-8.png" style="width:50%" /></a>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a style="width:48px;height:40px" class="nav-link " href="#" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/images/img-user-15.png" style="width:50%" /></a>
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink2">
-
+                                @Html.ActionLink("個人名片", "mbrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("會員中心", "odrIndex", "MemberHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("商品收藏", "Index", "WishLists", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("帳號設定", "pwdEdit", "MemberHome", new { }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("通知中心", "IndexForMember", "ntfRecordsAdm", new { }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("開設計館", "SellerCreate", "SellerCertification", new { }, new { @class = "dropdown-item" })
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -104,6 +112,8 @@
                                 @Html.ActionLink("商品上架", "Create", "Product_create", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("賣家中心", "OrderIndex", "SellerHome", new { }, new { @class = "dropdown-item" })
                                 @Html.ActionLink("賣場設定", "editMarket", "SellerHome", new { }, new { @class = "dropdown-item" })
+                                @Html.ActionLink("我的賣場", "Index", "Market", new { }, new { @class = "dropdown-item" })
+
                             </div>
                         </li>
 
@@ -198,7 +208,9 @@
 
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @RenderSection("Script", false)
-
+    <script>
+    $('img').one("error", (e) => { $(e.target).attr('src', "/images/diamond-4229493_960_720.jpg") });
+    </script>
 </body>
 </html>
 

@@ -223,11 +223,11 @@
         border: 0px solid transparent;
         color: #000000;
         background-color: #ffffff;
-        
+        border-bottom: 3px solid #6b92a4;
     }
-.nav-tabsHome .nav-linkHome:hover {
-    color: #ff9797;
-}
+    .nav-tabsHome .nav-linkHome:hover {
+        background-color: #c4c4c4;
+    }
 .btn.focus, .btn:focus {
     outline: 0;
     box-shadow: 0 0 0 0rem rgba(0,0,0,0.6);
@@ -576,6 +576,11 @@
             height: 100%;
         }
 
+
+
+
+
+
 .nav-linkA {
     height: 100%;
     text-align: center;
@@ -597,6 +602,7 @@
     margin-left: 2rem;
     font-family: 'Poiret One', cursive;
     font-size: 20px;
+    
 }
 
 .memberIntroductionB {
@@ -606,12 +612,16 @@
 
 .memberIntroductionC {
     font-size: 15px;
+    
 }
 
 .memberIntroductionD {
     position: relative;
     left: 100%;
 }
+
+
+
 
 .memberIntroductionE {
     width: 250px;
@@ -767,6 +777,72 @@
 .memberNav-tabs {
     border-bottom: 0px solid; 
 }
+
+.nav-tabsMbr {
+    border-bottom: 0px solid #dee2e6;
+    height: 100%;
+}
+
+    .nav-tabsMbr .nav-itemMbr {
+        margin-bottom: 0px;
+        width: 100%;
+        background-color: rgba(0,0,0,0.3);
+    }
+
+    .nav-tabsMbr .nav-linkMbr {
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+    }
+
+        .nav-tabsMbr .nav-linkMbr.active, .nav-tabsMbr .nav-itemMbr.show .nav-linkMbr {
+            color: #ffffff;
+            background-color: rgba(0,0,0,0.3);
+            border-color: #dee2e6 #dee2e6 #fff;
+            height: 100%;
+            text-align: center;
+            padding-top: 4%;
+        }
+.MbrName {
+    position: absolute;
+    top: 5%;
+    left: 15%;
+    font-family: 'Parisienne', cursive;
+    font-size: 28px;
+}
+
+.MbrIntroduction {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    margin-top: 5rem;
+    margin-left: 2rem;
+    font-family: 'Poiret One', cursive;
+    font-size: 20px;
+}
+
+.MbrIntroductionD {
+    position: absolute;
+    right: -200px;
+    font-family: 'Montserrat Subrayada', sans-serif;
+    font-size: 15px;
+}
+
+.MbrIntroductionB {
+    position: relative;
+    margin-top: 5rem;
+    font-family: 'Montserrat Subrayada', sans-serif;
+    font-size: 15px;
+}
+
+
+
+.MbrIntroductionC {
+    font-size: 15px;
+}
+
+
+
+
 
 /*訂單詳細資料*/
     .orderDA {

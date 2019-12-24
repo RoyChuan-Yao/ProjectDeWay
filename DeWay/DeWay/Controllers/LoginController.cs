@@ -22,6 +22,20 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult Login(string id, string pwd)
         {
+            var checkmbr = db.Member.Where(m => m.MemberAccount.mbrAccount == id).Count();
+
+            if (checkmbr != 0)
+            {
+                var getmbrBlock = db.Member.Where(m => m.MemberAccount.mbrAccount == id).FirstOrDefault().mbrBlock;
+
+                if (getmbrBlock == true)
+                {
+                    ViewBag.LoginErr = "您已被停權!!!";
+
+                    return View();
+
+                }
+            }
             string sql = "select * from MemberAccount where mbrAccount = @mbrAccount and mbrPwd=@mbrPwd";
             SqlCommand cmd = new SqlCommand(sql, Conn);
             cmd.Parameters.AddWithValue("@mbrAccount", id);
@@ -59,33 +73,36 @@ namespace DeWay.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Member mbr, string act, string pwd)
+        public ActionResult Register(Member mbr, MemberAccount memberAccount)
         {
+            var a = ModelState.IsValid;
 
             string GetMemberID = db.Database.SqlQuery<string>("Select dbo.GetMemberID()").FirstOrDefault();
             mbr.mbrID = GetMemberID;
-            MemberAccount cc = new MemberAccount();
-            cc.mbrID = GetMemberID;
-            cc.mbrAccount = act;
-            cc.mbrPwd = pwd;
+            memberAccount.mbrID = GetMemberID;
+
             mbr.nickName = mbr.mbrName;
             mbr.Points = 0;
             mbr.mbrAut = false;
             mbr.signupDate = DateTime.Now;
             mbr.mbrImage = "0.jpg";
             mbr.mbrBlock = false;
+            mbr.MemberAccount = memberAccount;
+
 
             if (ModelState.IsValid)
             {
-                db.Entry(mbr).State = EntityState.Modified;
+                //db.Entry(mbr).State = EntityState.Modified;
+                //db.Entry(mbr).State = EntityState.Detached;
 
                 db.Member.Add(mbr);
-                db.MemberAccount.Add(cc);
                 db.SaveChanges();
+                //db.MemberAccount.Add(memberAccount);
+                //db.SaveChanges();
 
 
 
-                return RedirectToAction("Registercheck", "Login");
+                return RedirectToAction("Registercheck", "login");
             }
             return View("Login");
         }

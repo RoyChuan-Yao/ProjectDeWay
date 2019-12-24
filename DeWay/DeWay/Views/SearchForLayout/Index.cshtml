@@ -10,62 +10,62 @@
 }
 @*<table class="table">
 
-    <tr>
-        <th>
-            商品名稱
-        </th>
-
-        <th>
-            商品圖片
-        </th>
-
-        <th>
-            價格
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
         <tr>
-            <td>
-                @Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
-            </td>
-            <td>
-                @if (item.ProductImage.Count > 0)
-                {
-                    <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" width="60" height="60" alt="商品圖片" />
+            <th>
+                商品名稱
+            </th>
 
-                }
-                else
-                {
-                    <span>圖片遺失</span>
-                }
-            </td>
-            <td>
-                @(Convert.ToInt32(item.Specification.OrderBy(m => m.Price).FirstOrDefault().Price).ToString())
-                ~
+            <th>
+                商品圖片
+            </th>
 
-                @(Convert.ToInt32(item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price).ToString())
-
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.ProductCategory.FirstLayer.fstLayer)
-
-
-                @Html.DisplayFor(modelitem => item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price)
-                @Html.DisplayFor(modelItem => item.ProductCategory.fstLayerID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item)
-                @Html.DisplayFor(modelItem => item.Seller.selCompany)
-
-            </td>
+            <th>
+                價格
+            </th>
+            <th></th>
         </tr>
-    }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
+                </td>
+                <td>
+                    @if (item.ProductImage.Count > 0)
+                    {
+                        <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" width="60" height="60" alt="商品圖片" />
+
+                    }
+                    else
+                    {
+                        <span>圖片遺失</span>
+                    }
+                </td>
+                <td>
+                    @(Convert.ToInt32(item.Specification.OrderBy(m => m.Price).FirstOrDefault().Price).ToString())
+                    ~
+
+                    @(Convert.ToInt32(item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price).ToString())
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.ProductCategory.FirstLayer.fstLayer)
 
 
-</table>*@
+                    @Html.DisplayFor(modelitem => item.Specification.OrderByDescending(m => m.Price).FirstOrDefault().Price)
+                    @Html.DisplayFor(modelItem => item.ProductCategory.fstLayerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item)
+                    @Html.DisplayFor(modelItem => item.Seller.selCompany)
+
+                </td>
+            </tr>
+        }
+
+
+    </table>*@
 
 
 <div id="pI4" class="pI4 ">
@@ -95,76 +95,111 @@
                 </div>
 
 
+
             </div>
             <div class="memberArticle">
                 <div class="products tab-content">
 
-                    @*全部分類-all*@
-                    <div class="tab-pane memberTab-pane active" id="all">
-                        <div class="row justify-content-start ">
-                            @foreach (var item in Model)
-                            {
-                                @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
-                            }
-                        </div>
-                    </div>
-                    @*大分類A-classA*@
 
-                    @foreach (var aaa in ViewBag.fst)
-                    {
-                        <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
-                            <div class="row justify-content-start cateSlot">
+                </div>
+
+
+                @*全部分類-all*@
+                <div class="tab-pane memberTab-pane active" id="all">
+                    <div class="row justify-content-start ">
+                        @*@foreach (var item in Model)
+                        {
+                            @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
+
+                        }*@
+
+
+                        @*全部分類-all*@
+                        <div class="tab-pane memberTab-pane active" id="all">
+                            <div class="row justify-content-start ">
                                 @foreach (var item in Model)
                                 {
+                                    <div class="card col-4 col-md-2 productsCard membercardB">
+                                        <div>
+                                            <div class="card-body productsCardbody">
+                                                <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
 
-                                    if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
-                                    {
-                                        @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
-                                    }
-
+                                                <p class="text-secondary productsCardText">@Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })<span></span></p>
+                                                <p class="text-secondary productsCardText">NT: <span>@item.Specification.FirstOrDefault().Price</span></p>
+                                                <div class="d-flex justify-content-between">
+                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
+
+
+
+
 
                             </div>
                         </div>
-                    }
+                        @*大分類A-classA*@
+
+                        @foreach (var aaa in ViewBag.fst)
+                        {
 
 
+                            <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
+                                <div class="row justify-content-start cateSlot">
+                                    @foreach (var item in Model)
+                                    {
+
+                                        if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
+                                        {
+                                            @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
+                                        }
+
+                                    }
+
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
                 </div>
+
             </div>
 
         </div>
 
     </div>
 
-</div>
+
+    @section Script{
+        <script>
+
+            $(".cateSlot").each((index, element) => {
+                if ($(element).children().length == 0) {
+                    $(element).append(`<div class='CenterIt '>
+                                    <h2>收尋結果無相關商品</h2 >
+                                    </div>
+                                    `)
+                }
+            });
 
 
-@section Script{
-    <script>
+        </script>
+    }
+    @section CSS{
 
-        $(".cateSlot").each((index, element) => {
-            if ($(element).children().length == 0) {
-                $(element).append(`<div class='CenterIt '>
-                    <h2>搜尋結果無相關商品</h2 >
-                    </div>
-                    `)
+        <style>
+            .CenterIt {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 75%;
+                height: 318.72px;
+
             }
-        });
-
-    </script>
-}
-@section CSS{
-
-    <style>
-        .CenterIt {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-                width:75%;
-                height:318.72px;
-        }
-    </style>
-}
-
-
+        </style>
+    }
 

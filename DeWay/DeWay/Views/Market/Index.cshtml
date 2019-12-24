@@ -26,7 +26,7 @@
                         <div class="tab-pane active" id="Introduction1">
                             <div class="memberIntroduction">
                                 <div>
-                                    <a href="#" class="text-primary">個人名片</a>
+                                    <a href="#" class="text-primary">設計館名片</a>
                                 </div>
 
                                 <div class="memberIntroductionB">
@@ -141,7 +141,7 @@
                     <div class="memberNav">
                         <ul class="nav nav-tabs nav-tabsA" id="">
                             <li class="nav-item nav-itemA">
-                                <a class="nav-link nav-linkA active  pIntroduction1" id="Introduction1" href="#Introduction1" data-toggle="tab">關於我</a>
+                                <a class="nav-link nav-linkA active  pIntroduction1" id="Introduction1" href="#Introduction1" data-toggle="tab">關於設計館</a>
                             </li>
                             <li class="nav-item nav-itemA ">
                                 <a class="nav-link nav-linkA  pIntroduction2" id="Introduction2" href="#Introduction2" data-toggle="tab">信用評價</a>
@@ -158,9 +158,9 @@
                     <div class="DesignShop mt-3 ">
                         @Model.sellers.FirstOrDefault().selCompany
 
-                        <span>
-                            <img class="DSstar" src="../../images/img-s-4.png" />
-                        </span>
+
+                        @*<img class="DSstar" src="../../images/img-s-4.png" />*@
+                        <span class="star mt-4 mb-4 " starCount="@ViewBag.Stars"></span>
 
 
                         <button type="button" class="btn btn-outline-dark productsDisplay">加入關注</button>
@@ -457,6 +457,28 @@
             }
         });
     </script>
-
+    <script>
+        function getStar(starCount) {
+            var starsArray = ["☆", "☆", "☆", "☆", "☆"];
+            var result = "";
+            for (var i = 0; i < starCount; i++) {
+                starsArray.unshift("★");
+            }
+            for (var i = 0; i < 5; i++) {
+                result += starsArray[i];
+            }
+            var result = `<span style=" font-size: 22px;color:#ff9797">${result}</span>`
+            return result
+        }
+        function refresh() {
+            $(`.star`).each((index, element) => {
+                console.log(element);
+                $(element).html(
+                    getStar($(element).attr("starCount"))
+                )
+            })
+        }
+        refresh();
+    </script>
 
 }
