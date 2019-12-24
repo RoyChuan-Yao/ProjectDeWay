@@ -95,113 +95,87 @@
                 </div>
 
 
-
             </div>
             <div class="memberArticle">
                 <div class="products tab-content">
 
+                    @*全部分類-all*@
+                    <div class="tab-pane memberTab-pane active" id="all">
+                        <div class="row justify-content-start ">
+                            @foreach (var item in Model)
+                            {
+                                @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
 
-                </div>
-
-
-                @*全部分類-all*@
-
-                @*<div class="tab-pane memberTab-pane active" id="all">
-                    <div class="row justify-content-start ">*@
-                        @*@foreach (var item in Model)
-                        {
-                            @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
-
-                        }*@
+                            }
 
 
-                        @*全部分類-all*@
-                        <div class="tab-pane memberTab-pane active" id="all">
-                            <div class="row justify-content-start ">
+
+
+
+                        </div>
+                    </div>
+                    @*大分類A-classA*@
+
+                    @foreach (var aaa in ViewBag.fst)
+                    {
+
+
+                        <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
+                            <div class="row justify-content-start cateSlot">
                                 @foreach (var item in Model)
                                 {
-                                    <div class="card col-4 col-md-2 productsCard membercardB">
-                                        <div>
-                                            <div class="card-body productsCardbody">
-                                                <img src="~/productImage/@item.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
 
-                                                <p class="text-secondary productsCardText">@Html.ActionLink($"{item.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })<span></span></p>
-                                                <p class="text-secondary productsCardText">NT: <span>@item.Specification.FirstOrDefault().Price</span></p>
-                                                <div class="d-flex justify-content-between">
-                                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
+                                    {
+                                        @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
+                                    }
+
                                 }
-
-
-
 
 
                             </div>
                         </div>
-                        @*大分類A-classA*@
-
-                        @foreach (var aaa in ViewBag.fst)
-                        {
+                    }
 
 
-                            <div class="tab-pane memberTab-pane fade" id="@aaa.fstLayerID">
-                                <div class="row justify-content-start cateSlot">
-                                    @foreach (var item in Model)
-                                    {
-
-                                        if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
-                                        {
-                                            @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
-                                        }
-
-                                    }
-
-                                </div>
-                            </div>
-                        }
-
-
-                    </div>
                 </div>
-
             </div>
 
         </div>
 
+    </div>
 
-    @*</div>*@
-
-
-    @section Script{
-        <script>
-
-            $(".cateSlot").each((index, element) => {
-                if ($(element).children().length == 0) {
-                    $(element).append(`<div class='CenterIt '>
-                                    <h2>收尋結果無相關商品</h2 >
-                                    </div>
-                                    `)
-                }
-            });
+</div>
 
 
-        </script>
-    }
-    @section CSS{
+@*</div>*@
 
-        <style>
-            .CenterIt {
-                /*display: flex;*/
-                justify-content: center;
-                align-items: center;
-                width: 75%;
-                height: 318.72px;
 
+@section Script{
+    <script>
+
+        $(".cateSlot").each((index, element) => {
+            if ($(element).children().length == 0) {
+                $(element).append(`<div class='CenterIt '>
+                                            <h2>收尋結果無相關商品</h2 >
+                                            </div>
+                                            `)
             }
-        </style>
-    }
+        });
+
+
+    </script>
+}
+@section CSS{
+
+    <style>
+        .CenterIt {
+            /*display: flex;*/
+            justify-content: center;
+            align-items: center;
+            width: 75%;
+            height: 318.72px;
+        }
+    </style>
+}
 
