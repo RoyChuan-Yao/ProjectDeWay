@@ -20,12 +20,10 @@ namespace DeWay.Controllers
 
             var checksel = db.Seller.Where(m => m.mbrID == memberID).Count();
             //應急處理 不然登入者不是賣家會報錯
+            ViewBag.Stars = product.Review.Count() == 0 ? 0 : product.Review.Average(m => m.rvwStar);
 
-            
-            ViewBag.Stars = product.Review.Average(m => m.rvwStar);
-
-            string selID ="";
-            if (memberID != null && checksel != 0) 
+            string selID = "";
+            if (memberID != null && checksel != 0)
             {
                 selID = db.Seller.Where(m => m.mbrID == memberID).FirstOrDefault().selID;
             }
@@ -36,7 +34,7 @@ namespace DeWay.Controllers
                 //TODO： 製作404頁面
             }
             return View(product);
-        } 
+        }
         public int GetProductStock(string specID)
         {
             int stockResult = db.Specification
@@ -57,10 +55,10 @@ namespace DeWay.Controllers
             var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
             return PartialView("_GetProductCard", product);
         }
-        
-        public PartialViewResult _GetSetOfProductCard(int takeCount,int skipCount =0)
+
+        public PartialViewResult _GetSetOfProductCard(int takeCount, int skipCount = 0)
         {
-            var pdts = db.Product.Where(m => m.Discontinued != true).OrderBy(m=>m.pdtID).Skip(skipCount).Take(takeCount);
+            var pdts = db.Product.Where(m => m.Discontinued != true).OrderBy(m => m.pdtID).Skip(skipCount).Take(takeCount);
             return PartialView(pdts);
         }
     }
