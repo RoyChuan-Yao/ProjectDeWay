@@ -8,7 +8,7 @@
 <div class="container">
 
 
-    <div class="mb-3" id="cart_title">@Html.Raw(ViewBag.memberName)的購物車</div>
+    <div class="mb-3" id="cart_title" style="font-size:23px;">@Html.Raw(ViewBag.memberName) 。 購物車</div>
     <div class="row">
         <div class="col-8">
             @Html.Partial("_CartCard", Model)
@@ -88,8 +88,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="updateAddress" type="button" class="btn btn-primary" onclick="updateAddressToForm()" data-dismiss="modal">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                    <button id="updateAddress" type="button" class="btn btn-primary" onclick="updateAddressToForm()" data-dismiss="modal">儲存</button>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
         function updateAddressToForm() {//顯示收件人資料
             var displayAddress = "";
             $(`div[class="modal-content"] input`).each((i, e) => {
-                displayAddress += `<p>${$(e).parent().prev().text()}:${$(e).val()}</p>`;
+                displayAddress += `<dt>${$(e).parent().prev().text()}:</dt><dd>${$(e).val()}</dd>`;
             });
             $(`#receiverBoard`).html(displayAddress);
         }

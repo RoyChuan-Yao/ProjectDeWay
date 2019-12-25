@@ -494,10 +494,10 @@
                     pdtID: $('#add').attr("pdtID")
                 },
                 success: function (data) {
-                    alert("已經加入至我的最愛！")
+                    alert(data);
                 },
-                error: function () {
-                    alert("加入購物車之前請先登入！")
+                error: function (data) {
+                    alert("加入最愛前，請先登入！")
                 }
             })
         });

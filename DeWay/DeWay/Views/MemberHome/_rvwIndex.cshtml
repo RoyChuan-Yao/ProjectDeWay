@@ -43,7 +43,7 @@
                 <div>
                     <span class="d-bg text-white border-radius ">　@Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)　</span>
 
-                    <span class="offset-8"> @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)</span>
+                    <span class="offset-9"> @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwTime)</span>
                 </div>
 
 
@@ -107,7 +107,7 @@
                 <div class="">
                     <span class="d-bg text-white border-radius ">　@Html.DisplayFor(modelItem => item.OrderStatus.odrStatus)　</span>
 
-                    <span class="offset-8"> @Html.DisplayFor(modelItem => item.odrDate)</span>
+                    <span class="offset-9 "> @Html.DisplayFor(modelItem => item.odrDate)</span>
                 </div>
                 <div class="card-body row">
                     <div class="col-5">
@@ -170,7 +170,7 @@
                         <p class="text-center">評價內容</p>
                         <div class="text-center">
 
-                            <textarea class="mb-2 textarea-rvw" name="rvwContent"></textarea>
+                            <textarea class="mb-2 textarea-rvw" title="字數請勿超過120字" name="rvwContent" onKeyDown="LimitTextArea(this)" onKeyUp="LimitTextArea(this)" onkeypress="LimitTextArea(this)"></textarea>
                             <br />
 
 
