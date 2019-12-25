@@ -26,7 +26,7 @@
         <div class="card-header">
             <div class="row col-12">
                 <span class="col-2">退貨單號</span>
-                <span class="col-2">返還金額</span>
+                <span class="col-1">返還金額</span>
                 <span class="col-2">是否退回商品</span>
                 <span class="col-2">是否由賣家負擔運費</span>
                 <span class="col-2">退貨單成立時間</span>
@@ -74,7 +74,7 @@
                         }
 
                         <span class="col-2">@item.rfdID</span>
-                        <span class="col-2">@newtotal</span>
+                        <span class="col-1">@newtotal</span>
                         <span class="col-2">
                             @{
                                 rfdProduct = item.rfdProduct == true ? "O" : "X";
@@ -93,15 +93,24 @@
                         <span class="col-2">
                             @if (item.rfdStatusID == "rds0000001")
                             {
-                                @Html.ActionLink("同意", "rfd", new { odrID = item.odrID, code = 1 }, new { @class = "btn btn-info " })
-                                @Html.ActionLink("拒絕", "rfd", new { odrID = item.odrID, code = 2 }, new { @class = "btn btn-danger " })
+                                <form>
+                                    @Html.ActionLink("同意", "rfd", new { odrID = item.odrID, code = 1 }, new { @class = "btn btn-success text-white" })
+                                    @Html.ActionLink("拒絕", "rfd", new { odrID = item.odrID, code = 2 }, new { @class = "btn btn-danger text-white" })
+                                </form>
                             }
                             else
                             {
-                                @item.RefundStatus.rfdStatus
+                                <h4>
+                                    @item.RefundStatus.rfdStatus
+                                </h4>
                             }
-                            @Html.ActionLink("退貨單明細", "rfdDetail", new { rfdID = item.rfdID }, new { @class = "btn btn-info " })
 
+
+
+                        </span>
+                        <span class="col-1">
+
+                            @Html.ActionLink("明細", "rfdDetail", new { rfdID = item.rfdID }, new { @class = "btn btn-info text-white" })
                         </span>
                     </div>
                 </div>

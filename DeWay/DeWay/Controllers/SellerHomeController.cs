@@ -491,7 +491,7 @@ namespace DeWay.Controllers
 
             }
 
-            var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
+            var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID ).FirstOrDefault();
             return PartialView(product);
         }
 
