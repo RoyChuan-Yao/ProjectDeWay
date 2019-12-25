@@ -6,9 +6,7 @@
     <div class="container">
         <h2>會員停權管理</h2>
 
-        @*<p>
-            @Html.ActionLink("Create New", "Create")
-        </p>*@
+       
         <p>
             @using (Html.BeginForm())
             {
@@ -27,34 +25,22 @@
                     <th>
                         @Html.DisplayNameFor(model => model.nickName)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.mbrPhone)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.mbrMail)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.birthDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Points)
-                    </th>
+                    
+                    
                     <th>
                         @Html.DisplayNameFor(model => model.mbrAut)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.signupDate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.mbrImage)
-                    </th>
+                    
                     <th>
                         @Html.DisplayNameFor(model => model.mbrBlock)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.MemberAccount.mbrAccount)
                     </th>
-                    <th></th>
+                    
                 </tr>
 
                 @foreach (var item in Model)
@@ -66,27 +52,15 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.nickName)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.mbrPhone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.mbrMail)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.birthDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Points)
-                        </td>
+                       
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.mbrAut)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.signupDate)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.mbrImage)
-                        </td>
+                       
                         <td>
                             @Html.DisplayFor(modelItem => item.mbrBlock)
                         </td>
