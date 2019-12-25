@@ -28,6 +28,11 @@ namespace DeWay.Controllers
 
                 var result = product.Where(m => m.pdtName.Contains(ProductName)).Where(m => m.Discontinued == false);
 
+                //var a = product.Where(m => m.pdtName.Contains(ProductName)).FirstOrDefault().ProductCategory.fstLayerID;
+
+                //ViewBag.fst = db.FirstLayer.Where(m => m.fstLayerID == a).ToList();
+
+
                 return View(result);
 
             }
@@ -54,6 +59,7 @@ namespace DeWay.Controllers
 
         public ActionResult GetCategory(string category)
         {
+            ViewBag.fst = db.FirstLayer.Where(m=>m.fstLayerID==category).ToList();
 
             var show = db.Product.Where(m => m.ProductCategory.fstLayerID == category);
             
