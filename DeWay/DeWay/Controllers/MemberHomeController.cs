@@ -19,53 +19,7 @@ namespace DeWay.Controllers
 
         public ActionResult mbrIndex(string mbrID = null)
         {
-            ////mbrID =null 預設找自己的
-            //if (Session["memberID"] == null && mbrID == null)
-            //    return RedirectToAction("Login", "Login");
-
-            //string memberID;
-            //memberID = mbrID;
-
-
-            //if (memberID == null)
-            //{
-            //    memberID = Session["memberID"].ToString();
-
-            //}
-            ////else if (memberID == Session["memberID"].ToString())
-            ////{
-            ////    memberID = Session["memberID"].ToString();
-            ////}
-
-            //if (Session["memberID"].ToString() != null && mbrID != null)
-            //{
-            //    ViewBag.id = Session["memberID"].ToString();
-            //}
-
-
-
-            ////ViewBag.id = Session["memberID"].ToString();
-            ////ViewBag.memberID = memberID;
-            //var member = db.Member.Where(m => m.mbrID == memberID).ToList();
-            //return View(member);
-
-            ////沒登入又沒給參數丟到登入頁面
-
-
-            //if (Session["memberID"] == null && mbrID != null)
-            //{
-            //    ViewBag.id = Session["memberID"].ToString();
-            //    var member = db.Member.Where(m => m.mbrID == mbrID).ToList();
-            //    return View(member);
-            //}
-            //if (Session["memberID"] != null && mbrID == null)
-            //{
-            //    string id = Session["memberID"].ToString();
-            //    var member = db.Member.Where(m => m.mbrID == id).ToList();
-            //    return View(member);
-            //}
-
-            //var member = db.Member.Where(m => m.mbrID == mbrID).ToList();
+            
 
 
             if (mbrID == null && Session["memberID"] == null)
@@ -323,7 +277,7 @@ namespace DeWay.Controllers
             return View();
         }
 
-
+        [ChildActionOnly]
         public PartialViewResult _rvwIndex(int code = 0, string odr = "")
         {
 
@@ -441,15 +395,21 @@ namespace DeWay.Controllers
 
         public ActionResult rfdCreate(string odrID)
         {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
             var rfdcreate = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
             return View(rfdcreate);
         }
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult rfdCreate(Refund Refund, RefundAccount RefundAccount)
         {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
             if (ModelState.IsValid != true)
             {
-                return View("rfdCreate");
+
+                var rfdcreate = db.Cart_OrderDetail.Where(o => o.odrID == Refund.odrID).ToList();
+                return View(rfdcreate);
             }
             using (var transaction = db.Database.BeginTransaction())
             {
@@ -500,6 +460,8 @@ namespace DeWay.Controllers
         }
         public ActionResult rfdDetail(string rfdID)
         {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
             var odrID = (from r in db.Refund
                          where r.rfdID == rfdID
                          select r.odrID).ToList();

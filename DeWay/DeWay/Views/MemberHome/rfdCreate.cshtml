@@ -32,19 +32,23 @@
                     var subtotal = (decimal)((int)item.pdtPrice * item.Discount * item.Quantity);
                     subtotal = Math.Round(subtotal);
                     total += subtotal;
-                    shipping = item.Order.shpPrice;
+                    shipping =(decimal) Math.Round((double)item.Order.shpPrice);
                     <div class="row align-items-baseline">
                         <div class="col-3">
                             <a href="@Url.Action("ProductPage","Productpage",new { pdtID=item.Specification.pdtID})">
                                 <img src="~/productImage/@item.Specification.Product.ProductImage.FirstOrDefault().pdtImage" class="img-responsive img-rounded img-adjust" />
                             </a>
+                            @*@item.Specification.Product.pdtName*@
                             @Html.DisplayFor(modelItem => item.Specification.Product.pdtName)
                         </div>
                         <div class="col-3">
+                            @*@item.Specification.Style
+                            @item.Specification.Size*@
                             @Html.DisplayFor(modelItem => item.Specification.Style)
                             @Html.DisplayFor(modelItem => item.Specification.Size)
                         </div>
                         <div class="col-3">
+                            @*@item.Quantity*@
                             ×@Html.DisplayFor(modelItem => item.Quantity)
                         </div>
                         <div class="col3">
@@ -74,7 +78,7 @@
 
 
                     <h6 class="col-2  text-right">退貨原因</h6>
-                    <textarea name="rfdReason" class="text-box col-10 offset-1" onKeyDown="LimitTextArea(this)" onKeyUp="LimitTextArea(this)" onkeypress="LimitTextArea(this)"></textarea>
+                    <textarea name="rfdReason" clas                                                                                                                                                                                                                         s="text-box col-10 offset-1" onKeyDown="LimitTextArea(this)" onKeyUp="LimitTextArea(this)" onkeypress="LimitTextArea(this)"></textarea>
 
 
 
@@ -83,13 +87,20 @@
 
                     <div class=" col-md-10  offset-1">
                         <label>銀行代碼 </label>
-                        <input id="Text1" type="text" name="bankCode" />
+                        @Html.EditorFor(model => model.FirstOrDefault().Order.Refund.FirstOrDefault().RefundAccount.bankCode, new { htmlAttributes = new { } })
+                        @Html.ValidationMessageFor(model => model.FirstOrDefault().Order.Refund.FirstOrDefault().RefundAccount.bankCode, "", new { @class = "text-danger" })
+                      
                         <br />
                         <label>銀行名稱 </label>
-                        <input id="Text1" type="text" name="bankName" />
+                        @Html.EditorFor(model => model.FirstOrDefault().Order.Refund.FirstOrDefault().RefundAccount.bankName, new { htmlAttributes = new { } })
+                        @Html.ValidationMessageFor(model => model.FirstOrDefault().Order.Refund.FirstOrDefault().RefundAccount.bankName, "", new { @class = "text-danger" })
+                        
                         <br />
                         <label>銀行帳號 </label>
-                        <input id="Text1" type="text" name="bankAccount" />
+                       
+                        @Html.EditorFor(model => model.FirstOrDefault().Order.Refund.FirstOrDefault().RefundAccount.bankAccount, new { htmlAttributes = new { } })
+                        @Html.ValidationMessageFor(model => model.FirstOrDefault().Order.Refund.FirstOrDefault().RefundAccount.bankAccount, "", new { @class = "text-danger" })
+
 
                     </div>
 
@@ -114,7 +125,7 @@
 
 
 
-        <input id="Submit1" type="submit" value="submit" class="btn btn-info mt-2" />
+        <input id="Submit1" type="submit" value="送出申請" class="btn btn-info mt-2" />
     </div>
 }
 
@@ -128,22 +139,18 @@
             $('.card-body').toggleClass("border border-deway ");
             $('.rfdbutton').toggleClass("d-none");
             $('.total').toggleClass("d-none");
-            //$('#Checkbox2').prop("checked", false);
+          
 
 
         }
         );
-        //$('#Checkbox2').prop("checked",true)
+     
         $('#Checkbox2').on("click", function () {
 
 
             if ($("#Checkbox2").val() == "true") {
                 $(this).val("false");
-                // $(this).val("false");
-                //$('.rfdShip').val("") ;
-
-
-                //alterValue();
+              
             }
             else {
                 $(this).val("true");

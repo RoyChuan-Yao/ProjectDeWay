@@ -137,6 +137,8 @@ namespace DeWay.Models
         public class MetadataFavoSeller
         {
 
+         
+
 
             [DisplayName("賣家編號")]
             public string selID { get; set; }
@@ -517,7 +519,7 @@ namespace DeWay.Models
             [StringLength(20, ErrorMessage = "此欄位最長為20碼")]
             public string bankCode { get; set; }
             [DisplayName("退貨流水編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            
             [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
             public string rfdID { get; set; }
         }
@@ -525,7 +527,7 @@ namespace DeWay.Models
         public partial class MetadataRefund
         {
             [DisplayName("退貨流水編號")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            
             [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
             public string rfdID { get; set; }
             [DisplayName("訂單編號")]
@@ -534,8 +536,9 @@ namespace DeWay.Models
             public string odrID { get; set; }
 
             [DisplayName("退回商品的運費")]
-           
-            [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
+
+            
+            [DataType(DataType.Currency)]
             public Nullable<decimal> rfdShip { get; set; }
             [DisplayName("退貨原因")]
             [StringLength(120, ErrorMessage = "此欄位最長為120字")]
@@ -549,11 +552,11 @@ namespace DeWay.Models
             public bool rfdShipping { get; set; }
 
             [DisplayName("日期")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            
             [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
             public System.DateTime rfdDate { get; set; }
             [DisplayName("退貨單狀態")]
-            [Required(ErrorMessage = "此欄位為必填")]
+            
             [StringLength(10, ErrorMessage = "此欄位最長為10碼")]
             public string rfdStatusID { get; set; }
         }
@@ -625,11 +628,19 @@ namespace DeWay.Models
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
             public string selCompany { get; set; }
             [DisplayName("市")]
+            [Required(ErrorMessage = "此欄位為必填")]
+            [StringLength(3, ErrorMessage = "此欄位最長為3字")]
+
             public string selCity { get; set; }
             [DisplayName("區")]
+            [Required(ErrorMessage = "此欄位為必填")]
+            [StringLength(5, ErrorMessage = "此欄位最長為5字")]
+
             public string selDist { get; set; }
             [DisplayName("路(地址)")]
+            [Required(ErrorMessage = "此欄位為必填")]
             [StringLength(20, ErrorMessage = "此欄位最長為20字")]
+
             public string selAddress { get; set; }
             [DisplayName("統一編號")]
             [Required(ErrorMessage = "此欄位為必填")]
