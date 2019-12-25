@@ -277,7 +277,7 @@ namespace DeWay.Controllers
             return View();
         }
 
-
+        [ChildActionOnly]
         public PartialViewResult _rvwIndex(int code = 0, string odr = "")
         {
 
@@ -395,14 +395,17 @@ namespace DeWay.Controllers
 
         public ActionResult rfdCreate(string odrID)
         {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
             var rfdcreate = db.Cart_OrderDetail.Where(o => o.odrID == odrID).ToList();
             return View(rfdcreate);
         }
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult rfdCreate(Refund Refund, RefundAccount RefundAccount)
         {
-                
-                    if (ModelState.IsValid != true)
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
+            if (ModelState.IsValid != true)
             {
 
                 var rfdcreate = db.Cart_OrderDetail.Where(o => o.odrID == Refund.odrID).ToList();
@@ -457,6 +460,8 @@ namespace DeWay.Controllers
         }
         public ActionResult rfdDetail(string rfdID)
         {
+            if (Session["memberID"] == null)
+                return RedirectToAction("Login", "Login");
             var odrID = (from r in db.Refund
                          where r.rfdID == rfdID
                          select r.odrID).ToList();
