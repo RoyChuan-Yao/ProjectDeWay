@@ -497,7 +497,10 @@ namespace DeWay.Controllers
                 return RedirectToAction("Login", "Login");
 
             string id = Session["memberID"].ToString();
-
+            if (db.Seller.Where(m => m.mbrID == id).Count() == 0)
+            {
+                return RedirectToAction("SellerCreate", "SellerCertification");
+            }
 
 
             var seller = db.Seller.Where(m => m.mbrID == id).FirstOrDefault();
