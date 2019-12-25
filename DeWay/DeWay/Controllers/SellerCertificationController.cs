@@ -71,7 +71,12 @@ namespace DeWay.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SellerCreate(Seller seller, HttpPostedFileBase photo) //創造賣家
         {
-            string fileName = "";
+            if (ModelState.IsValid !=true)
+            {
+                return View();
+            }
+
+                string fileName = "";
             string GetSellerID = db.Database.SqlQuery<string>("Select dbo.GetSellerID()").FirstOrDefault();
             string mbrID = Session["memberID"].ToString();
             seller.selID = GetSellerID;
