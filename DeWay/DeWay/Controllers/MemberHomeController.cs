@@ -19,53 +19,7 @@ namespace DeWay.Controllers
 
         public ActionResult mbrIndex(string mbrID = null)
         {
-            ////mbrID =null 預設找自己的
-            //if (Session["memberID"] == null && mbrID == null)
-            //    return RedirectToAction("Login", "Login");
-
-            //string memberID;
-            //memberID = mbrID;
-
-
-            //if (memberID == null)
-            //{
-            //    memberID = Session["memberID"].ToString();
-
-            //}
-            ////else if (memberID == Session["memberID"].ToString())
-            ////{
-            ////    memberID = Session["memberID"].ToString();
-            ////}
-
-            //if (Session["memberID"].ToString() != null && mbrID != null)
-            //{
-            //    ViewBag.id = Session["memberID"].ToString();
-            //}
-
-
-
-            ////ViewBag.id = Session["memberID"].ToString();
-            ////ViewBag.memberID = memberID;
-            //var member = db.Member.Where(m => m.mbrID == memberID).ToList();
-            //return View(member);
-
-            ////沒登入又沒給參數丟到登入頁面
-
-
-            //if (Session["memberID"] == null && mbrID != null)
-            //{
-            //    ViewBag.id = Session["memberID"].ToString();
-            //    var member = db.Member.Where(m => m.mbrID == mbrID).ToList();
-            //    return View(member);
-            //}
-            //if (Session["memberID"] != null && mbrID == null)
-            //{
-            //    string id = Session["memberID"].ToString();
-            //    var member = db.Member.Where(m => m.mbrID == id).ToList();
-            //    return View(member);
-            //}
-
-            //var member = db.Member.Where(m => m.mbrID == mbrID).ToList();
+            
 
 
             if (mbrID == null && Session["memberID"] == null)
@@ -447,9 +401,12 @@ namespace DeWay.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult rfdCreate(Refund Refund, RefundAccount RefundAccount)
         {
-            if (ModelState.IsValid != true)
+                
+                    if (ModelState.IsValid != true)
             {
-                return View("rfdCreate");
+
+                var rfdcreate = db.Cart_OrderDetail.Where(o => o.odrID == Refund.odrID).ToList();
+                return View(rfdcreate);
             }
             using (var transaction = db.Database.BeginTransaction())
             {
