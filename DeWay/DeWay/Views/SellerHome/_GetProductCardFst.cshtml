@@ -18,7 +18,7 @@
                     {
                         if (Model.selID == ViewBag.id)
                         {
-                            <a href="@Url.Action("Edit", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-primary text-white" style="width:45%">編輯商品</a>
+                            <a href="@Url.Action("Edit", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-outline-secondary " style="width:45%">編輯商品</a>
                             <a href="@Url.Action("Editsp", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-secondary text-white" style="width:45%">編輯規格</a>
                         }
                         else

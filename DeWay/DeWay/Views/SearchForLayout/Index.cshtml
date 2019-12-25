@@ -104,7 +104,7 @@
                         <div class="row justify-content-start ">
                             @foreach (var item in Model)
                             {
-                                @Html.Action("_GetProductCard", "ProductPage", new { productID = item.pdtID })
+                                @Html.Action("_GetProductCardFst", "SellerHome", new { productID = item.pdtID })
 
                             }
 
@@ -127,7 +127,7 @@
 
                                     if (aaa.fstLayerID == item.ProductCategory.fstLayerID)
                                     {
-                                        @Html.Action("_GetProductCardFst", "ProductPage", new { productID = item.pdtID, fstID = aaa.fstLayerID })
+                                        @Html.Action("_GetProductCardFst", "SellerHome", new { productID = item.pdtID, fstID = aaa.fstLayerID })
                                     }
 
                                 }
