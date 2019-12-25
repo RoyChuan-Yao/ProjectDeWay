@@ -19,8 +19,14 @@ namespace DeWay.Controllers
         {
             return View();
         }
+         
+        public ActionResult Login()
+        {
+            return View();
+        }
+        
         [HttpPost]
-        public ActionResult Index(string id, string pwd)
+        public ActionResult Login(string id, string pwd)
         {
             string sql = "select * from AdmAccount where admAct = @admAct and admPwd=@admPwd";
             SqlCommand cmd = new SqlCommand(sql, Conn);

@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+            Layout = "~/Views/Shared/_Layout - Adm.cshtml";
+
 }
     <div class="container">
         <h2>管理員中心</h2>
@@ -8,7 +10,7 @@
 
         @Html.ActionLink("登出", "Logout", "AdmLogin", new { }, new { @class = "nav-link text-primary" })
 
-        @Html.ActionLink("活動公告管理", "Index", "actBulletinsAdm", new { }, new { @class = "nav-link text-primary" })
+        
 
         @Html.ActionLink("訂單管理", "Index", "AdmOrdersAdm", new { id = Session["AdmID"] }, new { @class = "nav-link text-primary" })
 
