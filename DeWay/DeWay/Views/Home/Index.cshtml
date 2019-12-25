@@ -160,14 +160,7 @@
             $('#welcome').hide();
         });
 
-        $('.cartIcon').click((e) => {
-            var specID = $(e.target).attr('specID');
-            $.ajax({
-                url: "@Url.Action("AddToMyCart","Cart")?spcID=" + specID,
-                method: "post",
-            });
-        });
-
+       
         //圖片遺失處理
         $('img').one("error", (e) => { $(e.target).attr('src', "/images/diamond-4229493_960_720.jpg") });
 
@@ -179,7 +172,21 @@
         //        $(this).attr("src", "/images/Img-like-8.png")
         //    }
         //});
-                $('.likeImg').on("click", function (e) {
+               
+        $('#way').click(function () {
+            $("html,body").animate({ scrollTop: $('#design').offset().top }, 700);
+            $("#block2").addClass( "active")
+        });
+    </script>
+    <script>
+        $('.cartIcon').click((e) => {
+            var specID = $(e.target).attr('specID');
+            $.ajax({
+                url: "@Url.Action("AddToMyCart","Cart")?spcID=" + specID,
+                method: "post",
+            });
+        });
+         $('.likeImg').on("click", function (e) {
             $.ajax({
                 url: "@Url.Action("AddToWishList","WishLists")",
                 type: 'post',
@@ -194,11 +201,7 @@
                 }
             })
         });
-        $('#way').click(function () {
-            $("html,body").animate({ scrollTop: $('#design').offset().top }, 700);
-        });
     </script>
-
 
 
 }

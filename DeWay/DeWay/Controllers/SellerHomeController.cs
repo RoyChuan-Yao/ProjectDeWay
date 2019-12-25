@@ -475,9 +475,13 @@ namespace DeWay.Controllers
             if (Session["memberID"] != null)
             {
                 string id = Session["memberID"].ToString();
-                string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
+                ViewBag.id = id;
+                if (db.Seller.Where(m => m.mbrID == id).Count() != 0)
+                {
+                    string getselID = db.Seller.Where(m => m.mbrID == id).FirstOrDefault().selID;
 
-                ViewBag.id = getselID;
+                    ViewBag.id = getselID;
+                }
             }
 
             if(fstID==null)
@@ -497,7 +501,10 @@ namespace DeWay.Controllers
                 return RedirectToAction("Login", "Login");
 
             string id = Session["memberID"].ToString();
-
+            if (db.Seller.Where(m => m.mbrID == id).Count() == 0)
+            {
+                return RedirectToAction("SellerCreate", "SellerCertification");
+            }
 
 
             var seller = db.Seller.Where(m => m.mbrID == id).FirstOrDefault();

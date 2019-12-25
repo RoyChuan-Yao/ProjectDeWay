@@ -17,8 +17,7 @@
             <div class="row d-flex justify-content-between membercardA">
                 <div class="card membercard membercardC col-12 col-12A col-md-6">
 
-                    <img id="srcsrcsrc" src="../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage" style="width:100%;height:100%" />
-
+                    <img id="srcsrcsrc" src="../../sellerImage/@Model.sellers.FirstOrDefault().selImage" style="width:100%;height:100%" />
 
                 </div>
                 <div class="card membercard  col-12 col-12A col-md-6" style="width:100%;">
@@ -446,15 +445,7 @@
         $('.pIntroduction1').click(function () {
             $('#pI4').addClass('productsDisplay');
             $('#pI2').addClass('sellEvaDis');
-            $('#srcsrcsrc').attr("src","../../mbrPhoto/@Model.sellers.FirstOrDefault().Member.mbrImage")
-        });
-        $('.pImg2 ').click(function () {
-            if ($(this).attr("src") != "/images/Img-like-7.png") {
-                $(this).attr("src", "/images/Img-like-7.png")
-            }
-            else {
-                $(this).attr("src", "/images/Img-like-8.png")
-            }
+            $('#srcsrcsrc').attr("src","../../sellerImage/@Model.sellers.FirstOrDefault().selImage")
         });
     </script>
     <script>
@@ -479,6 +470,31 @@
             })
         }
         refresh();
+    </script>
+    <script>
+        $('.cartIcon').click((e) => {
+            console.log("click");
+            var specID = $(e.target).attr('specID');
+            $.ajax({
+                url: "@Url.Action("AddToMyCart","Cart")?spcID=" + specID,
+                method: "post",
+            });
+        });
+         $('.likeImg').on("click", function (e) {
+            $.ajax({
+                url: "@Url.Action("AddToWishList","WishLists")",
+                type: 'post',
+                data: {
+                    pdtID: $(e.target).attr("pdtID")
+                },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert("加入最愛前，請先登入！")
+                }
+            })
+        });
     </script>
 
 }

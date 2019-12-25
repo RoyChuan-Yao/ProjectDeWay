@@ -1,8 +1,9 @@
 ﻿@model DeWay.Models.Product
 @{
     int price = Convert.ToInt32(@Model.Specification.FirstOrDefault().Price);
-
 }
+<link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
+
 <div class="card col-4 col-md-2 productsCard membercardB">
     <div>
         <div class="card-body productsCardbody">
@@ -10,28 +11,32 @@
             <img src="../../productImage/@Model.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
             <p class="text-secondary productsCardText">@Model.pdtName<span></span></p>
             <p class="text-secondary productsCardText">NT:<span>@price</span></p>
-            <div class="d-flex justify-content-around">
-                @if (ViewBag.id != null)
-                {
-                    if (Model.selID == ViewBag.id)
+            <div class="">
+                <div class="d-flex justify-content-between">
+
+                    @if (ViewBag.id != null)
                     {
-                        <a href="@Url.Action("Edit", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-primary text-white" style="width:45%">編輯商品</a>
-                        <a href="@Url.Action("Editsp", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-secondary text-white" style="width:45%">編輯規格</a>
+                        if (Model.selID == ViewBag.id)
+                        {
+                            <a href="@Url.Action("Edit", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-outline-secondary " style="width:45%">編輯商品</a>
+                            <a href="@Url.Action("Editsp", "Product_edit_Seller", new { pdtid = Model.pdtID })" class="btn btn-secondary text-white" style="width:45%">編輯規格</a>
+                        }
+                        else
+                        {
+                            <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2 likeImg" pdtID="@Model.pdtID" alt="...">
+                            <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
+
+
+                        }
                     }
-                    else
+
+                    @if (ViewBag.id == null)
                     {
-                        <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2 " alt="...">
-                        <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
+                        <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                        <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
 
                     }
-                }
-
-                @if (ViewBag.id == null)
-                {
-                    <img src="~/images/Img-like-8.png" class="likeImg card-img-top img-wh-2 " alt="...">
-                    <img src="~/images/Img-shopping-cart-12.png" class="card-img-top img-wh-2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
-
-                }
+                </div>
             </div>
         </div>
     </div>
