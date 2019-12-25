@@ -205,7 +205,7 @@
             $("div[id^='no']").show(100)
             $("#backToCart").hide(100);//隱藏按鈕
             //$("#checkOutBtn").text("前往結帳").attr("onclick", "")
-            $("#checkOutBtn").text("前往結帳").off().on("click", () => { checkOut()})
+            $("#checkOutBtn").text("前往結帳").off().on("click", () => { checkOut() })
             $("input[type='checkbox'],a[href*='Delete']").show(100)
             $("#checkOutForm").html('')
             $(`#receiverInfo`).hide(100)
@@ -230,7 +230,7 @@
             $("input[type='checkbox'],a[href*='Delete']").hide(100)
             $("#backToCart").show(100)
             //$("#checkOutBtn").text("確認付款").attr("onclick", "submitOrder()")
-            $("#checkOutBtn").text("確認付款").on("click", () => { submitOrder()})
+            $("#checkOutBtn").text("確認付款").one("click", () => { submitOrder() })
             $(`#receiverInfo`).show(100)
             $(`#cart_title`).text("填寫地址與付款")
         }
@@ -246,6 +246,7 @@
             }
 
             var reciverFormResult = "";//取得收寄人資料做成表單內容
+
             $(`div[class="modal-content"] input`).each((index, e) => {
                 reciverFormResult += `<input type="hidden" name="${$(e).attr('name')}" value="${$(e).val()}">`;
             })
@@ -253,23 +254,35 @@
             var note = `<input type="hidden" name="odrNote" value="${$('#note').val()}">`//取得給賣家的註解
             var finalResult = cartResult + reciverFormResult + note;
             $("#checkOutForm").html(finalResult)//將被點選商品加入表單
-            $("#checkOutForm").submit();//提交表單
+            var flagEmpty = false;
+            var messageEmpyt = "";
+            $(`div[class="modal-content"] input`).each((index, e) => {
+                if ($(e).val() == "") {
+                    flagEmpty = true;
+                    messageEmpyt += "\n" + $(e).parent().parent().children("label").text() ;
+                };
+            })
+            if (flagEmpty) {
+                alert("請先填寫收件人資料" + messageEmpyt);
+            } else {
+                $("#checkOutForm").submit();//提交表單
+            }
         }
 
     </script>
     <script>
-                            //M
-                            //JSON 資料 {cartItem:[{cartID:"",count:"",price:""}],order:{address,name,phone}
-                            //
+                                //M
+                                //JSON 資料 {cartItem:[{cartID:"",count:"",price:""}],order:{address,name,phone}
+                                //
 
 
-                            //V
-                            //showTotalPrice
-                            //
+                                //V
+                                //showTotalPrice
+                                //
 
-                            //C
-                            //CheckBtn =>{add to cartItem; showTotalPrice}
-                            //ChangeBtn=> add
+                                //C
+                                //CheckBtn =>{add to cartItem; showTotalPrice}
+                                //ChangeBtn=> add
     </script>
 }
 @section CSS{
