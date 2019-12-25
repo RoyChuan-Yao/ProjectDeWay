@@ -29,7 +29,7 @@
                         買家 @item.Cart_OrderDetail.FirstOrDefault().Member.MemberAccount.mbrAccount :
                     </span>
                     <h4>
-                        @Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent)
+                        @Html.Raw(@Html.DisplayFor(modelItem => item.Review.FirstOrDefault().rvwContent).ToString().Replace("\n", "<br>"))。
                     </h4>
                 </div>
             </div>

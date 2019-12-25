@@ -61,16 +61,17 @@
             <input name="GUINumber" type="text" hidden="hidden" value="@Model.GUINumber" />
             <input name="IDNumber" type="text" hidden="hidden" value="@Model.IDNumber" />
 
+            @Html.HiddenFor(model => model.selID)
 
             @Html.HiddenFor(model => model.selImage)
             <div>
                 @if (Model.selImage == null || Model.selImage == "")
                 {
-                    <a href="~/mbrPhoto/0.jpg"><img src="~/mbrPhoto/0.jpg" class="ml-3 img-adjust-index" /></a>
+                    <a href="~/mbrPhoto/0.jpg"><img src="~/sellerImage/sel0000000.jpg" class="ml-3 img-adjust-index" /></a>
                 }
                 else
                 {
-                    <a href="~/sellerImage/@Model.selImage"><img src="~/mbrPhoto/@Model.selImage" class="ml-3 img-adjust-index" /></a>
+                    <a href="~/sellerImage/@Model.selImage"><img src="~/sellerImage/@Model.selImage" class="ml-3 img-adjust-index" /></a>
 
                 }
             </div>

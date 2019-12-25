@@ -13,43 +13,43 @@
             {
                 foreach (var whis in Model)
                 {
-                    @Html.Action("_GetWishCard", "WishLists", new { pdtID = whis.pdtID})
+                    @Html.Action("_GetWishCard", "WishLists", new { pdtID = whis.pdtID })
                 }
 
                 @*//partial View
-            <div class="card col-4 col-md-2 productsCard membercardB">
-                <div>
-                    <div class="card-body productsCardbody">
+                    <div class="card col-4 col-md-2 productsCard membercardB">
+                        <div>
+                            <div class="card-body productsCardbody">
 
-                        <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
-                        <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                        <p class="text-secondary productsCardText">NT: <span></span></p>
-                        <div class="d-flex justify-content-between">
-                            <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                            <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                <img src="../../images/img-p-43.png" class=" rounded card-img-top productsImg " alt="...">
+                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
+                                <p class="text-secondary productsCardText">NT: <span></span></p>
+                                <div class="d-flex justify-content-between">
+                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                </div>
+
+                                <button id="" class="btn WishbtnA " state="">刪除</button>
+                            </div>
                         </div>
-
-                        <button id="" class="btn WishbtnA " state="">刪除</button>
                     </div>
-                </div>
-            </div>
-            //partial View
-            <div class="card col-4 col-md-2 productsCard membercardB">
-                <div>
-                    <div class="card-body productsCardbody">
+                    //partial View
+                    <div class="card col-4 col-md-2 productsCard membercardB">
+                        <div>
+                            <div class="card-body productsCardbody">
 
-                        <img src="../../images/img-p-45.png" class=" rounded card-img-top productsImg " alt="...">
-                        <p class="text-secondary productsCardText">商品名稱<span></span></p>
-                        <p class="text-secondary productsCardText">NT: <span></span></p>
-                        <div class="d-flex justify-content-between">
-                            <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                            <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                <img src="../../images/img-p-45.png" class=" rounded card-img-top productsImg " alt="...">
+                                <p class="text-secondary productsCardText">商品名稱<span></span></p>
+                                <p class="text-secondary productsCardText">NT: <span></span></p>
+                                <div class="d-flex justify-content-between">
+                                    <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
+                                    <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                                </div>
+
+                                <button id="" class="btn WishbtnA " state="">刪除</button>
+                            </div>
                         </div>
-
-                        <button id="" class="btn WishbtnA " state="">刪除</button>
-                    </div>
-                </div>
-            </div>*@
+                    </div>*@
 
 
 
@@ -72,58 +72,80 @@
 
 </div>
 
+@section Script{
+    <script>
 
+        $(`.deleteBtn`).on(`click`, (e) => {
+            var pdtID = $(e.target).attr('pdtID');
+            if (confirm("你確定要刪除嗎？")) {
+                $.ajax({
+                url: "@Url.Action("AddToWishList","WishLists")?pdtID=" + pdtID,
+                method: "post",
+            });
+            }
+
+        })
+        $('.cartIcon').click((e) => {
+            var specID = $(e.target).attr('specID');
+            $.ajax({
+                url: "@Url.Action("AddToMyCart","Cart")?spcID=" + specID,
+                method: "post",
+            });
+        });
+
+    </script>
+}
 
 
 
 @*@if (Model.Count() > 0)
-{
-    <div class="col-10 offset-1 container" style="margin-top:200px;">
-        <h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的慾望清單</h2>
+    {
+        <div class="col-10 offset-1 container" style="margin-top:200px;">
+            <h2 class="mb-3" id="cart_title">@Html.DisplayFor(m => m.ToList()[0].Member.mbrName)的慾望清單</h2>
 
 
 
 
 
 
-        <table class="table">
-            <tr>
-                <th></th>
-                <th>商品</th>
-            </tr>
-
-
-
-            @foreach (var item in Model)
-            {
+            <table class="table">
                 <tr>
-                    <td>
-                        <img src="~/productImage/@item.Product.ProductImage.FirstOrDefault().pdtImage" width="60" height="60" alt="商品圖片" />
-
-
-                    </td>
-                    <td>
-                        @Html.ActionLink($"{item.Product.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
-                    </td>
-
-                    <td>
-                        @Html.ActionLink("刪除", "Delete", new { id = item.wishID })
-                    </td>
-
+                    <th></th>
+                    <th>商品</th>
                 </tr>
-            }
 
 
 
-        </table>
-    </div>}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/productImage/@item.Product.ProductImage.FirstOrDefault().pdtImage" width="60" height="60" alt="商品圖片" />
 
-else
-{
-    <div class="container">
-        <p>慾望清單中還是空的喔~!</p>
-    </div>
 
-}*@
+                        </td>
+                        <td>
+                            @Html.ActionLink($"{item.Product.pdtName}", "ProductPage", "ProductPage", new { pdtID = item.pdtID }, new { })
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("刪除", "Delete", new { id = item.wishID })
+                        </td>
+
+                    </tr>
+                }
+
+
+
+            </table>
+        </div>}
+
+    else
+    {
+        <div class="container">
+            <p>慾望清單中還是空的喔~!</p>
+        </div>
+
+    }*@
 
 

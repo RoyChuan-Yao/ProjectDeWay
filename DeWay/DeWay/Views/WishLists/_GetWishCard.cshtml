@@ -12,11 +12,10 @@
             <p class="text-secondary productsCardText"><a href="@Url.Action("ProductPage","ProductPage",new { pdtID=Model.pdtID})">@Model.pdtName</a></p>
             <p class="text-secondary productsCardText">NT: <span>@price</span></p>
             <div class="d-flex justify-content-between">
-                <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="...">
+                <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
             </div>
 
-            <button id="" class="btn WishbtnA " state="">刪除</button>
+            <button id="" class="btn WishbtnA deleteBtn" pdtID ="@Model.pdtID" >刪除</button>
         </div>
     </div>
 </div>

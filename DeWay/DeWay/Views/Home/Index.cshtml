@@ -179,6 +179,21 @@
         //        $(this).attr("src", "/images/Img-like-8.png")
         //    }
         //});
+                $('.likeImg').on("click", function (e) {
+            $.ajax({
+                url: "@Url.Action("AddToWishList","WishLists")",
+                type: 'post',
+                data: {
+                    pdtID: $(e.target).attr("pdtID")
+                },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert("加入最愛前，請先登入！")
+                }
+            })
+        });
         $('#way').click(function () {
             $("html,body").animate({ scrollTop: $('#design').offset().top }, 700);
         });

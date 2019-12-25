@@ -211,10 +211,13 @@ namespace DeWay.Controllers
             editods.odrStatusID = "ods0000003";
             editods.traceNumber = traceNumber;
             editods.shpDate = DateTime.Now;
-            db.SaveChanges();
 
-
-
+            if (ModelState.IsValid == true)
+            {
+                db.SaveChanges();
+                return RedirectToAction("deliveryIndex");  //導向Index的Action方法
+            }
+            ViewBag.error = "請輸入託運單號";
             return RedirectToAction("deliveryIndex");  //導向Index的Action方法
         }
 
@@ -516,8 +519,8 @@ namespace DeWay.Controllers
                 if (Image.ContentLength > 0)
                 {
 
-                    fileName = m.mbrID + ".jpg";
-                    Image.SaveAs(Server.MapPath("~/mbrPhoto/" + fileName));
+                    fileName = m.selID + ".jpg";
+                    Image.SaveAs(Server.MapPath("~/sellerImage/" + fileName));
                 }
             }
             else

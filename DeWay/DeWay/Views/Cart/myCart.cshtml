@@ -88,8 +88,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="updateAddress" type="button" class="btn btn-primary" onclick="updateAddressToForm()" data-dismiss="modal">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                    <button id="updateAddress" type="button" class="btn btn-primary" onclick="updateAddressToForm()" data-dismiss="modal">儲存</button>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
         function updateAddressToForm() {//顯示收件人資料
             var displayAddress = "";
             $(`div[class="modal-content"] input`).each((i, e) => {
-                displayAddress += `<p>${$(e).parent().prev().text()}:${$(e).val()}</p>`;
+                displayAddress += `<dt>${$(e).parent().prev().text()}:</dt><dd>${$(e).val()}</dd>`;
             });
             $(`#receiverBoard`).html(displayAddress);
         }
@@ -204,7 +204,8 @@
             $(`div[class='card mb-3']`).show()
             $("div[id^='no']").show(100)
             $("#backToCart").hide(100);//隱藏按鈕
-            $("#checkOutBtn").text("前往結帳").attr("onclick", "checkOut()")
+            //$("#checkOutBtn").text("前往結帳").attr("onclick", "")
+            $("#checkOutBtn").text("前往結帳").off().on("click", () => { checkOut()})
             $("input[type='checkbox'],a[href*='Delete']").show(100)
             $("#checkOutForm").html('')
             $(`#receiverInfo`).hide(100)
@@ -228,7 +229,8 @@
             })
             $("input[type='checkbox'],a[href*='Delete']").hide(100)
             $("#backToCart").show(100)
-            $("#checkOutBtn").text("確認付款").attr("onclick", "submitOrder()")
+            //$("#checkOutBtn").text("確認付款").attr("onclick", "submitOrder()")
+            $("#checkOutBtn").text("確認付款").on("click", () => { submitOrder()})
             $(`#receiverInfo`).show(100)
             $(`#cart_title`).text("填寫地址與付款")
         }
