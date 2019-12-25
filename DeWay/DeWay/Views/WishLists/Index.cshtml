@@ -79,8 +79,9 @@
             var pdtID = $(e.target).attr('pdtID');
             if (confirm("你確定要刪除嗎？")) {
                 $.ajax({
-                url: "@Url.Action("AddToWishList","WishLists")?pdtID=" + pdtID,
-                method: "post",
+                    url: "@Url.Action("AddToWishList","WishLists")?pdtID=" + pdtID,
+                    method: "post",
+                    success: () => {location.reload(); },
             });
             }
 
