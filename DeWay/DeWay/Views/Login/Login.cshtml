@@ -3,9 +3,13 @@
 @{
     ViewBag.Title = "Login";
 }
+<style>
+    .noShow {
+        display:none;
+    }
+</style>
 
-
-<div class=" container loginPage">
+<div class=" container loginPage   " style="margin-bottom:100px;">
 
     <div class="form-structor">
 
@@ -16,18 +20,18 @@
                 <h2 class="form-title form-title1 d-flex justify-content-center" id="signup"><span class="spanSignup">or</span>Sign up</h2>
                 <div class="form-holder ">
                     <input id="Text1" type="text" name="memberAccount.mbrAccount" class="input" placeholder="Account">
-                    @Html.ValidationMessageFor(model => model.MemberAccount.mbrAccount, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.MemberAccount.mbrAccount, "", new { @class = "text-danger ml-3 ", @style = "font-size:12px;" })
                     <input id="pwd" type="password" name="memberAccount.mbrPwd" class="input" placeholder="Password">
-                    @Html.ValidationMessageFor(model => model.MemberAccount.mbrPwd, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.MemberAccount.mbrPwd, "", new { @class = "text-danger ml-3", @style = "font-size:12px;" })
                     <input id="pwdcheck" type="password" name="pwd1" class="input" onchange="upperCase(this.id)" placeholder="CheckPassword">
                     <input class="input" id="mbrMail" name="mbrMail" type="text" placeholder="Email">
-                    @Html.ValidationMessageFor(model => model.mbrMail, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.mbrMail, "", new { @class = "text-danger ml-3", @style = "font-size:12px;" })
                     <input class="input" id="mbrName" name="mbrName" type="text" placeholder="Name">
-                    @Html.ValidationMessageFor(model => model.mbrName, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.mbrName, "", new { @class = "text-danger ml-3", @style = "font-size:12px;" })
                     <input class="input" id="mbrPhone" name="mbrPhone" type="text" placeholder="Phone">
-                    @Html.ValidationMessageFor(model => model.mbrPhone, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.mbrPhone, "", new { @class = "text-danger ml-3", @style = "font-size:12px;" })
                     <input class="form-control text-box single-line" data-val="true" data-val-date="欄位 生日 必須是日期。" id="birthDate" name="birthDate" type="date" value="">
-                    @Html.ValidationMessageFor(model => model.birthDate, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.birthDate, "", new { @class = "text-danger ml-3", @style = "font-size:12px;" })
                     <!--<input type="password" class="input" placeholder="Password" />-->
                 </div>
                 <button id="Submit123" type="button" class="submit-btn" onclick="check()">Sign up</button>
@@ -91,7 +95,7 @@
 
 @section Script{
     @*<script src="../../Scripts/jquery-3.3.1.min.js"></script>
-    <script src="../../Scripts/bootstrap.min.js"></script>*@
+        <script src="../../Scripts/bootstrap.min.js"></script>*@
     <script>
 
 
@@ -127,6 +131,19 @@
 
     </script>
 
+    @if (ViewBag.RegisterErr != null)
+    {
+        <script>
+   $("#signup").click()
+        </script>
+    }
+    else
+    {
+        <script>
+    //$().ready(() => { $(".field-validation-error").addClass("noShow"); })
+    $(".field-validation-valid").addClass("noShow")
+        </script>
+    }
 
     <script type="text/javascript">
         function upperCase(x) {

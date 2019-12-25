@@ -104,6 +104,7 @@ namespace DeWay.Controllers
 
                 return RedirectToAction("Registercheck", "login");
             }
+            ViewBag.RegisterErr = true;
             return View("Login");
         }
 
