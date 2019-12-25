@@ -98,6 +98,13 @@
                                     @Html.ActionLink("拒絕", "rfd", new { odrID = item.odrID, code = 2 }, new { @class = "btn btn-danger text-white" })
                                 </form>
                             }
+                            else if (item.rfdStatusID == "rds0000002")
+                            {
+                                <form>
+                                    @Html.ActionLink("到款", "rfd2", new { odrID = item.odrID, code = 1 }, new { @class = "btn btn-success text-white" })
+                                </form>
+                            }
+
                             else
                             {
                                 <h4>

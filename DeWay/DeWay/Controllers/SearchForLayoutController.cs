@@ -59,7 +59,7 @@ namespace DeWay.Controllers
 
         public ActionResult GetCategory(string category)
         {
-            ViewBag.fst = db.FirstLayer.Where(m=>m.fstLayerID==category).ToList();
+            ViewBag.fst = db.FirstLayer.ToList();
 
             var show = db.Product.Where(m => m.ProductCategory.fstLayerID == category);
             

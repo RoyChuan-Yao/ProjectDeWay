@@ -108,7 +108,7 @@ namespace DeWay.Controllers
                 { 
                 db.Seller.Add(seller);
                 db.SaveChanges();
-                return RedirectToAction("mbrIndex", "MemberHome");
+                return RedirectToAction("Index", "Market");
                 }
                 else
                 {
