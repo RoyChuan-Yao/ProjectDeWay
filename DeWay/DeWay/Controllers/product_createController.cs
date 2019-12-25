@@ -168,7 +168,7 @@ namespace DeWay.Controllers
             ViewBag.shipperDetail = db.Shipper.ToList();
             if (ModelState.IsValid == true)
             {
-                return RedirectToAction("OrderIndex", "SellerHome");
+                return RedirectToAction("myProduct", "SellerHome");
             }
 
             return View(product);
