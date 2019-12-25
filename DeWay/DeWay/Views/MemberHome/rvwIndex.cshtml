@@ -54,7 +54,7 @@
                 result += starsArray[i];
             }
             var result = `${result}`
-            
+
 
             return result
         }
@@ -83,12 +83,12 @@
 
     <script>
 
-        $('.o-li').on("click",function () {
-          
-               
-                $('.o-li').removeClass("d-active");
-                $(this).addClass('d-active');
-            
+        $('.o-li').on("click", function () {
+
+
+            $('.o-li').removeClass("d-active");
+            $(this).addClass('d-active');
+
         });
 
         ADD();
@@ -102,12 +102,28 @@
     <script>
         let Text = "";
         $(`.btn-text`).click(function (evt) {
-            
+            let maxlimit = 120;
             let btnText = evt.target.textContent;
             let text = $(`textarea`).val();
-            Text = text + btnText  ;
+            Text = text + btnText;
             $(`textarea`).val(Text);
-            
-        })
+
+            if ($(`textarea`).val().length > maxlimit)
+                $(`textarea`).val( $(`textarea`).val().substring(0, maxlimit))
+        
+
+            })
+    </script>
+
+    <script>
+
+
+        function LimitTextArea(field) {
+            let maxlimit = 120;
+            if (field.value.length > maxlimit)
+                field.value = field.value.substring(0, maxlimit);
+        }
+
+
     </script>
 }

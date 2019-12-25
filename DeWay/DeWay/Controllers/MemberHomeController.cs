@@ -385,7 +385,10 @@ namespace DeWay.Controllers
         public ActionResult rvwCreate(string odrID, string rvwContent, short rvwStar, int code = 0)
         {
 
-
+            //if (ModelState.IsValid != true)
+            //{
+            //    return View("rfdCreate");
+            //}
             var pdtID = (from m in db.Cart_OrderDetail
                          where m.odrID == odrID
                          select m.Specification.pdtID).Distinct().ToList();
