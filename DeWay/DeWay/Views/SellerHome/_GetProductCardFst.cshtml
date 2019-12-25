@@ -9,7 +9,7 @@
         <div class="card-body productsCardbody">
 
             <img src="../../productImage/@Model.ProductImage.FirstOrDefault().pdtImage" class=" rounded card-img-top productsImg " alt="...">
-            <p class="text-secondary productsCardText">@Model.pdtName<span></span></p>
+            <p class="text-secondary productsCardText"><a href="@Url.Action("productPage","productPage",new { pdtID = Model.pdtID })">@Model.pdtName</a><span></span></p>
             <p class="text-secondary productsCardText">NT:<span>@price</span></p>
             <div class="">
                 <div class="d-flex justify-content-between">
@@ -32,8 +32,8 @@
 
                     @if (ViewBag.id == null)
                     {
-                        <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2" alt="...">
-                        <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
+                        <img src="../../images/Img-like-8.png" class="card-img-top productsImg2 pImg2 likeImg" pdtID="@Model.pdtID" alt="...">
+                        <img src="../../images/Img-shopping-cart-12.png" class="card-img-top productsImg2 cartIcon" alt="..." specID="@Model.Specification.FirstOrDefault().spcID">
 
                     }
                 </div>

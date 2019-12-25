@@ -9,7 +9,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
-
+    <link href="~/Content/DeWayMemberHome.css" rel="stylesheet" />
 
     @RenderSection("CSS", false)
 </head>
@@ -167,19 +167,19 @@
                 <div class="col-2 ml-5">
                     <ul class="nav nav-pills flex-column">
                         訂單管理
-                        <li class="nav-item"><a href="@Url.Action("OrderIndex","SellerHome")" class="nav-link">銷售訂單</a></li>
-                        <li class="nav-item"><a href="@Url.Action("deliveryIndex","SellerHome")" class="nav-link">訂單出貨</a></li>
-                        <li class="nav-item"><a href="@Url.Action("rfdIndex","SellerHome")" class="nav-link">退貨/退款</a></li>
+                        <li class="nav-item d-nav"><a href="@Url.Action("OrderIndex","SellerHome")" class="nav-link">銷售訂單</a></li>
+                        <li class="nav-item d-nav"><a href="@Url.Action("deliveryIndex","SellerHome")" class="nav-link">訂單出貨</a></li>
+                        <li class="nav-item d-nav"><a href="@Url.Action("rfdIndex","SellerHome")" class="nav-link">退貨/退款</a></li>
                     </ul>
                     <ul class="nav flex-column">
                         商品管理
-                        <li class="nav-item"><a href="@Url.Action("myProduct","SellerHome")" class="nav-link">我的商品</a></li>
-                        <li class="nav-item"><a href="@Url.Action("Create","product_create")" class="nav-link">新增商品</a></li>
-                        <li class="nav-item"><a href="@Url.Action("QAIndex","SellerHome")" class="nav-link">檢視問答</a></li>
+                        <li class="nav-item d-nav"><a href="@Url.Action("myProduct","SellerHome")" class="nav-link">我的商品</a></li>
+                        <li class="nav-item d-nav"><a href="@Url.Action("Create","product_create")" class="nav-link">新增商品</a></li>
+                        <li class="nav-item d-nav"><a href="@Url.Action("QAIndex","SellerHome")" class="nav-link">檢視問答</a></li>
                     </ul>
                     <ul class="nav  flex-column">
                         賣場管理
-                        <li class="nav-item"><a href="@Url.Action("selEdit","SellerHome")" class="nav-link">賣場設定</a></li>
+                        <li class="nav-item d-nav"><a href="@Url.Action("selEdit","SellerHome")" class="nav-link">賣場設定</a></li>
                     </ul>
 
 

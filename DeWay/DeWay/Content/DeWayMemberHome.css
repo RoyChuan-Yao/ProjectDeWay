@@ -2,7 +2,7 @@
     border-bottom: 3px solid #6b92a4;
     background-color: rgba(248,249,250,0.8)
 }
-.nav-item:hover {
+.d-nav:hover {
     
     background-color: rgba(174, 175, 176, 0.65);
 }

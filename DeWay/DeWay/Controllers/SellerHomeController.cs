@@ -26,7 +26,7 @@ namespace DeWay.Controllers
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
 
-            
+
 
 
             string id = Session["memberID"].ToString();
@@ -308,19 +308,19 @@ namespace DeWay.Controllers
 
             string RfdodrID = db.Refund.Where(r => r.rfdID == rfdID).FirstOrDefault().odrID;
 
-            string odrID = db.Order.Where(o => o.selID == getselID).Where(o=>RfdodrID.Contains(o.odrID)).FirstOrDefault().odrID;
+            string odrID = db.Order.Where(o => o.selID == getselID).Where(o => RfdodrID.Contains(o.odrID)).FirstOrDefault().odrID;
 
-            
+
 
             VM_rfdDetail refundDetail = new VM_rfdDetail()
             {
                 refund = db.Refund.Where(r => r.rfdID == rfdID).ToList(),
-                cart_orderDetail = db.Cart_OrderDetail.Where(c =>c.odrID==odrID).ToList()
+                cart_orderDetail = db.Cart_OrderDetail.Where(c => c.odrID == odrID).ToList()
             };
 
             return View(refundDetail);
 
-        
+
         }
 
         [HttpPost]
@@ -363,6 +363,17 @@ namespace DeWay.Controllers
                 var rfd = db.Refund.Where(m => m.odrID == odrID).FirstOrDefault();
                 rfd.rfdStatusID = "rds0000004";
             }
+
+            db.SaveChanges();
+            return RedirectToAction("rfdIndex");
+        }
+
+        public ActionResult rfd2(string odrID)
+        {
+
+            var rfd = db.Refund.Where(m => m.odrID == odrID).FirstOrDefault();
+            rfd.rfdStatusID = "rds0000003";
+
 
             db.SaveChanges();
             return RedirectToAction("rfdIndex");
@@ -448,7 +459,7 @@ namespace DeWay.Controllers
 
         }
 
-        public ActionResult myProduct(string fstID=null)
+        public ActionResult myProduct(string fstID = null)
         {
             if (Session["memberID"] == null)
                 return RedirectToAction("Login", "Login");
@@ -463,14 +474,14 @@ namespace DeWay.Controllers
 
             }
 
-            var pdt2 = db.Product.Where(m => m.selID == getselID&&m.ProductCategory.fstLayerID==fstID).ToList();
+            var pdt2 = db.Product.Where(m => m.selID == getselID && m.ProductCategory.fstLayerID == fstID).ToList();
 
 
             return View(pdt2);
 
         }
 
-        public PartialViewResult _GetProductCardFst(string productID, string fstID=null)
+        public PartialViewResult _GetProductCardFst(string productID, string fstID = null)
         {
             if (Session["memberID"] != null)
             {
@@ -484,14 +495,14 @@ namespace DeWay.Controllers
                 }
             }
 
-            if(fstID==null)
+            if (fstID == null)
             {
                 var product1 = db.Product.Where(m => m.pdtID == productID).FirstOrDefault();
                 return PartialView(product1);
 
             }
 
-            var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID ).FirstOrDefault();
+            var product = db.Product.Where(m => m.pdtID == productID && m.ProductCategory.fstLayerID == fstID).FirstOrDefault();
             return PartialView(product);
         }
 
@@ -543,7 +554,7 @@ namespace DeWay.Controllers
             seller.selAddress = m.selAddress;
             seller.selInfo = m.selInfo;
             seller.selImage = fileName;
-            
+
 
 
 
