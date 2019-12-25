@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - DeWay 管理員後台</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DeWayWebHome.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+
+    @RenderSection("CSS", false)
+</head>
+
+<body class="bodyAdmBg">
+
+
+
+
+    <!--管理員後台-->
+    <section id="" class=" ">
+        <div class="">
+            <div>
+                <div class="AdmBackAside ">
+                    <div class="AdmBackA">
+                        <div class="AdmFontSize flex-column text-white">
+                            管理員後台
+                        </div>
+
+
+                        <ul class="nav flex-column">
+
+
+                            @if (Session["AdmID"] == null)
+                            {
+                                <li class="nav-item dropdown">
+                                    @Html.ActionLink("登入", "Login", "AdmLogin", new { }, new { @class = "nav-link aBcollapseA" })
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item dropdown">
+
+                                    @Html.ActionLink("活動公告管理", "Index", "actBulletinsAdm", new { id = Session["AdmID"] }, new { @class = "nav-link  aBcollapseA" })
+                                </li>
+                                <li class="nav-item dropdown">
+                                    @Html.ActionLink("活動通知紀錄管理", "Index", "ntfRecordsAdm", new { id = Session["AdmID"] }, new { @class = "nav-link aBcollapseA" })
+
+                                </li>
+                                <li class="nav-item dropdown">
+                                    @Html.ActionLink("商品管理", "Index", "ProductsAdm", new { id = Session["AdmID"] }, new { @class = "nav-link  aBcollapseA" })
+
+                                </li>
+                                <li class="nav-item dropdown">
+                                    @Html.ActionLink("訂單管理", "Index", "AdmOrdersAdm", new { id = Session["AdmID"] }, new { @class = "nav-link  aBcollapseA" })
+
+                                </li>
+                                <li class="nav-item dropdown">
+                                    @Html.ActionLink("會員管理", "Index", "MembersAdm", new { id = Session["AdmID"] }, new { @class = "nav-link  aBcollapseA" })
+
+                                </li>
+                                <li class="nav-item dropdown">
+                                    @Html.ActionLink("登出", "Logout", "AdmLogin", new { }, new { @class = "nav-link aBcollapseA" })
+                                </li>
+                            }
+
+
+
+
+                        </ul>
+                    </div>
+
+
+                </div>
+                <div class="AdmBackArticle">
+                    <div class="container">
+                        <div class="">
+
+                            @RenderBody()
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @RenderSection("Script", false)
+    <script src="~/Scripts/CoverMissingProductImages.js"></script>
+
+
+</body>
+</html>
+
