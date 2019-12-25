@@ -42,20 +42,21 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card-body">
-                                <a class="card-title h3 text-decoration-none" href="@Url.Action("ProductPage","ProductPage",new { pdtID=$"{product.Specification.pdtID}"})">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</a>
+                                <a class="card-title  text-decoration-none" style="font-size:20px;" href="@Url.Action("ProductPage","ProductPage",new { pdtID=$"{product.Specification.pdtID}"})">@Html.DisplayFor(modelItem => product.Specification.Product.pdtName)</a>
+                                <p class=" mt-2" style="font-size:23px;color: #ff9797">NT$ <span id="price_@count">@Convert.ToInt32(product.Specification.Price) </span></p>
                                 <p class="card-text">
                                     規格：
 
                                     @Html.DisplayFor(modelItem => product.Specification.Size)
                                     @Html.DisplayFor(modelItem => product.Specification.Style)
                                 </p>
-                                <p class="text-primary h3">NT$ <span id="price_@count">@Convert.ToInt32(product.Specification.Price) </span></p>
+                                
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card-body h5">
                                 <p class="text-primary mb-4 ">
-                                    <span class="mb-3">選購數量：</span>
+                                    <span class="mb-3" style="font-size:15px;">選購數量：</span>
                                     <select style="width:200px" id="count_@count" spcID="@product.spcID" class="quantitySelect">
                                         @for (int i = 1; i <= product.Specification.Stock; i++)
                                         {
@@ -71,7 +72,7 @@
                                     @*折扣：    @Html.DisplayFor(modelItem => product.Discount)<br />
             點數使用：    @Html.DisplayFor(modelItem => product.usedPoints)<br />*@
                                 </p>
-                                <span class="mb-3 text-primary">運送方式：</span>
+                                <span class="mb-3 text-primary" style="font-size:15px;">運送方式：</span>
                                 <select id="shipSelect_@count" style="width:200px">
 
                                     @foreach (var item1 in product.Specification.Product.ShipperDetail)
