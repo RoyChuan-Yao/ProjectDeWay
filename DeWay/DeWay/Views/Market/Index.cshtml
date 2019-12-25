@@ -471,5 +471,30 @@
         }
         refresh();
     </script>
+    <script>
+        $('.cartIcon').click((e) => {
+            console.log("click");
+            var specID = $(e.target).attr('specID');
+            $.ajax({
+                url: "@Url.Action("AddToMyCart","Cart")?spcID=" + specID,
+                method: "post",
+            });
+        });
+         $('.likeImg').on("click", function (e) {
+            $.ajax({
+                url: "@Url.Action("AddToWishList","WishLists")",
+                type: 'post',
+                data: {
+                    pdtID: $(e.target).attr("pdtID")
+                },
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert("加入最愛前，請先登入！")
+                }
+            })
+        });
+    </script>
 
 }
