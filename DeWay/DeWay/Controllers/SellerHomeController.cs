@@ -205,19 +205,17 @@ namespace DeWay.Controllers
         [HttpPost]
         public ActionResult delivery(string odrID, string traceNumber)
         {
-
-
             var editods = db.Order.Where(m => m.odrID == odrID).FirstOrDefault();
             editods.odrStatusID = "ods0000003";
             editods.traceNumber = traceNumber;
             editods.shpDate = DateTime.Now;
 
-            if (ModelState.IsValid == true)
-            {
-                db.SaveChanges();
-                return RedirectToAction("deliveryIndex");  //導向Index的Action方法
-            }
-            ViewBag.error = "請輸入託運單號";
+            //if (ModelState.IsValid == true)
+            //{
+            //    db.SaveChanges();
+            //    return RedirectToAction("deliveryIndex");  //導向Index的Action方法
+            //}
+            db.SaveChanges();
             return RedirectToAction("deliveryIndex");  //導向Index的Action方法
         }
 
