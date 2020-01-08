@@ -11,19 +11,15 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using static DeWay.Models.Metadata;
-
-    [MetadataType(typeof(MetadataOrder))]
+    
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.Review = new HashSet<Review>();
             this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
-
             this.Refund = new HashSet<Refund>();
+            this.Review = new HashSet<Review>();
         }
     
         public string odrID { get; set; }
@@ -43,16 +39,14 @@ namespace DeWay.Models
         public string selID { get; set; }
         public Nullable<decimal> shpPrice { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
         public virtual OrderStatus OrderStatus { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Refund> Refund { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Review { get; set; }
         public virtual Seller Seller { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-        public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-        public virtual ICollection<Refund> Refund { get; set; }
     }
 }

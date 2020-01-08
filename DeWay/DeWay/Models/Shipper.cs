@@ -11,28 +11,22 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using static DeWay.Models.Metadata;
-
-    [MetadataType(typeof(MetadataShipper))]
-
-
-
+    
     public partial class Shipper
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shipper()
         {
-            this.ShipperDetail = new HashSet<ShipperDetail>();
             this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
+            this.ShipperDetail = new HashSet<ShipperDetail>();
         }
     
         public string shpID { get; set; }
         public string shpMethod { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ShipperDetail> ShipperDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShipperDetail> ShipperDetail { get; set; }
     }
 }

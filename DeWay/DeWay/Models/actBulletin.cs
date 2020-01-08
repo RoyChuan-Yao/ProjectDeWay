@@ -10,11 +10,8 @@
 namespace DeWay.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-    using static DeWay.Models.Metadata;
-
-    [MetadataType(typeof(MetadataactBulletin))]
-
+    using System.Collections.Generic;
+    
     public partial class actBulletin
     {
         public string actID { get; set; }

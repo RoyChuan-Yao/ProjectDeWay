@@ -11,11 +11,7 @@ namespace DeWay.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using static DeWay.Models.Metadata;
-
-    [MetadataType(typeof(MetadataProduct))]
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,9 +21,9 @@ namespace DeWay.Models
             this.QA = new HashSet<QA>();
             this.Review = new HashSet<Review>();
             this.ShipperDetail = new HashSet<ShipperDetail>();
+            this.Specification = new HashSet<Specification>();
             this.Tag = new HashSet<Tag>();
             this.WishList = new HashSet<WishList>();
-            this.Specification = new HashSet<Specification>();
         }
     
         public string pdtID { get; set; }
@@ -49,10 +45,10 @@ namespace DeWay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShipperDetail> ShipperDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Specification> Specification { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WishList> WishList { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Specification> Specification { get; set; }
     }
 }
