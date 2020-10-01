@@ -32,7 +32,7 @@ namespace DeWay.Controllers
 
             var checksel = db.Seller.Where(m => m.mbrID == mbrID).Count();
             //應急處理 不然登入者不是賣家會報錯
-
+  
             if (mbrID != null && checksel!=0)
             {
                 ViewBag.sellID = db.Seller.Where(s => s.mbrID == mbrID).FirstOrDefault().selID;
